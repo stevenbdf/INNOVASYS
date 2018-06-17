@@ -20,7 +20,7 @@ public class Login1 extends javax.swing.JFrame {
      * Creates new form Login1
      */
     public Login1() {
-        //Test github version 2.0
+        //Test github version 2.1
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
