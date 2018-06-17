@@ -21,6 +21,7 @@ public class Login1 extends javax.swing.JFrame {
      */
     public Login1() {
         //Test github version 2.1
+        //JASJAS k chido
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
