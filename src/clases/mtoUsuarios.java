@@ -128,22 +128,22 @@ public class mtoUsuarios extends PEmpleado{
         return resp;
     }
     String resp2="";
-    public void consultarEstado(){
-        
+    public void consultarEstado() {
+
         try {
-             String sql = "SELECT nombreEstado FROM estadoEmpleado WHERE nombreEstado=?";
+            String sql = "SELECT nombreEstado FROM estadoEmpleado WHERE nombreEstado=?";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1, nombreE);
-            ResultSet rs= cmd.executeQuery();
+            ResultSet rs = cmd.executeQuery();
             if (rs.next()) {
                 resp2 = rs.getString(1);
             }
-//            cmd.close();
-//            cn.close();
+            cmd.close();
+//          cn.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        
+
     }
     
     public boolean guardarEstadoEmpleado(){
@@ -188,6 +188,25 @@ public class mtoUsuarios extends PEmpleado{
             cn.close();
         } catch (Exception e) {
             System.out.println(e.toString());
+        }
+        return resp;
+    }
+    
+    public boolean eliminarEstadoEmpleado(){
+        boolean resp=false;
+        try {
+            String sql ="DELETE FROM estadoEmpleado WHERE idEmpleado=?";
+            
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setInt(1,codigoE);
+            
+            if (!cmd.execute()) {
+                resp=true;
+            }
+            cmd.close();
+            cn.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());         
         }
         return resp;
     }
