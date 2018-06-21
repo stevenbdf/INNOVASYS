@@ -1245,6 +1245,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnEliminarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseClicked
         // TODO add your handling code here:
+        //Instanciar siempre las variable tipo String
         int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este documento?", "Confirmacion",
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
