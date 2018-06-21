@@ -9,7 +9,7 @@ import Animacion.Fade;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import clases.*;
+import clases.mtoUsuarios;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 /**
