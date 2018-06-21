@@ -17,6 +17,48 @@ import javax.swing.JOptionPane;
 public class mtoUsuarios extends PEmpleado{
 
     /**
+     * @return the codigoD
+     */
+    public Integer getCodigoD() {
+        return codigoD;
+    }
+
+    /**
+     * @param codigoD the codigoD to set
+     */
+    public void setCodigoD(Integer codigoD) {
+        this.codigoD = codigoD;
+    }
+
+    /**
+     * @return the nombreD
+     */
+    public String getNombreD() {
+        return nombreD;
+    }
+
+    /**
+     * @param nombreD the nombreD to set
+     */
+    public void setNombreD(String nombreD) {
+        this.nombreD = nombreD;
+    }
+
+    /**
+     * @return the estadoD
+     */
+    public String getEstadoD() {
+        return estadoD;
+    }
+
+    /**
+     * @param estadoD the estadoD to set
+     */
+    public void setEstadoD(String estadoD) {
+        this.estadoD = estadoD;
+    }
+
+    /**
      * @return the codigoE
      */
     public Integer getCodigoE() {
@@ -97,6 +139,11 @@ public class mtoUsuarios extends PEmpleado{
     private String nombreE;
     private String descripcionE;
     
+    //atributos para documento empleado
+    private Integer codigoD;
+    private String nombreD;
+    private String estadoD;
+    
     
     public mtoUsuarios(){
         Conexion con = new Conexion();
@@ -127,29 +174,36 @@ public class mtoUsuarios extends PEmpleado{
         }
         return resp;
     }
-    String resp2="";
-    public void consultarEstado() {
-
+    
+    public String[] consultarEstado() {
+        String[] resp2=new  String[3];
+        resp2[0]="";
+        resp2[1]="";
+        resp2[2]="";
         try {
-            String sql = "SELECT nombreEstado FROM estadoEmpleado WHERE nombreEstado=?";
+            String sql = "SELECT idEstado, nombreEstado, descripcion FROM estadoEmpleado WHERE nombreEstado=?";
             PreparedStatement cmd = cn.prepareStatement(sql);
-            cmd.setString(1, nombreE);
+            cmd.setString(1, getNombreE());
             ResultSet rs = cmd.executeQuery();
             if (rs.next()) {
-                resp2 = rs.getString(1);
+                //nombreEstado
+                resp2[0] = rs.getString(2);
+                //descripcion
+                resp2[1] = rs.getString(3);
+                //idEstado
+                resp2[2] = rs.getString(1);
             }
             cmd.close();
-//          cn.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
+        return resp2;
     }
     
     public boolean guardarEstadoEmpleado(){
         boolean resp = false;
-        consultarEstado();
-        if (resp2.equals(nombreE)) {
+        String[] resp2=consultarEstado();
+        if (resp2[0] .equals(getNombreE())) {
             JOptionPane.showMessageDialog(this,"Error ya existe un estado con ese nombre");
         } else {
             try {
@@ -173,21 +227,43 @@ public class mtoUsuarios extends PEmpleado{
     
     public boolean modificarEstadoEmpleado(){
         boolean resp= false;
-        
-        try {
-            String sql ="UPDATE estadoEmpleado SET nombreEstado=?,descripcion=? WHERE idEstado=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
-            cmd.setString(1,getNombreE());
-            cmd.setString(2,getDescripcionE());
-            cmd.setInt(3,getCodigoE());
-            
+        String[] resp2=consultarEstado();
+//        System.out.println("Codigo:"+resp2[2]);
+//        System.out.println("Nombre:"+resp2[0]);
+//        System.out.println("Descripcion:"+resp2[1]);
+        if (resp2[0].equals(getNombreE()) && resp2[1].equals(getDescripcionE())) {
+                JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");                   
+        }else if (resp2[0].equals(getNombreE()) && !resp2[1].equals(getDescripcionE())) {
+            try {
+                String sql = "UPDATE estadoEmpleado SET descripcion=? WHERE idEstado=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);        
+                cmd.setString(1, getDescripcionE());
+                cmd.setInt(2, getCodigoE());
+
                 if (!cmd.execute()) {
-                resp=true;
+                    resp = true;
                 }
-            cmd.close();
-            cn.close();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }else{
+            try {
+                String sql = "UPDATE estadoEmpleado SET nombreEstado=?,descripcion=? WHERE idEstado=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1,getNombreE());
+                cmd.setString(2, getDescripcionE());
+                cmd.setInt(3, getCodigoE());
+
+                if (!cmd.execute()) {
+                    resp = true;
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
         return resp;
     }
@@ -195,7 +271,7 @@ public class mtoUsuarios extends PEmpleado{
     public boolean eliminarEstadoEmpleado(){
         boolean resp=false;
         try {
-            String sql ="DELETE FROM estadoEmpleado WHERE idEmpleado=?";
+            String sql ="DELETE FROM estadoEmpleado WHERE idEstado=?";
             
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setInt(1,codigoE);
@@ -207,6 +283,113 @@ public class mtoUsuarios extends PEmpleado{
             cn.close();
         } catch (Exception e) {
             System.out.println(e.toString());         
+        }
+        return resp;
+    }
+    
+    public String[] consultarDocumento(){
+        String[] resp2=new  String[3];
+        resp2[0]="";
+        resp2[1]="";
+        resp2[2]="";
+        try {
+            String sql = "SELECT idDocumento,nombre,estado FROM documento WHERE nombre=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setString(1, getNombreD());
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()) {
+                resp2[0] = rs.getString(2);
+                resp2[1] = rs.getString(3);
+                resp2[2] = rs.getString(1);
+            }
+            cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return resp2;
+    }
+    
+    public boolean guardarDocumento(){
+        boolean resp=false;
+        String[] resp2=consultarDocumento();
+        if (resp2[0].equals(getNombreD())) {
+            JOptionPane.showMessageDialog(this,"Error ya existe un documento con ese nombre");
+        }
+        else {
+            try {
+
+                String sql2 = "INSERT INTO documento(idDocumento,nombre,estado) VALUES ((SELECT MAX(idDocumento)+1 FROM documento),?,?)";
+                PreparedStatement cmd2 = cn.prepareStatement(sql2);
+                cmd2.setString(1, getNombreD());
+                cmd2.setString(2, getEstadoD());
+                if (!cmd2.execute()) {
+                    resp = true;
+                } 
+                cmd2.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return resp;
+    }
+    
+    public boolean modificarDocumento(){
+        boolean resp = false;
+        String[] resp2=consultarDocumento();
+        if (resp2[0].equals(getNombreD()) && resp2[1].equals(getEstadoD())) {
+            
+                JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");                   
+        } else if(resp2[0].equals(getNombreD()) && !resp2[1].equals(getEstadoD())) {
+            try {
+                String sql = "UPDATE documento SET estado=? WHERE idDocumento=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1, getEstadoD());
+                cmd.setInt(2, getCodigoD());
+
+                if (!cmd.execute()) {
+                    resp = true;
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }else{
+            try {
+                String sql = "UPDATE documento SET nombre=?,estado=? WHERE idDocumento=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1,getNombreD());
+                cmd.setString(2, getEstadoD());
+                cmd.setInt(3, getCodigoD());
+
+                if (!cmd.execute()) {
+                    resp = true;
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return resp;
+    }
+    
+    public boolean eliminarDocumento(){
+        boolean resp=false;
+        try {
+            String sql ="DELETE FROM documento WHERE idDocumento=?";
+            
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setInt(1,codigoD);
+            
+            if (!cmd.execute()) {
+                resp=true;
+            }
+            cmd.close();
+            cn.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         return resp;
     }

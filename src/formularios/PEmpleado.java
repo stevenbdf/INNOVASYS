@@ -20,10 +20,12 @@ public class PEmpleado extends javax.swing.JPanel {
      * Creates new form PEmpleado
      */
     DefaultTableModel modeloTablaEstados;
+    DefaultTableModel modeloTablaDocumentos;
     Conexion cn = new Conexion();
-    String NombreE="",CodigoEstado="";
+    String NombreE="",CodigoEstado="",NombreD="",CodigoDocumento="",DescripcionE="";
     public PEmpleado() {
         modeloTablaEstados= new DefaultTableModel(null, getColumnasEstado());setFilasEstado(0,"");
+        modeloTablaDocumentos= new DefaultTableModel(null, getColumnasDocumentos());setFilasDocumentos(0,"");
                 try {
                      UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		}
@@ -31,13 +33,19 @@ public class PEmpleado extends javax.swing.JPanel {
 		}
         initComponents();
         jTFBuscarEstado.setEnabled(false);
+        jTFBuscarDocumento.setEnabled(false);
         
     }
     private String[] getColumnasEstado() {
         String columnas[] = new String[]{"CODIGO", "NOMBRE", "DESCRIPCION"};
         return columnas;
     }
-
+    
+    private String[] getColumnasDocumentos() {
+        String columnas[] = new String[]{"CODIGO", "NOMBRE", "ESTADO"};
+        return columnas;
+    }
+    
     private void setFilasEstado(int tipo,String valores) {
         try {
             String sql="";
@@ -62,6 +70,39 @@ public class PEmpleado extends javax.swing.JPanel {
                     datos[i] = resultado.getObject(i + 1);
                 }
                 modeloTablaEstados.addRow(datos);
+            }
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void setFilasDocumentos(int tipo,String valores) {
+        try {
+            String sql="";
+            switch (tipo) {
+                case 1:
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE idDocumento like '"+valores+"%'";
+                    break;
+                case 2:
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE nombre like '"+valores+"%'";
+                    break;
+                case 3:
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE estado like '"+valores+"%'";
+                    break;
+                default:
+                    sql = "SELECT idDocumento, nombre, estado FROM documento";
+                    break;
+            }
+            PreparedStatement us = cn.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[3];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaDocumentos.addRow(datos);
             }
         } catch (Exception e) {
 
@@ -121,17 +162,19 @@ public class PEmpleado extends javax.swing.JPanel {
         jButton10 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jTextField15 = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jTFBuscarDocumento = new javax.swing.JTextField();
+        rdNombreDocumento = new javax.swing.JRadioButton();
+        rdCodigoDocumento = new javax.swing.JRadioButton();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
+        cmbEstadoD = new javax.swing.JComboBox<>();
+        jTFNombreD = new javax.swing.JTextField();
+        lblCodigoDocumento = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnAgregarD = new javax.swing.JButton();
+        btnModificarD = new javax.swing.JButton();
+        btnEliminarD = new javax.swing.JButton();
+        rdEstadoDocumento = new javax.swing.JRadioButton();
         jPanel8 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -481,40 +524,58 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jTable2.setModel(modeloTablaDocumentos);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
             }
-        ));
+        });
         jScrollPane2.setViewportView(jTable2);
 
-        jTextField15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField15.setForeground(new java.awt.Color(204, 204, 204));
+        jTFBuscarDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarDocumento.setForeground(new java.awt.Color(204, 204, 204));
+        jTFBuscarDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarDocumentoKeyReleased(evt);
+            }
+        });
 
-        jRadioButton3.setText("Nombre");
+        rdNombreDocumento.setText("Nombre");
+        rdNombreDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombreDocumentoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton4.setText("Estado");
+        rdCodigoDocumento.setText("Codigo");
+        rdCodigoDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCodigoDocumentoActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(204, 204, 204));
         jLabel22.setText("Buscar:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEstadoD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField10.setToolTipText("");
-        jTextField10.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFNombreD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFNombreD.setForeground(new java.awt.Color(204, 204, 204));
+        jTFNombreD.setToolTipText("");
+        jTFNombreD.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFNombreD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFNombreDKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreDKeyReleased(evt);
+            }
+        });
 
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel19.setText("CODIGO DOCUMENTO");
+        lblCodigoDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoDocumento.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoDocumento.setText("CODIGO DOCUMENTO");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
@@ -524,33 +585,64 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Estado:");
 
-        jButton12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 204, 204));
-        jButton12.setText("Agregar");
-        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton12.setContentAreaFilled(false);
-        jButton12.setPreferredSize(new java.awt.Dimension(71, 30));
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgregarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarD.setText("Agregar");
+        btnAgregarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarD.setContentAreaFilled(false);
+        btnAgregarD.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarDMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton12MouseEntered(evt);
+                btnAgregarDMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton12MouseExited(evt);
+                btnAgregarDMouseExited(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 204, 204));
-        jButton7.setText("Modificar");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton7.setContentAreaFilled(false);
-        jButton7.setPreferredSize(new java.awt.Dimension(75, 30));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnModificarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarD.setText("Modificar");
+        btnModificarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarD.setContentAreaFilled(false);
+        btnModificarD.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarDMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton7MouseEntered(evt);
+                btnModificarDMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton7MouseExited(evt);
+                btnModificarDMouseExited(evt);
+            }
+        });
+
+        btnEliminarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarD.setText("Eliminar");
+        btnEliminarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarD.setContentAreaFilled(false);
+        btnEliminarD.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarDMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarDMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarDMouseExited(evt);
+            }
+        });
+
+        rdEstadoDocumento.setText("Estado");
+        rdEstadoDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdEstadoDocumentoActionPerformed(evt);
             }
         });
 
@@ -559,80 +651,86 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
+                            .addComponent(lblCodigoDocumento)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(9, 9, 9)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTFNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addGap(12, 12, 12)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jRadioButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton4))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(jButton10)))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(17, 17, 17)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                .addComponent(jLabel5)
+                                .addGap(17, 17, 17)
+                                .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdNombreDocumento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdCodigoDocumento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdEstadoDocumento))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jButton10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jTFBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdCodigoDocumento)
+                                    .addComponent(rdEstadoDocumento)
+                                    .addComponent(rdNombreDocumento))))
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCodigoDocumento)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel6))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTFNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel22))
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jRadioButton3))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jRadioButton4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -782,7 +880,6 @@ public class PEmpleado extends javax.swing.JPanel {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCodigoEstado)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel25)
@@ -790,66 +887,68 @@ public class PEmpleado extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jLabel24)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(rdNombreEstado)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdCodigoEstado)
-                                        .addGap(0, 61, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                    .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblCodigoEstado))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(30, 30, 30)
                         .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdNombreEstado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdCodigoEstado)
+                                .addGap(0, 83, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
                         .addComponent(jButton11)
-                        .addGap(92, 92, 92)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel24)
+                        .addComponent(lblCodigoEstado)
+                        .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdNombreEstado)
+                        .addComponent(rdCodigoEstado)))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(lblCodigoEstado)
-                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25)
-                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel24))
-                            .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rdNombreEstado)
-                                    .addComponent(rdCodigoEstado))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -945,25 +1044,25 @@ public class PEmpleado extends javax.swing.JPanel {
          jButton6.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton6MouseExited
 
-    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+    private void btnAgregarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseEntered
         // TODO add your handling code here:
-         jButton12.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton12MouseEntered
+         btnAgregarD.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnAgregarDMouseEntered
 
-    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+    private void btnAgregarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseExited
         // TODO add your handling code here:
-         jButton12.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton12MouseExited
+         btnAgregarD.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnAgregarDMouseExited
 
-    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+    private void btnModificarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseEntered
         // TODO add your handling code here:
-         jButton7.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton7MouseEntered
+         btnModificarD.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnModificarDMouseEntered
 
-    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+    private void btnModificarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseExited
         // TODO add your handling code here:
-         jButton7.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton7MouseExited
+         btnModificarD.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnModificarDMouseExited
 
     private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
         // TODO add your handling code here:
@@ -1041,9 +1140,9 @@ public class PEmpleado extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Error campos vacios");
         } else {
             mtoUsuarios objeto= new mtoUsuarios();
+            objeto.setCodigoE(Integer.valueOf(CodigoEstado));
             objeto.setNombreE(jTFNombreE.getText());
             objeto.setDescripcionE(jTFDescripcionE.getText());
-            objeto.setCodigoE(Integer.valueOf(CodigoEstado));
             if (objeto.modificarEstadoEmpleado()) {
                 JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
                 lblCodigoEstado.setText("CODIGO ESTADO");
@@ -1094,34 +1193,46 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void jTFNombreEKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEKeyReleased
         // TODO add your handling code here:
-        if (!jTFNombreE.getText().equals(NombreE)) {
+        mtoUsuarios objeto=new mtoUsuarios();
+        objeto.setNombreE(jTFNombreE.getText());
+        String datos[]=objeto.consultarEstado();
+        if (jTFNombreE.getText().equals(datos[0])) {
+            CodigoEstado=datos[2];
+            lblCodigoEstado.setText("CODIGO ESTADO: "+datos[2]);
+            DescripcionE=datos[1];
+            jTFDescripcionE.setText(datos[1]);
+        }else{
             lblCodigoEstado.setText("CODIGO ESTADO");
-        }else if (jTFNombreE.getText().equals(NombreE)) {
-            lblCodigoEstado.setText("CODIGO ESTADO: "+CodigoEstado);
         }
     }//GEN-LAST:event_jTFNombreEKeyReleased
 
     private void btnEliminarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEMouseClicked
         // TODO add your handling code here:
-        if (lblCodigoEstado.getText().equals("CODIGO ESTADO")) {
-            JOptionPane.showMessageDialog(this,"No ha seleccionado ningun estado para eliinar");
+        int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este estado?", "Confirmacion",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this,"Estado no eliminado");
         }else{
-            mtoUsuarios objeto = new mtoUsuarios();
-            objeto.setCodigoE(Integer.valueOf(CodigoEstado));
-            if (objeto.eliminarEstadoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Estado eliminado correctamente");
-                lblCodigoEstado.setText("CODIGO ESTADO");
-                jTFNombreE.setText(null);
-                jTFDescripcionE.setText(null);
-                int filas = modeloTablaEstados.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaEstados.removeRow(0);
+            if (lblCodigoEstado.getText().equals("CODIGO ESTADO")) {
+                JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
+            } else {
+                mtoUsuarios objeto = new mtoUsuarios();
+                objeto.setCodigoE(Integer.valueOf(CodigoEstado));
+                if (objeto.eliminarEstadoEmpleado()) {
+                    JOptionPane.showMessageDialog(this, "Estado eliminado correctamente");
+                    lblCodigoEstado.setText("CODIGO ESTADO");
+                    jTFNombreE.setText(null);
+                    jTFDescripcionE.setText(null);
+                    int filas = modeloTablaEstados.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaEstados.removeRow(0);
+                    }
+                    setFilasEstado(0, "");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error existen empleados relacionados a este estado. \n Elimina o modifica antes a los empleados relacionados para poder eliminar este estado.");
                 }
-                setFilasEstado(0,"");
-            }else{
-                JOptionPane.showMessageDialog(this,"Error existen empleados relacionados a este estado. \n Elimina o modifica antes a los empleados relacionados para poder eliminar este estado.");
             }
-        }
+        } 
     }//GEN-LAST:event_btnEliminarEMouseClicked
 
     private void btnEliminarEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEMouseEntered
@@ -1132,24 +1243,175 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarEMouseExited
 
+    private void btnEliminarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseClicked
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este documento?", "Confirmacion",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this,"Documento no eliminado");
+        }else{
+            if (lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO")) {
+                JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
+            } else {
+                mtoUsuarios objeto = new mtoUsuarios();
+                objeto.setCodigoD(Integer.valueOf(CodigoDocumento));
+                if (objeto.eliminarDocumento()) {
+                    JOptionPane.showMessageDialog(this, "Documento eliminado correctamente");
+                    lblCodigoDocumento.setText("CODIGO DOCUMENTO");
+                    jTFNombreD.setText(null);
+                    int filas = modeloTablaDocumentos.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaDocumentos.removeRow(0);
+                    }
+                    setFilasDocumentos(0, "");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error existen empleados relacionados a este documento. \n Elimina o modifica antes a los empleados relacionados para poder eliminar este documento.");
+                }
+            }
+        } 
+    }//GEN-LAST:event_btnEliminarDMouseClicked
+
+    private void btnEliminarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarDMouseEntered
+
+    private void btnEliminarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarDMouseExited
+
+    private void rdNombreDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreDocumentoActionPerformed
+        // TODO add your handling code here:
+        rdCodigoDocumento.setSelected(false);
+        rdEstadoDocumento.setSelected(false);
+        jTFBuscarDocumento.setEnabled(true);
+    }//GEN-LAST:event_rdNombreDocumentoActionPerformed
+
+    private void rdCodigoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoDocumentoActionPerformed
+        // TODO add your handling code here:
+        rdNombreDocumento.setSelected(false);
+        rdEstadoDocumento.setSelected(false);
+        jTFBuscarDocumento.setEnabled(true);
+    }//GEN-LAST:event_rdCodigoDocumentoActionPerformed
+
+    private void rdEstadoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdEstadoDocumentoActionPerformed
+        // TODO add your handling code here:
+        rdCodigoDocumento.setSelected(false);
+        rdNombreDocumento.setSelected(false);
+        jTFBuscarDocumento.setEnabled(true);
+    }//GEN-LAST:event_rdEstadoDocumentoActionPerformed
+
+    private void jTFBuscarDocumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarDocumentoKeyReleased
+        // TODO add your handling code here:
+        if (rdCodigoDocumento.isSelected()) {
+            int filas = modeloTablaDocumentos.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaDocumentos.removeRow(0);
+            }
+            setFilasDocumentos(1, jTFBuscarDocumento.getText());
+        }else if (rdNombreDocumento.isSelected()) {
+            int filas = modeloTablaDocumentos.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaDocumentos.removeRow(0);
+            }
+            setFilasDocumentos(2, jTFBuscarDocumento.getText());
+        }else if (rdEstadoDocumento.isSelected()) {
+            int filas = modeloTablaDocumentos.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaDocumentos.removeRow(0);
+            }
+            setFilasDocumentos(3, jTFBuscarDocumento.getText());
+        }
+    }//GEN-LAST:event_jTFBuscarDocumentoKeyReleased
+
+    private void btnAgregarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseClicked
+        // TODO add your handling code here:
+        if (jTFNombreD.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            mtoUsuarios objeto = new mtoUsuarios();
+            objeto.setNombreD(jTFNombreD.getText());
+            objeto.setEstadoD(String.valueOf(cmbEstadoD.getSelectedItem()));
+            if (objeto.guardarDocumento()) {
+                JOptionPane.showMessageDialog(this,"Datos guardados correctamente");
+                jTFNombreD.setText(null);
+                cmbEstadoD.setSelectedIndex(0);
+                int filas = modeloTablaDocumentos.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentos.removeRow(0);
+                }
+                setFilasDocumentos(0,"");
+            }
+        }
+    }//GEN-LAST:event_btnAgregarDMouseClicked
+
+    private void btnModificarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseClicked
+        // TODO add your handling code here:
+        if (jTFNombreD.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        } else {
+            mtoUsuarios objeto = new mtoUsuarios();
+            objeto.setCodigoD(Integer.valueOf(CodigoDocumento));
+            objeto.setNombreD(jTFNombreD.getText());
+            objeto.setEstadoD(String.valueOf(cmbEstadoD.getSelectedItem()));
+            if (objeto.modificarDocumento()) {
+                JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
+                jTFNombreD.setText(null);
+                int filas = modeloTablaDocumentos.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentos.removeRow(0);
+                }
+                setFilasDocumentos(0, "");
+            }
+        }
+    }//GEN-LAST:event_btnModificarDMouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        CodigoDocumento=String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 0));
+        lblCodigoDocumento.setText("CODIGO DOCUMENTO: "+CodigoDocumento);
+        NombreD=String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 1));
+        jTFNombreD.setText(NombreD);
+        cmbEstadoD.setSelectedItem(String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 2)));
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTFNombreDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyReleased
+        // TODO add your handling code here:
+        mtoUsuarios objeto=new mtoUsuarios();
+        objeto.setNombreD(jTFNombreD.getText());
+        String datos[]=objeto.consultarDocumento();
+        if (jTFNombreD.getText().equals(datos[0])) {
+            CodigoDocumento=datos[2];
+            lblCodigoDocumento.setText("CODIGO DOCUMENTO: "+datos[2]);
+            cmbEstadoD.setSelectedItem(datos[1]);
+        }else{
+            lblCodigoDocumento.setText("CODIGO DOCUMENTO");
+        }
+    }//GEN-LAST:event_jTFNombreDKeyReleased
+
+    private void jTFNombreDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTFNombreDKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarD;
     private javax.swing.JButton btnAgregarE;
+    private javax.swing.JButton btnEliminarD;
     private javax.swing.JButton btnEliminarE;
+    private javax.swing.JButton btnModificarD;
     private javax.swing.JButton btnModificarE;
+    private javax.swing.JComboBox<String> cmbEstadoD;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1159,7 +1421,6 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1181,21 +1442,19 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTFBuscarDocumento;
     private javax.swing.JTextField jTFBuscarEstado;
     private javax.swing.JTextField jTFDescripcionE;
+    private javax.swing.JTextField jTFNombreD;
     private javax.swing.JTextField jTFNombreE;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1203,8 +1462,12 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblCodigoDocumento;
     private javax.swing.JLabel lblCodigoEstado;
+    private javax.swing.JRadioButton rdCodigoDocumento;
     private javax.swing.JRadioButton rdCodigoEstado;
+    private javax.swing.JRadioButton rdEstadoDocumento;
+    private javax.swing.JRadioButton rdNombreDocumento;
     private javax.swing.JRadioButton rdNombreEstado;
     // End of variables declaration//GEN-END:variables
 }
