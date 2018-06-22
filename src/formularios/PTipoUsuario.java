@@ -7,7 +7,11 @@
 package formularios;
 
 import javax.swing.UIManager;
-
+import javax.swing.table.DefaultTableModel;
+import clases.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JCheckBox;
 /**
  *
  * @author steven
@@ -15,7 +19,11 @@ import javax.swing.UIManager;
 public class PTipoUsuario extends javax.swing.JPanel {
 
     /** Creates new form PTipoUsuario */
+    DefaultTableModel modeloTablaPrivilegios;
+    Conexion cn = new Conexion();
+    String CodigoPrivilegios="";
     public PTipoUsuario() {
+        modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios();
         try {
                      UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		}
@@ -23,7 +31,30 @@ public class PTipoUsuario extends javax.swing.JPanel {
 		}
         initComponents();
     }
+    private String[] getColumnasPrivilegios() {
+        String columnas[] = new String[]{"CODIGO"};
+        return columnas;
+    }
 
+    private void setFilasPrivilegios() {
+        try {
+            String sql = "SELECT idPrivilegio FROM privilegio";
+
+            PreparedStatement us = cn.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[1];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaPrivilegios.addRow(datos);
+            }
+        } catch (Exception e) {
+
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,44 +64,240 @@ public class PTipoUsuario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        cbDatosEmpresa = new javax.swing.JCheckBox();
+        cbConstruirEquipo = new javax.swing.JCheckBox();
+        cbProductos = new javax.swing.JCheckBox();
+        cbSolicitarAyuda = new javax.swing.JCheckBox();
+        cbOrdenesCola = new javax.swing.JCheckBox();
+        cbCajaRegistradora = new javax.swing.JCheckBox();
+        cbVentas = new javax.swing.JCheckBox();
+        cbChatCenter = new javax.swing.JCheckBox();
+        cbInventario = new javax.swing.JCheckBox();
+        cbGestionarVentas = new javax.swing.JCheckBox();
+        cbBitacoras = new javax.swing.JCheckBox();
+        cbClientes = new javax.swing.JCheckBox();
+        cbEmpleados = new javax.swing.JCheckBox();
+        cbGestionarProductos = new javax.swing.JCheckBox();
+        cbGestionarInventario = new javax.swing.JCheckBox();
+        cbProveedores = new javax.swing.JCheckBox();
+        btnAgregarP = new javax.swing.JButton();
+        btnEliminarP = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTFBuscarT1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        rdCodigo1 = new javax.swing.JRadioButton();
+        jButton7 = new javax.swing.JButton();
+        btnModificarP = new javax.swing.JButton();
+        lblCodigoPrivilegio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblCodigoTipo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jTFNombreTipo = new javax.swing.JTextField();
+        rdNombre = new javax.swing.JRadioButton();
+        rdCodigo = new javax.swing.JRadioButton();
         jButton6 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jTFBuscarT = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
+        cmbPrivilegios = new javax.swing.JComboBox<>();
+        jButton5 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cbDatosEmpresa.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbDatosEmpresa.setForeground(new java.awt.Color(204, 204, 204));
+        cbDatosEmpresa.setText("Cambiar Datos Empresa");
+        jPanel5.add(cbDatosEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        cbConstruirEquipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbConstruirEquipo.setForeground(new java.awt.Color(204, 204, 204));
+        cbConstruirEquipo.setText("Construir Equipo");
+        jPanel5.add(cbConstruirEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        cbProductos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbProductos.setForeground(new java.awt.Color(204, 204, 204));
+        cbProductos.setText("Ver productos");
+        jPanel5.add(cbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        cbSolicitarAyuda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbSolicitarAyuda.setForeground(new java.awt.Color(204, 204, 204));
+        cbSolicitarAyuda.setText("Solicitar Ayuda");
+        jPanel5.add(cbSolicitarAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        cbOrdenesCola.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbOrdenesCola.setForeground(new java.awt.Color(204, 204, 204));
+        cbOrdenesCola.setText("Ver ordenes en Cola");
+        jPanel5.add(cbOrdenesCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        cbCajaRegistradora.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbCajaRegistradora.setForeground(new java.awt.Color(204, 204, 204));
+        cbCajaRegistradora.setText("Gestionar Caja Virtual");
+        jPanel5.add(cbCajaRegistradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        cbVentas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbVentas.setForeground(new java.awt.Color(204, 204, 204));
+        cbVentas.setText("Ver ventas");
+        jPanel5.add(cbVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        cbChatCenter.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbChatCenter.setForeground(new java.awt.Color(204, 204, 204));
+        cbChatCenter.setText("Chat Center");
+        jPanel5.add(cbChatCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
+        cbInventario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbInventario.setForeground(new java.awt.Color(204, 204, 204));
+        cbInventario.setText("Ver inventario");
+        jPanel5.add(cbInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        cbGestionarVentas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbGestionarVentas.setForeground(new java.awt.Color(204, 204, 204));
+        cbGestionarVentas.setText("Gestionar Ventas");
+        jPanel5.add(cbGestionarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+
+        cbBitacoras.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbBitacoras.setForeground(new java.awt.Color(204, 204, 204));
+        cbBitacoras.setText("Gestionar Bitacoras");
+        jPanel5.add(cbBitacoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+
+        cbClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbClientes.setForeground(new java.awt.Color(204, 204, 204));
+        cbClientes.setText("Gestionar Clientes");
+        jPanel5.add(cbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+
+        cbEmpleados.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbEmpleados.setForeground(new java.awt.Color(204, 204, 204));
+        cbEmpleados.setText("Gestionar Empleados");
+        jPanel5.add(cbEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+
+        cbGestionarProductos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbGestionarProductos.setForeground(new java.awt.Color(204, 204, 204));
+        cbGestionarProductos.setText("Gestionar Productos");
+        jPanel5.add(cbGestionarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+
+        cbGestionarInventario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbGestionarInventario.setForeground(new java.awt.Color(204, 204, 204));
+        cbGestionarInventario.setText("Gestionar Inventario");
+        jPanel5.add(cbGestionarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+
+        cbProveedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbProveedores.setForeground(new java.awt.Color(204, 204, 204));
+        cbProveedores.setText("Gestionar Proveedores");
+        jPanel5.add(cbProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 370, 320));
+
+        btnAgregarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarP.setText("Agregar");
+        btnAgregarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarP.setContentAreaFilled(false);
+        btnAgregarP.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
+
+        btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarP.setText("Eliminar");
+        btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarP.setContentAreaFilled(false);
+        btnEliminarP.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+
+        jTable2.setModel(modeloTablaPrivilegios);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 260, 150));
+
+        jTFBuscarT1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarT1.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel4.add(jTFBuscarT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setText("Buscar:");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
+
+        rdCodigo1.setText("Codigo");
+        jPanel4.add(rdCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, 30));
+
+        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(204, 204, 204));
+        jButton7.setText("Generar Reporte");
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton7.setContentAreaFilled(false);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 30));
+
+        btnModificarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarP.setText("Modificar");
+        btnModificarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarP.setContentAreaFilled(false);
+        btnModificarP.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnModificarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
+
+        lblCodigoPrivilegio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoPrivilegio.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
+        jPanel4.add(lblCodigoPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
+
+        jTabbedPane1.addTab("Gestionar Privilegios", jPanel4);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -79,15 +306,10 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Gestion de Tipos de Usuario");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("CODIGO TIPO");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+        lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoTipo.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoTipo.setText("CODIGO TIPO");
+        jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,7 +324,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 90, 260, 210));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 130));
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
@@ -118,11 +340,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Modificar");
+        jButton2.setText("Eliminar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
         jButton2.setPreferredSize(new java.awt.Dimension(75, 30));
@@ -134,22 +356,22 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 jButton2MouseExited(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Buscar:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 140, 30));
+        jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
 
-        jRadioButton1.setText("Nombre");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
+        rdNombre.setText("Nombre");
+        jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
 
-        jRadioButton2.setText("Codigo");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
+        rdCodigo.setText("Codigo");
+        jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(204, 204, 204));
@@ -164,7 +386,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 jButton6MouseExited(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, 30));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -174,126 +396,54 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 49, 80, 30));
+        jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarT.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Privilegios:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Nombre Tipo:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 140, -1));
+        jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jCheckBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox1.setText("Cambiar Datos Empresa");
-        jPanel3.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
-
-        jCheckBox2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox2.setText("Gestionar Devoluciones");
-        jPanel3.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
-
-        jCheckBox3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox3.setText("Construir Equipo");
-        jPanel3.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        jCheckBox4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox4.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox4.setText("Ver productos");
-        jPanel3.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-
-        jCheckBox5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox5.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox5.setText("Solicitar Ayuda");
-        jPanel3.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        jCheckBox6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox6.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox6.setText("Ver ordenes en Cola");
-        jPanel3.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-
-        jCheckBox7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox7.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox7.setText("Gestionar Caja Virtual");
-        jPanel3.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-
-        jCheckBox8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox8.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox8.setText("Ver ventas");
-        jPanel3.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-
-        jCheckBox9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox9.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox9.setText("Chat Center");
-        jPanel3.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
-
-        jCheckBox10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox10.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox10.setText("Ver inventario");
-        jPanel3.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jCheckBox11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox11.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox11.setText("Gestionar Ventas");
-        jPanel3.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
-
-        jCheckBox12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox12.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox12.setText("Gestionar Bitacoras");
-        jPanel3.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
-
-        jCheckBox13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox13.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox13.setText("Gestionar Clientes");
-        jPanel3.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
-
-        jCheckBox14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox14.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox14.setText("Gestionar Empleados");
-        jPanel3.add(jCheckBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
-        jCheckBox15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox15.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox15.setText("Gestionar Productos");
-        jPanel3.add(jCheckBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
-
-        jCheckBox16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox16.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox16.setText("Gestionar Inventario");
-        jPanel3.add(jCheckBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
-
-        jCheckBox17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jCheckBox17.setForeground(new java.awt.Color(204, 204, 204));
-        jCheckBox17.setText("Gestionar Proveedores");
-        jPanel3.add(jCheckBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 370, 310));
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jButton5.setText("Modificar");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton5.setContentAreaFilled(false);
+        jButton5.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
+
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 510));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -330,44 +480,140 @@ public class PTipoUsuario extends javax.swing.JPanel {
          jButton2.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton2MouseExited
 
+    private void btnAgregarPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPMouseEntered
+
+    private void btnAgregarPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPMouseExited
+
+    private void btnEliminarPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarPMouseEntered
+
+    private void btnEliminarPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarPMouseExited
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void btnModificarPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPMouseEntered
+
+    private void btnModificarPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPMouseExited
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        CodigoPrivilegios=String.valueOf(modeloTablaPrivilegios.getValueAt(jTable2.getSelectedRow(), 0));
+        lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO: "+CodigoPrivilegios);
+        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+        objeto.setCodigoP(Integer.valueOf(CodigoPrivilegios));
+        Boolean[] valores = objeto.consultarPrivilegio();
+        cbInventario.setSelected(valores[0]);
+        cbConstruirEquipo.setSelected(valores[1]);
+        cbProductos.setSelected(valores[2]);
+        cbSolicitarAyuda.setSelected(valores[3]);
+        cbOrdenesCola.setSelected(valores[4]);
+        cbCajaRegistradora.setSelected(valores[5]);
+        cbVentas.setSelected(valores[6]);
+        cbChatCenter.setSelected(valores[7]);
+        cbDatosEmpresa.setSelected(valores[8]);
+        cbGestionarVentas.setSelected(valores[9]);
+        cbBitacoras.setSelected(valores[10]);
+        cbClientes.setSelected(valores[11]);
+        cbProveedores.setSelected(valores[12]);
+        cbEmpleados.setSelected(valores[13]);
+        cbGestionarProductos.setSelected(valores[14]);
+        cbGestionarInventario.setSelected(valores[15]);    
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void btnAgregarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseClicked
+        // TODO add your handling code here:
+        //Eliminar y volver a agregar todos los checkbox en orde de base de datos o hacer algo parecido ORDEN!
+        Integer[] valores= new Integer[jPanel5.getComponentCount()];
+        for(int x=0;x<jPanel5.getComponentCount();x++){
+                if(jPanel5.getComponent(x) instanceof JCheckBox){
+                    JCheckBox check=(JCheckBox) jPanel5.getComponent(x);
+                  if(check.isSelected()){
+                       //System.out.println(check.getText());
+                       valores[x]=1;
+                   }else{
+                      valores[x]=0;
+                  }
+                }
+            }
+        for (int i = 0; i < valores.length; i++) {
+            System.out.println("Dato: "+valores[i]);
+        }
+    }//GEN-LAST:event_btnAgregarPMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarP;
+    private javax.swing.JButton btnEliminarP;
+    private javax.swing.JButton btnModificarP;
+    private javax.swing.JCheckBox cbBitacoras;
+    private javax.swing.JCheckBox cbCajaRegistradora;
+    private javax.swing.JCheckBox cbChatCenter;
+    private javax.swing.JCheckBox cbClientes;
+    private javax.swing.JCheckBox cbConstruirEquipo;
+    private javax.swing.JCheckBox cbDatosEmpresa;
+    private javax.swing.JCheckBox cbEmpleados;
+    private javax.swing.JCheckBox cbGestionarInventario;
+    private javax.swing.JCheckBox cbGestionarProductos;
+    private javax.swing.JCheckBox cbGestionarVentas;
+    private javax.swing.JCheckBox cbInventario;
+    private javax.swing.JCheckBox cbOrdenesCola;
+    private javax.swing.JCheckBox cbProductos;
+    private javax.swing.JCheckBox cbProveedores;
+    private javax.swing.JCheckBox cbSolicitarAyuda;
+    private javax.swing.JCheckBox cbVentas;
+    private javax.swing.JComboBox<String> cmbPrivilegios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTFBuscarT;
+    private javax.swing.JTextField jTFBuscarT1;
+    private javax.swing.JTextField jTFNombreTipo;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblCodigoPrivilegio;
+    private javax.swing.JLabel lblCodigoTipo;
+    private javax.swing.JRadioButton rdCodigo;
+    private javax.swing.JRadioButton rdCodigo1;
+    private javax.swing.JRadioButton rdNombre;
     // End of variables declaration//GEN-END:variables
 
 }
