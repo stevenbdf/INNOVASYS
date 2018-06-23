@@ -12,6 +12,7 @@ import clases.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 /**
  *
  * @author steven
@@ -23,7 +24,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
     Conexion cn = new Conexion();
     String CodigoPrivilegios="";
     public PTipoUsuario() {
-        modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios();
+        modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios(0);
         try {
                      UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		}
@@ -36,9 +37,15 @@ public class PTipoUsuario extends javax.swing.JPanel {
         return columnas;
     }
 
-    private void setFilasPrivilegios() {
+    private void setFilasPrivilegios(int datos2) {
         try {
-            String sql = "SELECT idPrivilegio FROM privilegio";
+            String sql="";
+            if (datos2==0) {
+                sql = "SELECT idPrivilegio FROM privilegio";
+            }else{
+                sql = "SELECT idPrivilegio FROM privilegio WHERE idPrivilegio="+datos2;
+            }
+            
 
             PreparedStatement us = cn.conectar().prepareStatement(sql);
             ResultSet resultado = us.executeQuery();
@@ -65,34 +72,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        cbDatosEmpresa = new javax.swing.JCheckBox();
-        cbConstruirEquipo = new javax.swing.JCheckBox();
-        cbProductos = new javax.swing.JCheckBox();
-        cbSolicitarAyuda = new javax.swing.JCheckBox();
-        cbOrdenesCola = new javax.swing.JCheckBox();
-        cbCajaRegistradora = new javax.swing.JCheckBox();
-        cbVentas = new javax.swing.JCheckBox();
-        cbChatCenter = new javax.swing.JCheckBox();
-        cbInventario = new javax.swing.JCheckBox();
-        cbGestionarVentas = new javax.swing.JCheckBox();
-        cbBitacoras = new javax.swing.JCheckBox();
-        cbClientes = new javax.swing.JCheckBox();
-        cbEmpleados = new javax.swing.JCheckBox();
-        cbGestionarProductos = new javax.swing.JCheckBox();
-        cbGestionarInventario = new javax.swing.JCheckBox();
-        cbProveedores = new javax.swing.JCheckBox();
-        btnAgregarP = new javax.swing.JButton();
-        btnEliminarP = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jTFBuscarT1 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        rdCodigo1 = new javax.swing.JRadioButton();
-        jButton7 = new javax.swing.JButton();
-        btnModificarP = new javax.swing.JButton();
-        lblCodigoPrivilegio = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblCodigoTipo = new javax.swing.JLabel();
@@ -111,193 +90,36 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         cmbPrivilegios = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        cbInventario = new javax.swing.JCheckBox();
+        cbConstruirEquipo = new javax.swing.JCheckBox();
+        cbProductos = new javax.swing.JCheckBox();
+        cbSolicitarAyuda = new javax.swing.JCheckBox();
+        cbOrdenesCola = new javax.swing.JCheckBox();
+        cbCajaRegistradora = new javax.swing.JCheckBox();
+        cbVentas = new javax.swing.JCheckBox();
+        cbChatCenter = new javax.swing.JCheckBox();
+        cbDatosEmpresa = new javax.swing.JCheckBox();
+        cbGestionarVentas = new javax.swing.JCheckBox();
+        cbBitacoras = new javax.swing.JCheckBox();
+        cbClientes = new javax.swing.JCheckBox();
+        cbProveedores = new javax.swing.JCheckBox();
+        cbEmpleados = new javax.swing.JCheckBox();
+        cbGestionarProductos = new javax.swing.JCheckBox();
+        cbGestionarInventario = new javax.swing.JCheckBox();
+        btnAgregarP = new javax.swing.JButton();
+        btnEliminarP = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTFBuscarT1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        btnModificarP = new javax.swing.JButton();
+        lblCodigoPrivilegio = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        cbDatosEmpresa.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbDatosEmpresa.setForeground(new java.awt.Color(204, 204, 204));
-        cbDatosEmpresa.setText("Cambiar Datos Empresa");
-        jPanel5.add(cbDatosEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
-
-        cbConstruirEquipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbConstruirEquipo.setForeground(new java.awt.Color(204, 204, 204));
-        cbConstruirEquipo.setText("Construir Equipo");
-        jPanel5.add(cbConstruirEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        cbProductos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbProductos.setForeground(new java.awt.Color(204, 204, 204));
-        cbProductos.setText("Ver productos");
-        jPanel5.add(cbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-
-        cbSolicitarAyuda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbSolicitarAyuda.setForeground(new java.awt.Color(204, 204, 204));
-        cbSolicitarAyuda.setText("Solicitar Ayuda");
-        jPanel5.add(cbSolicitarAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        cbOrdenesCola.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbOrdenesCola.setForeground(new java.awt.Color(204, 204, 204));
-        cbOrdenesCola.setText("Ver ordenes en Cola");
-        jPanel5.add(cbOrdenesCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-
-        cbCajaRegistradora.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbCajaRegistradora.setForeground(new java.awt.Color(204, 204, 204));
-        cbCajaRegistradora.setText("Gestionar Caja Virtual");
-        jPanel5.add(cbCajaRegistradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-
-        cbVentas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbVentas.setForeground(new java.awt.Color(204, 204, 204));
-        cbVentas.setText("Ver ventas");
-        jPanel5.add(cbVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-
-        cbChatCenter.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbChatCenter.setForeground(new java.awt.Color(204, 204, 204));
-        cbChatCenter.setText("Chat Center");
-        jPanel5.add(cbChatCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
-
-        cbInventario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbInventario.setForeground(new java.awt.Color(204, 204, 204));
-        cbInventario.setText("Ver inventario");
-        jPanel5.add(cbInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        cbGestionarVentas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbGestionarVentas.setForeground(new java.awt.Color(204, 204, 204));
-        cbGestionarVentas.setText("Gestionar Ventas");
-        jPanel5.add(cbGestionarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
-
-        cbBitacoras.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbBitacoras.setForeground(new java.awt.Color(204, 204, 204));
-        cbBitacoras.setText("Gestionar Bitacoras");
-        jPanel5.add(cbBitacoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
-
-        cbClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbClientes.setForeground(new java.awt.Color(204, 204, 204));
-        cbClientes.setText("Gestionar Clientes");
-        jPanel5.add(cbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
-
-        cbEmpleados.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbEmpleados.setForeground(new java.awt.Color(204, 204, 204));
-        cbEmpleados.setText("Gestionar Empleados");
-        jPanel5.add(cbEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
-
-        cbGestionarProductos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbGestionarProductos.setForeground(new java.awt.Color(204, 204, 204));
-        cbGestionarProductos.setText("Gestionar Productos");
-        jPanel5.add(cbGestionarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
-
-        cbGestionarInventario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbGestionarInventario.setForeground(new java.awt.Color(204, 204, 204));
-        cbGestionarInventario.setText("Gestionar Inventario");
-        jPanel5.add(cbGestionarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
-        cbProveedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cbProveedores.setForeground(new java.awt.Color(204, 204, 204));
-        cbProveedores.setText("Gestionar Proveedores");
-        jPanel5.add(cbProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 370, 320));
-
-        btnAgregarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarP.setForeground(new java.awt.Color(204, 204, 204));
-        btnAgregarP.setText("Agregar");
-        btnAgregarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnAgregarP.setContentAreaFilled(false);
-        btnAgregarP.setPreferredSize(new java.awt.Dimension(71, 30));
-        btnAgregarP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarPMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarPMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarPMouseExited(evt);
-            }
-        });
-        jPanel4.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
-
-        btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
-        btnEliminarP.setText("Eliminar");
-        btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnEliminarP.setContentAreaFilled(false);
-        btnEliminarP.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnEliminarP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarPMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarPMouseExited(evt);
-            }
-        });
-        jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
-
-        jTable2.setModel(modeloTablaPrivilegios);
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 260, 150));
-
-        jTFBuscarT1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarT1.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel4.add(jTFBuscarT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
-
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel13.setText("Buscar:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
-
-        rdCodigo1.setText("Codigo");
-        jPanel4.add(rdCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, 30));
-
-        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 204, 204));
-        jButton7.setText("Generar Reporte");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton7.setContentAreaFilled(false);
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton7MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton7MouseExited(evt);
-            }
-        });
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 30));
-
-        btnModificarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarP.setForeground(new java.awt.Color(204, 204, 204));
-        btnModificarP.setText("Modificar");
-        btnModificarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnModificarP.setContentAreaFilled(false);
-        btnModificarP.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnModificarP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarPMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarPMouseExited(evt);
-            }
-        });
-        jPanel4.add(btnModificarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
-
-        lblCodigoPrivilegio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoPrivilegio.setForeground(new java.awt.Color(204, 204, 204));
-        lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
-        jPanel4.add(lblCodigoPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
-
-        jTabbedPane1.addTab("Gestionar Privilegios", jPanel4);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -443,6 +265,171 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cbInventario.setText("Ver Inventario");
+        jPanel5.add(cbInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        cbConstruirEquipo.setText("Construir Equipo");
+        jPanel5.add(cbConstruirEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        cbProductos.setText("Ver Productos");
+        jPanel5.add(cbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        cbSolicitarAyuda.setText("Solicitar Ayuda");
+        jPanel5.add(cbSolicitarAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        cbOrdenesCola.setText("Ver ordenes en cola");
+        jPanel5.add(cbOrdenesCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        cbCajaRegistradora.setText("Gestionar Caja Virtual");
+        cbCajaRegistradora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCajaRegistradoraActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cbCajaRegistradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        cbVentas.setText("Ver ventas");
+        jPanel5.add(cbVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        cbChatCenter.setText("Chat Center");
+        jPanel5.add(cbChatCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
+        cbDatosEmpresa.setText("Cambiar Datos Empresa");
+        jPanel5.add(cbDatosEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        cbGestionarVentas.setText("Gestionar Ventas");
+        jPanel5.add(cbGestionarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+
+        cbBitacoras.setText("Gestionar Bitacoras");
+        jPanel5.add(cbBitacoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+
+        cbClientes.setText("Gestionar Clientes");
+        jPanel5.add(cbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+
+        cbProveedores.setText("Gestionar Proveedores");
+        jPanel5.add(cbProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        cbEmpleados.setText("Gestionar Empleados");
+        jPanel5.add(cbEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+
+        cbGestionarProductos.setText("Gestionar Productos");
+        jPanel5.add(cbGestionarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        cbGestionarInventario.setText("Gestionar Inventario");
+        jPanel5.add(cbGestionarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 370, 320));
+
+        btnAgregarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarP.setText("Agregar");
+        btnAgregarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarP.setContentAreaFilled(false);
+        btnAgregarP.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
+
+        btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarP.setText("Eliminar");
+        btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarP.setContentAreaFilled(false);
+        btnEliminarP.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+
+        jTable2.setModel(modeloTablaPrivilegios);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 260, 150));
+
+        jTFBuscarT1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarT1.setForeground(new java.awt.Color(204, 204, 204));
+        jTFBuscarT1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarT1KeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTFBuscarT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setText("Buscar:");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
+
+        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(204, 204, 204));
+        jButton7.setText("Generar Reporte");
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton7.setContentAreaFilled(false);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 30));
+
+        btnModificarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarP.setText("Modificar");
+        btnModificarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarP.setContentAreaFilled(false);
+        btnModificarP.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnModificarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
+
+        lblCodigoPrivilegio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoPrivilegio.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
+        jPanel4.add(lblCodigoPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
+
+        jTabbedPane1.addTab("Gestionar Privilegios", jPanel4);
+
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 510));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -527,22 +514,14 @@ public class PTipoUsuario extends javax.swing.JPanel {
         mtoTipoUsuarios objeto = new mtoTipoUsuarios();
         objeto.setCodigoP(Integer.valueOf(CodigoPrivilegios));
         Boolean[] valores = objeto.consultarPrivilegio();
-        cbInventario.setSelected(valores[0]);
-        cbConstruirEquipo.setSelected(valores[1]);
-        cbProductos.setSelected(valores[2]);
-        cbSolicitarAyuda.setSelected(valores[3]);
-        cbOrdenesCola.setSelected(valores[4]);
-        cbCajaRegistradora.setSelected(valores[5]);
-        cbVentas.setSelected(valores[6]);
-        cbChatCenter.setSelected(valores[7]);
-        cbDatosEmpresa.setSelected(valores[8]);
-        cbGestionarVentas.setSelected(valores[9]);
-        cbBitacoras.setSelected(valores[10]);
-        cbClientes.setSelected(valores[11]);
-        cbProveedores.setSelected(valores[12]);
-        cbEmpleados.setSelected(valores[13]);
-        cbGestionarProductos.setSelected(valores[14]);
-        cbGestionarInventario.setSelected(valores[15]);    
+        //Integer[] valores2 = new Integer[jPanel5.getComponentCount()];
+        for (int x = 0; x < jPanel5.getComponentCount(); x++) {
+            if (jPanel5.getComponent(x) instanceof JCheckBox) {
+                JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
+                check.setSelected(valores[x]);
+            }
+        }
+
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void btnAgregarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseClicked
@@ -560,10 +539,104 @@ public class PTipoUsuario extends javax.swing.JPanel {
                   }
                 }
             }
-        for (int i = 0; i < valores.length; i++) {
-            System.out.println("Dato: "+valores[i]);
+        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+        if (objeto.guardarPrivilegio(valores)) {
+            JOptionPane.showMessageDialog(this,"Privilegio guardado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(this,"Error al guardar datos");
         }
+        int filas = modeloTablaPrivilegios.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaPrivilegios.removeRow(0);
+                }
+                setFilasPrivilegios(0);
+        
     }//GEN-LAST:event_btnAgregarPMouseClicked
+
+    private void cbCajaRegistradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCajaRegistradoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCajaRegistradoraActionPerformed
+
+    private void btnModificarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPMouseClicked
+        // TODO add your handling code here:
+        Integer[] valores= new Integer[jPanel5.getComponentCount()];
+        for(int x=0;x<jPanel5.getComponentCount();x++){
+            
+                if(jPanel5.getComponent(x) instanceof JCheckBox){
+                    JCheckBox check=(JCheckBox) jPanel5.getComponent(x);
+                  if(check.isSelected()){
+                       //System.out.println(check.getText());
+                       valores[x]=1;
+                   }else{
+                      valores[x]=0;
+                  }
+                }     
+       }
+        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+        if (objeto.modificarPrivilegio(valores,Integer.valueOf(CodigoPrivilegios))) {
+            JOptionPane.showMessageDialog(this,"Privilegio modificado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(this,"Error al modificar datos");
+        }
+        int filas = modeloTablaPrivilegios.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaPrivilegios.removeRow(0);
+                }
+                setFilasPrivilegios(0);
+        
+    }//GEN-LAST:event_btnModificarPMouseClicked
+
+    private void btnEliminarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPMouseClicked
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este privilegio?", "Confirmacion",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this,"Privilegio no eliminado");
+        }else{
+            if (lblCodigoPrivilegio.getText().equals("CODIGO PRIVILEGIO")) {
+                JOptionPane.showMessageDialog(this, "No ha seleccionado ningun privilegio para eliminar");
+            } else {
+                mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+                objeto.setCodigoP(Integer.valueOf(CodigoPrivilegios));
+                if (objeto.eliminarPrivilegio()) {
+                    JOptionPane.showMessageDialog(this, "Privilegio eliminado correctamente");
+                    lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");    
+                    int filas = modeloTablaPrivilegios.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaPrivilegios.removeRow(0);
+                    }
+                    setFilasPrivilegios(0);
+                    for (int x = 0; x < jPanel5.getComponentCount(); x++) {
+                        if (jPanel5.getComponent(x) instanceof JCheckBox) {
+                            JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
+                            if (check.isSelected()) {
+                                check.setSelected(false);
+                            }      
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error existen tipos de usuario relacionados a este Privilegio. \n Elimina o modifica antes a los tipo usuarios relacionados para poder eliminar este privilegio.");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnEliminarPMouseClicked
+
+    private void jTFBuscarT1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarT1KeyReleased
+        // TODO add your handling code here:
+        try{
+          int filas = modeloTablaPrivilegios.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modeloTablaPrivilegios.removeRow(0);
+        }
+        setFilasPrivilegios(Integer.valueOf(jTFBuscarT1.getText()));  
+        }catch(Exception e){
+            int filas = modeloTablaPrivilegios.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modeloTablaPrivilegios.removeRow(0);
+        }
+        setFilasPrivilegios(0);  
+        }    
+    }//GEN-LAST:event_jTFBuscarT1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -612,7 +685,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel lblCodigoPrivilegio;
     private javax.swing.JLabel lblCodigoTipo;
     private javax.swing.JRadioButton rdCodigo;
-    private javax.swing.JRadioButton rdCodigo1;
     private javax.swing.JRadioButton rdNombre;
     // End of variables declaration//GEN-END:variables
 

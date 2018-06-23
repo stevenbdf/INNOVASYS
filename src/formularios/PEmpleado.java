@@ -673,7 +673,6 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -686,33 +685,29 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addComponent(rdEstadoDocumento))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jButton10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jButton10))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jTFBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rdCodigoDocumento)
-                                    .addComponent(rdEstadoDocumento)
-                                    .addComponent(rdNombreDocumento))))
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel22)
+                                .addComponent(jTFBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rdCodigoDocumento)
+                                .addComponent(rdEstadoDocumento)
+                                .addComponent(rdNombreDocumento)))
                         .addGap(5, 5, 5)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lblCodigoDocumento)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -935,12 +930,12 @@ public class PEmpleado extends javax.swing.JPanel {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1213,7 +1208,7 @@ public class PEmpleado extends javax.swing.JPanel {
         if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
             JOptionPane.showMessageDialog(this,"Estado no eliminado");
         }else{
-            if (lblCodigoEstado.getText().equals("CODIGO ESTADO")) {
+            if (lblCodigoEstado.getText().equals("CODIGO ESTADO") ||lblCodigoEstado.getText().equals("CODIGO ESTADO: ")) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
             } else {
                 mtoUsuarios objeto = new mtoUsuarios();
@@ -1251,7 +1246,7 @@ public class PEmpleado extends javax.swing.JPanel {
         if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
             JOptionPane.showMessageDialog(this,"Documento no eliminado");
         }else{
-            if (lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO")) {
+            if (lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO") || lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO: ") ) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
             } else {
                 mtoUsuarios objeto = new mtoUsuarios();
@@ -1384,7 +1379,7 @@ public class PEmpleado extends javax.swing.JPanel {
             CodigoDocumento=datos[2];
             lblCodigoDocumento.setText("CODIGO DOCUMENTO: "+datos[2]);
             cmbEstadoD.setSelectedItem(datos[1]);
-        }else{
+        }else if(jTFNombreD.getText().equals("")){
             lblCodigoDocumento.setText("CODIGO DOCUMENTO");
         }
     }//GEN-LAST:event_jTFNombreDKeyReleased
