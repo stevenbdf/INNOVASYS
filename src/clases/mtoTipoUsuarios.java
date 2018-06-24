@@ -5,15 +5,45 @@
  */
 package clases;
 
+import formularios.PTipoUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Steven
  */
-public class mtoTipoUsuarios {
+public class mtoTipoUsuarios extends PTipoUsuario{
+
+    /**
+     * @return the NombreT
+     */
+    public String getNombreT() {
+        return NombreT;
+    }
+
+    /**
+     * @param NombreT the NombreT to set
+     */
+    public void setNombreT(String NombreT) {
+        this.NombreT = NombreT;
+    }
+
+    /**
+     * @return the CodigoT
+     */
+    public Integer getCodigoT() {
+        return CodigoT;
+    }
+
+    /**
+     * @param CodigoT the CodigoT to set
+     */
+    public void setCodigoT(Integer CodigoT) {
+        this.CodigoT = CodigoT;
+    }
 
     /**
      * @return the CodigoP
@@ -29,7 +59,12 @@ public class mtoTipoUsuarios {
         this.CodigoP = CodigoP;
     }
     private Connection cn;
+    //Atributos para privilegios
     private Integer CodigoP;
+    //Atributos para TipoUsuario
+    private Integer CodigoT;
+    private String NombreT;
+    
     public mtoTipoUsuarios(){
         Conexion con = new Conexion();
         cn= con.conectar();
@@ -77,6 +112,7 @@ public class mtoTipoUsuarios {
             cmd.close();
             cn.close();
         } catch (Exception e) {
+            //JOptionPane.showMessageDialog(this,"Error tiene que seleccionar al menos un privilegio");
             System.out.println(e.toString());
         }
         return resp;
@@ -121,4 +157,85 @@ public class mtoTipoUsuarios {
         }
         return resp;
     }
+    
+    public boolean consultarTipo(){
+        boolean respuesta=false;
+        try {
+            String sql="SELECT nombreTipo FROM tipoUsuario WHERE nombreTipo=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setString(1,getNombreT());
+            ResultSet rs = cmd.executeQuery();    
+            if (rs.next()) {
+                respuesta=true;
+            }
+            cmd.close(); 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return respuesta;
+    }
+    
+    public boolean guardarTipo() {
+        boolean resp = false;
+        if (consultarTipo()) {
+            JOptionPane.showMessageDialog(this,"Error ya existe un tipo de usuario con ese nombre");
+        } else {
+            try {
+                String sql = "INSERT INTO tipoUsuario(idTipo, nombreTipo, idPrivilegio) VALUES ((SELECT MAX(idTipo)+1 FROM tipoUsuario), ?,?)";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1, getNombreT());
+                cmd.setInt(2, getCodigoP());
+                if (!cmd.execute()) {
+                    resp = true;
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return resp;
+    }
+    
+    public boolean modificarTipo() {
+        boolean resp = false;
+        if (consultarTipo()) {
+            JOptionPane.showMessageDialog(this, "Error ya existe un tipo de usuario con ese nombre");
+        } else {
+            try {
+
+                String sql = "UPDATE tipoUsuario SET nombreTipo=?,idPrivilegio=? WHERE idTipo=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1, getNombreT());
+                cmd.setInt(2, getCodigoP());
+                cmd.setInt(3, getCodigoT());
+
+                if (!cmd.execute()) {
+                    resp = true;
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return resp;
+    }
+    
+    public boolean eliminarTipo(){
+        boolean respuesta=false;
+        try {
+            String sql="DELETE FROM tipoUsuario WHERE idTipo=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setInt(1,getCodigoT());     
+            if (!cmd.execute()) {
+                respuesta=true;
+            }
+        } catch (Exception e) {    
+            System.out.println(e.toString());
+        }
+        return respuesta;
+    }
+    
+    
 }

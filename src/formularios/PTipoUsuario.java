@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import clases.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 /**
@@ -20,33 +22,63 @@ import javax.swing.JOptionPane;
 public class PTipoUsuario extends javax.swing.JPanel {
 
     /** Creates new form PTipoUsuario */
+    Conexion con = new Conexion();
     DefaultTableModel modeloTablaPrivilegios;
     Conexion cn = new Conexion();
-    String CodigoPrivilegios="";
+    String CodigoPrivilegios="", CodigoTipos="";
+    int confirmacion=0;
+    DefaultComboBoxModel modeloCombo;
+    DefaultTableModel modeloTablaTipos;
+    
     public PTipoUsuario() {
         modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios(0);
+        modeloTablaTipos = new DefaultTableModel(null, getColumnasTipos());setFilasTipos(0,"");
         try {
                      UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		}
 		catch (Exception e) {
 		}
+        modeloCombo = new DefaultComboBoxModel(new String[]{});
         initComponents();
+        llenaComboBox();
+        jTFBuscarT.setEnabled(false);
+    }
+    private void llenaComboBox() {
+        modeloCombo.removeAllElements();
+        try {
+
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "SELECT idPrivilegio FROM privilegio";
+            PreparedStatement verDatos = con.conectar().prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();
+            while (ver.next()) {
+
+                modeloCombo.addElement(ver.getObject("idPrivilegio"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
     }
     private String[] getColumnasPrivilegios() {
         String columnas[] = new String[]{"CODIGO"};
         return columnas;
     }
+    
+    private String[] getColumnasTipos() {
+        String columnas[] = new String[]{"CODIGO","NOMBRE","PRIVILEGIO"};
+        return columnas;
+    }
 
     private void setFilasPrivilegios(int datos2) {
         try {
-            String sql="";
-            if (datos2==0) {
+            String sql = "";
+            if (datos2 == 0) {
                 sql = "SELECT idPrivilegio FROM privilegio";
-            }else{
-                sql = "SELECT idPrivilegio FROM privilegio WHERE idPrivilegio="+datos2;
+            } else {
+                sql = "SELECT idPrivilegio FROM privilegio WHERE idPrivilegio=" + datos2;
             }
-            
-
             PreparedStatement us = cn.conectar().prepareStatement(sql);
             ResultSet resultado = us.executeQuery();
 
@@ -59,9 +91,40 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 modeloTablaPrivilegios.addRow(datos);
             }
         } catch (Exception e) {
-
         }
     }
+    
+    private void setFilasTipos(int datos1, String datos2) {
+        try {
+            String sql = "";
+            switch (datos1) {
+                case 0:
+                    sql = "SELECT idTipo,nombreTipo,idPrivilegio FROM tipoUsuario";
+                    break;
+                case 1:
+                    sql = "SELECT idTipo,nombreTipo,idPrivilegio FROM tipoUsuario WHERE nombreTipo like '"+datos2+"%'";
+                    break;
+                case 2:
+                    sql = "SELECT idTipo,nombreTipo,idPrivilegio FROM tipoUsuario WHERE idTipo like '"+datos2+"%'";
+                    break;
+                default:
+                    break;
+            }
+            PreparedStatement us = cn.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[3];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaTipos.addRow(datos);
+            }
+        } catch (Exception e) {
+        }
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -72,24 +135,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblCodigoTipo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jTFNombreTipo = new javax.swing.JTextField();
-        rdNombre = new javax.swing.JRadioButton();
-        rdCodigo = new javax.swing.JRadioButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jTFBuscarT = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        cmbPrivilegios = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         cbInventario = new javax.swing.JCheckBox();
@@ -109,7 +154,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
         cbGestionarProductos = new javax.swing.JCheckBox();
         cbGestionarInventario = new javax.swing.JCheckBox();
         btnAgregarP = new javax.swing.JButton();
-        btnEliminarP = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jTFBuscarT1 = new javax.swing.JTextField();
@@ -117,153 +161,29 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
         btnModificarP = new javax.swing.JButton();
         lblCodigoPrivilegio = new javax.swing.JLabel();
+        btnEliminarP = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblCodigoTipo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnAgregarT = new javax.swing.JButton();
+        btnEliminarT = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTFNombreTipo = new javax.swing.JTextField();
+        rdNombre = new javax.swing.JRadioButton();
+        rdCodigo = new javax.swing.JRadioButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTFBuscarT = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cmbPrivilegios = new javax.swing.JComboBox<>();
+        btnModificarT = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoTipo.setForeground(new java.awt.Color(204, 204, 204));
-        lblCodigoTipo.setText("CODIGO TIPO");
-        jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 130));
-
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Agregar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(71, 30));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Eliminar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.setPreferredSize(new java.awt.Dimension(75, 30));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
-            }
-        });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel11.setText("Buscar:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
-
-        jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
-
-        rdNombre.setText("Nombre");
-        jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
-
-        rdCodigo.setText("Codigo");
-        jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
-
-        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 204, 204));
-        jButton6.setText("Generar Reporte");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton6.setContentAreaFilled(false);
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton6MouseExited(evt);
-            }
-        });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-
-        jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarT.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Privilegios:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel12.setText("Nombre Tipo:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-
-        jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
-
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 204, 204));
-        jButton5.setText("Modificar");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.setPreferredSize(new java.awt.Dimension(75, 30));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
-            }
-        });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -346,25 +266,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel4.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
 
-        btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
-        btnEliminarP.setText("Eliminar");
-        btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnEliminarP.setContentAreaFilled(false);
-        btnEliminarP.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnEliminarP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarPMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarPMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarPMouseExited(evt);
-            }
-        });
-        jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
-
         jTable2.setModel(modeloTablaPrivilegios);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -428,7 +329,209 @@ public class PTipoUsuario extends javax.swing.JPanel {
         lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
         jPanel4.add(lblCodigoPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
 
+        btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarP.setText("Eliminar");
+        btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarP.setContentAreaFilled(false);
+        btnEliminarP.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarPMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+
+        btnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(204, 204, 204));
+        btnLimpiar.setText("Limpiar Campos");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseExited(evt);
+            }
+        });
+        jPanel4.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 110, -1));
+
         jTabbedPane1.addTab("Gestionar Privilegios", jPanel4);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoTipo.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoTipo.setText("CODIGO TIPO");
+        jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
+
+        jTable1.setModel(modeloTablaTipos);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 180));
+
+        btnAgregarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarT.setText("Agregar");
+        btnAgregarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarT.setContentAreaFilled(false);
+        btnAgregarT.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseExited(evt);
+            }
+        });
+        jPanel2.add(btnAgregarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        btnEliminarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarT.setText("Eliminar");
+        btnEliminarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarT.setContentAreaFilled(false);
+        btnEliminarT.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseExited(evt);
+            }
+        });
+        jPanel2.add(btnEliminarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setText("Buscar:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
+
+        jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
+
+        rdNombre.setText("Nombre");
+        rdNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombreActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
+
+        rdCodigo.setText("Codigo");
+        rdCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdCodigoMouseClicked(evt);
+            }
+        });
+        jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
+
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setText("Generar Reporte");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton6.setContentAreaFilled(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarT.setForeground(new java.awt.Color(204, 204, 204));
+        jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarTKeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("Privilegios:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setText("Nombre Tipo:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        cmbPrivilegios.setModel(modeloCombo   );
+        jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
+
+        btnModificarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarT.setText("Modificar");
+        btnModificarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarT.setContentAreaFilled(false);
+        btnModificarT.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseExited(evt);
+            }
+        });
+        jPanel2.add(btnModificarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 510));
     }// </editor-fold>//GEN-END:initComponents
@@ -447,25 +550,25 @@ public class PTipoUsuario extends javax.swing.JPanel {
          jButton6.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton6MouseExited
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void btnAgregarTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarTMouseEntered
         // TODO add your handling code here:
-         jButton1.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton1MouseEntered
+         btnAgregarT.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnAgregarTMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+    private void btnAgregarTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarTMouseExited
         // TODO add your handling code here:
-         jButton1.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton1MouseExited
+         btnAgregarT.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnAgregarTMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void btnEliminarTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTMouseEntered
         // TODO add your handling code here:
-         jButton2.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton2MouseEntered
+         btnEliminarT.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnEliminarTMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+    private void btnEliminarTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTMouseExited
         // TODO add your handling code here:
-         jButton2.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton2MouseExited
+         btnEliminarT.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnEliminarTMouseExited
 
     private void btnAgregarPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseEntered
         // TODO add your handling code here:
@@ -483,13 +586,13 @@ public class PTipoUsuario extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarPMouseExited
 
-    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+    private void btnModificarTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseEntered
+    }//GEN-LAST:event_btnModificarTMouseEntered
 
-    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+    private void btnModificarTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseExited
+    }//GEN-LAST:event_btnModificarTMouseExited
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
         // TODO add your handling code here:
@@ -523,76 +626,88 @@ public class PTipoUsuario extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jTable2MouseClicked
-
+   
     private void btnAgregarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPMouseClicked
         // TODO add your handling code here:
         //Eliminar y volver a agregar todos los checkbox en orde de base de datos o hacer algo parecido ORDEN!
-        Integer[] valores= new Integer[jPanel5.getComponentCount()];
-        for(int x=0;x<jPanel5.getComponentCount();x++){
-                if(jPanel5.getComponent(x) instanceof JCheckBox){
-                    JCheckBox check=(JCheckBox) jPanel5.getComponent(x);
-                  if(check.isSelected()){
-                       //System.out.println(check.getText());
-                       valores[x]=1;
-                   }else{
-                      valores[x]=0;
-                  }
+        Integer[] valores = new Integer[jPanel5.getComponentCount()];
+        for (int x = 0; x < jPanel5.getComponentCount(); x++) {
+            if (jPanel5.getComponent(x) instanceof JCheckBox) {
+                JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
+                if (check.isSelected()) {
+                    //System.out.println(check.getText());
+                    valores[x] = 1;
+                    confirmacion=1;
+                } else {
+                    valores[x] = 0;
                 }
             }
-        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
-        if (objeto.guardarPrivilegio(valores)) {
-            JOptionPane.showMessageDialog(this,"Privilegio guardado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(this,"Error al guardar datos");
         }
-        int filas = modeloTablaPrivilegios.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaPrivilegios.removeRow(0);
-                }
-                setFilasPrivilegios(0);
+        if (confirmacion != 0) {
+            mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+            if (objeto.guardarPrivilegio(valores)) {
+                JOptionPane.showMessageDialog(this, "Privilegio guardado correctamente");
+            }else {
+                JOptionPane.showMessageDialog(this, "Error al guardar datos");
+            }
+            int filas = modeloTablaPrivilegios.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaPrivilegios.removeRow(0);
+            }
+            setFilasPrivilegios(0);
+            confirmacion=0;
+        } else {
+            JOptionPane.showMessageDialog(this, "Error tiene que seleccionar al menos un privilegio");
+        }
         
+                    
     }//GEN-LAST:event_btnAgregarPMouseClicked
 
     private void cbCajaRegistradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCajaRegistradoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCajaRegistradoraActionPerformed
-
+    
     private void btnModificarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPMouseClicked
         // TODO add your handling code here:
-        Integer[] valores= new Integer[jPanel5.getComponentCount()];
-        for(int x=0;x<jPanel5.getComponentCount();x++){
-            
-                if(jPanel5.getComponent(x) instanceof JCheckBox){
-                    JCheckBox check=(JCheckBox) jPanel5.getComponent(x);
-                  if(check.isSelected()){
-                       //System.out.println(check.getText());
-                       valores[x]=1;
-                   }else{
-                      valores[x]=0;
-                  }
-                }     
-       }
-        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
-        if (objeto.modificarPrivilegio(valores,Integer.valueOf(CodigoPrivilegios))) {
-            JOptionPane.showMessageDialog(this,"Privilegio modificado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(this,"Error al modificar datos");
-        }
-        int filas = modeloTablaPrivilegios.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaPrivilegios.removeRow(0);
+        Integer[] valores = new Integer[jPanel5.getComponentCount()];
+        for (int x = 0; x < jPanel5.getComponentCount(); x++) {
+
+            if (jPanel5.getComponent(x) instanceof JCheckBox) {
+                JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
+                if (check.isSelected()) {
+                    //System.out.println(check.getText());
+                    valores[x] = 1;
+                    confirmacion = 1;
+                } else {
+                    valores[x] = 0;
                 }
-                setFilasPrivilegios(0);
-        
+            }
+        }
+        if (confirmacion != 0) {
+            mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+            if (objeto.modificarPrivilegio(valores, Integer.valueOf(CodigoPrivilegios))) {
+                JOptionPane.showMessageDialog(this, "Privilegio modificado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar datos");
+            }
+            int filas = modeloTablaPrivilegios.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaPrivilegios.removeRow(0);
+            }
+            setFilasPrivilegios(0);
+            confirmacion = 0;
+        } else {
+            JOptionPane.showMessageDialog(this, "Error tiene que seleccionar al menos un privilegio");
+        }
     }//GEN-LAST:event_btnModificarPMouseClicked
 
     private void btnEliminarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarPMouseClicked
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este privilegio?", "Confirmacion",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
-            JOptionPane.showMessageDialog(this,"Privilegio no eliminado");
-        }else{
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response == JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this, "Privilegio no eliminado");
+        } else {
             if (lblCodigoPrivilegio.getText().equals("CODIGO PRIVILEGIO")) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningun privilegio para eliminar");
             } else {
@@ -600,7 +715,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 objeto.setCodigoP(Integer.valueOf(CodigoPrivilegios));
                 if (objeto.eliminarPrivilegio()) {
                     JOptionPane.showMessageDialog(this, "Privilegio eliminado correctamente");
-                    lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");    
+                    lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
                     int filas = modeloTablaPrivilegios.getRowCount();
                     for (int i = 0; filas > i; i++) {
                         modeloTablaPrivilegios.removeRow(0);
@@ -611,7 +726,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
                             JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
                             if (check.isSelected()) {
                                 check.setSelected(false);
-                            }      
+                            }
                         }
                     }
                 } else {
@@ -623,26 +738,160 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
     private void jTFBuscarT1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarT1KeyReleased
         // TODO add your handling code here:
-        try{
-          int filas = modeloTablaPrivilegios.getRowCount();
-        for (int i = 0; filas > i; i++) {
-            modeloTablaPrivilegios.removeRow(0);
-        }
-        setFilasPrivilegios(Integer.valueOf(jTFBuscarT1.getText()));  
-        }catch(Exception e){
+        try {
             int filas = modeloTablaPrivilegios.getRowCount();
-        for (int i = 0; filas > i; i++) {
-            modeloTablaPrivilegios.removeRow(0);
-        }
-        setFilasPrivilegios(0);  
+            for (int i = 0; filas > i; i++) {
+                modeloTablaPrivilegios.removeRow(0);
+            }
+            setFilasPrivilegios(Integer.valueOf(jTFBuscarT1.getText()));
+        } catch (Exception e) {
+            int filas = modeloTablaPrivilegios.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaPrivilegios.removeRow(0);
+            }
+            setFilasPrivilegios(0);
         }    
     }//GEN-LAST:event_jTFBuscarT1KeyReleased
+
+    private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
+        // TODO add your handling code here:
+        for (int x = 0; x < jPanel5.getComponentCount(); x++) {
+            if (jPanel5.getComponent(x) instanceof JCheckBox) {
+                JCheckBox check = (JCheckBox) jPanel5.getComponent(x);
+                if (check.isSelected()) {
+                    check.setSelected(false);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnLimpiarMouseClicked
+
+    private void btnLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarMouseEntered
+
+    private void btnLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarMouseExited
+
+    private void btnAgregarTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarTMouseClicked
+        // TODO add your handling code here:
+        if (jTFNombreTipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+            objeto.setNombreT(jTFNombreTipo.getText());
+            String codigo=String.valueOf(cmbPrivilegios.getSelectedItem());
+            objeto.setCodigoP(Integer.valueOf(Integer.valueOf(codigo)));
+            if (objeto.guardarTipo()) {
+                JOptionPane.showMessageDialog(this,"Tipo Usuario guardado correctamente");
+                jTFNombreTipo.setText(null);
+                int filas = modeloTablaTipos.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaTipos.removeRow(0);
+                }
+                setFilasTipos(0,"");
+            }
+        }
+    }//GEN-LAST:event_btnAgregarTMouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        CodigoTipos=String.valueOf(modeloTablaTipos.getValueAt(jTable1.getSelectedRow(), 0));
+        lblCodigoTipo.setText("CODIGO PRIVILEGIO: "+CodigoTipos);
+        mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+        objeto.setCodigoT(Integer.valueOf(CodigoTipos));
+        jTFNombreTipo.setText(String.valueOf(modeloTablaTipos.getValueAt(jTable1.getSelectedRow(), 1)));
+        cmbPrivilegios.setSelectedItem(modeloTablaTipos.getValueAt(jTable1.getSelectedRow(), 2));
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnModificarTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTMouseClicked
+        // TODO add your handling code here:
+        if (jTFNombreTipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+            objeto.setNombreT(jTFNombreTipo.getText());
+            String codigo=String.valueOf(cmbPrivilegios.getSelectedItem());
+            objeto.setCodigoP(Integer.valueOf(Integer.valueOf(codigo)));
+            objeto.setCodigoT(Integer.valueOf(CodigoTipos));
+            if (objeto.modificarTipo()) {
+                JOptionPane.showMessageDialog(this,"Tipo Usuario modificado correctamente");
+                jTFNombreTipo.setText(null);
+                int filas = modeloTablaTipos.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaTipos.removeRow(0);
+                }
+                setFilasTipos(0,"");
+            }
+        }
+    }//GEN-LAST:event_btnModificarTMouseClicked
+
+    private void btnEliminarTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarTMouseClicked
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este tipo de usuario?", "Confirmacion",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response == JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this, "Tipo de Usuario  no eliminado");
+        } else {
+            if (lblCodigoPrivilegio.getText().equals("CODIGO TIPO") || lblCodigoPrivilegio.getText().equals("CODIGO TIPO: ")) {
+                    JOptionPane.showMessageDialog(this,"No ha seleccionado ningun tipo de usuario para eliminar");
+            } else {
+                mtoTipoUsuarios objeto = new mtoTipoUsuarios();
+                objeto.setCodigoT(Integer.valueOf(CodigoTipos));
+                if (objeto.eliminarTipo()) {
+                    JOptionPane.showMessageDialog(this, "Tipo de usuario eliminado correctamente");
+                    lblCodigoPrivilegio.setText("CODIGO TIPO");
+                    int filas = modeloTablaTipos.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaTipos.removeRow(0);
+                    }
+                    setFilasTipos(0,"");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error existen usuarios relacionados a este tipo de usuario. \n Elimina o modifica antes a los usuarios relacionados para poder eliminar este tipo de usuario.");
+                }
+            }
+        }    
+    }//GEN-LAST:event_btnEliminarTMouseClicked
+
+    private void rdNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreActionPerformed
+        // TODO add your handling code here:
+        rdCodigo.setSelected(false);
+        jTFBuscarT.setEnabled(true);   
+    }//GEN-LAST:event_rdNombreActionPerformed
+
+    private void rdCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdCodigoMouseClicked
+        // TODO add your handling code here:
+        rdNombre.setSelected(false);
+        jTFBuscarT.setEnabled(true); 
+    }//GEN-LAST:event_rdCodigoMouseClicked
+
+    private void jTFBuscarTKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarTKeyReleased
+        // TODO add your handling code here:
+        if (rdNombre.isSelected()) {
+            int filas = modeloTablaTipos.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaTipos.removeRow(0);
+            }
+            setFilasTipos(1, jTFBuscarT.getText());
+        }else if (rdCodigo.isSelected()) {
+            int filas = modeloTablaTipos.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaTipos.removeRow(0);
+            }
+            setFilasTipos(2, jTFBuscarT.getText());
+        }
+        
+    }//GEN-LAST:event_jTFBuscarTKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarP;
+    private javax.swing.JButton btnAgregarT;
     private javax.swing.JButton btnEliminarP;
+    private javax.swing.JButton btnEliminarT;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificarP;
+    private javax.swing.JButton btnModificarT;
     private javax.swing.JCheckBox cbBitacoras;
     private javax.swing.JCheckBox cbCajaRegistradora;
     private javax.swing.JCheckBox cbChatCenter;
@@ -660,9 +909,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbSolicitarAyuda;
     private javax.swing.JCheckBox cbVentas;
     private javax.swing.JComboBox<String> cmbPrivilegios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
