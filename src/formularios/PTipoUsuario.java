@@ -436,6 +436,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
+        jTFNombreTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreTipoKeyReleased(evt);
+            }
+        });
         jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
 
         rdNombre.setText("Nombre");
@@ -514,6 +519,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarTMouseExited(evt);
+            }
+        });
+        btnModificarT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnModificarTKeyPressed(evt);
             }
         });
         jPanel2.add(btnModificarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
@@ -815,6 +825,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
             objeto.setCodigoP(Integer.valueOf(Integer.valueOf(codigo)));
             objeto.setCodigoT(Integer.valueOf(CodigoTipos));
             if (objeto.modificarTipo()) {
+                
                 JOptionPane.showMessageDialog(this,"Tipo Usuario modificado correctamente");
                 jTFNombreTipo.setText(null);
                 int filas = modeloTablaTipos.getRowCount();
@@ -841,6 +852,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 if (objeto.eliminarTipo()) {
                     JOptionPane.showMessageDialog(this, "Tipo de usuario eliminado correctamente");
                     lblCodigoPrivilegio.setText("CODIGO TIPO");
+                    jTFNombreTipo.setText(null);
                     int filas = modeloTablaTipos.getRowCount();
                     for (int i = 0; filas > i; i++) {
                         modeloTablaTipos.removeRow(0);
@@ -882,6 +894,24 @@ public class PTipoUsuario extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_jTFBuscarTKeyReleased
+
+    private void btnModificarTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnModificarTKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarTKeyPressed
+
+    private void jTFNombreTipoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreTipoKeyReleased
+        // TODO add your handling code here: 
+        mtoTipoUsuarios objeto=new mtoTipoUsuarios();
+        objeto.setNombreT(jTFNombreTipo.getText());
+        String datos[]=objeto.consultarTipo();
+        if (jTFNombreTipo.getText().equals(datos[0])) {
+            CodigoTipos=datos[2];
+            lblCodigoTipo.setText("CODIGO TIPO: "+datos[2]);
+            cmbPrivilegios.setSelectedItem(Integer.valueOf(datos[1]));
+        }else if(jTFNombreTipo.getText().equals("")){
+            lblCodigoTipo.setText("CODIGO TIPO");
+        }
+    }//GEN-LAST:event_jTFNombreTipoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

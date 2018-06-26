@@ -158,26 +158,35 @@ public class mtoTipoUsuarios extends PTipoUsuario{
         return resp;
     }
     
-    public boolean consultarTipo(){
-        boolean respuesta=false;
+    public String[] consultarTipo(){
+        String[] resp2=new  String[3];
+        resp2[0]="";
+        resp2[1]="";
+        resp2[2]="";
         try {
-            String sql="SELECT nombreTipo FROM tipoUsuario WHERE nombreTipo=?";
+            String sql="SELECT idTipo, nombreTipo, idPrivilegio FROM tipoUsuario WHERE nombreTipo=?";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,getNombreT());
             ResultSet rs = cmd.executeQuery();    
             if (rs.next()) {
-                respuesta=true;
+                //nombreTipo
+                resp2[0] = rs.getString(2);
+                //idPrivilegio
+                resp2[1] = rs.getString(3);
+                //idTipo
+                resp2[2] = rs.getString(1);
             }
             cmd.close(); 
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return respuesta;
+        return resp2;
     }
     
     public boolean guardarTipo() {
         boolean resp = false;
-        if (consultarTipo()) {
+        String[] resp2=consultarTipo();
+        if (resp2[0].equals(getNombreT())) {
             JOptionPane.showMessageDialog(this,"Error ya existe un tipo de usuario con ese nombre");
         } else {
             try {
@@ -199,8 +208,9 @@ public class mtoTipoUsuarios extends PTipoUsuario{
     
     public boolean modificarTipo() {
         boolean resp = false;
-        if (consultarTipo()) {
-            JOptionPane.showMessageDialog(this, "Error ya existe un tipo de usuario con ese nombre");
+        String[] resp2=consultarTipo();
+        if (resp2[0].equals(getNombreT()) && Integer.valueOf(resp2[1])==getCodigoP() ) {
+            JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");
         } else {
             try {
 
