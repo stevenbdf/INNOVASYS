@@ -16,6 +16,94 @@ import javax.swing.JOptionPane;
  */
 public class mtoUsuarios extends PEmpleado{
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public Integer getCodigoEmpleado() {
+        return codigoEmpleado;
+    }
+
+    public void setCodigoEmpleado(Integer codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
+    }
+
+    public Integer getCodigoTipo() {
+        return codigoTipo;
+    }
+
+    public void setCodigoTipo(Integer codigoTipo) {
+        this.codigoTipo = codigoTipo;
+    }
+
+    public String getNombreEmpleado() {
+        return nombreEmpleado;
+    }
+
+    public void setNombreEmpleado(String nombreEmpleado) {
+        this.nombreEmpleado = nombreEmpleado;
+    }
+
+    public String getApellidoEmpleado() {
+        return apellidoEmpleado;
+    }
+
+    public void setApellidoEmpleado(String apellidoEmpleado) {
+        this.apellidoEmpleado = apellidoEmpleado;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreoEmpleado() {
+        return correoEmpleado;
+    }
+
+    public void setCorreoEmpleado(String correoEmpleado) {
+        this.correoEmpleado = correoEmpleado;
+    }
+
+    public String getContraseñaEmpleado() {
+        return contraseñaEmpleado;
+    }
+
+    public void setContraseñaEmpleado(String contraseñaEmpleado) {
+        this.contraseñaEmpleado = contraseñaEmpleado;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Integer getCodigoEstado() {
+        return codigoEstado;
+    }
+
+    public void setCodigoEstado(Integer codigoEstado) {
+        this.codigoEstado = codigoEstado;
+    }
+
+    public String getDatoDocumento() {
+        return datoDocumento;
+    }
+
+    public void setDatoDocumento(String datoDocumento) {
+        this.datoDocumento = datoDocumento;
+    }
+
     /**
      * @return the codigoD
      */
@@ -143,6 +231,19 @@ public class mtoUsuarios extends PEmpleado{
     private Integer codigoD;
     private String nombreD;
     private String estadoD;
+    
+    //atributos para empleados
+    private Integer codigoEmpleado;
+    private Integer codigoTipo;
+    private String nombreEmpleado;
+    private String apellidoEmpleado;
+    private Integer telefono;
+    private String correoEmpleado;
+    private String contraseñaEmpleado;
+    private String direccion;
+    private Integer codigoEstado;
+    private String datoDocumento;
+    private String imagen;
     
     
     public mtoUsuarios(){
@@ -390,6 +491,68 @@ public class mtoUsuarios extends PEmpleado{
             cn.close();
         } catch (Exception e) {
             System.out.println(e.toString());
+        }
+        return resp;
+    }
+    
+    public String[] consultarEmpleado() {
+        String[] datos = new String[4];
+        datos[0] = "";
+        datos[1] = "";
+        datos[2] = "";
+        datos[3] = "";
+        try {
+            String sql = "SELECT idEmpleado, idTipo, idEstado, correoElectronico "
+                    + "FROM usuarioEmpleado WHERE correoElectronico=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setString(1,getCorreoEmpleado());
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()) {
+                //idEmpleado
+                datos[0] = rs.getString(1);
+                //idTipo
+                datos[1] = rs.getString(2);
+                //idEstado
+                datos[2] = rs.getString(3);
+                //correoElectronico
+                datos[3] = rs.getString(4);
+            }
+            cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return datos;
+    }
+    
+    public boolean guardarEmpleado(){
+        boolean resp=false;
+        String[] datos = consultarEmpleado();
+        if (datos[3].equals(getCorreoEmpleado())) {
+            JOptionPane.showMessageDialog(this,"Error ya existe un empleado con ese correo electronico");
+        }else{
+            try {
+                String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
+                        + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen)"
+                        + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?,?,?,?,?)";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setInt(1,getCodigoTipo());
+                cmd.setString(2,getNombreEmpleado());
+                cmd.setString(3,getApellidoEmpleado());
+                cmd.setInt(4,getTelefono());
+                cmd.setString(5,getCorreoEmpleado());
+                cmd.setString(6,getContraseñaEmpleado());
+                cmd.setString(7,getDireccion());
+                cmd.setInt(8,getCodigoEstado());
+                cmd.setString(9,getImagen());
+                
+                if (!cmd.execute()) {
+                    resp=true;
+                } 
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
         return resp;
     }
