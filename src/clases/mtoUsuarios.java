@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import formularios.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
@@ -22,6 +24,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setPregunta1(String pregunta1) {
         this.pregunta1 = pregunta1;
+        everything[10]=String.valueOf(pregunta1);
     }
 
     public String getRespuesta1() {
@@ -30,6 +33,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setRespuesta1(String respuesta1) {
         this.respuesta1 = respuesta1;
+        everything[11]=String.valueOf(respuesta1);
     }
 
     public String getPregunta2() {
@@ -38,6 +42,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setPregunta2(String pregunta2) {
         this.pregunta2 = pregunta2;
+        everything[12]=String.valueOf(pregunta2);
     }
 
     public String getRespuesta2() {
@@ -46,6 +51,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setRespuesta2(String respuesta2) {
         this.respuesta2 = respuesta2;
+        everything[13]=String.valueOf(respuesta2);
     }
 
     public String getImagen() {
@@ -54,6 +60,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+        everything[9]=String.valueOf(imagen);
     }
 
     public Integer getCodigoEmpleado() {
@@ -62,6 +69,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoEmpleado(Integer codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
+        everything[0]=String.valueOf(codigoEmpleado);
     }
 
     public Integer getCodigoTipo() {
@@ -70,6 +78,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoTipo(Integer codigoTipo) {
         this.codigoTipo = codigoTipo;
+        everything[1]=String.valueOf(codigoTipo);
     }
 
     public String getNombreEmpleado() {
@@ -78,6 +87,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setNombreEmpleado(String nombreEmpleado) {
         this.nombreEmpleado = nombreEmpleado;
+        everything[2]=String.valueOf(nombreEmpleado);
     }
 
     public String getApellidoEmpleado() {
@@ -86,6 +96,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setApellidoEmpleado(String apellidoEmpleado) {
         this.apellidoEmpleado = apellidoEmpleado;
+        everything[3]=String.valueOf(apellidoEmpleado);
     }
 
     public Integer getTelefono() {
@@ -94,6 +105,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
+        everything[4]=String.valueOf(telefono);
     }
 
     public String getCorreoEmpleado() {
@@ -102,6 +114,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correoEmpleado = correoEmpleado;
+        everything[5]=correoEmpleado;
     }
 
     public String getContraseñaEmpleado() {
@@ -110,6 +123,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setContraseñaEmpleado(String contraseñaEmpleado) {
         this.contraseñaEmpleado = contraseñaEmpleado;
+        everything[6]=String.valueOf(contraseñaEmpleado);
     }
 
     public String getDireccion() {
@@ -118,6 +132,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+        everything[7]=String.valueOf(direccion);
     }
 
     public Integer getCodigoEstado() {
@@ -126,6 +141,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoEstado(Integer codigoEstado) {
         this.codigoEstado = codigoEstado;
+        everything[8]=String.valueOf(codigoEstado);
     }
 
     public String getDatoDocumento() {
@@ -133,7 +149,7 @@ public class mtoUsuarios extends PEmpleado{
     }
 
     public void setDatoDocumento(String datoDocumento) {
-        this.datoDocumento = datoDocumento;
+        this.datoDocumento = datoDocumento; 
     }
 
     /**
@@ -280,6 +296,7 @@ public class mtoUsuarios extends PEmpleado{
     private String respuesta1;
     private String pregunta2;
     private String respuesta2;
+    private String[] everything = new String[14];
     
     
     public mtoUsuarios(){
@@ -529,38 +546,31 @@ public class mtoUsuarios extends PEmpleado{
     }
     
     public String[] consultarEmpleado() {
-        String[] datos = new String[4];
-        datos[0] = "";
-        datos[1] = "";
-        datos[2] = "";
-        datos[3] = "";
+        ArrayList <String> datos = new ArrayList();
         try {
-            String sql = "SELECT idEmpleado, idTipo, idEstado, correoElectronico "
+            String sql = "SELECT *"
                     + "FROM usuarioEmpleado WHERE correoElectronico=?";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,getCorreoEmpleado());
             ResultSet rs = cmd.executeQuery();
-            if (rs.next()) {
-                //idEmpleado
-                datos[0] = rs.getString(1);
-                //idTipo
-                datos[1] = rs.getString(2);
-                //idEstado
-                datos[2] = rs.getString(3);
-                //correoElectronico
-                datos[3] = rs.getString(4);
+            while (rs.next()) {
+                for (int i = 1; i <(rs.getMetaData().getColumnCount())+1; i++) {
+                  datos.add(rs.getString(i));
+                }           
             }
             cmd.close();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
         }
-        return datos;
+        String valores[]= new String[datos.size()];
+        valores=datos.toArray(valores);
+        return valores;
     }
     
     public boolean guardarEmpleado(){
         boolean resp=false;
         String[] datos = consultarEmpleado();
-        if (datos[3].equals(getCorreoEmpleado())) {
+        if (datos[5].equals(getCorreoEmpleado())) {
             JOptionPane.showMessageDialog(this,"Error ya existe un empleado con ese correo electronico");
         }else{
             try {
@@ -591,5 +601,38 @@ public class mtoUsuarios extends PEmpleado{
             }
         }
         return resp;
+    }
+    
+    public boolean modificarEmpleado(){
+        //valores.false = no son iguales, true= 1 o mas son iguales
+        boolean resp=false;       
+            try {
+                String sql ="UPDATE usuarioEmpleado SET idTipo=?, nombres=?, apellidos=?, telefono=?, correoElectronico=?, contraseña=?, direccion=?, idEstado=?, imagen=?, pregunta1=?, respuesta1=?, pregunta2=?, respuesta2=? WHERE idEmpleado=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+ 
+                cmd.setInt(1, codigoTipo);
+                cmd.setString(2,nombreEmpleado);
+                cmd.setString(3,apellidoEmpleado);
+                cmd.setInt(4,telefono);
+                cmd.setString(5,correoEmpleado);
+                cmd.setString(6, contraseñaEmpleado);
+                cmd.setString(7,direccion);
+                cmd.setInt(8,codigoEstado);
+                cmd.setString(9,imagen);
+                cmd.setString(10, pregunta1);
+                cmd.setString(11, respuesta1);
+                cmd.setString(12,pregunta2);
+                cmd.setString(13,respuesta2);
+                cmd.setInt(14,codigoEmpleado);
+      
+                if (!cmd.execute()) {
+                resp=true;    
+                }
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }       
+        return resp;              
     }
 }

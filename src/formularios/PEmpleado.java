@@ -49,6 +49,7 @@ public class PEmpleado extends javax.swing.JPanel {
 		catch (Exception e) {
 		}
         initComponents();
+        
         llenaComboBoxTipoUsuario();
         llenaComboBoxEstado();
         jTFBuscarEstado.setEnabled(false);
@@ -380,6 +381,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleadoMouseExited(evt);
             }
         });
+        btnModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarEmpleadoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -416,7 +422,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnExaminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 70, 30));
+        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 100, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
@@ -509,11 +515,10 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("Imagen:");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 50, 30));
-
-        lblFoto.setText("jLabel1");
         jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 120, 120));
 
         jTable1.setModel(modeloTablaEmpleados);
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -1503,7 +1508,7 @@ public class PEmpleado extends javax.swing.JPanel {
             
             String[]consultas ={"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='"+valores[0]+"'","SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='"+valores[1]+"'"};
             PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
-            PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[0]);
+            PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
             ResultSet ver1 = cmd1.executeQuery();
             ResultSet ver2 = cmd2.executeQuery();
             if (ver1.next()) {
@@ -1512,6 +1517,9 @@ public class PEmpleado extends javax.swing.JPanel {
             if (ver2.next()) {
                 objeto.setCodigoEstado(ver2.getInt(1));
             }
+            cmd1.close();
+            cmd2.close();
+            con.conectar().close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
@@ -1559,6 +1567,54 @@ public class PEmpleado extends javax.swing.JPanel {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        mtoUsuarios objeto = new mtoUsuarios();
+        objeto.setCodigoEmpleado(Integer.valueOf(CodigoEmpleado));
+        objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
+        objeto.setApellidoEmpleado(jTFApellido.getText());
+        objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
+        objeto.setCorreoEmpleado(jTFCorreo.getText());
+        objeto.setContraseñaEmpleado(jTFContraseña.getText());
+        objeto.setDireccion(jTFDireccion.getText());
+        objeto.setImagen(String.valueOf(fichero));
+        objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
+        objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
+        objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
+        objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
+        try {
+            //0 TipoUsuario, 1 Estado
+            String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
+            for(String e: valores){
+                System.out.println("Valores "+e);
+            }
+            String[]consultas ={"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='"+valores[0]+"'","SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='"+valores[1]+"'"};
+            PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
+            PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
+            ResultSet ver1 = cmd1.executeQuery();
+            ResultSet ver2 = cmd2.executeQuery();
+            if (ver1.next()) {
+                objeto.setCodigoTipo(ver1.getInt(1));
+            }
+            if (ver2.next()) {
+                objeto.setCodigoEstado(ver2.getInt(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        
+        if (objeto.modificarEmpleado()) {
+            JOptionPane.showMessageDialog(this,"Usuario Empleado modificado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(this,"Error Usuario Empleado no modificado");
+        }
+        int filas = modeloTablaEmpleados.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaEmpleados.removeRow(0);
+                }
+                setFilasEmpleado(0,"");   
+    }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

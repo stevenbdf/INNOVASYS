@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.util.Scanner;
+import clases.*;
 /**
  *
  * @author steve
@@ -470,6 +471,11 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 60)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("INNOVASYS");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jLabel5.setToolTipText("");
@@ -1139,6 +1145,14 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
        ImageIcon icono16 = new ImageIcon(foto16.getImage().getScaledInstance(Ordenes.getWidth(),Ordenes.getHeight(),Image.SCALE_DEFAULT));
        Ordenes.setIcon(icono16);
     }//GEN-LAST:event_OrdenesMouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        mtoUsuarios objeto = new mtoUsuarios();
+        objeto.setCorreoEmpleado("TEST");
+        String[]datos= objeto.consultarEmpleado();
+        
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
