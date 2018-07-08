@@ -34,6 +34,7 @@ public class PEmpleado extends javax.swing.JPanel {
     DefaultComboBoxModel modeloComboEstado;
     Conexion cn = new Conexion();
     String NombreE="",CodigoEstado="",NombreD="",CodigoDocumento="",DescripcionE="";
+    String CodigoEmpleado="";
     File fichero;
     String datos=String.valueOf(fichero);
     public PEmpleado() {
@@ -222,7 +223,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cmbTipoUsuario = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
+        lblCodigoEmpleado = new javax.swing.JLabel();
         jTFTelefono = new javax.swing.JTextField();
         jTFNombreEmpleado = new javax.swing.JTextField();
         jTFApellido = new javax.swing.JTextField();
@@ -231,7 +232,6 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFContraseña = new javax.swing.JTextField();
         btnModificarEmpleado = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         btnExaminar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTFBuscarEmpleado = new javax.swing.JTextField();
@@ -240,12 +240,6 @@ public class PEmpleado extends javax.swing.JPanel {
         btnGenerarReporteEmpleado = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        cmbDocumento = new javax.swing.JComboBox<>();
-        jTFDescripcionDocumento = new javax.swing.JTextField();
-        btnAgregarDocumentoEmpleado = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btnAgregarEmpleado = new javax.swing.JButton();
@@ -255,6 +249,14 @@ public class PEmpleado extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        cmdPregunta1 = new javax.swing.JComboBox<>();
+        jTFRespuesta1 = new javax.swing.JTextField();
+        jTFRespuesta2 = new javax.swing.JTextField();
+        cmdPregunta2 = new javax.swing.JComboBox<>();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -302,67 +304,67 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 36, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Apellido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Contraseña:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("Direccion:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, 24));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 24));
 
         cmbTipoUsuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cmbTipoUsuario.setModel(modeloComboTipoUsuario);
-        jPanel1.add(cmbTipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 120, 30));
+        jPanel1.add(cmbTipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 120, 30));
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("CODIGO EMPLEADO");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        lblCodigoEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoEmpleado.setText("CODIGO EMPLEADO");
+        jPanel1.add(lblCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         jTFTelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFTelefono.setForeground(new java.awt.Color(204, 204, 204));
         jTFTelefono.setToolTipText("");
         jTFTelefono.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 200, -1));
+        jPanel1.add(jTFTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, -1));
 
         jTFNombreEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreEmpleado.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setToolTipText("");
         jTFNombreEmpleado.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 200, -1));
+        jPanel1.add(jTFNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
 
         jTFApellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFApellido.setForeground(new java.awt.Color(204, 204, 204));
         jTFApellido.setToolTipText("");
         jTFApellido.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 200, -1));
+        jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 200, -1));
 
         jTFDireccion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDireccion.setForeground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setToolTipText("");
         jTFDireccion.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 200, -1));
+        jPanel1.add(jTFDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, -1));
 
         jTFCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFCorreo.setForeground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setToolTipText("");
         jTFCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
+        jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 200, -1));
 
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFContraseña.setForeground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setToolTipText("");
         jTFContraseña.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 200, -1));
+        jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 200, -1));
 
         btnModificarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
@@ -378,7 +380,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleadoMouseExited(evt);
             }
         });
-        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnLimpiarCampos.setForeground(new java.awt.Color(204, 204, 204));
@@ -394,11 +396,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnLimpiarCamposMouseExited(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
-
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Imagen");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
 
         btnExaminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnExaminar.setForeground(new java.awt.Color(204, 204, 204));
@@ -418,22 +416,22 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnExaminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 70, 30));
+        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 70, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Buscar:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, 30));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 30));
 
         jTFBuscarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jTFBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 110, 30));
+        jPanel1.add(jTFBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, 30));
 
         rdNombreEmpleado.setText("Nombre");
-        jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+        jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
         rdCodigoEmpleado.setText("Codigo");
-        jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
+        jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
         btnGenerarReporteEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnGenerarReporteEmpleado.setForeground(new java.awt.Color(204, 204, 204));
@@ -448,7 +446,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnGenerarReporteEmpleadoMouseExited(evt);
             }
         });
-        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, 30));
+        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -461,85 +459,17 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Usuario:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
-
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Documentos"));
-
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel13.setText("Descripcion:");
-
-        cmbDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTFDescripcionDocumento.setForeground(new java.awt.Color(204, 204, 204));
-
-        btnAgregarDocumentoEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarDocumentoEmpleado.setForeground(new java.awt.Color(204, 204, 204));
-        btnAgregarDocumentoEmpleado.setText("Agregar");
-        btnAgregarDocumentoEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnAgregarDocumentoEmpleado.setContentAreaFilled(false);
-        btnAgregarDocumentoEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
-        btnAgregarDocumentoEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarDocumentoEmpleadoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarDocumentoEmpleadoMouseExited(evt);
-            }
-        });
-
-        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel18.setText("Nombre:");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel13))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbDocumento, 0, 155, Short.MAX_VALUE)
-                    .addComponent(jTFDescripcionDocumento))
-                .addGap(18, 18, 18)
-                .addComponent(btnAgregarDocumentoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jTFDescripcionDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnAgregarDocumentoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 350, 120));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Telefono:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 116, -1, 30));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("Correo:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
 
         btnAgregarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
@@ -569,31 +499,86 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnAgregarEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         cmbEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cmbEstado.setModel(modeloComboEstado);
-        jPanel1.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 120, 30));
+        jPanel1.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 120, 30));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel21.setText("Estado:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, 30));
+        jLabel21.setText("Imagen:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 50, 30));
 
         lblFoto.setText("jLabel1");
-        jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 120, 120));
+        jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 120, 120));
 
         jTable1.setModel(modeloTablaEmpleados);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 470, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 470, 110));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
         jLabel19.setText("Tipo de");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, 20));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 20));
+
+        jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel27.setText("Estado:");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 30));
+
+        jLabel29.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel29.setText("Pregunta de Seguridad #1");
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, 20));
+
+        cmdPregunta1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cmdPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "¿Tu profesor favorito?", "¿Cumpleaños de tu madre?", "¿Mayor temor?", "¿Clima favorito?" }));
+        jPanel1.add(cmdPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 170, 30));
+
+        jTFRespuesta1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFRespuesta1.setForeground(new java.awt.Color(204, 204, 204));
+        jTFRespuesta1.setToolTipText("");
+        jTFRespuesta1.setPreferredSize(new java.awt.Dimension(78, 30));
+        jPanel1.add(jTFRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, -1));
+
+        jTFRespuesta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFRespuesta2.setForeground(new java.awt.Color(204, 204, 204));
+        jTFRespuesta2.setToolTipText("");
+        jTFRespuesta2.setPreferredSize(new java.awt.Dimension(78, 30));
+        jPanel1.add(jTFRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 170, -1));
+
+        cmdPregunta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cmdPregunta2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "¿Tu primer mascota?", "¿Color Favorito?", "¿Festividad favorita?" }));
+        jPanel1.add(cmdPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 170, 30));
+
+        jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel30.setText("Pregunta de Seguridad #2");
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, 20));
 
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 675, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 472, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -1124,16 +1109,6 @@ public class PEmpleado extends javax.swing.JPanel {
          btnLimpiarCampos.setContentAreaFilled(false);
     }//GEN-LAST:event_btnLimpiarCamposMouseExited
 
-    private void btnAgregarDocumentoEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDocumentoEmpleadoMouseEntered
-        // TODO add your handling code here:
-         btnAgregarDocumentoEmpleado.setContentAreaFilled(true);
-    }//GEN-LAST:event_btnAgregarDocumentoEmpleadoMouseEntered
-
-    private void btnAgregarDocumentoEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDocumentoEmpleadoMouseExited
-        // TODO add your handling code here:
-         btnAgregarDocumentoEmpleado.setContentAreaFilled(false);
-    }//GEN-LAST:event_btnAgregarDocumentoEmpleadoMouseExited
-
     private void btnExaminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExaminarMouseEntered
         // TODO add your handling code here:
          btnExaminar.setContentAreaFilled(true);
@@ -1518,6 +1493,10 @@ public class PEmpleado extends javax.swing.JPanel {
         objeto.setContraseñaEmpleado(jTFContraseña.getText());
         objeto.setDireccion(jTFDireccion.getText());
         objeto.setImagen(String.valueOf(fichero));
+        objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
+        objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
+        objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
+        objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
         try {
             //0 TipoUsuario, 1 Estado
             String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
@@ -1549,10 +1528,41 @@ public class PEmpleado extends javax.swing.JPanel {
                 setFilasEmpleado(0,"");    
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        CodigoEmpleado = (String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0))));
+        lblCodigoEmpleado.setText("CODIGO EMPLEADO: " + CodigoEmpleado);
+        cmbTipoUsuario.setSelectedItem(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (1))));
+        jTFNombreEmpleado.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (2))));
+        jTFApellido.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (3))));
+        jTFTelefono.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (4))));
+        jTFCorreo.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (5))));
+        jTFDireccion.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (6))));
+        cmbEstado.setSelectedItem(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (7))));
+        try {
+            String sql = "SELECT imagen, contraseña, pregunta1, respuesta1, pregunta2, respuesta2 "
+                    + "FROM usuarioEmpleado WHERE idEmpleado='" + modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0)) + "'";
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                datos = ver.getString(1);
+                ImageIcon icon = new ImageIcon(ver.getString(1));
+                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+                lblFoto.setIcon(icono);
+                jTFContraseña.setText(ver.getString(2));
+                cmdPregunta1.setSelectedItem(ver.getString(3));
+                jTFRespuesta1.setText(ver.getString(4));
+                cmdPregunta2.setSelectedItem(ver.getString(5));
+                jTFRespuesta2.setText(ver.getString(6));
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
-    private javax.swing.JButton btnAgregarDocumentoEmpleado;
     private javax.swing.JButton btnAgregarE;
     private javax.swing.JButton btnAgregarEmpleado;
     private javax.swing.JButton btnEliminarD;
@@ -1563,20 +1573,18 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnModificarD;
     private javax.swing.JButton btnModificarE;
     private javax.swing.JButton btnModificarEmpleado;
-    private javax.swing.JComboBox<String> cmbDocumento;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbEstadoD;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
+    private javax.swing.JComboBox<String> cmdPregunta1;
+    private javax.swing.JComboBox<String> cmdPregunta2;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -1584,16 +1592,18 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1605,18 +1615,20 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JTextField jTFBuscarEstado;
     private javax.swing.JTextField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
-    private javax.swing.JTextField jTFDescripcionDocumento;
     private javax.swing.JTextField jTFDescripcionE;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFNombreD;
     private javax.swing.JTextField jTFNombreE;
     private javax.swing.JTextField jTFNombreEmpleado;
+    private javax.swing.JTextField jTFRespuesta1;
+    private javax.swing.JTextField jTFRespuesta2;
     private javax.swing.JTextField jTFTelefono;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblCodigoDocumento;
+    private javax.swing.JLabel lblCodigoEmpleado;
     private javax.swing.JLabel lblCodigoEstado;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JRadioButton rdCodigoDocumento;

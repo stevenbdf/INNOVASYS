@@ -16,6 +16,38 @@ import javax.swing.JOptionPane;
  */
 public class mtoUsuarios extends PEmpleado{
 
+    public String getPregunta1() {
+        return pregunta1;
+    }
+
+    public void setPregunta1(String pregunta1) {
+        this.pregunta1 = pregunta1;
+    }
+
+    public String getRespuesta1() {
+        return respuesta1;
+    }
+
+    public void setRespuesta1(String respuesta1) {
+        this.respuesta1 = respuesta1;
+    }
+
+    public String getPregunta2() {
+        return pregunta2;
+    }
+
+    public void setPregunta2(String pregunta2) {
+        this.pregunta2 = pregunta2;
+    }
+
+    public String getRespuesta2() {
+        return respuesta2;
+    }
+
+    public void setRespuesta2(String respuesta2) {
+        this.respuesta2 = respuesta2;
+    }
+
     public String getImagen() {
         return imagen;
     }
@@ -244,6 +276,10 @@ public class mtoUsuarios extends PEmpleado{
     private Integer codigoEstado;
     private String datoDocumento;
     private String imagen;
+    private String pregunta1;
+    private String respuesta1;
+    private String pregunta2;
+    private String respuesta2;
     
     
     public mtoUsuarios(){
@@ -329,9 +365,6 @@ public class mtoUsuarios extends PEmpleado{
     public boolean modificarEstadoEmpleado(){
         boolean resp= false;
         String[] resp2=consultarEstado();
-//        System.out.println("Codigo:"+resp2[2]);
-//        System.out.println("Nombre:"+resp2[0]);
-//        System.out.println("Descripcion:"+resp2[1]);
         if (resp2[0].equals(getNombreE()) && resp2[1].equals(getDescripcionE())) {
                 JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");                   
         }else if (resp2[0].equals(getNombreE()) && !resp2[1].equals(getDescripcionE())) {
@@ -532,8 +565,8 @@ public class mtoUsuarios extends PEmpleado{
         }else{
             try {
                 String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
-                        + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen)"
-                        + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?,?,?,?,?)";
+                        + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen, pregunta1,respuesta1, pregunta2, respuesta2)"
+                        + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement cmd = cn.prepareStatement(sql);
                 cmd.setInt(1,getCodigoTipo());
                 cmd.setString(2,getNombreEmpleado());
@@ -544,7 +577,10 @@ public class mtoUsuarios extends PEmpleado{
                 cmd.setString(7,getDireccion());
                 cmd.setInt(8,getCodigoEstado());
                 cmd.setString(9,getImagen());
-                
+                cmd.setString(10,getPregunta1());
+                cmd.setString(11,getRespuesta1());
+                cmd.setString(12,getPregunta2());
+                cmd.setString(13, getRespuesta2());               
                 if (!cmd.execute()) {
                     resp=true;
                 } 
