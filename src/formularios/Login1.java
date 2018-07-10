@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import clases.mtoUsuarios;
+import clases.verificaciones;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 /**
@@ -123,7 +124,7 @@ public class Login1 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar2.png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar2.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar2.png"))); // NOI18N
@@ -148,7 +149,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Registrate como Cliente");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
@@ -176,11 +177,16 @@ public class Login1 extends javax.swing.JFrame {
                 jTFContraseñaActionPerformed(evt);
             }
         });
+        jTFContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFContraseñaKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 150, 30));
         jPanel1.add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 80, 80));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -190,7 +196,7 @@ public class Login1 extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jLabel8.setToolTipText("");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -208,7 +214,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("¿Olvidaste tu constraseña?");
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
@@ -220,7 +226,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Ingresar como Invitado");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -232,7 +238,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("o");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -305,25 +311,39 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        mtoUsuarios objeto = new mtoUsuarios();
-        objeto.setCorreo(jTFCorreo.getText());
-        if (jTFCorreo.getText().isEmpty() || jTFContraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Error Campos Vacios");
+        verificaciones obj = new verificaciones();
+        if (obj.vcorreo(jTFCorreo.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
         } else {
-            if (objeto.consultarContraseña()) {
-                if (objeto.getContraseña().equals(jTFContraseña.getText())) {
-                    JOptionPane.showMessageDialog(this, "Bienvenido");
-                    VentanaPrincipal2 ventana = new VentanaPrincipal2();
-                    ventana.show();
-                    Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
-                    this.hide();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-                }
+
+            mtoUsuarios objeto = new mtoUsuarios();
+            objeto.setCorreo(jTFCorreo.getText());
+            if (jTFCorreo.getText().isEmpty() || jTFContraseña.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Error Campos Vacios");
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario inexistente");
+                if (objeto.consultarContraseña()) {
+                    if (objeto.getContraseña().equals(jTFContraseña.getText())) {
+                        JOptionPane.showMessageDialog(this, "Bienvenido");
+                        VentanaPrincipal2 ventana = new VentanaPrincipal2();
+                        ventana.show();
+                        Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
+                        this.hide();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario inexistente");
+                }
             }
         }
+//        char vchar =evt.getKeyChar();
+//            verificaciones obj = new verificaciones();
+//            if (  obj.vletrase(vchar)== true
+//                &&(jTextArea1.getText().length()<100)){
+//       
+//    }else{
+//            evt.consume();
+//            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -385,6 +405,18 @@ public class Login1 extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        verificaciones obj = new verificaciones();
+        if (obj.vletrasynumeros(vchar) == true
+                && (jTFContraseña.getText().length() < 80)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFContraseñaKeyTyped
 
     /**
      * @param args the command line arguments

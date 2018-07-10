@@ -21,7 +21,7 @@ public class Conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             //importar java.sql.DriverManager
             //cn= DriverManager.getConnection("jdbc:sqlserver://DESKTOP-CAVE2O6\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
-            cn = DriverManager.getConnection("jdbc:sqlserver://Internet\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            cn = DriverManager.getConnection("jdbc:sqlserver://HARIBO10\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

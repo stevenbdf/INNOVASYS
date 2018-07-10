@@ -10,6 +10,8 @@ import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -32,6 +34,9 @@ public class PEmpleado extends javax.swing.JPanel {
     DefaultTableModel modeloTablaEmpleados;
     DefaultComboBoxModel modeloComboTipoUsuario;
     DefaultComboBoxModel modeloComboEstado;
+    String key = "92AE31A79FEEB2A3"; //llave
+    String iv = "0123456789ABCDEF"; // vector de inicialización
+    String cleartext = "";
     Conexion cn = new Conexion();
     String NombreE="",CodigoEstado="",NombreD="",CodigoDocumento="",DescripcionE="";
     String CodigoEmpleado="";
@@ -257,6 +262,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFRespuesta2 = new javax.swing.JTextField();
         cmdPregunta2 = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
+        btnEliminarEmpleado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -386,7 +392,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
+        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnLimpiarCampos.setForeground(new java.awt.Color(204, 204, 204));
@@ -402,7 +408,12 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnLimpiarCamposMouseExited(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
+        btnLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCamposActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
 
         btnExaminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnExaminar.setForeground(new java.awt.Color(204, 204, 204));
@@ -567,6 +578,27 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel30.setForeground(new java.awt.Color(204, 204, 204));
         jLabel30.setText("Pregunta de Seguridad #2");
         jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, 20));
+
+        btnEliminarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarEmpleado.setText("Eliminar");
+        btnEliminarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarEmpleado.setContentAreaFilled(false);
+        btnEliminarEmpleado.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleadoMouseExited(evt);
+            }
+        });
+        btnEliminarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarEmpleadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
@@ -777,7 +809,7 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addGap(126, 126, 126)
                         .addComponent(jButton10))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1490,12 +1522,21 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        verificaciones obj = new verificaciones();      
         mtoUsuarios objeto = new mtoUsuarios();
         objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
         objeto.setApellidoEmpleado(jTFApellido.getText());
         objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
         objeto.setCorreoEmpleado(jTFCorreo.getText());
-        objeto.setContraseñaEmpleado(jTFContraseña.getText());
+        cleartext=jTFContraseña.getText();
+//        objeto.setContraseñaEmpleado(cleartext);
+        try {
+            objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
+        } catch (Exception ex) {
+            Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
         objeto.setDireccion(jTFDireccion.getText());
         objeto.setImagen(String.valueOf(fichero));
         objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
@@ -1570,13 +1611,20 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoActionPerformed
         // TODO add your handling code here:
-        mtoUsuarios objeto = new mtoUsuarios();
+       mtoUsuarios objeto = new mtoUsuarios();
+        verificaciones obj = new verificaciones();
         objeto.setCodigoEmpleado(Integer.valueOf(CodigoEmpleado));
         objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
         objeto.setApellidoEmpleado(jTFApellido.getText());
         objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
         objeto.setCorreoEmpleado(jTFCorreo.getText());
-        objeto.setContraseñaEmpleado(jTFContraseña.getText());
+        cleartext=jTFContraseña.getText();
+        try {
+            objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
+        } catch (Exception ex) {
+            Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
         objeto.setDireccion(jTFDireccion.getText());
         objeto.setImagen(String.valueOf(fichero));
         objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
@@ -1613,8 +1661,36 @@ public class PEmpleado extends javax.swing.JPanel {
                 for (int i = 0; filas > i; i++) {
                     modeloTablaEmpleados.removeRow(0);
                 }
-                setFilasEmpleado(0,"");   
+                setFilasEmpleado(0,"");    
     }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
+
+    private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
+        // TODO add your handling code here:
+        jTFNombreEmpleado.setText(null);
+        jTFApellido.setText(null);
+        jTFTelefono.setText(null);
+        jTFCorreo.setText(null);
+        jTFContraseña.setText(null);
+        jTFDireccion.setText(null);
+        jTFRespuesta1.setText(null);
+        jTFRespuesta2.setText(null);
+        cmdPregunta1.setSelectedIndex(0);
+        cmdPregunta2.setSelectedIndex(0);
+        cmbEstado.setSelectedIndex(0);
+        cmbTipoUsuario.setSelectedIndex(0);
+    }//GEN-LAST:event_btnLimpiarCamposActionPerformed
+
+    private void btnEliminarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleadoMouseEntered
+
+    private void btnEliminarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleadoMouseExited
+
+    private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1623,6 +1699,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregarEmpleado;
     private javax.swing.JButton btnEliminarD;
     private javax.swing.JButton btnEliminarE;
+    private javax.swing.JButton btnEliminarEmpleado;
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnGenerarReporteEmpleado;
     private javax.swing.JButton btnLimpiarCampos;
