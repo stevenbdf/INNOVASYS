@@ -1,4 +1,5 @@
-﻿/* Se crea la base de Datos*/
+﻿drop database dbInnovasys
+/* Se crea la base de Datos*/
 create database dbInnovasys;
 use dbInnovasys;
 
@@ -42,6 +43,10 @@ gestionarInventario bit,
 gestionarDevoluciones bit
 );
 
+SELECT idPrivilegio, verInventario, construirEquipo, verProductos, solicitarAyuda, verOrdenesCola, verCajaVirtual, verVentasUuario, chatCenter, cambiarDatosEmpresa, gestionarVentas, gestionarBitacoras, gestionarClientes,gestionarProveedores, gestionarEmpleados, gestionarProductos, gestionarInventario FROM privilegio
+alter table privilegio
+drop column gestionarDevoluciones
+select*from privilegio
 
 create table tipoUsuario(
 idTipo int not null primary key,
@@ -49,13 +54,14 @@ nombreTipo varchar(60),
 idPrivilegio int not null references privilegio(idPrivilegio)
 );
 
-
+/* agregar identity(1,1)*/
 create table estadoEmpleado(
 idEstado int not null primary key,
 nombreEstado char(50) not null,
 descripcion varchar(50) 
 );
-
+alter table estadoEmpleado
+alter column nombreEstado varchar(50)
 
 create table usuarioEmpleado(
 idEmpleado int not null primary key,
@@ -69,6 +75,24 @@ direccion varchar(120) not null,
 idEstado int not null references estadoEmpleado(idEstado)
 );
 
+select * from usuarioEmpleado
+delete from usuarioEmpleado where idEmpleado=6
+UPDATE usuarioEmpleado set pregunta1 ='¿Cumpleaños de tu madre?' where idEmpleado=6
+
+UPDATE usuarioEmpleado SET idTipo=1, nombres='?', apellidos='?', telefono=1, correoElectronico='?', contraseña='?',
+direccion='?', idEstado=1, imagen='?', pregunta1='?', respuesta1='?', pregunta2='?', respuesta2='?'
+WHERE idEmpleado=1
+
+SELECT idEmpleado, idTipo, idEstado, correoElectronico 
+FROM usuarioEmpleado
+
+alter table usuarioEmpleado
+add imagen varchar(200),
+pregunta1 varchar(300),
+respuesta1 varchar(150),
+pregunta2 varchar(300),
+respuesta2 varchar(150)
+
 
 
 
@@ -78,7 +102,7 @@ nombre varchar(80),
 estado varchar(80)
 );
 
-
+delete from documento where idDocumento>=6
 
 create table documentoEmpleado(
 idDocumentoE int not null primary key,
@@ -115,7 +139,7 @@ descripcion text,
 visualizacion_3D bit
 );
 
-/* Estas 2 tablas se actualizaran para la siguiente defensa*/
+/* Estas 2 tablas se actualizaran para la siguiente defensa
 
 create table tag(
 idTag int not null primary key,
@@ -123,13 +147,14 @@ nombreTag varchar()
 );
 
 create table detalle(
-idDetalle int not null primay key,
+idDetalle int not null primary key,
 idTag int not null references tag(idTag)
 );
+*/
 
 create table producto(
 idProducto int not null primary key,
-idDetalle int not null references tag(),
+/*idDetalle int not null references tag(idTag),*/
 nombreProducto varchar(60) not null,
 descripcion text,
 imagen varchar(200),
@@ -281,13 +306,13 @@ totalDevuelto numeric(5,3)
 insert into datosEmpresa values(1,'CompuService','1era Calle Poniente 16ta Av. Norte, San Salvador','03/01/18',' Empresa dedicada a comercializar productos informaticos','imagenes/logo.png',77554433,22060503,22060504,22060503,'compuservice@gmail.com','compuservice2@gmail.com','Ing.Steven Diaz',12000,13000)
 
 
-insert into privilegio values(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-insert into privilegio values(2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0)
-insert into privilegio values(3,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1)
-insert into privilegio values(4,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1)
-insert into privilegio values(5,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1)
+insert into privilegio values(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+insert into privilegio values(2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
+insert into privilegio values(3,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1)
+insert into privilegio values(4,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1)
+insert into privilegio values(5,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1)
 
-
+select * from tipoUsuario
 insert into tipoUsuario values(1,'Administrador',1)
 insert into tipoUsuario values(2,'Cajero',2)
 insert into tipoUsuario values(3,'Vendedor',3)
@@ -299,7 +324,10 @@ insert into estadoEmpleado(idEstado,nombreEstado) values(1,'Activo')
 insert into estadoEmpleado(idEstado,nombreEstado) values(2,'Inactivo')
 insert into estadoEmpleado(idEstado,nombreEstado) values(3,'Despedido')
 insert into estadoEmpleado(idEstado,nombreEstado) values(4,'Incapacitado')
-insert into estadoEmpleado(idEstado,nombreEstado) values(5,'Suspendido')
+insert into estadoEmpleado(idEstado,nombreEstado) values(15,'Suspendido3')
+
+delete from estadoEmpleado where idEstado>=7
+select * from estadoEmpleado
 
 
 insert into usuarioEmpleado values(1,1,'Steven','Diaz',77814435,'stevenbdf@gmail.com','qwerty321','San Salvador',1)
@@ -350,7 +378,7 @@ insert into producto values(3,'Maletin p/ Laptop',' ','imagenes/MpLaptop.png',3,
 insert into producto values(4,'Tester RJ45',' ','imagenes/tester45.png',4,4)
 insert into producto values(5,'USB 16GB 3.1',' ','imagenes/16GB3_1.png',5,5)
 
-
+select * from tipoTransaccion
 insert into tipoTransaccion values(1,'Entrada')
 insert into tipoTransaccion values(2,'Salida')
 
@@ -367,6 +395,7 @@ insert into cliente values(2,'Ada','Gonzalez',0,20170102,20170103,'ada@gmail.com
 insert into cliente values(3,'Jose','Guzman',0,20170104,20170105,'jose@gmail.com','qwerty321','Mexico','Nemo',7644590)
 insert into cliente values(4,'Andres','Urrutia',0,20170106,20170107,'andres@gmail.com','qwerty321','SantaMaria','Coco',7644591)
 insert into cliente values(5,'Diego','Cortez',0,20170108,20170109,'diego@gmail.com','qwerty321','Josefina','IronMan',7644592)
+insert into cliente values(6,'Diego','Cortez',0,20170108,20170109,'sa','123','Josefina','IronMan',7644592)
 
 
 insert into bitacoraCliente values(1,'03/01/18',1)
