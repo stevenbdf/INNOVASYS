@@ -174,10 +174,12 @@ correoElectronico varchar(70) not null,
 contraseña varchar(80),
 preguntaSeguridad1 varchar(120),
 preguntaSeguridad2 varchar(120),
+respuestaSeguridad1 varchar(120),
+respuestaSeguridad2 varchar(120),
 telefono int
 );
-
-
+--Si ya se tiene la base aqui agrege los campos
+ALTER TABLE cliente ADD respuestaSeguridad1 varchar(120),respuestaSeguridad2 varchar(120)
 
 
 create table bitacoraCliente(
@@ -362,11 +364,11 @@ insert into inventario values(4,4,1,'06/01/18',18.55,0.55,10,55,0.22,'Recibido')
 insert into inventario values(5,5,1,'07/01/18',13.99,0.55,10,55,0.22,'Recibido')
 
 
-insert into cliente values(1,'Claudia','Gonzalez',0,20170100,20170101,'claudia@gmail.com','qwerty321','Maria','Manchita',7644588)
-insert into cliente values(2,'Ada','Gonzalez',0,20170102,20170103,'ada@gmail.com','qwerty321','Vancouver','Spot',7644589)
-insert into cliente values(3,'Jose','Guzman',0,20170104,20170105,'jose@gmail.com','qwerty321','Mexico','Nemo',7644590)
-insert into cliente values(4,'Andres','Urrutia',0,20170106,20170107,'andres@gmail.com','qwerty321','SantaMaria','Coco',7644591)
-insert into cliente values(5,'Diego','Cortez',0,20170108,20170109,'diego@gmail.com','qwerty321','Josefina','IronMan',7644592)
+insert into cliente values(1,'Claudia','Gonzalez',0,20170100,20170101,'claudia@gmail.com','qwerty321','¿Cual es el nombre de tu primer mascota?','¿Color favorito?','Maria','amarillo',7644588)
+insert into cliente values(2,'Ada','Gonzalez',0,20170102,20170103,'ada@gmail.com','qwerty321','¿Cual es el nombre de tu primer mascota?','¿Color favorito?','Maria','amarillo',7644589)
+insert into cliente values(3,'Jose','Guzman',0,20170104,20170105,'jose@gmail.com','qwerty321','¿Cual es el nombre de tu primer mascota?','¿Color favorito?','Maria','amarillo',7644590)
+insert into cliente values(4,'Andres','Urrutia',0,20170106,20170107,'andres@gmail.com','qwerty321','¿Cual es el nombre de tu primer mascota?','¿Color favorito?','Maria','amarillo',7644591)
+insert into cliente values(5,'Diego','Cortez',0,20170108,20170109,'diego@gmail.com','qwerty321','¿Cual es el nombre de tu primer mascota?','¿Color favorito?','Maria','amarillo',7644592)
 
 
 insert into bitacoraCliente values(1,'03/01/18',1)
