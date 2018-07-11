@@ -1,5 +1,3 @@
-﻿drop database dbInnovasys
-/* Se crea la base de Datos*/
 create database dbInnovasys;
 use dbInnovasys;
 
