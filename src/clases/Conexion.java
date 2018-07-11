@@ -20,8 +20,12 @@ public class Conexion {
   
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             //importar java.sql.DriverManager
+            //Lap Steven
             //cn= DriverManager.getConnection("jdbc:sqlserver://DESKTOP-CAVE2O6\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
-            cn = DriverManager.getConnection("jdbc:sqlserver://HARIBO10\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            //Lap Sebas
+            //cn = DriverManager.getConnection("jdbc:sqlserver://HARIBO10\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            //Base en internet
+              cn = DriverManager.getConnection("jdbc:sqlserver://den1.mssql6.gear.host;databaseName=dbinnovasys;user=dbinnovasys;password=FCBarcelona123@;");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

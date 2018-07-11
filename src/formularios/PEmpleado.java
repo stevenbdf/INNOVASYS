@@ -1589,6 +1589,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDireccion.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (6))));
         cmbEstado.setSelectedItem(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (7))));
         try {
+            verificaciones obj = new verificaciones(); 
             String sql = "SELECT imagen, contraseña, pregunta1, respuesta1, pregunta2, respuesta2 "
                     + "FROM usuarioEmpleado WHERE idEmpleado='" + modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0)) + "'";
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
@@ -1598,7 +1599,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 ImageIcon icon = new ImageIcon(ver.getString(1));
                 ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                 lblFoto.setIcon(icono);
-                jTFContraseña.setText(ver.getString(2));
+                jTFContraseña.setText(obj.decrypt(key, iv, ver.getString(2)));
                 cmdPregunta1.setSelectedItem(ver.getString(3));
                 jTFRespuesta1.setText(ver.getString(4));
                 cmdPregunta2.setSelectedItem(ver.getString(5));

@@ -554,6 +554,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         AnimationClass nombre = new AnimationClass();
         nombre.jLabelXLeft(40, -120,15, 5, jblnombre);
         
+        
         AnimationClass nombre2 = new AnimationClass();
         nombre2.jLabelXRight(-120, 40,15, 5, jblnombre);
         
