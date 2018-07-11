@@ -75,16 +75,6 @@ direccion varchar(120) not null,
 idEstado int not null references estadoEmpleado(idEstado)
 );
 
-select * from usuarioEmpleado
-delete from usuarioEmpleado where idEmpleado=6
-UPDATE usuarioEmpleado set pregunta1 ='¿Cumpleaños de tu madre?' where idEmpleado=6
-
-UPDATE usuarioEmpleado SET idTipo=1, nombres='?', apellidos='?', telefono=1, correoElectronico='?', contraseña='?',
-direccion='?', idEstado=1, imagen='?', pregunta1='?', respuesta1='?', pregunta2='?', respuesta2='?'
-WHERE idEmpleado=1
-
-SELECT idEmpleado, idTipo, idEstado, correoElectronico 
-FROM usuarioEmpleado
 
 alter table usuarioEmpleado
 add imagen varchar(200),
@@ -102,7 +92,7 @@ nombre varchar(80),
 estado varchar(80)
 );
 
-delete from documento where idDocumento>=6
+
 
 create table documentoEmpleado(
 idDocumentoE int not null primary key,
@@ -324,17 +314,16 @@ insert into estadoEmpleado(idEstado,nombreEstado) values(1,'Activo')
 insert into estadoEmpleado(idEstado,nombreEstado) values(2,'Inactivo')
 insert into estadoEmpleado(idEstado,nombreEstado) values(3,'Despedido')
 insert into estadoEmpleado(idEstado,nombreEstado) values(4,'Incapacitado')
-insert into estadoEmpleado(idEstado,nombreEstado) values(15,'Suspendido3')
-
-delete from estadoEmpleado where idEstado>=7
-select * from estadoEmpleado
+insert into estadoEmpleado(idEstado,nombreEstado) values(5,'Suspendido3')
 
 
-insert into usuarioEmpleado values(1,1,'Steven','Diaz',77814435,'stevenbdf@gmail.com','qwerty321','San Salvador',1)
-insert into usuarioEmpleado values(2,2,'Boris','Huezo',77814436,'boris@gmail.com','qwerty321','San Salvador',2)
-insert into usuarioEmpleado values(3,3,'Carlos','Miguel',77814437,'carlos@gmail.com','qwerty321','San Salvador',3)
-insert into usuarioEmpleado values(4,4,'Josue','Duran',77814438,'josue@gmail.com','qwerty321','San Salvador',4)
-insert into usuarioEmpleado values(5,5,'Sebastian','Jimenez',77814439,'sebastian@gmail.com','qwerty321','San Salvador',5)
+
+select * from usuarioEmpleado
+insert into usuarioEmpleado values(1,1,'Steven','Diaz',77814435,'stevenbdf@gmail.com','qwerty321','San Salvador',1,null,null,null,null,null)
+insert into usuarioEmpleado values(2,2,'Boris','Huezo',77814436,'boris@gmail.com','qwerty321','San Salvador',2,null,null,null,null,null)
+insert into usuarioEmpleado values(3,3,'Carlos','Miguel',77814437,'carlos@gmail.com','qwerty321','San Salvador',3,null,null,null,null,null)
+insert into usuarioEmpleado values(4,4,'Josue','Duran',77814438,'josue@gmail.com','qwerty321','San Salvador',4,null,null,null,null,null)
+insert into usuarioEmpleado values(5,5,'Sebastian','Jimenez',77814439,'sebastian@gmail.com','qwerty321','San Salvador',5,null,null,null,null,null)
 
 
 insert into documento values(1,'DUI','activo')
@@ -378,7 +367,7 @@ insert into producto values(3,'Maletin p/ Laptop',' ','imagenes/MpLaptop.png',3,
 insert into producto values(4,'Tester RJ45',' ','imagenes/tester45.png',4,4)
 insert into producto values(5,'USB 16GB 3.1',' ','imagenes/16GB3_1.png',5,5)
 
-select * from tipoTransaccion
+
 insert into tipoTransaccion values(1,'Entrada')
 insert into tipoTransaccion values(2,'Salida')
 
@@ -452,7 +441,7 @@ insert into detalleCreditoFiscal values(2,13002,2,13,12.55,10.55)
 insert into detalleCreditoFiscal values(3,13003,3,13,12.55,10.55)
 insert into detalleCreditoFiscal values(4,13004,4,13,12.55,10.55)
 insert into detalleCreditoFiscal values(5,13005,5,13,12.55,10.55)
-
+select * from detalleCreditoFiscal
 
 insert into notasCreditoFiscal values(1,13001,' ',75758484,'03/10/18','03/10/19',10.55)
 insert into notasCreditoFiscal values(2,13001,' ',75758484,'03/10/18','03/10/19',10.55)
