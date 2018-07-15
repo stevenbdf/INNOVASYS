@@ -142,7 +142,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 3, true));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -171,27 +171,27 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         jPanel2.add(ChatCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 55, 70, 70));
 
         fecha1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        fecha1.setForeground(new java.awt.Color(204, 204, 204));
+        fecha1.setForeground(new java.awt.Color(255, 255, 255));
         fecha1.setText("VIERNES");
         jPanel2.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         fecha2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        fecha2.setForeground(new java.awt.Color(204, 204, 204));
+        fecha2.setForeground(new java.awt.Color(255, 255, 255));
         fecha2.setText("23 JUNIO");
         jPanel2.add(fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         fecha3.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        fecha3.setForeground(new java.awt.Color(204, 204, 204));
+        fecha3.setForeground(new java.awt.Color(255, 255, 255));
         fecha3.setText("2018");
         jPanel2.add(fecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, -1, -1));
 
         jblnombre.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jblnombre.setForeground(new java.awt.Color(204, 204, 204));
+        jblnombre.setForeground(new java.awt.Color(255, 255, 255));
         jblnombre.setText("Steven");
         jPanel2.add(jblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         hora.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        hora.setForeground(new java.awt.Color(204, 204, 204));
+        hora.setForeground(new java.awt.Color(255, 255, 255));
         hora.setText("18:35pm");
         jPanel2.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
@@ -231,7 +231,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         jPanel2.add(Proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 55, 70, 70));
 
         apellido2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        apellido2.setForeground(new java.awt.Color(204, 204, 204));
+        apellido2.setForeground(new java.awt.Color(255, 255, 255));
         apellido2.setText("Diaz");
         jPanel2.add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
@@ -466,10 +466,10 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 610));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 3, true));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 60)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 153));
         jLabel3.setText("INNOVASYS");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -497,7 +497,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGap(0, 604, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5))
@@ -513,7 +513,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(0, 66, Short.MAX_VALUE))
+                .addGap(0, 70, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

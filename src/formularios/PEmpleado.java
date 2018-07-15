@@ -299,29 +299,32 @@ public class PEmpleado extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(51, 51, 51));
 
+        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(680, 500));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel1.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 36, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Direccion:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 24));
 
@@ -334,36 +337,42 @@ public class PEmpleado extends javax.swing.JPanel {
         lblCodigoEmpleado.setText("CODIGO EMPLEADO");
         jPanel1.add(lblCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
+        jTFTelefono.setBackground(new java.awt.Color(204, 204, 204));
         jTFTelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFTelefono.setForeground(new java.awt.Color(204, 204, 204));
         jTFTelefono.setToolTipText("");
         jTFTelefono.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, -1));
 
+        jTFNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreEmpleado.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setToolTipText("");
         jTFNombreEmpleado.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
 
+        jTFApellido.setBackground(new java.awt.Color(204, 204, 204));
         jTFApellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFApellido.setForeground(new java.awt.Color(204, 204, 204));
         jTFApellido.setToolTipText("");
         jTFApellido.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 200, -1));
 
+        jTFDireccion.setBackground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDireccion.setForeground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setToolTipText("");
         jTFDireccion.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, -1));
 
+        jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFCorreo.setForeground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setToolTipText("");
         jTFCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 200, -1));
 
+        jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFContraseña.setForeground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setToolTipText("");
@@ -371,7 +380,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 200, -1));
 
         btnModificarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarEmpleado.setText("Modificar");
         btnModificarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarEmpleado.setContentAreaFilled(false);
@@ -392,7 +401,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnLimpiarCampos.setForeground(new java.awt.Color(204, 204, 204));
+        btnLimpiarCampos.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCampos.setText("Limpiar Campos");
         btnLimpiarCampos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnLimpiarCampos.setContentAreaFilled(false);
@@ -413,7 +422,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
 
         btnExaminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnExaminar.setForeground(new java.awt.Color(204, 204, 204));
+        btnExaminar.setForeground(new java.awt.Color(255, 255, 255));
         btnExaminar.setText("Examinar");
         btnExaminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnExaminar.setContentAreaFilled(false);
@@ -433,10 +442,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 100, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Buscar:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 30));
 
+        jTFBuscarEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -446,6 +456,8 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jPanel1.add(jTFBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, 30));
 
+        rdNombreEmpleado.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombreEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         rdNombreEmpleado.setText("Nombre");
         rdNombreEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +466,8 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
+        rdCodigoEmpleado.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         rdCodigoEmpleado.setText("Codigo");
         rdCodigoEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,7 +477,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
         btnGenerarReporteEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnGenerarReporteEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        btnGenerarReporteEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         btnGenerarReporteEmpleado.setText("Generar Reporte");
         btnGenerarReporteEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnGenerarReporteEmpleado.setContentAreaFilled(false);
@@ -486,22 +500,22 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Usuario:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Telefono:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 116, -1, 30));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Correo:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
 
         btnAgregarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarEmpleado.setText("Agregar");
         btnAgregarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarEmpleado.setContentAreaFilled(false);
@@ -535,11 +549,12 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 120, 30));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Imagen:");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 50, 30));
         jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 120, 120));
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(modeloTablaEmpleados);
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -552,17 +567,17 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 470, 110));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Tipo de");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 20));
 
         jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Estado:");
         jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 30));
 
         jLabel29.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Pregunta de Seguridad #1");
         jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, 20));
 
@@ -570,12 +585,14 @@ public class PEmpleado extends javax.swing.JPanel {
         cmdPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "¿Tu profesor favorito?", "¿Cumpleaños de tu madre?", "¿Mayor temor?", "¿Clima favorito?" }));
         jPanel1.add(cmdPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 170, 30));
 
+        jTFRespuesta1.setBackground(new java.awt.Color(204, 204, 204));
         jTFRespuesta1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFRespuesta1.setForeground(new java.awt.Color(204, 204, 204));
         jTFRespuesta1.setToolTipText("");
         jTFRespuesta1.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, -1));
 
+        jTFRespuesta2.setBackground(new java.awt.Color(204, 204, 204));
         jTFRespuesta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFRespuesta2.setForeground(new java.awt.Color(204, 204, 204));
         jTFRespuesta2.setToolTipText("");
@@ -587,12 +604,12 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel1.add(cmdPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 170, 30));
 
         jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Pregunta de Seguridad #2");
         jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, 20));
 
         btnEliminarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarEmpleado.setText("Eliminar");
         btnEliminarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarEmpleado.setContentAreaFilled(false);
@@ -615,21 +632,23 @@ public class PEmpleado extends javax.swing.JPanel {
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
+            .addGap(0, 667, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel3.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -642,10 +661,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestionar Documentos"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(204, 204, 204));
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Generar Reporte");
         jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton10.setContentAreaFilled(false);
@@ -658,6 +678,7 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jTable2.setBackground(new java.awt.Color(204, 204, 204));
         jTable2.setModel(modeloTablaDocumentos);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -666,6 +687,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jTFBuscarDocumento.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarDocumento.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -674,6 +696,8 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        rdNombreDocumento.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombreDocumento.setForeground(new java.awt.Color(255, 255, 255));
         rdNombreDocumento.setText("Nombre");
         rdNombreDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -681,6 +705,8 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        rdCodigoDocumento.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigoDocumento.setForeground(new java.awt.Color(255, 255, 255));
         rdCodigoDocumento.setText("Codigo");
         rdCodigoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -689,11 +715,12 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Buscar:");
 
         cmbEstadoD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
+        jTFNombreD.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreD.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreD.setToolTipText("");
@@ -708,19 +735,19 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         lblCodigoDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoDocumento.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoDocumento.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoDocumento.setText("CODIGO DOCUMENTO");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nombre:");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado:");
 
         btnAgregarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarD.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarD.setText("Agregar");
         btnAgregarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarD.setContentAreaFilled(false);
@@ -738,7 +765,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         btnModificarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarD.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarD.setText("Modificar");
         btnModificarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarD.setContentAreaFilled(false);
@@ -756,7 +783,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         btnEliminarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarD.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarD.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarD.setText("Eliminar");
         btnEliminarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarD.setContentAreaFilled(false);
@@ -773,6 +800,8 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        rdEstadoDocumento.setBackground(new java.awt.Color(102, 102, 102));
+        rdEstadoDocumento.setForeground(new java.awt.Color(255, 255, 255));
         rdEstadoDocumento.setText("Estado");
         rdEstadoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -866,10 +895,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 670, 210));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestionar Estado de los Empleados"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(204, 204, 204));
+        jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Generar Reporte");
         jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton11.setContentAreaFilled(false);
@@ -882,6 +912,7 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jTable3.setBackground(new java.awt.Color(204, 204, 204));
         jTable3.setModel(modeloTablaEstados);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -890,6 +921,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jTable3);
 
+        jTFBuscarEstado.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarEstado.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarEstado.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -901,6 +933,8 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        rdNombreEstado.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombreEstado.setForeground(new java.awt.Color(255, 255, 255));
         rdNombreEstado.setText("Nombre");
         rdNombreEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -909,9 +943,10 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Buscar:");
 
+        jTFNombreE.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreE.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreE.setToolTipText("");
@@ -923,15 +958,15 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         lblCodigoEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoEstado.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoEstado.setText("CODIGO ESTADO");
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Nombre:");
 
         btnAgregarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarE.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarE.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarE.setText("Agregar");
         btnAgregarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarE.setContentAreaFilled(false);
@@ -949,7 +984,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         btnModificarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarE.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarE.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarE.setText("Modificar");
         btnModificarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarE.setContentAreaFilled(false);
@@ -966,15 +1001,18 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jTFDescripcionE.setBackground(new java.awt.Color(204, 204, 204));
         jTFDescripcionE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDescripcionE.setForeground(new java.awt.Color(204, 204, 204));
         jTFDescripcionE.setToolTipText("");
         jTFDescripcionE.setPreferredSize(new java.awt.Dimension(78, 30));
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Descripcion:");
 
+        rdCodigoEstado.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigoEstado.setForeground(new java.awt.Color(255, 255, 255));
         rdCodigoEstado.setText("Codigo");
         rdCodigoEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -983,7 +1021,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
 
         btnEliminarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarE.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarE.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarE.setText("Eliminar");
         btnEliminarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarE.setContentAreaFilled(false);

@@ -66,48 +66,50 @@ public class PVentas extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Buscar:");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Fecha de Creación");
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Codigo Venta");
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Empleado Autor");
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Estado:");
 
         jComboBox5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Tipo Venta");
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Total:");
 
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(204, 204, 204));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -185,19 +187,22 @@ public class PVentas extends javax.swing.JPanel {
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 220, 290));
 
+        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Credito Fiscal");
         add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, 30));
 
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 100, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha Min:");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Generar reporte");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
@@ -227,22 +232,28 @@ public class PVentas extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 250));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha Max:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
         add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, 30));
 
+        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Codigo");
         add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tipo Venta:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, 30));
 
+        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Empleado");
         add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
 
+        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("Factura");
         add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 30));
         add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, 30));
@@ -252,16 +263,17 @@ public class PVentas extends javax.swing.JPanel {
         add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Monto Min:");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
 
+        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Buscar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
@@ -277,7 +289,7 @@ public class PVentas extends javax.swing.JPanel {
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel20.setForeground(new java.awt.Color(153, 0, 153));
         jLabel20.setText("Gestion de Ventas");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

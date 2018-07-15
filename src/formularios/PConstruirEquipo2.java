@@ -58,10 +58,11 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
         jLabel10.setText("Construir Computadora");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
@@ -69,7 +70,7 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccionar Disipador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Opciones:");
 
         jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
@@ -83,13 +84,14 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         });
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Precio:");
 
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(204, 204, 204));
 
-        jPanel2.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,11 +105,11 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         );
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Visualizacion:");
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Seleccionar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -177,7 +179,7 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccionar Ventilador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Opciones:");
 
         jComboBox2.setBackground(new java.awt.Color(51, 51, 51));
@@ -191,13 +193,14 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         });
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Precio:");
 
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField9.setForeground(new java.awt.Color(204, 204, 204));
 
-        jPanel4.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -211,11 +214,11 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         );
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Visualizacion:");
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 204, 204));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Seleccionar");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton4.setContentAreaFilled(false);
@@ -230,7 +233,7 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         });
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cantidad:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -295,7 +298,7 @@ public class PConstruirEquipo2 extends javax.swing.JPanel {
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 280, 320));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Continuar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);

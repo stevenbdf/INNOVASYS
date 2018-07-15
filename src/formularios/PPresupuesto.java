@@ -68,17 +68,20 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
         jLabel10.setText("Crear Presupuesto");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
+        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 83, 30));
 
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -88,46 +91,49 @@ public class PPresupuesto extends javax.swing.JPanel {
         });
         add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 150, 30));
 
+        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 100, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Eliminar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
             }
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 70, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton1.setContentAreaFilled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
             }
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 70, 30));
 
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 97, 30));
 
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +143,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         });
         add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 83, 30));
 
-        jTable1.setBackground(new java.awt.Color(51, 51, 51));
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,26 +176,28 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 130, 120));
 
+        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 87, 30));
 
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField9.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 88, 30));
 
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Guardar Presupuesto");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
             }
         });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -200,82 +208,86 @@ public class PPresupuesto extends javax.swing.JPanel {
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 140, 30));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Codigo Producto:");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Nombre:");
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Precio:");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cantidad:");
         add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Categoria:");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Imagen:");
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Total:");
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Sub-Total:");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benchmark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benchmark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Procesador:");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
+        jTextField11.setBackground(new java.awt.Color(204, 204, 204));
         jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField11.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 52, -1));
 
         jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Memoria RAM:");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
+        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
         jTextField12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField12.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 52, -1));
 
         jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Graficos:");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
+        jTextField13.setBackground(new java.awt.Color(204, 204, 204));
         jTextField13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField13.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 52, -1));
 
+        jTextField14.setBackground(new java.awt.Color(204, 204, 204));
         jTextField14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTextField14.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 52, -1));
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Discos Duros:");
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 

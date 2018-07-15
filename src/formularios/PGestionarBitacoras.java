@@ -49,10 +49,11 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
         jLabel10.setText("Gestionar Bitacoras");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
@@ -73,18 +74,18 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setForeground(java.awt.Color.white);
         jLabel13.setText("Fecha Max:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Fecha Min:");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
         add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 30));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(java.awt.Color.white);
         jButton2.setText("Buscar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -100,22 +101,27 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setForeground(java.awt.Color.white);
         jLabel11.setText("Buscar:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, 30));
 
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
+        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton1.setForeground(java.awt.Color.white);
         jRadioButton1.setText("Cliente");
         add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
 
+        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton2.setForeground(java.awt.Color.white);
         jRadioButton2.setText("Empleado");
         add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, 30));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jButton5.setForeground(java.awt.Color.white);
         jButton5.setText("Generar reporte");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);

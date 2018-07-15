@@ -185,28 +185,43 @@ public class PTipoUsuario extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cbInventario.setBackground(new java.awt.Color(102, 102, 102));
+        cbInventario.setForeground(new java.awt.Color(255, 255, 255));
         cbInventario.setText("Ver Inventario");
         jPanel5.add(cbInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
+        cbConstruirEquipo.setBackground(new java.awt.Color(102, 102, 102));
+        cbConstruirEquipo.setForeground(new java.awt.Color(255, 255, 255));
         cbConstruirEquipo.setText("Construir Equipo");
         jPanel5.add(cbConstruirEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
+        cbProductos.setBackground(new java.awt.Color(102, 102, 102));
+        cbProductos.setForeground(new java.awt.Color(255, 255, 255));
         cbProductos.setText("Ver Productos");
         jPanel5.add(cbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        cbSolicitarAyuda.setBackground(new java.awt.Color(102, 102, 102));
+        cbSolicitarAyuda.setForeground(new java.awt.Color(255, 255, 255));
         cbSolicitarAyuda.setText("Solicitar Ayuda");
         jPanel5.add(cbSolicitarAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
+        cbOrdenesCola.setBackground(new java.awt.Color(102, 102, 102));
+        cbOrdenesCola.setForeground(new java.awt.Color(255, 255, 255));
         cbOrdenesCola.setText("Ver ordenes en cola");
         jPanel5.add(cbOrdenesCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
+        cbCajaRegistradora.setBackground(new java.awt.Color(102, 102, 102));
+        cbCajaRegistradora.setForeground(new java.awt.Color(255, 255, 255));
         cbCajaRegistradora.setText("Gestionar Caja Virtual");
         cbCajaRegistradora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,40 +230,60 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel5.add(cbCajaRegistradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
+        cbVentas.setBackground(new java.awt.Color(102, 102, 102));
+        cbVentas.setForeground(new java.awt.Color(255, 255, 255));
         cbVentas.setText("Ver ventas");
         jPanel5.add(cbVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
+        cbChatCenter.setBackground(new java.awt.Color(102, 102, 102));
+        cbChatCenter.setForeground(new java.awt.Color(255, 255, 255));
         cbChatCenter.setText("Chat Center");
         jPanel5.add(cbChatCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
+        cbDatosEmpresa.setBackground(new java.awt.Color(102, 102, 102));
+        cbDatosEmpresa.setForeground(new java.awt.Color(255, 255, 255));
         cbDatosEmpresa.setText("Cambiar Datos Empresa");
         jPanel5.add(cbDatosEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
+        cbGestionarVentas.setBackground(new java.awt.Color(102, 102, 102));
+        cbGestionarVentas.setForeground(new java.awt.Color(255, 255, 255));
         cbGestionarVentas.setText("Gestionar Ventas");
         jPanel5.add(cbGestionarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
+        cbBitacoras.setBackground(new java.awt.Color(102, 102, 102));
+        cbBitacoras.setForeground(new java.awt.Color(255, 255, 255));
         cbBitacoras.setText("Gestionar Bitacoras");
         jPanel5.add(cbBitacoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
 
+        cbClientes.setBackground(new java.awt.Color(102, 102, 102));
+        cbClientes.setForeground(new java.awt.Color(255, 255, 255));
         cbClientes.setText("Gestionar Clientes");
         jPanel5.add(cbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
+        cbProveedores.setBackground(new java.awt.Color(102, 102, 102));
+        cbProveedores.setForeground(new java.awt.Color(255, 255, 255));
         cbProveedores.setText("Gestionar Proveedores");
         jPanel5.add(cbProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
+        cbEmpleados.setBackground(new java.awt.Color(102, 102, 102));
+        cbEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         cbEmpleados.setText("Gestionar Empleados");
         jPanel5.add(cbEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
+        cbGestionarProductos.setBackground(new java.awt.Color(102, 102, 102));
+        cbGestionarProductos.setForeground(new java.awt.Color(255, 255, 255));
         cbGestionarProductos.setText("Gestionar Productos");
         jPanel5.add(cbGestionarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
+        cbGestionarInventario.setBackground(new java.awt.Color(102, 102, 102));
+        cbGestionarInventario.setForeground(new java.awt.Color(255, 255, 255));
         cbGestionarInventario.setText("Gestionar Inventario");
         jPanel5.add(cbGestionarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 370, 320));
 
         btnAgregarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarP.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarP.setText("Agregar");
         btnAgregarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarP.setContentAreaFilled(false);
@@ -266,6 +301,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel4.add(btnAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
 
+        jTable2.setBackground(new java.awt.Color(204, 204, 204));
         jTable2.setModel(modeloTablaPrivilegios);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,6 +312,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 260, 150));
 
+        jTFBuscarT1.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarT1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarT1.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarT1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -286,12 +323,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.add(jTFBuscarT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Buscar:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
         jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 204, 204));
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Generar Reporte");
         jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton7.setContentAreaFilled(false);
@@ -306,7 +343,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 30));
 
         btnModificarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarP.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarP.setText("Modificar");
         btnModificarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarP.setContentAreaFilled(false);
@@ -325,12 +362,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.add(btnModificarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
 
         lblCodigoPrivilegio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoPrivilegio.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoPrivilegio.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoPrivilegio.setText("CODIGO PRIVILEGIO");
         jPanel4.add(lblCodigoPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
 
         btnEliminarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarP.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarP.setText("Eliminar");
         btnEliminarP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarP.setContentAreaFilled(false);
@@ -349,7 +386,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnLimpiar.setForeground(new java.awt.Color(204, 204, 204));
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar Campos");
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnLimpiar.setContentAreaFilled(false);
@@ -372,15 +409,17 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoTipo.setForeground(new java.awt.Color(204, 204, 204));
+        lblCodigoTipo.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoTipo.setText("CODIGO TIPO");
         jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(modeloTablaTipos);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -392,7 +431,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 180));
 
         btnAgregarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregarT.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarT.setText("Agregar");
         btnAgregarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarT.setContentAreaFilled(false);
@@ -411,7 +450,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(btnAgregarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         btnEliminarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarT.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarT.setText("Eliminar");
         btnEliminarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarT.setContentAreaFilled(false);
@@ -430,10 +469,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(btnEliminarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Buscar:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
+        jTFNombreTipo.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreTipo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -443,6 +483,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
 
+        rdNombre.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombre.setForeground(new java.awt.Color(255, 255, 255));
         rdNombre.setText("Nombre");
         rdNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,6 +493,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
 
+        rdCodigo.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigo.setForeground(new java.awt.Color(255, 255, 255));
         rdCodigo.setText("Codigo");
         rdCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -460,7 +504,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Generar Reporte");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
@@ -482,6 +526,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
+        jTFBuscarT.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarT.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -492,12 +537,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Privilegios:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Nombre Tipo:");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
@@ -505,7 +550,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
 
         btnModificarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarT.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificarT.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarT.setText("Modificar");
         btnModificarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarT.setContentAreaFilled(false);
@@ -532,7 +577,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
