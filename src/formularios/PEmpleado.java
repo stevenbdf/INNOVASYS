@@ -59,7 +59,7 @@ public class PEmpleado extends javax.swing.JPanel {
         llenaComboBoxEstado();
         jTFBuscarEstado.setEnabled(false);
         jTFBuscarDocumento.setEnabled(false);
-        
+        jTFBuscarEmpleado.setEnabled(false);
     }
     private void llenaComboBoxTipoUsuario() {
         modeloComboTipoUsuario.removeAllElements();
@@ -179,19 +179,16 @@ public class PEmpleado extends javax.swing.JPanel {
         try {
             String sql="";
             switch (tipo) {
+                //Codigo Empleado
                 case 1:
                     sql = "SELECT idEmpleado, idTipo, nombres, apellidos, telefono, correoElectronico,direccion, idEstado "
                             + "FROM usuarioEmpleado WHERE idEmpleado like '"+valores+"%'";
                     break;
+                //Nombre
                 case 2:
                     sql = "SELECT idEmpleado, idTipo, nombres, apellidos, telefono, correoElectronico,direccion, idEstado "
                             + "FROM usuarioEmpleado WHERE nombres like '"+valores+"%'";
                     break;
-                /*case 3:
-                    sql = "SELECT idEmpleado, idTipo, nombre, apellidos, telefono, correoElectronico,direccion, idEstado "
-                            + "FROM usuarioEmpleado WHERE estado like '"+valores+"%'";
-                    break;
-                */
                 default:
                     sql = "SELECT idEmpleado, tipoUsuario.nombreTipo, nombres, apellidos, telefono, correoElectronico,direccion, estadoEmpleado.nombreEstado "
                             + "FROM usuarioEmpleado, tipoUsuario, estadoEmpleado "
@@ -442,12 +439,27 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFBuscarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
+        jTFBuscarEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarEmpleadoKeyReleased(evt);
+            }
+        });
         jPanel1.add(jTFBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, 30));
 
         rdNombreEmpleado.setText("Nombre");
+        rdNombreEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombreEmpleadoActionPerformed(evt);
+            }
+        });
         jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
         rdCodigoEmpleado.setText("Codigo");
+        rdCodigoEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCodigoEmpleadoActionPerformed(evt);
+            }
+        });
         jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
         btnGenerarReporteEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1692,6 +1704,35 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
+
+    private void rdNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreEmpleadoActionPerformed
+        // TODO add your handling code here:
+        rdCodigoEmpleado.setSelected(false);
+        jTFBuscarEmpleado.setEnabled(true);
+    }//GEN-LAST:event_rdNombreEmpleadoActionPerformed
+
+    private void rdCodigoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoEmpleadoActionPerformed
+        // TODO add your handling code here:
+        rdNombreEmpleado.setSelected(false);
+        jTFBuscarEmpleado.setEnabled(true);
+    }//GEN-LAST:event_rdCodigoEmpleadoActionPerformed
+
+    private void jTFBuscarEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEmpleadoKeyReleased
+        // TODO add your handling code here:
+        if (rdNombreEmpleado.isSelected()) {
+            int filas = modeloTablaEmpleados.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaEmpleados.removeRow(0);
+            }
+            setFilasEmpleado(2, jTFBuscarEmpleado.getText());
+        } else if (rdCodigoEmpleado.isSelected()) {
+            int filas = modeloTablaEmpleados.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaEmpleados.removeRow(0);
+            }
+            setFilasEmpleado(1, jTFBuscarEmpleado.getText());
+        }
+    }//GEN-LAST:event_jTFBuscarEmpleadoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
