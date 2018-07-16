@@ -15,11 +15,11 @@ public class PDatosEmpresa extends javax.swing.JPanel {
      * Creates new form PDatosEmpresa
      */
     public PDatosEmpresa() {
-                try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//                try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

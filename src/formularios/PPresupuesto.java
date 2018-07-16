@@ -17,11 +17,11 @@ public class PPresupuesto extends javax.swing.JPanel {
      * Creates new form PPresupuesto
      */
     public PPresupuesto() {
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

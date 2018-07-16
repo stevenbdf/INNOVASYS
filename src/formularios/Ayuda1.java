@@ -17,12 +17,12 @@ public class Ayuda1 extends javax.swing.JFrame {
      * Creates new form Ayuda1
      */
     public Ayuda1() {
-        try {
-			
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//			
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
         setLocationRelativeTo(null);
     }

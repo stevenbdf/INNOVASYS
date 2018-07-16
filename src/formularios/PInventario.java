@@ -15,11 +15,11 @@ public class PInventario extends javax.swing.JPanel {
      * Creates new form PInventario
      */
     public PInventario() {
-                try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//                try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

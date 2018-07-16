@@ -48,11 +48,11 @@ public class PEmpleado extends javax.swing.JPanel {
         modeloTablaEmpleados=new DefaultTableModel(null,getColumnasEmpleado());setFilasEmpleado(0,"");
         modeloComboTipoUsuario = new DefaultComboBoxModel(new String[]{});
         modeloComboEstado = new DefaultComboBoxModel(new String[]{});
-                try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//                try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
         
         llenaComboBoxTipoUsuario();

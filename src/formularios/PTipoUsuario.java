@@ -33,11 +33,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
     public PTipoUsuario() {
         modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios(0);
         modeloTablaTipos = new DefaultTableModel(null, getColumnasTipos());setFilasTipos(0,"");
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         modeloCombo = new DefaultComboBoxModel(new String[]{});
         initComponents();
         llenaComboBox();

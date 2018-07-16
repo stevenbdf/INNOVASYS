@@ -17,11 +17,11 @@ public class VerOrdenesCola extends javax.swing.JPanel {
      * Creates new form VerOrdenesCola
      */
     public VerOrdenesCola() {
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

@@ -18,11 +18,11 @@ public class RecuperarContraseña extends javax.swing.JFrame {
      * Creates new form RecuperarContraseña
      */
     public RecuperarContraseña() {
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage());
         setLocationRelativeTo(null);

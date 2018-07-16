@@ -17,11 +17,11 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
      * Creates new form PGestionarBitacoras
      */
     public PGestionarBitacoras() {
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

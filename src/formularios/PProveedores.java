@@ -17,11 +17,11 @@ public class PProveedores extends javax.swing.JPanel {
      * Creates new form PProveedores
      */
     public PProveedores() {
-         try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//         try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

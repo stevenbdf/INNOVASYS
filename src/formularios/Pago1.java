@@ -17,12 +17,12 @@ public class Pago1 extends javax.swing.JFrame {
      * Creates new form Pago1
      */
     public Pago1() {
-        try {
-			
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//			
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
          setLocationRelativeTo(null);
     }

@@ -17,12 +17,12 @@ public class PVentas extends javax.swing.JPanel {
      * Creates new form PVentas
      */
     public PVentas() {
-        try {
-			
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//			
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

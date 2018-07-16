@@ -17,12 +17,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
      * Creates new form PCajaVirtual
      */
     public PCajaVirtual() {
-        try {
-			
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//			
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

@@ -19,11 +19,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
      * Creates new form PConstruirEquipo
      */
     public PConstruirEquipo() {
-        try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 

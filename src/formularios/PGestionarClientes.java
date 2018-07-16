@@ -17,12 +17,12 @@ public class PGestionarClientes extends javax.swing.JPanel {
      * Creates new form PGestionarClientes
      */
     public PGestionarClientes() {
-        try {
-			
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//        try {
+//			
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
     }
 
