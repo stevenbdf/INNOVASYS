@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -17,12 +18,13 @@ public class RegistroClientes extends javax.swing.JFrame {
     /**
      * Creates new form RegistroClientes
      */
+    verificaciones verificar = new verificaciones();
     public RegistroClientes() {
-                try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//                try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
@@ -115,10 +117,16 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField5.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
+            }
+        });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
             }
         });
 
@@ -128,10 +136,14 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
+            }
+        });
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
             }
         });
 
@@ -190,7 +202,6 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 230, 180));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("FINALIZAR");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
@@ -209,28 +220,40 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+            }
+        });
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
             }
         });
 
@@ -244,28 +267,40 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
         });
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
+            }
+        });
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
             }
         });
 
@@ -281,19 +316,27 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(204, 204, 204));
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
+            }
+        });
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
             }
         });
 
@@ -507,6 +550,126 @@ public class RegistroClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
          jButton6.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton6MouseExited
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTextField1.getText().length() < 60)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTextField2.getText().length() < 70)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField3.getText().length() < 9)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField4.getText().length() < 14)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField9.getText().length() < 8)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField7.getText().length() < 20)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        verificaciones obj = new verificaciones();
+        if (obj.vletrasynumeros(vchar) == true
+                && (jTextField8.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        verificaciones obj = new verificaciones();
+        if (obj.vletrasynumeros(vchar) == true
+                && (jTextField10.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField10KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTextField5.getText().length() < 120)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTextField6.getText().length() < 120)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
 
     /**
      * @param args the command line arguments

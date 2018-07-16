@@ -98,7 +98,6 @@ public class Login1 extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 36));
 
         jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
-        jTFCorreo.setForeground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jTFCorreo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -114,6 +113,11 @@ public class Login1 extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jTFCorreoMouseExited(evt);
+            }
+        });
+        jTFCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFCorreoActionPerformed(evt);
             }
         });
         jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 150, 30));
@@ -159,7 +163,6 @@ public class Login1 extends javax.swing.JFrame {
 
         jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTFContraseña.setForeground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jTFContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -419,6 +422,10 @@ public class Login1 extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTFContraseñaKeyTyped
+
+    private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCorreoActionPerformed
 
     /**
      * @param args the command line arguments

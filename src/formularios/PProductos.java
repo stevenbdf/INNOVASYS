@@ -109,12 +109,10 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 78, 30));
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 155, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,7 +129,6 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 78, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -319,12 +316,12 @@ public class PProductos extends javax.swing.JPanel {
         jLabel11.setText("Nombre de la categoria:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 39, -1, -1));
 
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 70, 88, 30));
 
+        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 31, 140, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -337,13 +334,15 @@ public class PProductos extends javax.swing.JPanel {
         jLabel13.setText("Visualizacion 3D:");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 124, -1, -1));
 
+        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("Si");
         jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
+        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("No");
         jPanel2.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
@@ -370,8 +369,8 @@ public class PProductos extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 72, 340, 316));
 
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 31, 127, 30));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -379,13 +378,15 @@ public class PProductos extends javax.swing.JPanel {
         jLabel14.setText("Buscar:");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 39, -1, -1));
 
+        jRadioButton5.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton5.setText("Codigo");
         jPanel2.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 35, -1, -1));
 
+        jRadioButton6.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton6.setText("Nombre");
         jPanel2.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 35, -1, -1));
 
@@ -404,6 +405,7 @@ public class PProductos extends javax.swing.JPanel {
         });
         jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 140, -1));
 
+        jTextArea2.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextArea2.setRows(5);

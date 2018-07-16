@@ -339,42 +339,36 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFTelefono.setBackground(new java.awt.Color(204, 204, 204));
         jTFTelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFTelefono.setForeground(new java.awt.Color(204, 204, 204));
         jTFTelefono.setToolTipText("");
         jTFTelefono.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, -1));
 
         jTFNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreEmpleado.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setToolTipText("");
         jTFNombreEmpleado.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
 
         jTFApellido.setBackground(new java.awt.Color(204, 204, 204));
         jTFApellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFApellido.setForeground(new java.awt.Color(204, 204, 204));
         jTFApellido.setToolTipText("");
         jTFApellido.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 200, -1));
 
         jTFDireccion.setBackground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFDireccion.setForeground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setToolTipText("");
         jTFDireccion.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, -1));
 
         jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFCorreo.setForeground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setToolTipText("");
         jTFCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 200, -1));
 
         jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFContraseña.setForeground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setToolTipText("");
         jTFContraseña.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 200, -1));
@@ -448,7 +442,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFBuscarEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarEmpleado.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarEmpleadoKeyReleased(evt);
@@ -587,14 +580,12 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFRespuesta1.setBackground(new java.awt.Color(204, 204, 204));
         jTFRespuesta1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFRespuesta1.setForeground(new java.awt.Color(204, 204, 204));
         jTFRespuesta1.setToolTipText("");
         jTFRespuesta1.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, -1));
 
         jTFRespuesta2.setBackground(new java.awt.Color(204, 204, 204));
         jTFRespuesta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFRespuesta2.setForeground(new java.awt.Color(204, 204, 204));
         jTFRespuesta2.setToolTipText("");
         jTFRespuesta2.setPreferredSize(new java.awt.Dimension(78, 30));
         jPanel1.add(jTFRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 170, -1));
@@ -689,7 +680,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFBuscarDocumento.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarDocumento.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarDocumentoKeyReleased(evt);
@@ -722,7 +712,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFNombreD.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreD.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreD.setToolTipText("");
         jTFNombreD.setPreferredSize(new java.awt.Dimension(78, 30));
         jTFNombreD.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -923,7 +912,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFBuscarEstado.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarEstado.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarEstado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarEstadoKeyReleased(evt);
@@ -948,7 +936,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFNombreE.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreE.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreE.setToolTipText("");
         jTFNombreE.setPreferredSize(new java.awt.Dimension(78, 30));
         jTFNombreE.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1003,7 +990,6 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTFDescripcionE.setBackground(new java.awt.Color(204, 204, 204));
         jTFDescripcionE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFDescripcionE.setForeground(new java.awt.Color(204, 204, 204));
         jTFDescripcionE.setToolTipText("");
         jTFDescripcionE.setPreferredSize(new java.awt.Dimension(78, 30));
 

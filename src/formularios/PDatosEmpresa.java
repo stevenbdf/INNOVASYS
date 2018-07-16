@@ -79,7 +79,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -94,7 +93,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -109,7 +107,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -129,7 +126,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -183,7 +179,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -198,7 +193,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -213,7 +207,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -223,7 +216,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -238,7 +230,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -253,7 +244,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(204, 204, 204));
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -268,7 +258,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
@@ -283,7 +272,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jTextField11.setBackground(new java.awt.Color(204, 204, 204));
         jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(204, 204, 204));
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);

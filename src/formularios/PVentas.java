@@ -106,7 +106,6 @@ public class PVentas extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -269,7 +268,6 @@ public class PVentas extends javax.swing.JPanel {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N

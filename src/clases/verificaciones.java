@@ -31,7 +31,7 @@ public class verificaciones {
     }
     public boolean vletrasynumeros (char key){
         boolean verificado =false;
-         if ( Character.isLetterOrDigit(key)){
+         if ( Character.isLetterOrDigit(key) || key=='@'){
              verificado=true; 
          };
          return verificado;

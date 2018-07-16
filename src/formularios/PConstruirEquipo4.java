@@ -88,7 +88,6 @@ public class PConstruirEquipo4 extends javax.swing.JPanel {
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(204, 204, 204));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -224,7 +223,6 @@ public class PConstruirEquipo4 extends javax.swing.JPanel {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));

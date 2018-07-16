@@ -80,7 +80,6 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 33, 123, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));

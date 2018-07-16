@@ -81,7 +81,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 110, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -103,12 +102,10 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 155, 30));
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 78, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -176,7 +173,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 155, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -186,7 +182,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 155, 30));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -196,7 +191,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 155, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -206,7 +200,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 155, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -216,7 +209,6 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 155, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N

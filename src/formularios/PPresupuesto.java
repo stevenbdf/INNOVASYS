@@ -78,12 +78,10 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 83, 30));
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -93,7 +91,6 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 100, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 51));
@@ -130,12 +127,10 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 97, 30));
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -178,12 +173,10 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 87, 30));
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 88, 30));
 
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
@@ -258,7 +251,6 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField11.setBackground(new java.awt.Color(204, 204, 204));
         jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 52, -1));
 
         jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -268,7 +260,6 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField12.setBackground(new java.awt.Color(204, 204, 204));
         jTextField12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 52, -1));
 
         jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -278,12 +269,10 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField13.setBackground(new java.awt.Color(204, 204, 204));
         jTextField13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField13.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 52, -1));
 
         jTextField14.setBackground(new java.awt.Color(204, 204, 204));
         jTextField14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField14.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 52, -1));
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

@@ -107,7 +107,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));

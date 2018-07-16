@@ -314,7 +314,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTFBuscarT1.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarT1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarT1.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarT1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarT1KeyReleased(evt);
@@ -475,7 +474,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTFNombreTipo.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreTipo.setForeground(new java.awt.Color(204, 204, 204));
         jTFNombreTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFNombreTipoKeyReleased(evt);
@@ -528,7 +526,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTFBuscarT.setBackground(new java.awt.Color(204, 204, 204));
         jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarT.setForeground(new java.awt.Color(204, 204, 204));
         jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarTKeyReleased(evt);

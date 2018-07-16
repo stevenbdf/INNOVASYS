@@ -98,7 +98,6 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -108,7 +107,6 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 78, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -123,12 +121,10 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 30));
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 78, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -160,7 +156,6 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -170,7 +165,6 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 78, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -220,7 +214,6 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
