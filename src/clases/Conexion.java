@@ -17,6 +17,7 @@ public class Conexion {
     public Connection conectar() {
         Connection cn = null;
         try {
+            //Hola Mundo 2
             //TEST CAMBIO JD/Estos son cambios
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             //importar java.sql.DriverManager
