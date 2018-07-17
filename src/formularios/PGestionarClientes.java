@@ -5,8 +5,9 @@
  */
 package formularios;
 
+import clases.mtoClientes;
 import javax.swing.UIManager;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author steven
@@ -16,6 +17,13 @@ public class PGestionarClientes extends javax.swing.JPanel {
     /**
      * Creates new form PGestionarClientes
      */
+    /*
+    *   @author Boris
+    *   Llenado de tabla
+    */
+    DefaultTableModel tbl_client;
+    mtoClientes cli = new mtoClientes();
+    
     public PGestionarClientes() {
 //        try {
 //			
@@ -24,8 +32,16 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        tbl_client = new DefaultTableModel(null,getColumnas());
+        tbl_clientes.setModel(cli.setfilas(tbl_client));
     }
 
+    
+    public String[] getColumnas()
+    {
+        String columna[] = {"idCliente","Nombre","Apellido","Corporativo","DUI","NIT","Correo Electronico","Telefono"};
+        return columna;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,11 +53,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
 
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_clientes = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        r_nombre = new javax.swing.JRadioButton();
+        r_codigo = new javax.swing.JRadioButton();
         dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -58,7 +74,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jLabel10.setText("Consultar Clientes");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,7 +85,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_clientes);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 530, 250));
 
@@ -80,17 +96,33 @@ public class PGestionarClientes extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 100, 30));
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Nombre");
-        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, 30));
+        r_nombre.setBackground(new java.awt.Color(102, 102, 102));
+        r_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        r_nombre.setText("Nombre");
+        r_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                r_nombreActionPerformed(evt);
+            }
+        });
+        add(r_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, 30));
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Codigo");
-        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, 30));
+        r_codigo.setBackground(new java.awt.Color(102, 102, 102));
+        r_codigo.setForeground(new java.awt.Color(255, 255, 255));
+        r_codigo.setSelected(true);
+        r_codigo.setText("Codigo");
+        r_codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                r_codigoActionPerformed(evt);
+            }
+        });
+        add(r_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, 30));
         add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -155,6 +187,24 @@ public class PGestionarClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
          jButton5.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton5MouseExited
+    int variable = 2;
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        for (int i = 0; i < tbl_clientes.getRowCount(); i++) {
+        tbl_client.removeRow(i);
+        i-=1;
+       }
+        tbl_clientes.setModel(cli.buscar(tbl_client,jTextField8.getText(),variable));
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void r_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_codigoActionPerformed
+        r_nombre.setSelected(false);
+        variable = 2;
+    }//GEN-LAST:event_r_codigoActionPerformed
+
+    private void r_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_nombreActionPerformed
+        r_codigo.setSelected(false);
+        variable = 1;
+    }//GEN-LAST:event_r_nombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -166,10 +216,10 @@ public class PGestionarClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JRadioButton r_codigo;
+    private javax.swing.JRadioButton r_nombre;
+    private javax.swing.JTable tbl_clientes;
     // End of variables declaration//GEN-END:variables
 }

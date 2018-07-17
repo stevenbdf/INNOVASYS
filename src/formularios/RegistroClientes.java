@@ -213,6 +213,11 @@ public class RegistroClientes extends javax.swing.JFrame {
                 jButton6MouseExited(evt);
             }
         });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 150, 60));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -670,6 +675,10 @@ public class RegistroClientes extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
