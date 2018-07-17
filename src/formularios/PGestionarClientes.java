@@ -165,6 +165,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 jButton5MouseExited(evt);
             }
         });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,6 +210,10 @@ public class PGestionarClientes extends javax.swing.JPanel {
         r_codigo.setSelected(false);
         variable = 1;
     }//GEN-LAST:event_r_nombreActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
