@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
@@ -17,6 +18,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     /**
      * Creates new form RecuperarContraseña
      */
+    verificaciones verificar = new verificaciones();
     public RecuperarContraseña() {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -66,6 +68,11 @@ public class RecuperarContraseña extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 180, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,6 +145,18 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         // TODO add your handling code here:
          jButton1.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField1.getText().length() < 40)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments

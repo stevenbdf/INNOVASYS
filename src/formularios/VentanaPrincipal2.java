@@ -14,6 +14,9 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import java.util.Scanner;
 import clases.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author steve
@@ -725,14 +728,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ChatCenterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PChatCenter chatcenter = new PChatCenter();
-        chatcenter.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(chatcenter, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();     
+//        PanelPrincipal.setVisible(true);
+//        jLabel2.setVisible(false);
+//        PChatCenter chatcenter = new PChatCenter();
+//        chatcenter.setSize(680,500);
+//        PanelPrincipal.removeAll();
+//        PanelPrincipal.add(chatcenter, BorderLayout.CENTER);
+//        PanelPrincipal.revalidate();
+//        PanelPrincipal.repaint();
+        Runtime obj = Runtime.getRuntime();
+        try {
+            obj.exec("C:\\Users\\User\\Desktop\\Chat.exe");
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ChatCenterMouseClicked
 
     private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved

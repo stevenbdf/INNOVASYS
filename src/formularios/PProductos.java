@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import javax.swing.UIManager;
 
 /**
@@ -16,6 +17,7 @@ public class PProductos extends javax.swing.JPanel {
     /**
      * Creates new form PProductos
      */
+    verificaciones verificar = new verificaciones();
     public PProductos() {
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -109,10 +111,20 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 78, 30));
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 155, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,6 +141,11 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 78, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -318,10 +335,20 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 70, 88, 30));
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 31, 140, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -371,24 +398,29 @@ public class PProductos extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 31, 127, 30));
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 127, 30));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Buscar:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 39, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
 
         jRadioButton5.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton5.setText("Codigo");
-        jPanel2.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 35, -1, -1));
+        jPanel2.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
 
         jRadioButton6.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton6.setText("Nombre");
-        jPanel2.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 35, -1, -1));
+        jPanel2.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(204, 204, 204));
@@ -506,6 +538,78 @@ public class PProductos extends javax.swing.JPanel {
         // TODO add your handling code here:
          jButton2.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton2MouseExited
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletras(vchar) == true
+                && (jTextField2.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField1.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField4.getText().length() < 12)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField6.getText().length() < 20)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField5.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField8.getText().length() < 40)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 public class PTipoUsuario extends javax.swing.JPanel {
 
     /** Creates new form PTipoUsuario */
+    verificaciones verificar = new verificaciones();
     Conexion con = new Conexion();
     DefaultTableModel modeloTablaPrivilegios;
     Conexion cn = new Conexion();
@@ -192,7 +193,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbInventario.setBackground(new java.awt.Color(102, 102, 102));
@@ -317,6 +318,9 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jTFBuscarT1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarT1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarT1KeyTyped(evt);
             }
         });
         jPanel4.add(jTFBuscarT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 80, 30));
@@ -478,6 +482,9 @@ public class PTipoUsuario extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFNombreTipoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreTipoKeyTyped(evt);
+            }
         });
         jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
 
@@ -529,6 +536,9 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarTKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarTKeyTyped(evt);
             }
         });
         jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
@@ -954,6 +964,42 @@ public class PTipoUsuario extends javax.swing.JPanel {
             lblCodigoTipo.setText("CODIGO TIPO");
         }
     }//GEN-LAST:event_jTFNombreTipoKeyReleased
+
+    private void jTFBuscarT1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarT1KeyTyped
+        // TODO add your handling code here:char vchar = evt.getKeyChar();
+       char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFBuscarT1.getText().length() < 10)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFBuscarT1KeyTyped
+
+    private void jTFNombreTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreTipoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFNombreTipo.getText().length() < 10)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNombreTipoKeyTyped
+
+    private void jTFBuscarTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarTKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFBuscarT.getText().length() < 10)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFBuscarTKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import javax.swing.UIManager;
 
 /**
@@ -16,6 +17,7 @@ public class Pago1 extends javax.swing.JFrame {
     /**
      * Creates new form Pago1
      */
+    verificaciones  verificar = new verificaciones();
     public Pago1() {
 //        try {
 //			
@@ -66,6 +68,11 @@ public class Pago1 extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 68, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
@@ -100,6 +107,11 @@ public class Pago1 extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 92, 68, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -109,6 +121,11 @@ public class Pago1 extends javax.swing.JFrame {
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 140, 68, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
@@ -165,6 +182,42 @@ public class Pago1 extends javax.swing.JFrame {
         // TODO add your handling code here:
          jButton1.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField1.getText().length() < 3)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField2.getText().length() < 3)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField3.getText().length() < 3)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
      * @param args the command line arguments

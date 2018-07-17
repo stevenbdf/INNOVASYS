@@ -471,6 +471,8 @@ public class RegistroClientes extends javax.swing.JFrame {
                 .addGap(0, 5, Short.MAX_VALUE))
         );
 
+        jTextField1.getAccessibleContext().setAccessibleName("");
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 360, 440));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N

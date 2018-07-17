@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package formularios;
+import clases.verificaciones;
 import javax.swing.UIManager;
 /**
  *
@@ -14,6 +15,7 @@ public class PInventario extends javax.swing.JPanel {
     /**
      * Creates new form PInventario
      */
+    verificaciones verificar = new verificaciones();
     public PInventario() {
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -98,6 +100,11 @@ public class PInventario extends javax.swing.JPanel {
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -407,6 +414,18 @@ public class PInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
          jButton2.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton2MouseExited
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField2.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

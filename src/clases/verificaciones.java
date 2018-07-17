@@ -31,11 +31,20 @@ public class verificaciones {
     }
     public boolean vletrasynumeros (char key){
         boolean verificado =false;
-         if ( Character.isLetterOrDigit(key) || key=='@'){
+         if ( Character.isLetterOrDigit(key)){
              verificado=true; 
          };
          return verificado;
     }
+    
+    public boolean vcorreoevent (char key){
+        boolean verificado =false;
+         if ( Character.isLetterOrDigit(key) || key == '@' || key == '_' || key == '.'){
+             verificado=true; 
+         };
+         return verificado;
+    }
+    
     public boolean vletrase (char key){
         boolean verificado =false;
          if ( Character.isLetter(key)|| key == '.'){
