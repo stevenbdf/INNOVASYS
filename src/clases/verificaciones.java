@@ -24,14 +24,14 @@ public class verificaciones {
     
     public boolean vletras (char key){
         boolean verificado =false;
-         if ( Character.isLetter(key)){
+         if ( Character.isLetter(key) || key==(' ')){
              verificado=true; 
          };
          return verificado;
     }
     public boolean vletrasynumeros (char key){
         boolean verificado =false;
-         if ( Character.isLetterOrDigit(key)){
+         if ( Character.isLetterOrDigit(key) || key==(' ')){
              verificado=true; 
          };
          return verificado;
