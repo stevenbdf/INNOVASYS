@@ -28,9 +28,15 @@ public class Login1 extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
+        //Cambiar logo por el label que querras
        ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(Logo.getWidth(),Logo.getHeight(),Image.SCALE_DEFAULT));
        Logo.setIcon(icono);
+       
+       
+        ImageIcon foto1 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono1 = new ImageIcon(foto1.getImage().getScaledInstance(lblhelp.getWidth(),lblhelp.getHeight(),Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono1);
        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
     }
 
@@ -60,6 +66,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -126,7 +133,6 @@ public class Login1 extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnEnviar2.png"))); // NOI18N
@@ -250,6 +256,17 @@ public class Login1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
+
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 6, 25, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -427,6 +444,11 @@ public class Login1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCorreoActionPerformed
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -479,6 +501,7 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
+    private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

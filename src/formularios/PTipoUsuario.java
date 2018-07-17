@@ -9,10 +9,12 @@ package formularios;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import clases.*;
+import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 /**
@@ -43,6 +45,14 @@ public class PTipoUsuario extends javax.swing.JPanel {
         initComponents();
         llenaComboBox();
         jTFBuscarT.setEnabled(false);
+        
+        //logo de ayuda
+        ImageIcon foto = new ImageIcon (getClass().getResource("/images/help.png"));
+        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+        lblhelp.setIcon(icono);
+        ImageIcon foto2 = new ImageIcon (getClass().getResource("/images/help.png"));
+        ImageIcon icono2 = new ImageIcon(foto.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+        lblhelp1.setIcon(icono2);
     }
     private void llenaComboBox() {
         modeloCombo.removeAllElements();
@@ -136,6 +146,25 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblCodigoTipo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnAgregarT = new javax.swing.JButton();
+        btnEliminarT = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTFNombreTipo = new javax.swing.JTextField();
+        rdNombre = new javax.swing.JRadioButton();
+        rdCodigo = new javax.swing.JRadioButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTFBuscarT = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cmbPrivilegios = new javax.swing.JComboBox<>();
+        btnModificarT = new javax.swing.JButton();
+        lblhelp1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         cbInventario = new javax.swing.JCheckBox();
@@ -164,36 +193,226 @@ public class PTipoUsuario extends javax.swing.JPanel {
         lblCodigoPrivilegio = new javax.swing.JLabel();
         btnEliminarP = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblCodigoTipo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnAgregarT = new javax.swing.JButton();
-        btnEliminarT = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jTFNombreTipo = new javax.swing.JTextField();
-        rdNombre = new javax.swing.JRadioButton();
-        rdCodigo = new javax.swing.JRadioButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jTFBuscarT = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        cmbPrivilegios = new javax.swing.JComboBox<>();
-        btnModificarT = new javax.swing.JButton();
+        lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblCodigoTipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigoTipo.setText("CODIGO TIPO");
+        jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
+
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
+        jTable1.setModel(modeloTablaTipos);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 180));
+
+        btnAgregarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarT.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarT.setText("Agregar");
+        btnAgregarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarT.setContentAreaFilled(false);
+        btnAgregarT.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarTMouseExited(evt);
+            }
+        });
+        jPanel2.add(btnAgregarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        btnEliminarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarT.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarT.setText("Eliminar");
+        btnEliminarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarT.setContentAreaFilled(false);
+        btnEliminarT.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarTMouseExited(evt);
+            }
+        });
+        jPanel2.add(btnEliminarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Buscar:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
+
+        jTFNombreTipo.setBackground(new java.awt.Color(204, 204, 204));
+        jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFNombreTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreTipoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreTipoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
+
+        rdNombre.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombre.setForeground(new java.awt.Color(255, 255, 255));
+        rdNombre.setText("Nombre");
+        rdNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombreActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
+
+        rdCodigo.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        rdCodigo.setText("Codigo");
+        rdCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdCodigoMouseClicked(evt);
+            }
+        });
+        jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
+
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Generar Reporte");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton6.setContentAreaFilled(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        jTFBuscarT.setBackground(new java.awt.Color(204, 204, 204));
+        jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarTKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarTKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Privilegios:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Nombre Tipo:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        cmbPrivilegios.setModel(modeloCombo   );
+        jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
+
+        btnModificarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarT.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarT.setText("Modificar");
+        btnModificarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarT.setContentAreaFilled(false);
+        btnModificarT.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarTMouseExited(evt);
+            }
+        });
+        btnModificarT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnModificarTKeyPressed(evt);
+            }
+        });
+        jPanel2.add(btnModificarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+
+        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelp1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelp1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
+
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbInventario.setBackground(new java.awt.Color(102, 102, 102));
@@ -407,193 +626,23 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel4.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 110, -1));
 
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        jPanel4.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 25, 25));
+
         jTabbedPane1.addTab("Gestionar Privilegios", jPanel4);
-
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblCodigoTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblCodigoTipo.setForeground(new java.awt.Color(255, 255, 255));
-        lblCodigoTipo.setText("CODIGO TIPO");
-        jPanel2.add(lblCodigoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 20));
-
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setModel(modeloTablaTipos);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 260, 180));
-
-        btnAgregarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregarT.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarT.setText("Agregar");
-        btnAgregarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnAgregarT.setContentAreaFilled(false);
-        btnAgregarT.setPreferredSize(new java.awt.Dimension(71, 30));
-        btnAgregarT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarTMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarTMouseExited(evt);
-            }
-        });
-        jPanel2.add(btnAgregarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-
-        btnEliminarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEliminarT.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarT.setText("Eliminar");
-        btnEliminarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnEliminarT.setContentAreaFilled(false);
-        btnEliminarT.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnEliminarT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarTMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarTMouseExited(evt);
-            }
-        });
-        jPanel2.add(btnEliminarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Buscar:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
-
-        jTFNombreTipo.setBackground(new java.awt.Color(204, 204, 204));
-        jTFNombreTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFNombreTipo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFNombreTipoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFNombreTipoKeyTyped(evt);
-            }
-        });
-        jPanel2.add(jTFNombreTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, 30));
-
-        rdNombre.setBackground(new java.awt.Color(102, 102, 102));
-        rdNombre.setForeground(new java.awt.Color(255, 255, 255));
-        rdNombre.setText("Nombre");
-        rdNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdNombreActionPerformed(evt);
-            }
-        });
-        jPanel2.add(rdNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, 30));
-
-        rdCodigo.setBackground(new java.awt.Color(102, 102, 102));
-        rdCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        rdCodigo.setText("Codigo");
-        rdCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rdCodigoMouseClicked(evt);
-            }
-        });
-        jPanel2.add(rdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, 30));
-
-        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Generar Reporte");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton6.setContentAreaFilled(false);
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton6MouseExited(evt);
-            }
-        });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-
-        jTFBuscarT.setBackground(new java.awt.Color(204, 204, 204));
-        jTFBuscarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFBuscarTKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFBuscarTKeyTyped(evt);
-            }
-        });
-        jPanel2.add(jTFBuscarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 80, 30));
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Privilegios:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Nombre Tipo:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-
-        cmbPrivilegios.setModel(modeloCombo   );
-        jPanel2.add(cmbPrivilegios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 160, 30));
-
-        btnModificarT.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarT.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificarT.setText("Modificar");
-        btnModificarT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnModificarT.setContentAreaFilled(false);
-        btnModificarT.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnModificarT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnModificarTMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarTMouseExited(evt);
-            }
-        });
-        btnModificarT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnModificarTKeyPressed(evt);
-            }
-        });
-        jPanel2.add(btnModificarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 510));
     }// </editor-fold>//GEN-END:initComponents
@@ -1001,6 +1050,32 @@ public class PTipoUsuario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTFBuscarTKeyTyped
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelp1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelp1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelp1AncestorAdded
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        help form = new help();
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
+    private void lblhelp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelp1MouseClicked
+        // TODO add your handling code here:
+        help form = new help();
+        form.show();
+    }//GEN-LAST:event_lblhelp1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarP;
@@ -1048,6 +1123,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblCodigoPrivilegio;
     private javax.swing.JLabel lblCodigoTipo;
+    private javax.swing.JLabel lblhelp;
+    private javax.swing.JLabel lblhelp1;
     private javax.swing.JRadioButton rdCodigo;
     private javax.swing.JRadioButton rdNombre;
     // End of variables declaration//GEN-END:variables
