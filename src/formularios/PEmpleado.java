@@ -9,10 +9,13 @@ import java.awt.Image;
 import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -28,24 +31,63 @@ public class PEmpleado extends javax.swing.JPanel {
     /**
      * Creates new form PEmpleado
      */
+    
+    //Instancia clase conexion
     Conexion con = new Conexion();
+    Conexion cn = new Conexion();
+    /**
+     * Creacion de modelo de lista
+     */
+    DefaultListModel modeloLista = new DefaultListModel();
+    
+    private void llenarList() {
+        try {
+   
+            
+                String sql3 = "SELECT correoElectronico FROM usuarioEmpleado";
+                PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
+                ResultSet ver3 = cmd3.executeQuery();
+                while(ver3.next()){        
+                       modeloLista.addElement(ver3.getObject(1));
+                }                  
+        } catch (SQLException e) {
+            System.out.println("Primera");
+            System.out.println(e.toString());
+        }
+    }
+    
+    /**
+     * Creacion de modelos de tablas
+     */
     DefaultTableModel modeloTablaEstados;
     DefaultTableModel modeloTablaDocumentos;
     DefaultTableModel modeloTablaEmpleados;
+    DefaultTableModel modeloTablaDocumentosEmpleados;
+    /**
+     * Creacion de modelos de comboBoxes
+     */
     DefaultComboBoxModel modeloComboTipoUsuario;
     DefaultComboBoxModel modeloComboEstado;
+    /**
+     * Llaves necesarias para la combinacion e incriptacion de claves
+     */
     String key = "92AE31A79FEEB2A3"; //llave
     String iv = "0123456789ABCDEF"; // vector de inicialización
+    /**
+     * Variables Generales utilizadas en el formulario
+     */
     String cleartext = "";
-    Conexion cn = new Conexion();
     String NombreE="",CodigoEstado="",NombreD="",CodigoDocumento="",DescripcionE="";
     String CodigoEmpleado="";
     File fichero;
     String datos=String.valueOf(fichero);
+    
     public PEmpleado() {
+        
         modeloTablaEstados= new DefaultTableModel(null, getColumnasEstado());setFilasEstado(0,"");
         modeloTablaDocumentos= new DefaultTableModel(null, getColumnasDocumentos());setFilasDocumentos(0,"");
         modeloTablaEmpleados=new DefaultTableModel(null,getColumnasEmpleado());setFilasEmpleado(0,"");
+        modeloTablaDocumentosEmpleados=new DefaultTableModel(null, getColumnasDocumentosEmpleados());setFilasDocumentosEmpleados(0,"");
         modeloComboTipoUsuario = new DefaultComboBoxModel(new String[]{});
         modeloComboEstado = new DefaultComboBoxModel(new String[]{});
 //                try {
@@ -54,6 +96,10 @@ public class PEmpleado extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        llenarList();
+        
+            
+      
         
         llenaComboBoxTipoUsuario();
         llenaComboBoxEstado();
@@ -109,6 +155,11 @@ public class PEmpleado extends javax.swing.JPanel {
     
     private String[] getColumnasDocumentos() {
         String columnas[] = new String[]{"CODIGO", "NOMBRE", "ESTADO"};
+        return columnas;
+    }
+    
+    private String[] getColumnasDocumentosEmpleados() {
+        String columnas[] = new String[]{"CODIGO", "NOMBRE", "EMPLEADO","DESCRIPCION"};
         return columnas;
     }
     
@@ -210,6 +261,40 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
+    
+    private void setFilasDocumentosEmpleados(int tipo,String valores) {
+        try {
+            String sql="";
+            switch (tipo) {
+                //Codigo Empleado
+                case 1:
+                    sql = "";
+                    break;
+                //Nombre
+                case 2:
+                    sql = "";
+                    break;
+                default:
+                    sql = "SELECT idDocumentoE,documento.nombre,descripcion,usuarioEmpleado.nombres "
+                            + " FROM documentoEmpleado, usuarioEmpleado, documento "
+                            + " WHERE documentoEmpleado.idEmpleado=usuarioEmpleado.idEmpleado AND documento.idDocumento=documentoEmpleado.idDocumento";
+                    break;
+            }
+            PreparedStatement us = cn.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[4];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaDocumentosEmpleados.addRow(datos);
+            }
+        } catch (Exception e) {
+
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,6 +346,18 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         btnEliminarEmpleado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        cmbEstado2 = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        jTFRespuesta3 = new javax.swing.JTextField();
+        btnAgregarEmpleado1 = new javax.swing.JButton();
+        btnModificarEmpleado1 = new javax.swing.JButton();
+        btnEliminarEmpleado1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jLabel33 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -514,12 +611,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado.setContentAreaFilled(false);
         btnAgregarEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleadoAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -624,17 +721,115 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
-        );
+        cmbEstado2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cmbEstado2.setModel(modeloComboEstado);
+        jPanel2.add(cmbEstado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
+
+        jLabel31.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("EMPLEADOS");
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 260, 30));
+
+        jTable4.setModel(modeloTablaDocumentosEmpleados);
+        jScrollPane4.setViewportView(jTable4);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 325, 220));
+
+        jLabel32.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Descripcion:");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, 30));
+
+        jTFRespuesta3.setBackground(new java.awt.Color(204, 204, 204));
+        jTFRespuesta3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFRespuesta3.setToolTipText("");
+        jTFRespuesta3.setPreferredSize(new java.awt.Dimension(78, 30));
+        jPanel2.add(jTFRespuesta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 120, -1));
+
+        btnAgregarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarEmpleado1.setText("Agregar");
+        btnAgregarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregarEmpleado1.setContentAreaFilled(false);
+        btnAgregarEmpleado1.setPreferredSize(new java.awt.Dimension(71, 30));
+        btnAgregarEmpleado1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                btnAgregarEmpleado1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarEmpleado1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarEmpleado1MouseExited(evt);
+            }
+        });
+        btnAgregarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEmpleado1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+
+        btnModificarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarEmpleado1.setText("Modificar");
+        btnModificarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarEmpleado1.setContentAreaFilled(false);
+        btnModificarEmpleado1.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleado1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleado1MouseExited(evt);
+            }
+        });
+        btnModificarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarEmpleado1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+
+        btnEliminarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEliminarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarEmpleado1.setText("Eliminar");
+        btnEliminarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminarEmpleado1.setContentAreaFilled(false);
+        btnEliminarEmpleado1.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnEliminarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleado1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleado1MouseExited(evt);
+            }
+        });
+        btnEliminarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarEmpleado1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEliminarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, -1, -1));
+
+        jList1.setModel(modeloLista);
+        jScrollPane5.setViewportView(jList1);
+
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 210, 220));
+
+        jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Documento:");
+        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 30));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
@@ -1758,21 +1953,65 @@ public class PEmpleado extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTFBuscarEmpleadoKeyReleased
 
+    private void btnAgregarEmpleado1AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1AncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEmpleado1AncestorRemoved
+
+    private void btnAgregarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEmpleado1MouseEntered
+
+    private void btnAgregarEmpleado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEmpleado1MouseExited
+
+    private void btnAgregarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEmpleado1ActionPerformed
+
+    private void btnModificarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado1MouseEntered
+
+    private void btnModificarEmpleado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado1MouseExited
+
+    private void btnModificarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado1ActionPerformed
+
+    private void btnEliminarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleado1MouseEntered
+
+    private void btnEliminarEmpleado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleado1MouseExited
+
+    private void btnEliminarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEmpleado1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
     private javax.swing.JButton btnAgregarE;
     private javax.swing.JButton btnAgregarEmpleado;
+    private javax.swing.JButton btnAgregarEmpleado1;
     private javax.swing.JButton btnEliminarD;
     private javax.swing.JButton btnEliminarE;
     private javax.swing.JButton btnEliminarEmpleado;
+    private javax.swing.JButton btnEliminarEmpleado1;
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnGenerarReporteEmpleado;
     private javax.swing.JButton btnLimpiarCampos;
     private javax.swing.JButton btnModificarD;
     private javax.swing.JButton btnModificarE;
     private javax.swing.JButton btnModificarEmpleado;
+    private javax.swing.JButton btnModificarEmpleado1;
     private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> cmbEstado2;
     private javax.swing.JComboBox<String> cmbEstadoD;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JComboBox<String> cmdPregunta1;
@@ -1795,11 +2034,15 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1808,6 +2051,8 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTFApellido;
     private javax.swing.JTextField jTFBuscarDocumento;
     private javax.swing.JTextField jTFBuscarEmpleado;
@@ -1821,11 +2066,13 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JTextField jTFNombreEmpleado;
     private javax.swing.JTextField jTFRespuesta1;
     private javax.swing.JTextField jTFRespuesta2;
+    private javax.swing.JTextField jTFRespuesta3;
     private javax.swing.JTextField jTFTelefono;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JLabel lblCodigoDocumento;
     private javax.swing.JLabel lblCodigoEmpleado;
     private javax.swing.JLabel lblCodigoEstado;

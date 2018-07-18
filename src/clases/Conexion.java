@@ -22,9 +22,9 @@ public class Conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             //importar java.sql.DriverManager
             //Lap Steven
-            cn= DriverManager.getConnection("jdbc:sqlserver://DESKTOP-CAVE2O6\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            //cn= DriverManager.getConnection("jdbc:sqlserver://DESKTOP-CAVE2O6\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
             //Pc Steven
-            //cn= DriverManager.getConnection("jdbc:sqlserver://Internet\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            cn= DriverManager.getConnection("jdbc:sqlserver://Internet\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
             //Lap Sebas
             //cn = DriverManager.getConnection("jdbc:sqlserver://HARIBO10\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
             //Base en internet
