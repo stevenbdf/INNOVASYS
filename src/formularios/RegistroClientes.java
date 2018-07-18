@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,10 +7,19 @@
  */
 package formularios;
 
+import clases.Conexion;
+import clases.mtoClientes;
 import clases.verificaciones;
 import java.awt.Image;
+import java.math.BigInteger;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
 /**
  *
  * @author steve
@@ -19,6 +30,9 @@ public class RegistroClientes extends javax.swing.JFrame {
      * Creates new form RegistroClientes
      */
     verificaciones verificar = new verificaciones();
+    String key = "92AE31A79FEEB2A3"; //llave
+    String iv = "0123456789ABCDEF"; // vector de inicialización
+    String cleartext = "";
     public RegistroClientes() {
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -28,9 +42,6 @@ public class RegistroClientes extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
-       ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(Logo.getWidth(),Logo.getHeight(),Image.SCALE_DEFAULT));
-       Logo.setIcon(icono);
     }
 
     /**
@@ -47,28 +58,28 @@ public class RegistroClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbPregunta1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbPregunta2 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTFRespuesta1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTFRespuesta2 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTFDui = new javax.swing.JTextField();
+        jTFApellidos = new javax.swing.JTextField();
+        jTFNit = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jTFCorreo = new javax.swing.JTextField();
+        jTFNombres = new javax.swing.JTextField();
+        jTFContraseña1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbCorp = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        jTFContraseña2 = new javax.swing.JTextField();
+        jTFTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,7 +87,6 @@ public class RegistroClientes extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        Logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -98,108 +108,65 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preguntas de Seguridad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Pregunta #1:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 36, -1, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "¿Tu profesor favorito?", "¿Cumpleaños de tu madre?", "¿Mayor temor?", "¿Clima favorito?" }));
+        jPanel2.add(cmbPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 170, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Pregunta #2:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPregunta2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "¿Tu primer mascota?", "¿Color Favorito?", "¿Festividad favorita?" }));
+        jPanel2.add(cmbPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 170, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Respuesta:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 76, -1, 30));
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField5.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTFRespuesta1.setBackground(new java.awt.Color(204, 204, 204));
+        jTFRespuesta1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFRespuesta1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTFRespuesta1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jTFRespuesta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTFRespuesta1ActionPerformed(evt);
             }
         });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFRespuesta1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                jTFRespuesta1KeyTyped(evt);
             }
         });
+        jPanel2.add(jTFRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 170, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Respuesta:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
 
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTFRespuesta2.setBackground(new java.awt.Color(204, 204, 204));
+        jTFRespuesta2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFRespuesta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTFRespuesta2ActionPerformed(evt);
             }
         });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFRespuesta2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
+                jTFRespuesta2KeyTyped(evt);
             }
         });
+        jPanel2.add(jTFRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 170, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(7, 7, 7)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(7, 7, 7)
-                                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 24, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 230, 180));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 290, 210));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setText("FINALIZAR");
@@ -223,42 +190,42 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preguntas de Seguridad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTFDui.setBackground(new java.awt.Color(204, 204, 204));
+        jTFDui.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFDui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTFDuiActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFDui.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                jTFDuiKeyTyped(evt);
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTFApellidos.setBackground(new java.awt.Color(204, 204, 204));
+        jTFApellidos.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTFApellidosActionPerformed(evt);
             }
         });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                jTFApellidosKeyTyped(evt);
             }
         });
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTFNit.setBackground(new java.awt.Color(204, 204, 204));
+        jTFNit.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFNit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTFNitActionPerformed(evt);
             }
         });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFNit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                jTFNitKeyTyped(evt);
             }
         });
 
@@ -270,42 +237,42 @@ public class RegistroClientes extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("NIT:");
 
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCorreo.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTFCorreoActionPerformed(evt);
             }
         });
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField7KeyTyped(evt);
+                jTFCorreoKeyTyped(evt);
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTFNombres.setBackground(new java.awt.Color(204, 204, 204));
+        jTFNombres.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTFNombresActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                jTFNombresKeyTyped(evt);
             }
         });
 
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTFContraseña1.setBackground(new java.awt.Color(204, 204, 204));
+        jTFContraseña1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFContraseña1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTFContraseña1ActionPerformed(evt);
             }
         });
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFContraseña1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                jTFContraseña1KeyTyped(evt);
             }
         });
 
@@ -313,35 +280,35 @@ public class RegistroClientes extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Corporativo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCorp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Telefono:");
 
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        jTFContraseña2.setBackground(new java.awt.Color(204, 204, 204));
+        jTFContraseña2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFContraseña2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                jTFContraseña2ActionPerformed(evt);
             }
         });
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFContraseña2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
+                jTFContraseña2KeyTyped(evt);
             }
         });
 
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jTFTelefono.setBackground(new java.awt.Color(204, 204, 204));
+        jTFTelefono.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTFTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jTFTelefonoActionPerformed(evt);
             }
         });
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
+                jTFTelefonoKeyTyped(evt);
             }
         });
 
@@ -376,102 +343,102 @@ public class RegistroClientes extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel3)
                         .addGap(7, 7, 7)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbCorp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(jLabel7)
                         .addGap(7, 7, 7)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFDui, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(jLabel8)
                         .addGap(10, 10, 10)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFNit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel15)
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel11)
                         .addGap(5, 5, 5)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel12)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFContraseña1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTFContraseña2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbCorp)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel7))
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFDui, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel8))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFNit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel15))
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel11))
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel12))
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFContraseña1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel14))
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 5, Short.MAX_VALUE))
+                    .addComponent(jTFContraseña2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        jTextField1.getAccessibleContext().setAccessibleName("");
+        jTFNombres.getAccessibleContext().setAccessibleName("");
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 360, 440));
 
@@ -493,52 +460,51 @@ public class RegistroClientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-        jPanel1.add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 160, 160));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTFNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNombresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTFNombresActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTFApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFApellidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTFApellidosActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTFDuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDuiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTFDuiActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTFNitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTFNitActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTFCorreoActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTFContraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFContraseña1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTFContraseña1ActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jTFContraseña2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFContraseña2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jTFContraseña2ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTFRespuesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRespuesta1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTFRespuesta1ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTFRespuesta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRespuesta2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTFRespuesta2ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jTFTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jTFTelefonoActionPerformed
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         this.setState(VentanaPrincipal2.ICONIFIED);
@@ -558,128 +524,178 @@ public class RegistroClientes extends javax.swing.JFrame {
          jButton6.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton6MouseExited
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void jTFNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField1.getText().length() < 60)) {
+                && (jTFNombres.getText().length() < 60)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_jTFNombresKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void jTFApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField2.getText().length() < 70)) {
+                && (jTFApellidos.getText().length() < 70)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_jTFApellidosKeyTyped
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void jTFDuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDuiKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField3.getText().length() < 9)) {
+                && (jTFDui.getText().length() < 9)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_jTFDuiKeyTyped
 
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+    private void jTFNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNitKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField4.getText().length() < 14)) {
+                && (jTFNit.getText().length() < 14)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField4KeyTyped
+    }//GEN-LAST:event_jTFNitKeyTyped
 
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+    private void jTFTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTelefonoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField9.getText().length() < 8)) {
+                && (jTFTelefono.getText().length() < 8)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField9KeyTyped
+    }//GEN-LAST:event_jTFTelefonoKeyTyped
 
-    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+    private void jTFCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCorreoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
-        if (verificar.vletrasynumeros(vchar) == true
-                && (jTextField7.getText().length() < 20)) {
+        if (verificar.vcorreoevent(vchar) == true
+                && (jTFCorreo.getText().length() < 20)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField7KeyTyped
+    }//GEN-LAST:event_jTFCorreoKeyTyped
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    private void jTFContraseña1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseña1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         verificaciones obj = new verificaciones();
         if (obj.vletrasynumeros(vchar) == true
-                && (jTextField8.getText().length() < 30)) {
+                && (jTFContraseña1.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField8KeyTyped
+    }//GEN-LAST:event_jTFContraseña1KeyTyped
 
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+    private void jTFContraseña2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseña2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         verificaciones obj = new verificaciones();
         if (obj.vletrasynumeros(vchar) == true
-                && (jTextField10.getText().length() < 30)) {
+                && (jTFContraseña2.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField10KeyTyped
+    }//GEN-LAST:event_jTFContraseña2KeyTyped
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+    private void jTFRespuesta1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField5.getText().length() < 120)) {
+                && (jTFRespuesta1.getText().length() < 120)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_jTFRespuesta1KeyTyped
 
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+    private void jTFRespuesta2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField6.getText().length() < 120)) {
+                && (jTFRespuesta2.getText().length() < 120)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField6KeyTyped
+    }//GEN-LAST:event_jTFRespuesta2KeyTyped
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
+        mtoClientes obj = new mtoClientes();
+        Conexion cn = new Conexion();
+        if (jTFContraseña1.getText().equals(jTFContraseña2.getText())) {
+            try {
+                String sql = "SELECT dui,nit, correoElectronico FROM cliente WHERE dui='" + Integer.valueOf(jTFDui.getText()) + "' OR nit='" + Integer.valueOf(jTFNit.getText()) + "' OR correoElectronico='" + jTFCorreo.getText() + "'";
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    if (ver.getInt(1) == Integer.valueOf(jTFDui.getText())) {
+                        JOptionPane.showMessageDialog(this, "Error ya existe un cliente registrado con ese DUI");
+                    } else if (ver.getInt(2) == Integer.valueOf(jTFNit.getText())) {
+                        JOptionPane.showMessageDialog(this, "Error ya existe un cliente registrado con ese NIT");
+                    } else if (ver.getString(3).equals(jTFCorreo.getText())) {
+                        JOptionPane.showMessageDialog(this, "Error ya existe un cliente registrado con ese Correo Electronico");
+                    } else {
+                        obj.setDui(Integer.valueOf(jTFDui.getText()));
+                        BigInteger valor = new BigInteger(jTFNit.getText());
+                        obj.setNit(valor);
+                        obj.setCorreoCliente(jTFCorreo.getText());
+                        cleartext = jTFContraseña1.getText();
+                        obj.setNombreCliente(jTFNombres.getText());
+                        obj.setApellidoCliente(jTFApellidos.getText());
+                        if (cmbCorp.getSelectedIndex() == 1) {
+                            obj.setCorporativo(1);
+                        } else {
+                            obj.setCorporativo(0);
+                        }
+                        try {
+                            obj.setContraseñaCliente(verificar.encrypt(key, iv, cleartext));
+                        } catch (Exception ex) {
+                            Logger.getLogger(RegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        obj.setPregunta1(String.valueOf(cmbPregunta1.getSelectedItem()));
+                        obj.setPregunta2(String.valueOf(cmbPregunta2.getSelectedItem()));
+                        obj.setTelefono(Integer.valueOf(jTFTelefono.getText()));
+                        obj.setRespuesta1(jTFRespuesta1.getText());
+                        obj.setRespuesta2(jTFRespuesta2.getText());
+
+                        if (obj.guardarCliente()) {
+                            JOptionPane.showMessageDialog(this, "Cliente guardado");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Cliente no guardado");
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
@@ -718,11 +734,10 @@ public class RegistroClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Logo;
+    private javax.swing.JComboBox<String> cmbCorp;
+    private javax.swing.JComboBox<String> cmbPregunta1;
+    private javax.swing.JComboBox<String> cmbPregunta2;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -743,15 +758,15 @@ public class RegistroClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTFApellidos;
+    private javax.swing.JTextField jTFContraseña1;
+    private javax.swing.JTextField jTFContraseña2;
+    private javax.swing.JTextField jTFCorreo;
+    private javax.swing.JTextField jTFDui;
+    private javax.swing.JTextField jTFNit;
+    private javax.swing.JTextField jTFNombres;
+    private javax.swing.JTextField jTFRespuesta1;
+    private javax.swing.JTextField jTFRespuesta2;
+    private javax.swing.JTextField jTFTelefono;
     // End of variables declaration//GEN-END:variables
 }

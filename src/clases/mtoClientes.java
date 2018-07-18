@@ -4,17 +4,19 @@
  * and open the template in the editor.
  */
 package clases;
-
+import formularios.RegistroClientes;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Susy francelia
  */
-public class mtoClientes {
+public class mtoClientes extends RegistroClientes{
 
     /**
      * @return the respuesta2
@@ -103,14 +105,14 @@ public class mtoClientes {
     /**
      * @return the nit
      */
-    public Integer getNit() {
+    public BigInteger getNit() {
         return nit;
     }
 
     /**
      * @param nit the nit to set
      */
-    public void setNit(Integer nit) {
+    public void setNit(BigInteger nit) {
         this.nit = nit;
     }
 
@@ -271,7 +273,7 @@ public class mtoClientes {
     private String apellidoCliente;
     private Integer corporativo;
     private Integer dui;
-    private Integer nit;
+    private BigInteger nit;
     private String correoCliente;
     private String contraseñaCliente;
     private String pregunta1;
@@ -282,31 +284,31 @@ public class mtoClientes {
     
     public boolean guardarCliente(){
         boolean valor=false;
-        try {
-            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contraseña, preguntaSeguridad1, preguntaSeguridad2, telefono"
-                    + "RespuestaSeguridad1, RespuestaSeguridad2) VALUES ((SELECT MAX(idCliente) FROM cliente),?,?,?,?,?,?,?,?,?,?,?,?)";
+            try {
+            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contraseña, preguntaSeguridad1, preguntaSeguridad2, telefono, "
+                    + "RespuestaSeguridad1, RespuestaSeguridad2) VALUES ((SELECT MAX(idCliente) FROM cliente)+1,?,?,?,?,"+nit+",?,?,?,?,?,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreCliente);
             cmd.setString(2,apellidoCliente);
             cmd.setInt(3,corporativo);
             cmd.setInt(4,dui);
-            cmd.setInt(5,nit);
-            cmd.setString(6,correoCliente);
-            cmd.setString(7,contraseñaCliente);
-            cmd.setString(8,pregunta1);
-            cmd.setString(9,pregunta2);
-            cmd.setInt(10,telefono);
-            cmd.setString(11,respuesta1);
-            cmd.setString(12,respuesta2);
-            
+            cmd.setString(5,correoCliente);
+            cmd.setString(6,contraseñaCliente);
+            cmd.setString(7,pregunta1);
+            cmd.setString(8,pregunta2);
+            cmd.setInt(9,telefono);
+            cmd.setString(10,respuesta1);
+            cmd.setString(11,respuesta2);           
             if (!cmd.execute()) {
                 valor=true;
             }
             cmd.close();
             cn.close();
         } catch (Exception e) {
+            System.out.println("AQUI");
             System.out.println(e.toString());
-        }
+                
+        }       
         return valor;
-    }
+    }   
 }
