@@ -5,8 +5,13 @@
  */
 package formularios;
 
+
+import clases.Conexion;
 import clases.mtoClientes;
-import javax.swing.UIManager;
+import clases.verificaciones;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -23,7 +28,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
     */
     DefaultTableModel tbl_client;
     mtoClientes cli = new mtoClientes();
-    
+    verificaciones objeto = new verificaciones();
     public PGestionarClientes() {
 //        try {
 //			
@@ -32,6 +37,9 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+//        jDateChooser1.setMaxSelectableDate(StringADate("18-07-2018"));
+//        jDateChooser1.setMinSelectableDate(StringADate("17-07-2018"));
+        
         tbl_client = new DefaultTableModel(null,getColumnas());
         tbl_clientes.setModel(cli.setfilas(tbl_client));
     }
@@ -58,12 +66,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jTextField8 = new javax.swing.JTextField();
         r_nombre = new javax.swing.JRadioButton();
         r_codigo = new javax.swing.JRadioButton();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -115,15 +122,13 @@ public class PGestionarClientes extends javax.swing.JPanel {
 
         r_codigo.setBackground(new java.awt.Color(102, 102, 102));
         r_codigo.setForeground(new java.awt.Color(255, 255, 255));
-        r_codigo.setSelected(true);
         r_codigo.setText("Codigo");
         r_codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 r_codigoActionPerformed(evt);
             }
         });
-        add(r_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, -1, 30));
-        add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, 30));
+        add(r_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,8 +138,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha Min:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
-        add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 30));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, 30));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,6 +154,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 jButton2MouseExited(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -158,6 +167,9 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton5MouseEntered(evt);
             }
@@ -171,6 +183,9 @@ public class PGestionarClientes extends javax.swing.JPanel {
             }
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, 30));
+
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -214,13 +229,34 @@ public class PGestionarClientes extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion cn = new Conexion();
+            String sql = "SELECT fechaRegistro FROM cliente WHERE idCliente = 15";
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                System.out.println(ver.getString(1));
+                jDateChooser2.setDate(objeto.StringADate(ver.getString(1)));
+            }
+            cn.conectar().close();
+            cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+//        jDateChooser2.setDate(objeto.StringADate("2018-01-01"));
+    }//GEN-LAST:event_jButton5MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private datechooser.beans.DateChooserCombo dateChooserCombo2;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

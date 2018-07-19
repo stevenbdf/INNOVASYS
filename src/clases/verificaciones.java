@@ -1,6 +1,8 @@
 package clases;
-import com.sun.glass.events.KeyEvent;
-import static java.awt.event.KeyEvent.VK_PERIOD;
+
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
@@ -91,5 +93,27 @@ public class verificaciones {
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivParameterSpec);
             byte[] encrypted = cipher.doFinal(cleartext.getBytes());
             return new String(encodeBase64(encrypted));
+    }
+        
+
+        SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
+        public String getFecha(JDateChooser jd) {
+            if (jd.getDate() != null) {
+                return Formato.format(jd.getDate());
+            } else {
+                return null;
+            }
+        }
+        
+        public java.util.Date StringADate(String fecha) {
+        SimpleDateFormat formato_del_Texto = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaE = null;
+        try {
+            fechaE = formato_del_Texto.parse(fecha);
+            return fechaE;
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
 }
