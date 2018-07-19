@@ -335,7 +335,11 @@ public class mtoUsuarios extends PEmpleado{
     private Integer codigoDD;
     private String descrip;
     
-            
+    /**
+     * Llaves necesarias para la combinacion e incriptacion de claves
+     */
+    String key = "92AE31A79FEEB2A3"; //llave
+    String iv = "0123456789ABCDEF"; // vector de inicialización    
     
     
     public mtoUsuarios(){
@@ -344,6 +348,7 @@ public class mtoUsuarios extends PEmpleado{
     }
     
     public boolean consultarContraseña(){
+        verificaciones obj= new verificaciones();
         boolean resp= false;
         try {
              String sql = "SELECT contraseña FROM usuarioEmpleado WHERE correoElectronico=?";
@@ -358,7 +363,7 @@ public class mtoUsuarios extends PEmpleado{
             //Recorrer la lista de registro
             if (rs.next()) {
                 resp = true;
-                contraseña = rs.getString(1);
+                 contraseña = obj.decrypt(key,iv,rs.getString(1));
             }
             cmd.close();
             cn.close();

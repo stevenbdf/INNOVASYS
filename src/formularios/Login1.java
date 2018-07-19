@@ -22,6 +22,7 @@ public class Login1 extends javax.swing.JFrame {
     /**
      * Creates new form Login1
      */
+    
     public Login1() {
         //Test github version 2.1
         //JASJAS k chido
@@ -34,9 +35,7 @@ public class Login1 extends javax.swing.JFrame {
        Logo.setIcon(icono);
        
        
-        ImageIcon foto1 = new ImageIcon (getClass().getResource("/images/help.png"));
-       ImageIcon icono1 = new ImageIcon(foto1.getImage().getScaledInstance(lblhelp.getWidth(),lblhelp.getHeight(),Image.SCALE_DEFAULT));
-       lblhelp.setIcon(icono1);
+       
        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
     }
 
@@ -66,7 +65,6 @@ public class Login1 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lblhelp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -257,17 +255,6 @@ public class Login1 extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
-        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelpAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 6, 25, 25));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -333,6 +320,7 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         verificaciones obj = new verificaciones();
         if (obj.vcorreo(jTFCorreo.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
@@ -444,11 +432,6 @@ public class Login1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCorreoActionPerformed
 
-    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_lblhelpAncestorAdded
-
     /**
      * @param args the command line arguments
      */
@@ -501,7 +484,6 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
-    private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }
