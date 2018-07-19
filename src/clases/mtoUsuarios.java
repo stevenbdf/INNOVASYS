@@ -18,13 +18,45 @@ import javax.swing.JOptionPane;
  */
 public class mtoUsuarios extends PEmpleado{
 
+    public Integer getCodigoDEE() {
+        return codigoDEE;
+    }
+
+    public void setCodigoDEE(Integer codigoDEE) {
+        this.codigoDEE = codigoDEE;
+    }
+
+    public Integer getCodigoDE() {
+        return codigoDE;
+    }
+
+    public void setCodigoDE(Integer codigoDE) {
+        this.codigoDE = codigoDE;
+    }
+
+    public Integer getCodigoDD() {
+        return codigoDD;
+    }
+
+    public void setCodigoDD(Integer codigoDD) {
+        this.codigoDD = codigoDD;
+    }
+
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
     public String getPregunta1() {
         return pregunta1;
     }
 
     public void setPregunta1(String pregunta1) {
         this.pregunta1 = pregunta1;
-        everything[10]=String.valueOf(pregunta1);
+        
     }
 
     public String getRespuesta1() {
@@ -33,7 +65,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setRespuesta1(String respuesta1) {
         this.respuesta1 = respuesta1;
-        everything[11]=String.valueOf(respuesta1);
+        
     }
 
     public String getPregunta2() {
@@ -42,7 +74,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setPregunta2(String pregunta2) {
         this.pregunta2 = pregunta2;
-        everything[12]=String.valueOf(pregunta2);
+        
     }
 
     public String getRespuesta2() {
@@ -51,7 +83,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setRespuesta2(String respuesta2) {
         this.respuesta2 = respuesta2;
-        everything[13]=String.valueOf(respuesta2);
+        
     }
 
     public String getImagen() {
@@ -60,7 +92,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
-        everything[9]=String.valueOf(imagen);
+        
     }
 
     public Integer getCodigoEmpleado() {
@@ -69,7 +101,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoEmpleado(Integer codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
-        everything[0]=String.valueOf(codigoEmpleado);
+        
     }
 
     public Integer getCodigoTipo() {
@@ -78,7 +110,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoTipo(Integer codigoTipo) {
         this.codigoTipo = codigoTipo;
-        everything[1]=String.valueOf(codigoTipo);
+        
     }
 
     public String getNombreEmpleado() {
@@ -87,7 +119,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setNombreEmpleado(String nombreEmpleado) {
         this.nombreEmpleado = nombreEmpleado;
-        everything[2]=String.valueOf(nombreEmpleado);
+        
     }
 
     public String getApellidoEmpleado() {
@@ -96,7 +128,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setApellidoEmpleado(String apellidoEmpleado) {
         this.apellidoEmpleado = apellidoEmpleado;
-        everything[3]=String.valueOf(apellidoEmpleado);
+        
     }
 
     public Integer getTelefono() {
@@ -105,7 +137,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
-        everything[4]=String.valueOf(telefono);
+        
     }
 
     public String getCorreoEmpleado() {
@@ -114,7 +146,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correoEmpleado = correoEmpleado;
-        everything[5]=correoEmpleado;
+        
     }
 
     public String getContraseñaEmpleado() {
@@ -123,7 +155,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setContraseñaEmpleado(String contraseñaEmpleado) {
         this.contraseñaEmpleado = contraseñaEmpleado;
-        everything[6]=String.valueOf(contraseñaEmpleado);
+        
     }
 
     public String getDireccion() {
@@ -132,7 +164,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-        everything[7]=String.valueOf(direccion);
+        
     }
 
     public Integer getCodigoEstado() {
@@ -141,7 +173,7 @@ public class mtoUsuarios extends PEmpleado{
 
     public void setCodigoEstado(Integer codigoEstado) {
         this.codigoEstado = codigoEstado;
-        everything[8]=String.valueOf(codigoEstado);
+       
     }
 
     public String getDatoDocumento() {
@@ -295,8 +327,15 @@ public class mtoUsuarios extends PEmpleado{
     private String pregunta1;
     private String respuesta1;
     private String pregunta2;
-    private String respuesta2;
-    private String[] everything = new String[14];
+    private String respuesta2;  
+    
+    //atributos para Documentos Empleado
+    private Integer codigoDEE;
+    private Integer codigoDE;
+    private Integer codigoDD;
+    private String descrip;
+    
+            
     
     
     public mtoUsuarios(){
@@ -634,5 +673,79 @@ public class mtoUsuarios extends PEmpleado{
                 System.out.println(e.toString());
             }       
         return resp;              
+    }
+    
+    public boolean guardarDocumentoEmpleado(){
+        boolean resp=false;
+        try {
+            String sql2 ="SELECT idDocumento FROM documentoEmpleado WHERE idEmpleado="+codigoDE;
+            PreparedStatement cmd2 = cn.prepareStatement(sql2);
+            ResultSet ver2 = cmd2.executeQuery();
+            if (ver2.next()) {
+                if (ver2.getInt(1)==codigoDD) {
+                    JOptionPane.showMessageDialog(this,"Error ya existe este tipo de documento registrado a este empleado");
+                }else{
+                    String sql = "INSERT INTO documentoEmpleado(idDocumentoE , idDocumento, idEmpleado, descripcion) "
+                            + "VALUES((SELECT MAX(idDocumentoE) FROM documentoEmpleado )+1,?,?,?)";
+                    PreparedStatement cmd = cn.prepareStatement(sql);
+                    System.out.println("1: " + codigoDD);
+                    System.out.println("2: " + codigoDE);
+                    System.out.println("3: " + descrip);
+                    cmd.setInt(1, codigoDD);
+                    cmd.setInt(2, codigoDE);
+                    cmd.setString(3, descrip);
+
+                    if (!cmd.execute()) {
+                        resp = true;
+                    }
+                    cmd.close();
+                    cn.close();
+                }
+            }     
+        } catch (Exception e) {
+            System.out.println("Metodo");
+            System.out.println(e.toString());
+        }
+        return resp;
+    }
+    public boolean modificarDocumentoEmpleado(){
+        boolean resp=false;
+        try { 
+            String sql="UPDATE documentoEmpleado SET idDocumento=?,idEmpleado=?,descripcion=? WHERE idDocumentoE=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            System.out.println("1: " + codigoDD);
+            System.out.println("2: " + codigoDE);
+            System.out.println("3: " + descrip);
+            System.out.println("4: " + codigoDEE);
+            cmd.setInt(1,codigoDD);
+            cmd.setInt(2,codigoDE);
+            cmd.setString(3,descrip);
+            cmd.setInt(4,codigoDEE);
+            if (!cmd.execute()) {
+                resp=true;
+            }
+            cmd.close();
+            cn.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return resp;
+    }
+    
+    public boolean eliminarDocumentoEmpleado(){
+        boolean resp=false;
+        try {
+            String sql="DELETE FROM documentoEmpleado WHERE idDocumentoE=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setInt(1,codigoDEE);
+            if (!cmd.execute()) {
+                resp=true;
+            }
+            cmd.close();
+            cn.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return resp;
     }
 }

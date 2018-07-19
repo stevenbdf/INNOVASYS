@@ -40,11 +40,18 @@ public class PEmpleado extends javax.swing.JPanel {
      */
     DefaultListModel modeloLista = new DefaultListModel();
     
-    private void llenarList() {
+    private void llenarList(int tipo,String valores) {
         try {
-   
-            
-                String sql3 = "SELECT correoElectronico FROM usuarioEmpleado";
+            String sql3="";
+                switch(tipo){
+                    case 1:
+                        sql3 = "SELECT correoElectronico FROM usuarioEmpleado WHERE correoElectronico like '"+valores+"%'";
+                    break;
+                    default:
+                        sql3 = "SELECT correoElectronico FROM usuarioEmpleado";
+                    break;
+                }
+                
                 PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
                 ResultSet ver3 = cmd3.executeQuery();
                 while(ver3.next()){        
@@ -68,6 +75,7 @@ public class PEmpleado extends javax.swing.JPanel {
      */
     DefaultComboBoxModel modeloComboTipoUsuario;
     DefaultComboBoxModel modeloComboEstado;
+    DefaultComboBoxModel modeloComboDocumentos;
     /**
      * Llaves necesarias para la combinacion e incriptacion de claves
      */
@@ -77,18 +85,24 @@ public class PEmpleado extends javax.swing.JPanel {
      * Variables Generales utilizadas en el formulario
      */
     String cleartext = "";
-    String NombreE="",CodigoEstado="",NombreD="",CodigoDocumento="",DescripcionE="";
-    String CodigoEmpleado="";
+    String NombreE = "", CodigoEstado = "", NombreD = "", CodigoDocumento = "", DescripcionE = "";
+    String CodigoEmpleado = "";
+    String nombreEmpleadoDE = "",CodigoDocumentoDD;
     File fichero;
     String datos=String.valueOf(fichero);
     
     public PEmpleado() {
         
-        modeloTablaEstados= new DefaultTableModel(null, getColumnasEstado());setFilasEstado(0,"");
-        modeloTablaDocumentos= new DefaultTableModel(null, getColumnasDocumentos());setFilasDocumentos(0,"");
-        modeloTablaEmpleados=new DefaultTableModel(null,getColumnasEmpleado());setFilasEmpleado(0,"");
-        modeloTablaDocumentosEmpleados=new DefaultTableModel(null, getColumnasDocumentosEmpleados());setFilasDocumentosEmpleados(0,"");
+        modeloTablaEstados = new DefaultTableModel(null, getColumnasEstado());
+        setFilasEstado(0, "");
+        modeloTablaDocumentos = new DefaultTableModel(null, getColumnasDocumentos());
+        setFilasDocumentos(0, "");
+        modeloTablaEmpleados = new DefaultTableModel(null, getColumnasEmpleado());
+        setFilasEmpleado(0, "");
+        modeloTablaDocumentosEmpleados = new DefaultTableModel(null, getColumnasDocumentosEmpleados());
+
         modeloComboTipoUsuario = new DefaultComboBoxModel(new String[]{});
+        modeloComboDocumentos = new DefaultComboBoxModel(new String[]{});
         modeloComboEstado = new DefaultComboBoxModel(new String[]{});
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -96,13 +110,10 @@ public class PEmpleado extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
-        llenarList();
-        
-            
-      
-        
+        llenarList(0, "");
         llenaComboBoxTipoUsuario();
         llenaComboBoxEstado();
+        llenaComboBoxDocumentos();
         jTFBuscarEstado.setEnabled(false);
         jTFBuscarDocumento.setEnabled(false);
         jTFBuscarEmpleado.setEnabled(false);
@@ -118,6 +129,24 @@ public class PEmpleado extends javax.swing.JPanel {
             while (ver.next()) {
 
                 modeloComboTipoUsuario.addElement(ver.getObject("nombreTipo"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }
+    private void llenaComboBoxDocumentos() {
+        modeloComboDocumentos.removeAllElements();
+        try {
+
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "SELECT nombre FROM Documento";
+            PreparedStatement verDatos = con.conectar().prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();
+            while (ver.next()) {
+
+                modeloComboDocumentos.addElement(ver.getObject("nombre"));
             }
 
         } catch (SQLException ex) {
@@ -262,29 +291,25 @@ public class PEmpleado extends javax.swing.JPanel {
         }
     }
     
-    private void setFilasDocumentosEmpleados(int tipo,String valores) {
+    private void setFilasDocumentosEmpleados(int tipo, String valores) {
         try {
-            String sql="";
+            String sql = "";
             switch (tipo) {
-                //Codigo Empleado
                 case 1:
-                    sql = "";
-                    break;
-                //Nombre
-                case 2:
-                    sql = "";
+                    sql = "SELECT idDocumentoE,documento.nombre,usuarioEmpleado.nombres,descripcion"
+                            + " FROM documentoEmpleado, usuarioEmpleado, documento "
+                            + " WHERE documentoEmpleado.idEmpleado=usuarioEmpleado.idEmpleado AND documento.idDocumento=documentoEmpleado.idDocumento "
+                            + " AND correoElectronico='" + valores + "'";
                     break;
                 default:
-                    sql = "SELECT idDocumentoE,documento.nombre,descripcion,usuarioEmpleado.nombres "
+                    sql = "SELECT idDocumentoE,documento.nombre, usuarioEmpleado.nombres , descripcion "
                             + " FROM documentoEmpleado, usuarioEmpleado, documento "
                             + " WHERE documentoEmpleado.idEmpleado=usuarioEmpleado.idEmpleado AND documento.idDocumento=documentoEmpleado.idDocumento";
                     break;
             }
             PreparedStatement us = cn.conectar().prepareStatement(sql);
             ResultSet resultado = us.executeQuery();
-
             Object datos[] = new Object[4];
-
             while (resultado.next()) {
                 for (int i = 0; i < datos.length; i++) {
                     datos[i] = resultado.getObject(i + 1);
@@ -346,18 +371,21 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         btnEliminarEmpleado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        cmbEstado2 = new javax.swing.JComboBox<>();
+        cmbDocumento = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
-        jTFRespuesta3 = new javax.swing.JTextField();
+        jTFBuscarCorreo = new javax.swing.JTextField();
         btnAgregarEmpleado1 = new javax.swing.JButton();
         btnModificarEmpleado1 = new javax.swing.JButton();
         btnEliminarEmpleado1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel33 = new javax.swing.JLabel();
+        lblEmpleadoDE = new javax.swing.JLabel();
+        jTFDescripcionDE = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -611,12 +639,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado.setContentAreaFilled(false);
         btnAgregarEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleadoAncestorRemoved(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -723,31 +751,41 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmbEstado2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cmbEstado2.setModel(modeloComboEstado);
-        jPanel2.add(cmbEstado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
+        cmbDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cmbDocumento.setModel(modeloComboDocumentos);
+        jPanel2.add(cmbDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 120, 30));
 
         jLabel31.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("EMPLEADOS");
-        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 260, 30));
+        jLabel31.setText("Selecciona un empleado:");
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 220, 30));
 
         jTable4.setModel(modeloTablaDocumentosEmpleados);
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 325, 220));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 325, 230));
 
         jLabel32.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Descripcion:");
-        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, 30));
+        jLabel32.setText("Filtro:");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 40, 30));
 
-        jTFRespuesta3.setBackground(new java.awt.Color(204, 204, 204));
-        jTFRespuesta3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFRespuesta3.setToolTipText("");
-        jTFRespuesta3.setPreferredSize(new java.awt.Dimension(78, 30));
-        jPanel2.add(jTFRespuesta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 120, -1));
+        jTFBuscarCorreo.setBackground(new java.awt.Color(204, 204, 204));
+        jTFBuscarCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarCorreo.setToolTipText("");
+        jTFBuscarCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFBuscarCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarCorreoKeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTFBuscarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 140, -1));
 
         btnAgregarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
@@ -756,12 +794,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado1.setContentAreaFilled(false);
         btnAgregarEmpleado1.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleado1AncestorRemoved(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -777,7 +815,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnAgregarEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+        jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         btnModificarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
@@ -798,7 +836,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModificarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        jPanel2.add(btnModificarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
 
         btnEliminarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
@@ -819,17 +857,38 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnEliminarEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, -1, -1));
+        jPanel2.add(btnEliminarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, -1, -1));
 
         jList1.setModel(modeloLista);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jList1);
 
-        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 210, 220));
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 210, 190));
 
-        jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Documento:");
-        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 30));
+        lblEmpleadoDE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblEmpleadoDE.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpleadoDE.setText("Empleado:");
+        jPanel2.add(lblEmpleadoDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, 30));
+
+        jTFDescripcionDE.setBackground(new java.awt.Color(204, 204, 204));
+        jTFDescripcionDE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFDescripcionDE.setToolTipText("");
+        jTFDescripcionDE.setPreferredSize(new java.awt.Dimension(78, 30));
+        jPanel2.add(jTFDescripcionDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 120, -1));
+
+        jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Descripcion:");
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 30));
+
+        jLabel35.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Documento:");
+        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 30));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
@@ -1967,6 +2026,44 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnAgregarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1ActionPerformed
         // TODO add your handling code here:
+        if (jTFDescripcionDE.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this," Error campos vacios");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            Conexion cn = new Conexion();
+            try {
+                String sql = "SELECT idDocumento FROM documento WHERE nombre='" + String.valueOf(cmbDocumento.getSelectedItem()) + "'";
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    obj.setCodigoDD(ver.getInt(1));
+                }
+                
+                System.out.println("Correo: "+nombreEmpleadoDE);
+                String sql2 = "SELECT idEmpleado FROM usuarioEmpleado WHERE correoElectronico='" + nombreEmpleadoDE + "'";
+                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                ResultSet ver2 = cmd2.executeQuery();
+                if (ver2.next()) {
+                    obj.setCodigoDE(ver2.getInt(1));
+                }
+                
+                
+            } catch (Exception e) {
+                System.out.println("Boton");
+                System.out.println(e.toString());
+            }
+            obj.setDescrip(jTFDescripcionDE.getText());
+            if (obj.guardarDocumentoEmpleado()) {
+                JOptionPane.showMessageDialog(this,"Documento agregado correctamente al empleado: "+nombreEmpleadoDE);
+                int filas = modeloTablaDocumentosEmpleados.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentosEmpleados.removeRow(0);
+                }
+                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al guardar documentos");
+            }
+        }
     }//GEN-LAST:event_btnAgregarEmpleado1ActionPerformed
 
     private void btnModificarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1MouseEntered
@@ -1979,6 +2076,45 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnModificarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1ActionPerformed
         // TODO add your handling code here:
+        if (jTFDescripcionDE.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this," Error campos vacios");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            Conexion cn = new Conexion();
+            try {
+                String sql = "SELECT idDocumento FROM documento WHERE nombre='" + String.valueOf(cmbDocumento.getSelectedItem()) + "'";
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    obj.setCodigoDD(ver.getInt(1));
+                }
+                
+                System.out.println("Correo: "+nombreEmpleadoDE);
+                String sql2 = "SELECT idEmpleado FROM usuarioEmpleado WHERE correoElectronico='" + nombreEmpleadoDE + "'";
+                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                ResultSet ver2 = cmd2.executeQuery();
+                if (ver2.next()) {
+                    obj.setCodigoDE(ver2.getInt(1));
+                }
+                
+                
+            } catch (Exception e) {
+                System.out.println("Boton");
+                System.out.println(e.toString());
+            }
+            obj.setDescrip(jTFDescripcionDE.getText());
+            obj.setCodigoDEE(Integer.valueOf(CodigoDocumentoDD));
+            if (obj.modificarDocumentoEmpleado()) {
+                JOptionPane.showMessageDialog(this,"Documento modificado correctamente al empleado: "+nombreEmpleadoDE);
+                int filas = modeloTablaDocumentosEmpleados.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentosEmpleados.removeRow(0);
+                }
+                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al modificar documentos");
+            }
+        }
     }//GEN-LAST:event_btnModificarEmpleado1ActionPerformed
 
     private void btnEliminarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1MouseEntered
@@ -1991,7 +2127,51 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnEliminarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1ActionPerformed
         // TODO add your handling code here:
+        if (CodigoDocumentoDD.equals("")) {
+            JOptionPane.showMessageDialog(this,"Error selecciona un documento para eliminar");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setCodigoDEE(Integer.valueOf(CodigoDocumentoDD));
+            if (obj.eliminarDocumentoEmpleado()) {
+                JOptionPane.showMessageDialog(this,"Documento elminado");
+                int filas = modeloTablaDocumentosEmpleados.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentosEmpleados.removeRow(0);
+                }
+                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
+                cmbDocumento.setSelectedIndex(0);
+                jTFDescripcionDE.setText(null);
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al eliminar documento");
+            }
+        }
     }//GEN-LAST:event_btnEliminarEmpleado1ActionPerformed
+
+    private void jTFBuscarCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarCorreoKeyReleased
+        // TODO add your handling code here:
+        modeloLista.removeAllElements();
+        llenarList(1,jTFBuscarCorreo.getText());
+    }//GEN-LAST:event_jTFBuscarCorreoKeyReleased
+    
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        cmbDocumento.setEnabled(true);
+        int filas = modeloTablaDocumentosEmpleados.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaDocumentosEmpleados.removeRow(0);
+            }
+        setFilasDocumentosEmpleados(1,String.valueOf(jList1.getSelectedValue()));
+        nombreEmpleadoDE=String.valueOf(jList1.getSelectedValue());
+        lblEmpleadoDE.setText("Empleado: "+nombreEmpleadoDE);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        // TODO add your handling code here:
+        cmbDocumento.setEnabled(false);
+        CodigoDocumentoDD = String.valueOf(modeloTablaDocumentosEmpleados.getValueAt(jTable4.getSelectedRow(), (0)));
+        cmbDocumento.setSelectedItem(String.valueOf(modeloTablaDocumentosEmpleados.getValueAt(jTable4.getSelectedRow(), (1))));
+        jTFDescripcionDE.setText(String.valueOf(modeloTablaDocumentosEmpleados.getValueAt(jTable4.getSelectedRow(), (3))));
+    }//GEN-LAST:event_jTable4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2010,8 +2190,8 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnModificarE;
     private javax.swing.JButton btnModificarEmpleado;
     private javax.swing.JButton btnModificarEmpleado1;
+    private javax.swing.JComboBox<String> cmbDocumento;
     private javax.swing.JComboBox<String> cmbEstado;
-    private javax.swing.JComboBox<String> cmbEstado2;
     private javax.swing.JComboBox<String> cmbEstadoD;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JComboBox<String> cmdPregunta1;
@@ -2036,7 +2216,8 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2054,11 +2235,13 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTFApellido;
+    private javax.swing.JTextField jTFBuscarCorreo;
     private javax.swing.JTextField jTFBuscarDocumento;
     private javax.swing.JTextField jTFBuscarEmpleado;
     private javax.swing.JTextField jTFBuscarEstado;
     private javax.swing.JTextField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
+    private javax.swing.JTextField jTFDescripcionDE;
     private javax.swing.JTextField jTFDescripcionE;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFNombreD;
@@ -2066,7 +2249,6 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JTextField jTFNombreEmpleado;
     private javax.swing.JTextField jTFRespuesta1;
     private javax.swing.JTextField jTFRespuesta2;
-    private javax.swing.JTextField jTFRespuesta3;
     private javax.swing.JTextField jTFTelefono;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
@@ -2076,6 +2258,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel lblCodigoDocumento;
     private javax.swing.JLabel lblCodigoEmpleado;
     private javax.swing.JLabel lblCodigoEstado;
+    private javax.swing.JLabel lblEmpleadoDE;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JRadioButton rdCodigoDocumento;
     private javax.swing.JRadioButton rdCodigoEmpleado;
