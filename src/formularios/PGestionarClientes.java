@@ -26,6 +26,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
     *   @author Boris
     *   Llenado de tabla
     */
+    
+    /**
+     * TEST de PUSH 
+     *
+     */
     DefaultTableModel tbl_client;
     mtoClientes cli = new mtoClientes();
     verificaciones objeto = new verificaciones();
