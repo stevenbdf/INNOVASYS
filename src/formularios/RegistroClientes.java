@@ -659,7 +659,8 @@ public class RegistroClientes extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Error ya existe un cliente registrado con ese NIT");
                     } else if (ver.getString(3).equals(jTFCorreo.getText())) {
                         JOptionPane.showMessageDialog(this, "Error ya existe un cliente registrado con ese Correo Electronico");
-                    } else {
+                    } 
+                }else {
                         obj.setDui(Integer.valueOf(jTFDui.getText()));
                         BigInteger valor = new BigInteger(jTFNit.getText());
                         obj.setNit(valor);
@@ -689,7 +690,7 @@ public class RegistroClientes extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Cliente no guardado");
                         }
                     }
-                }
+                
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
