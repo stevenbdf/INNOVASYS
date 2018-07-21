@@ -11,15 +11,14 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import clases.mtoUsuarios;
 import clases.verificaciones;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author steven
  */
 public class Login1 extends javax.swing.JFrame {
+
 
     /**
      * Creates new form Login1
@@ -93,6 +92,11 @@ public class Login1 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Iniciar sesion");
         jLabel3.setToolTipText("");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, 36));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -438,12 +442,19 @@ public class Login1 extends javax.swing.JFrame {
     private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCorreoActionPerformed
-
+    
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-      
+
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jLabel3MouseClicked
+   
+    
     /**
      * @param args the command line arguments
      */
