@@ -331,7 +331,6 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
         verificaciones obj = new verificaciones();
         if (obj.vcorreo(jTFCorreo.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
@@ -345,7 +344,7 @@ public class Login1 extends javax.swing.JFrame {
                 if (objeto.consultarContraseña()) {
                     if (objeto.getContraseña().equals(jTFContraseña.getText())) {
                         JOptionPane.showMessageDialog(this, "Bienvenido");
-                        VentanaPrincipal2 ventana = new VentanaPrincipal2();
+                        VentanaPrincipal2 ventana = new VentanaPrincipal2(jTFCorreo.getText());
                         ventana.show();
                         Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
                         this.hide();
