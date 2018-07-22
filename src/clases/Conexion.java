@@ -7,13 +7,14 @@ package clases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author steve
  */
 public class Conexion {
-
+    
     public Connection conectar() {
         Connection cn = null;
         try {
@@ -31,7 +32,9 @@ public class Conexion {
             cn = DriverManager.getConnection("jdbc:sqlserver://den1.mssql6.gear.host;databaseName=dbinnovasys;user=dbinnovasys;password=FCBarcelona123@;");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        } 
         return cn;
+  
     }
+    
 }

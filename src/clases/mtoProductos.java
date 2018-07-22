@@ -5,9 +5,17 @@
  */
 package clases;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -150,8 +158,12 @@ public class mtoProductos {
     private Integer codigoProveedor;
     private Integer codigoCategoria;
     
+    
+    File dest;
+    File source;
     public boolean guardarCategoria(){
         boolean retorno=false;
+        
         try {
             String sql ="INSERT INTO categoriaProducto(idCategoria,nombreCategoria, descripcion, visualizacion_3D) "
                     + "VALUES ((SELECT MAX(idCategoria) FROM categoriaProducto)+1,?,?,?)";
@@ -162,8 +174,7 @@ public class mtoProductos {
             if (!cmd.execute()) {
                 retorno=true;
             }
-           cmd.close();
-           cn.close();
+           
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -182,14 +193,14 @@ public class mtoProductos {
             if (!cmd.execute()) {
                 retorno=true;
             }
-            cmd.close();
-            cn.close();
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return retorno;
     }
-    public boolean elminarCategoria(){
+    
+    public boolean eliminarCategoria(){
         boolean retorno=false;
         try {
            String sql="DELETE FROM categoriaProducto WHERE idCategoria=?";
@@ -198,8 +209,7 @@ public class mtoProductos {
             if (!cmd.execute()) {
                 retorno=true;
             }
-            cmd.close();
-            cn.close();
+            
             
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -244,7 +254,8 @@ public class mtoProductos {
                         }
 
                 model.addRow(dato);
-            }         
+            }
+           
         }
         catch(Exception ex){
                 System.out.println(ex.toString());
@@ -252,41 +263,85 @@ public class mtoProductos {
         return model;
     }
     
+    public DefaultComboBoxModel llenarComboCategoria(DefaultComboBoxModel modelo) {
+        modelo.removeAllElements();
+        try {
+
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "SELECT nombreCategoria FROM categoriaProducto";
+            PreparedStatement verDatos = cn.prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();
+            while (ver.next()) {
+
+                modelo.addElement(ver.getObject("nombreCategoria"));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+        return modelo;
+    }
+    
+    public DefaultComboBoxModel llenarComboProveedor(DefaultComboBoxModel modelo) {
+        modelo.removeAllElements();
+        try {
+
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "SELECT nombreProveedor FROM proveedor";
+            PreparedStatement verDatos = cn.prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();
+            while (ver.next()) {
+
+                modelo.addElement(ver.getObject("nombreProveedor"));
+            }
+           
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+        return modelo;
+    }
+ 
+    
     public DefaultTableModel setFilasProductos(DefaultTableModel  model, int tipo, String valores)
     {
-        //Modificar esto
+     //Modificar esto
         try{
-        String sql="";
-        switch(tipo){
-            case 1:
-                sql="SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE idProducto like '"+valores+"%'";
-                break;
-            case 2:
-                sql="SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '"+valores+"%'";
-                break;
-            case 3:
-                sql="SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '"+valores+"%'";
-                break;
-            default:
-                System.out.println("AQUI");
-                sql="SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
-                break;
-        }
-        Object dato[] = new Object[5];
-            Conexion con = new Conexion();
-            PreparedStatement us = con.conectar().prepareStatement(sql);
-            ResultSet res = us.executeQuery();
-            
-            while(res.next()){
-                for(int i =0;i<dato.length;i++)
-                {
-                        
-                        dato[i] = res.getObject(i+1);  
-                        System.out.println("Dato; "+dato[i]);
+                  
+                String sql = "";
+                switch (tipo) {
+                    case 1:
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE idProducto like '" + valores + "%'";
+                        break;
+                    case 2:
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '" + valores + "%'";
+                        break;
+                    case 3:
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '" + valores + "%'";
+                        break;
+                    default:
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
+                        break;
                 }
+                Object dato[] = new Object[5];
+                Conexion con = new Conexion();
+                PreparedStatement us = cn.prepareStatement(sql);
+                ResultSet res = us.executeQuery();
 
-                model.addRow(dato);
-            }      
+                while (res.next()) {
+                    for (int i = 0; i < dato.length; i++) {
+
+                        dato[i] = res.getObject(i + 1);
+                        System.out.println("Dato; " + dato[i]);
+                    }
+
+                    model.addRow(dato);
+
+                }
+                
+                
+                 
         }
         catch(Exception ex){
  
@@ -294,6 +349,7 @@ public class mtoProductos {
         } 
         return model;
     }
+    
     public String[] getColumnasProducto()
     {
         String columna[] = {"CODIGO","NOMBRE","DESCRIPCION", "PROVEEDOR","CATEGORIA"};
@@ -305,6 +361,8 @@ public class mtoProductos {
         String columna[] = {"CODIGO","NOMBRE","DESCRIPCION", "3D"};
         return columna;
     }
+    
+    
     
     public boolean guardarProducto(){
         boolean retorno=false;
@@ -319,9 +377,9 @@ public class mtoProductos {
             cmd.setInt(5,codigoCategoria);
             if (!cmd.execute()) {
                 retorno=true;
+   
             }
-            cmd.close();
-            cn.close();
+            
             
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -343,8 +401,7 @@ public class mtoProductos {
             if (!cmd.execute()) {
                 retorno=true;
             }
-            cmd.close();
-            cn.close();
+            
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -360,8 +417,7 @@ public class mtoProductos {
             if (!cmd.execute()) {
                 retorno=true;
             }
-            cmd.close();
-            cn.close();
+            
         } catch (Exception e) {
             System.out.println(e.toString());
         }

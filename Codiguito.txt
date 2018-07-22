@@ -1,0 +1,24 @@
+//Como sacarlo
+FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos JPG", "JPG");
+        Archivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        Archivos.setFileFilter(filtro);
+        int resultado = Archivos.showOpenDialog(this);
+        source = Archivos.getSelectedFile();
+        if(Archivos!=null)
+        {
+            iconF = new ImageIcon(source.toString());
+            Image image = iconF.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(150, 150,  java.awt.Image.SCALE_SMOOTH);
+            lbl_img.setIcon(iconF);
+        }
+
+
+File dest;
+File source;
+//URL de destino
+dest = new File("C:\\Users\\Susy francelia\\Documents\\NetBeansProjects\\Prueba1\\img\\img"+(id+1)+".jpg");
+try {
+    copyFile(source, dest);
+} catch (IOException ex) {
+    Logger.getLogger(Ejemplo1.class.getName()).log(Level.SEVERE, null, ex);
+}
