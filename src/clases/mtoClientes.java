@@ -9,6 +9,8 @@ import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -285,8 +287,11 @@ public class mtoClientes extends RegistroClientes{
     public boolean guardarCliente(){
         boolean valor=false;
             try {
+            Date now = new Date(System.currentTimeMillis());
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                
             String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contraseña, preguntaSeguridad1, preguntaSeguridad2, telefono, "
-                    + "RespuestaSeguridad1, RespuestaSeguridad2) VALUES ((SELECT MAX(idCliente) FROM cliente)+1,?,?,?,?,"+nit+",?,?,?,?,?,?,?)";
+                    + " RespuestaSeguridad1, RespuestaSeguridad2, fechaRegistro) VALUES ((SELECT MAX(idCliente) FROM cliente)+1,?,?,?,?,"+nit+",?,?,?,?,?,?,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreCliente);
             cmd.setString(2,apellidoCliente);
@@ -298,7 +303,8 @@ public class mtoClientes extends RegistroClientes{
             cmd.setString(8,pregunta2);
             cmd.setInt(9,telefono);
             cmd.setString(10,respuesta1);
-            cmd.setString(11,respuesta2);           
+            cmd.setString(11,respuesta2);
+            cmd.setString(12,date.format(now));
             if (!cmd.execute()) {
                 valor=true;
             }

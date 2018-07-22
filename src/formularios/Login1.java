@@ -11,13 +11,14 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import clases.mtoUsuarios;
 import clases.verificaciones;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author steven
  */
 public class Login1 extends javax.swing.JFrame {
+
 
     /**
      * Creates new form Login1
@@ -79,6 +80,11 @@ public class Login1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Innovasys");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 36));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -86,6 +92,11 @@ public class Login1 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Iniciar sesion");
         jLabel3.setToolTipText("");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, 36));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -320,7 +331,6 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
         verificaciones obj = new verificaciones();
         if (obj.vcorreo(jTFCorreo.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
@@ -334,7 +344,7 @@ public class Login1 extends javax.swing.JFrame {
                 if (objeto.consultarContraseña()) {
                     if (objeto.getContraseña().equals(jTFContraseña.getText())) {
                         JOptionPane.showMessageDialog(this, "Bienvenido");
-                        VentanaPrincipal2 ventana = new VentanaPrincipal2();
+                        VentanaPrincipal2 ventana = new VentanaPrincipal2(jTFCorreo.getText());
                         ventana.show();
                         Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
                         this.hide();
@@ -431,7 +441,19 @@ public class Login1 extends javax.swing.JFrame {
     private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCorreoActionPerformed
+    
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
 
+        
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jLabel3MouseClicked
+   
+    
     /**
      * @param args the command line arguments
      */

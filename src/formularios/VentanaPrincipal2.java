@@ -14,27 +14,72 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import java.util.Scanner;
 import clases.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 /**
  *
  * @author steve
  */
 public class VentanaPrincipal2 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal2
-     */
-    public VentanaPrincipal2() {
+    
+    
+    Integer dia,diames, mes, año, tipoU;
+    public VentanaPrincipal2(String correo) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
 //		catch (Exception e) {
 //		}
         initComponents();
+        timer.start();
+        obtenerFecha();
+        
+        try {
+            Conexion cn = new Conexion();
+            String sql ="SELECT nombres, apellidos, idTipo FROM usuarioEmpleado WHERE correoElectronico='"+correo+"'";
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet look = cmd.executeQuery();
+            if (look.next()) {
+                jblnombre.setText(look.getString(1));
+                apellido2.setText(look.getString(2));
+                tipoU=look.getInt(3);
+                System.out.println("tipo U1:"+tipoU);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         PanelPrincipal.setVisible(false);
+        Inventario.setVisible(false);
+        ConstruirEquipo.setVisible(false);
+        Presupuesto.setVisible(false);
+        Productos.setVisible(false);
+        Ordenes.setVisible(false);
+        CajaRegistradora.setVisible(false);
+        Ventas.setVisible(false);
+        ChatCenter.setVisible(false);
+        Empresa.setVisible(false);
+        Ventas.setVisible(false);
+        Bitacoras.setVisible(false);
+        Clientes.setVisible(false);
+        Proveedores.setVisible(false);
+        Empleados.setVisible(false);
+        TipoUsuario1.setVisible(false);
+        Productos.setVisible(false);
+        definirPrivilegios();              
+        
+        
         setLocationRelativeTo(null);
         
         Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
@@ -175,11 +220,13 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         fecha1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         fecha1.setForeground(new java.awt.Color(255, 255, 255));
+        fecha1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fecha1.setText("VIERNES");
         jPanel2.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         fecha2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         fecha2.setForeground(new java.awt.Color(255, 255, 255));
+        fecha2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fecha2.setText("23 JUNIO");
         jPanel2.add(fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
@@ -188,13 +235,15 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         fecha3.setText("2018");
         jPanel2.add(fecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, -1, -1));
 
-        jblnombre.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jblnombre.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
         jblnombre.setForeground(new java.awt.Color(255, 255, 255));
+        jblnombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblnombre.setText("Steven");
-        jPanel2.add(jblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel2.add(jblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         hora.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         hora.setForeground(new java.awt.Color(255, 255, 255));
+        hora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hora.setText("18:35pm");
         jPanel2.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
@@ -233,10 +282,11 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         });
         jPanel2.add(Proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 55, 70, 70));
 
-        apellido2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        apellido2.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
         apellido2.setForeground(new java.awt.Color(255, 255, 255));
+        apellido2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         apellido2.setText("Diaz");
-        jPanel2.add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        jPanel2.add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         Empleados.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         Empleados.setForeground(new java.awt.Color(204, 204, 204));
@@ -551,21 +601,178 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void obtenerFecha(){
+        Calendar calendario = Calendar.getInstance();
+        dia=(calendario.get(Calendar.DAY_OF_WEEK));
+        diames=(calendario.get(Calendar.DAY_OF_MONTH));
+        mes=(calendario.get(Calendar.MONTH)+1);
+        año=(calendario.get(Calendar.YEAR));
+        
+        switch (dia-1){
+            case 1:
+                fecha1.setText("Lunes");
+                break;
+            case 2:
+                fecha1.setText("Martes");
+                break;
+            case 3:
+                fecha1.setText("Miercoles");
+                break;
+            case 4:
+                fecha1.setText("Jueves");
+                break;
+            case 5:
+                fecha1.setText("Viernes");
+                break;
+            case 6:
+                fecha1.setText("Sabado");
+                break;
+            case 7:
+                fecha1.setText("Domingo");
+                break;
+        }
+        
+        switch (mes){
+            case 1:
+                fecha1.setText(diames+"Enero");
+                break;
+            case 2:
+                fecha2.setText(diames+"Febrero");
+                break;
+            case 3:
+                fecha2.setText(diames+"Marzo");
+                break;
+            case 4:
+                fecha2.setText(diames+"Abril");
+                break;
+            case 5:
+                fecha2.setText(diames+"Mayo");
+                break;
+            case 6:
+                fecha2.setText(diames+"Junio");
+                break;
+            case 7:
+                fecha2.setText(diames+"Julio");
+                break;
+            case 8:
+                fecha2.setText(diames+"Agosto");
+                break;
+            case 9:
+                fecha2.setText(diames+"Septiembre");
+                break;
+            case 10:
+                fecha2.setText(diames+"Octubre");
+                break;
+            case 11:
+                fecha2.setText(diames+"Noviembre");
+                break;
+            case 12:
+                fecha2.setText(diames+"Diciembre");
+                break;  
+        }      
+        fecha3.setText(""+año);
+    }
+    
+    Boolean[] valores = new Boolean[16];
+    
+    private void definirPrivilegios(){
+        Conexion cn = new Conexion();
+        for (int i = 0; i < valores.length; i++) {
+            valores[i] = false;
+        }
+        try {
+            String sql = "SELECT verInventario, construirEquipo, verProductos, solicitarAyuda, verOrdenesCola, verCajaVirtual, verVentasUuario, chatCenter, cambiarDatosEmpresa, gestionarVentas, gestionarBitacoras, gestionarClientes,gestionarProveedores, gestionarEmpleados, gestionarProductos, gestionarInventario FROM privilegio, tipoUsuario WHERE idTipo=? AND tipoUsuario.idPrivilegio=privilegio.idPrivilegio ";   
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            System.out.println("tipoU: "+tipoU);
+            cmd.setInt(1,tipoU);
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()) {
+                for (int i = 0; i < valores.length; i++) {
+                    if (rs.getByte(i+1)==1) {
+                       valores[i] =  true;
+                    }
+                    else{
+                        valores[i]= false;
+                    }
+                }
+            }
+            
+            
+            for (int i = 0; i <valores.length; i++) {
+                if (valores[i]==true) {
+                   
+                    switch (i) {
+                        case 0:
+                            Inventario.setVisible(true);
+                            break;
+                        case 1:
+                            ConstruirEquipo.setVisible(true);
+                            Presupuesto.setVisible(true);
+                            break;
+                        case 2:
+                            Productos.setVisible(true);
+                            break;
+                        case 4:
+                            Ordenes.setVisible(true);
+                            break;
+                        case 5:
+                            CajaRegistradora.setVisible(true);
+                            break;
+                        case 6:
+                            Ventas.setVisible(true);
+                            break;
+                        case 7:
+                            ChatCenter.setVisible(true);
+                            break;
+                        case 8:
+                            Empresa.setVisible(true);
+                            break;
+                        case 9:
+                            Ventas.setVisible(true);
+                            break;
+                        case 10:
+                            Bitacoras.setVisible(true);
+                            break;
+                        case 11:
+                            Clientes.setVisible(true);
+                            break;
+                        case 12:
+                            Proveedores.setVisible(true);
+                            break;
+                        case 13:
+                            Empleados.setVisible(true);
+                            TipoUsuario1.setVisible(true);
+                            break;
+                        case 14:
+                            Productos.setVisible(true);
+                            break;
+                        default:
+                           
+                            break;
+                    }
+ 
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         //1
         AnimationClass nombre = new AnimationClass();
-        nombre.jLabelXLeft(40, -120,15, 5, jblnombre);
+        nombre.jLabelXLeft(20, -120,15, 5, jblnombre);
         
         
         AnimationClass nombre2 = new AnimationClass();
-        nombre2.jLabelXRight(-120, 40,15, 5, jblnombre);
+        nombre2.jLabelXRight(-120, 20,15, 5, jblnombre);
         
         AnimationClass apellido = new AnimationClass();
-        apellido.jLabelXLeft(40, -120,10, 5, apellido2);
+        apellido.jLabelXLeft(20, -120,10, 5, apellido2);
         
         AnimationClass apellidoo = new AnimationClass();
-        apellidoo.jLabelXRight(-120, 40,10, 5, apellido2);
+        apellidoo.jLabelXRight(-120, 20,10, 5, apellido2);
         
         AnimationClass hora1 = new AnimationClass();
         hora1.jLabelXLeft(30, -150,10, 5, hora);
@@ -674,9 +881,40 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         
         AnimationClass ordeness = new AnimationClass();
         ordeness.jLabelXLeft(110,-70,10, 5,Ordenes);
+        
+        if (condicion==0) {
+            condicion=1;
+            timer.stop();
+        }else if (condicion==1) {
+            condicion=0;
+            timer.start();
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
+    int condicion=0;
+    int horas, minutos, segundos;
+    String minsR,secR;
+    Timer timer = new Timer (1000, new ActionListener () 
+    { 
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        { 
+            Calendar calendario = Calendar.getInstance();
+            horas = calendario.get(Calendar.HOUR_OF_DAY);
+            minutos = calendario.get(Calendar.MINUTE);
+            segundos = calendario.get(Calendar.SECOND);
+//            if (minutos<10) {
+//                minsR="0"+minutos;
+//            }
+//            if (segundos<10){
+//                secR="0"+segundos;
+//            }
+            hora.setText(horas + ":" + minutos + ":" + segundos);         
+         } 
 
+    }); 
+    
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        timer.stop();
         this.hide();
         Login1 login = new Login1();
         login.show();
@@ -1194,7 +1432,8 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal2().setVisible(true);
+                new VentanaPrincipal2("stevenbdf@gmail.com").setVisible(true);
+                
             }
         });
     }
