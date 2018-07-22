@@ -6,7 +6,7 @@
 package formularios;
 
 import javax.swing.UIManager;
-
+import clases.verificaciones;
 /**
  *
  * @author steve
@@ -16,6 +16,7 @@ public class PChatCenter extends javax.swing.JPanel {
     /**
      * Creates new form PChatCenter
      */
+    verificaciones verificar = new verificaciones();
     public PChatCenter() {
 //        try {
 //			
@@ -80,6 +81,11 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 33, 123, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -113,6 +119,11 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextArea1KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 372, 382, 62));
@@ -319,6 +330,30 @@ public class PChatCenter extends javax.swing.JPanel {
         // TODO add your handling code here:
         jButton2.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton2MouseExited
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField1.getText().length() < 20)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextArea1.getText().length() < 200)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextArea1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

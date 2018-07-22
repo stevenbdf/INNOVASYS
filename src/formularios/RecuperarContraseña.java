@@ -150,7 +150,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vletrasynumeros(vchar) == true
+        if (verificar.vcorreoevent(vchar) == true
                 && (jTextField1.getText().length() < 40)) {
 
         } else {

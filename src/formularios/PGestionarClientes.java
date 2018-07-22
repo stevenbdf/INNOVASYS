@@ -22,6 +22,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
     /**
      * Creates new form PGestionarClientes
      */
+    verificaciones verificar = new verificaciones();
     /*
     *   @author Boris
     *   Llenado de tabla
@@ -76,6 +77,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -111,6 +113,9 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField8KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
             }
         });
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 100, 30));
@@ -191,6 +196,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
 
         jDateChooser2.setDateFormatString("yyyy-MM-dd");
         add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 30));
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -258,9 +264,22 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //        jDateChooser2.setDate(objeto.StringADate("2018-01-01"));
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextField8.getText().length() <11 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
