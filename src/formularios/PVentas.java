@@ -6,6 +6,8 @@
 package formularios;
 
 import clases.verificaciones;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
@@ -26,6 +28,9 @@ public class PVentas extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
     }
 
     /**
@@ -66,6 +71,7 @@ public class PVentas extends javax.swing.JPanel {
         jTextField10 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -267,7 +273,7 @@ public class PVentas extends javax.swing.JPanel {
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,6 +309,22 @@ public class PVentas extends javax.swing.JPanel {
         jLabel20.setForeground(new java.awt.Color(153, 0, 153));
         jLabel20.setText("Gestion de Ventas");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
@@ -371,6 +393,20 @@ public class PVentas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField8KeyTyped
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(17);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
@@ -402,5 +438,6 @@ public class PVentas extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblhelp;
     // End of variables declaration//GEN-END:variables
 }
