@@ -6,6 +6,8 @@
 package formularios;
 
 import clases.verificaciones;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
@@ -25,6 +27,9 @@ public class PPresupuesto extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
     }
 
     /**
@@ -68,6 +73,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jTextField14 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -327,6 +333,22 @@ public class PPresupuesto extends javax.swing.JPanel {
             }
         });
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -462,6 +484,20 @@ public class PPresupuesto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField10KeyTyped
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(13);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -496,5 +532,6 @@ public class PPresupuesto extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblhelp;
     // End of variables declaration//GEN-END:variables
 }

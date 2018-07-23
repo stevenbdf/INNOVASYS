@@ -50,6 +50,11 @@ public class PProductos extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
+       lblhelp1.setIcon(icono0);
+        
         modeloComboCategoria = new DefaultComboBoxModel(new String[]{});
         cmbCategoria.setModel(productos.llenarComboCategoria(modeloComboCategoria));
         
@@ -100,6 +105,7 @@ public class PProductos extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblCodigoC = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
@@ -121,6 +127,7 @@ public class PProductos extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        lblhelp1 = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -359,6 +366,22 @@ public class PProductos extends javax.swing.JPanel {
         lblFoto.setText("jLabel1");
         jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 130, 130));
 
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
+
         jTabbedPane1.addTab("Gestion de Productos", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -533,6 +556,22 @@ public class PProductos extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 90, -1));
+
+        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelp1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelp1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 25, 25));
 
         jTabbedPane1.addTab("Gestion de Categorias", jPanel2);
 
@@ -943,6 +982,34 @@ public class PProductos extends javax.swing.JPanel {
         }    
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(14);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
+    private void lblhelp1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelp1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelp1AncestorAdded
+
+    private void lblhelp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelp1MouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(14);
+        form.show();
+    }//GEN-LAST:event_lblhelp1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -990,6 +1057,8 @@ public class PProductos extends javax.swing.JPanel {
     private javax.swing.JLabel lblCodigoP;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblhelp;
+    private javax.swing.JLabel lblhelp1;
     private javax.swing.JRadioButton rdCodigoC;
     private javax.swing.JRadioButton rdNo;
     private javax.swing.JRadioButton rdNombreC;

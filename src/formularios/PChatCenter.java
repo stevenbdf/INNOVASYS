@@ -7,6 +7,8 @@ package formularios;
 
 import javax.swing.UIManager;
 import clases.verificaciones;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author steve
@@ -25,6 +27,9 @@ public class PChatCenter extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
     }
 
     /**
@@ -54,6 +59,7 @@ public class PChatCenter extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -202,6 +208,21 @@ public class PChatCenter extends javax.swing.JPanel {
             }
         });
 
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -209,7 +230,9 @@ public class PChatCenter extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(133, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(88, 88, 88)
+                .addGap(53, 53, 53)
+                .addComponent(lblhelp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addContainerGap())
         );
@@ -220,7 +243,9 @@ public class PChatCenter extends javax.swing.JPanel {
                 .addComponent(jLabel10)
                 .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel11)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblhelp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -355,6 +380,20 @@ public class PChatCenter extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextArea1KeyTyped
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(3);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -383,5 +422,6 @@ public class PChatCenter extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblhelp;
     // End of variables declaration//GEN-END:variables
 }
