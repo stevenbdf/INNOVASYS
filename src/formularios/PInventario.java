@@ -42,6 +42,22 @@ public class PInventario extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jTextField9 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
+        jLabel17 = new javax.swing.JLabel();
+        lblhelp1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -71,22 +87,6 @@ public class PInventario extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
         lblhelp2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField9 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
-        jLabel17 = new javax.swing.JLabel();
-        lblhelp1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,6 +95,114 @@ public class PInventario extends javax.swing.JPanel {
         jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         jTabbedPane2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(680, 500));
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Fecha Min:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 26, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Fecha Max:");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 88, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Precio compra:");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Stock Min:");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+
+        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setText("Mas alto");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setText("Mas bajo");
+        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
+
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+        jPanel4.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
+
+        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Buscar");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton4.setContentAreaFilled(false);
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, 651, 291));
+
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Generar reporte");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton5.setContentAreaFilled(false);
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 430, -1, 30));
+        jPanel4.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, 30));
+        jPanel4.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 30));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelp1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelp1MouseClicked(evt);
+            }
+        });
+        jPanel4.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 25, 25));
+
+        jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
@@ -286,17 +394,7 @@ public class PInventario extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 117, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(modeloTablaInventario);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 238, 616, 210));
@@ -343,114 +441,6 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(lblhelp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
 
         jTabbedPane2.addTab("Gestionar Inventario", jPanel3);
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
-        jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Fecha Min:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 26, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Fecha Max:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 88, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Precio compra:");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Stock Min:");
-        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
-
-        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Mas alto");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
-
-        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Mas bajo");
-        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
-
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
-            }
-        });
-        jPanel4.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
-
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Buscar");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton4.setContentAreaFilled(false);
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, 651, 291));
-
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Generar reporte");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton5.setContentAreaFilled(false);
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 430, -1, 30));
-        jPanel4.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, 30));
-        jPanel4.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 30));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
-            }
-        });
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-
-        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelp1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelp1MouseClicked(evt);
-            }
-        });
-        jPanel4.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 25, 25));
-
-        jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
         jPanel1.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 

@@ -5,10 +5,19 @@
  */
 package formularios;
 
+import clases.Conexion;
+import clases.mtoUsuarios;
 import clases.verificaciones;
 import java.awt.Image;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +25,15 @@ import javax.swing.UIManager;
  */
 public class PProveedores extends javax.swing.JPanel {
 
+    Conexion con = new Conexion();
+    DefaultTableModel modeloTablaProveedores;
     /**
      * Creates new form PProveedores
      */
     verificaciones verificar = new verificaciones();
     public PProveedores() {
+         modeloTablaProveedores= new DefaultTableModel(null, getColumnasProveedores());
+         setFilas();
 //         try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
@@ -30,6 +43,66 @@ public class PProveedores extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+    }
+    private String[] getColumnasProveedores() {
+        String columnas[] = new String[]{"ID PROVEEDOR", "NOMBRE", "DIRECCION", "TELEFONO", "FAX", "CORREO", "ESTADO"};
+        return columnas;
+    }
+    private void setFilas() {
+        try {
+            String consulta = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado FROM proveedor";
+
+            PreparedStatement us = con.conectar().prepareStatement(consulta);
+            ResultSet res = us.executeQuery();
+
+            Object datos[] = new Object[7];
+
+            while (res.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                modeloTablaProveedores.addRow(datos);
+            }
+            res.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PProveedores.class.getName()).log(Level.SEVERE,null,ex);
+        }
+
+    }
+    private void setFilasP(int tipo,String valores) {
+        try {
+            String sql="";
+            switch (tipo) {
+                //Codigo Empleado
+                case 1:
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
+                            + "FROM proveedor WHERE idProveedor like '"+valores+"%'";
+                    break;
+                //Nombre
+                case 2:
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
+                            + "FROM proveedor WHERE nombreProveedor like '"+valores+"%'";
+                    break;
+                default:
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
+                            + "FROM proveedor "
+                            + "WHERE idProveedor>0";
+                    break;
+            }
+            PreparedStatement us = con.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[7];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaProveedores.addRow(datos);
+            }
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -43,10 +116,10 @@ public class PProveedores extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jTFBuscarP = new javax.swing.JTextField();
+        rdNombreP = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdCodigoP = new javax.swing.JRadioButton();
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -63,55 +136,63 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jTable1.setModel(modeloTablaProveedores);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
-        ));
+        });
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 315, 200));
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFBuscarP.setBackground(new java.awt.Color(204, 204, 204));
+        jTFBuscarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarPKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                jTFBuscarPKeyTyped(evt);
             }
         });
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 110, 30));
+        add(jTFBuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 110, 30));
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Nombre");
-        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 65, -1, -1));
+        rdNombreP.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombreP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        rdNombreP.setForeground(new java.awt.Color(255, 255, 255));
+        rdNombreP.setText("Nombre");
+        rdNombreP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombrePActionPerformed(evt);
+            }
+        });
+        add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 65, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Buscar:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, 20));
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Codigo");
-        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 65, -1, -1));
+        rdCodigoP.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigoP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        rdCodigoP.setForeground(new java.awt.Color(255, 255, 255));
+        rdCodigoP.setText("Codigo");
+        rdCodigoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCodigoPActionPerformed(evt);
+            }
+        });
+        add(rdCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 65, -1, -1));
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -176,6 +257,11 @@ public class PProveedores extends javax.swing.JPanel {
                 jButton5MouseExited(evt);
             }
         });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 90, -1));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -190,6 +276,11 @@ public class PProveedores extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
         add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
@@ -250,15 +341,6 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel1.setText("Gestion de los Proveedores");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 31));
 
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
-            }
-        });
-        add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 155, 30));
-
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Estado:");
@@ -273,12 +355,12 @@ public class PProveedores extends javax.swing.JPanel {
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -287,6 +369,9 @@ public class PProveedores extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Activo", "Inactivo" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -395,29 +480,17 @@ public class PProveedores extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField7KeyTyped
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vletras(vchar) == true
-                && (jTextField8.getText().length() < 20)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField8KeyTyped
-
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+    private void jTFBuscarPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarPKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTextField7.getText().length() < 10)) {
+                && (jTextField7.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField4KeyTyped
+    }//GEN-LAST:event_jTFBuscarPKeyTyped
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
@@ -434,11 +507,161 @@ public class PProveedores extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        verificaciones obj = new verificaciones();      
+        mtoUsuarios objeto = new mtoUsuarios();
+//        objeto.consultasRandom();
+        if(!(jTextField3.getText().isEmpty()&&jTextField2.getText().isEmpty()
+            &&jTextField7.getText().isEmpty()&&jTextField6.getText().isEmpty()
+            &&jTextField5.getText().isEmpty()&&jTextField1.getText().isEmpty())){
+                objeto.setNombreP(String.valueOf(jTextField3.getText()));
+                objeto.setTelefonoP(Integer.valueOf(jTextField2.getText()));
+                objeto.setCorreoP(String.valueOf(jTextField7.getText()));
+                objeto.setFaxP(Integer.valueOf(jTextField6.getText()));
+                objeto.setDireccionP(String.valueOf(jTextField5.getText()));
+                String texto= String.valueOf(jComboBox1.getSelectedItem());
+                
+            if(jTextField1.getText().isEmpty()){
+                
+                if (texto=="Activo") {
+                   objeto.setEstadoP(1);
+                   if(objeto.guardarProveedor()){
+                        JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                        setFilas();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error al agregar");
+                    }
+                }else if (texto=="Inactivo") {
+                    objeto.setEstadoP(0);
+                    if(objeto.guardarProveedor()){
+                        JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                        setFilas();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error al agrgar");
+                    }
+                
+                }else{
+                        JOptionPane.showMessageDialog(this,"Seleccione un estado de el proveedor");
+                    }
+                
+            }else{
+                objeto.setIdP(Integer.valueOf(jTextField1.getText()));
+                    if(objeto.checkProveedor()){
+                    JOptionPane.showMessageDialog(this, "Ya existe ese usuario registrado");
+                }else{
+                    if (texto=="Activo") {
+                       objeto.setEstadoP(1);
+                       if(objeto.guardarProveedor()){
+                            JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                            setFilas();
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error al agregar");
+                        }
+                    }else if (texto=="Inactivo") {
+                        objeto.setEstadoP(0);
+                        if(objeto.guardarProveedor()){
+                            JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                            setFilas();
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error al agrgar");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Seleccione un estado de el proveedor");
+                    }
+            }
+            }   
+          
+        }else{
+                JOptionPane.showMessageDialog(this,"Ingrese todos los datos");
+            }
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        
+        verificaciones obj = new verificaciones();      
+        mtoUsuarios objeto = new mtoUsuarios();
+        objeto.setNombreP(String.valueOf(jTextField3.getText()));
+        objeto.setTelefonoP(Integer.valueOf(jTextField2.getText()));
+        objeto.setCorreoP(String.valueOf(jTextField7.getText()));
+        objeto.setFaxP(Integer.valueOf(jTextField6.getText()));
+        objeto.setDireccionP(String.valueOf(jTextField5.getText()));
+        String texto= String.valueOf(jComboBox1.getSelectedItem());
+        objeto.setIdP(Integer.valueOf(jTextField1.getText()));
+        
+            if (texto=="Activo") {
+               objeto.setEstadoP(1);
+               if(objeto.modificarProveedor()){
+                    JOptionPane.showMessageDialog(this, "Proveedor modificado");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Error al modificar");
+                }
+            }else if (texto=="Inactivo") {
+                objeto.setEstadoP(0);
+                if(objeto.modificarProveedor()){
+                    JOptionPane.showMessageDialog(this, "Proveedor modificado");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Error al modificar");
+                }
+            
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        jTextField3.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (1))));
+        jTextField1.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (0))));
+        jTextField2.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (3))));
+        jTextField5.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (2))));
+        jTextField6.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (4))));
+        jTextField7.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (5))));
+        
+        String texto = String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (6)));
+        if (texto=="true") {
+            jComboBox1.setSelectedItem("Activo");
+        }else{
+            jComboBox1.setSelectedItem("Inactivo");
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTFBuscarPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarPKeyReleased
+        // TODO add your handling code here:
+        if (rdNombreP.isSelected()) {
+            int filas = modeloTablaProveedores.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaProveedores.removeRow(0);
+            }
+            setFilasP(2, jTFBuscarP.getText());
+        } else if (rdCodigoP.isSelected()) {
+            int filas = modeloTablaProveedores.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaProveedores.removeRow(0);
+            }
+            setFilasP(1, jTFBuscarP.getText());
+        }
+    }//GEN-LAST:event_jTFBuscarPKeyReleased
+
+    private void rdNombrePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombrePActionPerformed
+        // TODO add your handling code here:
+        rdCodigoP.setSelected(false);
+        jTFBuscarP.setEnabled(true);
+    }//GEN-LAST:event_rdNombrePActionPerformed
+
+    private void rdCodigoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoPActionPerformed
+        // TODO add your handling code here:
+        rdNombreP.setSelected(false);
+        jTFBuscarP.setEnabled(true);
+    }//GEN-LAST:event_rdCodigoPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -449,18 +672,17 @@ public class PProveedores extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTFBuscarP;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblhelp;
+    private javax.swing.JRadioButton rdCodigoP;
+    private javax.swing.JRadioButton rdNombreP;
     // End of variables declaration//GEN-END:variables
 }

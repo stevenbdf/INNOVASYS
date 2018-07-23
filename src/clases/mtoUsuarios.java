@@ -18,6 +18,146 @@ import javax.swing.JOptionPane;
  */
 public class mtoUsuarios extends PEmpleado{
 
+    /**
+     * @return the cn
+     */
+    public Connection getCn() {
+        return cn;
+    }
+
+    /**
+     * @param cn the cn to set
+     */
+    public void setCn(Connection cn) {
+        this.cn = cn;
+    }
+
+    /**
+     * @return the nombreP
+     */
+    public String getNombreP() {
+        return nombreP;
+    }
+
+    /**
+     * @param nombreP the nombreP to set
+     */
+    public void setNombreP(String nombreP) {
+        this.nombreP = nombreP;
+    }
+
+    /**
+     * @return the telefonoP
+     */
+    public Integer getTelefonoP() {
+        return telefonoP;
+    }
+
+    /**
+     * @param telefonoP the telefonoP to set
+     */
+    public void setTelefonoP(Integer telefonoP) {
+        this.telefonoP = telefonoP;
+    }
+
+    /**
+     * @return the correoP
+     */
+    public String getCorreoP() {
+        return correoP;
+    }
+
+    /**
+     * @param correoP the correoP to set
+     */
+    public void setCorreoP(String correoP) {
+        this.correoP = correoP;
+    }
+
+    /**
+     * @return the faxP
+     */
+    public Integer getFaxP() {
+        return faxP;
+    }
+
+    /**
+     * @param faxP the faxP to set
+     */
+    public void setFaxP(Integer faxP) {
+        this.faxP = faxP;
+    }
+
+    /**
+     * @return the direccionP
+     */
+    public String getDireccionP() {
+        return direccionP;
+    }
+
+    /**
+     * @param direccionP the direccionP to set
+     */
+    public void setDireccionP(String direccionP) {
+        this.direccionP = direccionP;
+    }
+
+    /**
+     * @return the estadoP
+     */
+    public Integer getEstadoP() {
+        return estadoP;
+    }
+
+    /**
+     * @param estadoP the estadoP to set
+     */
+    public void setEstadoP(Integer estadoP) {
+        this.estadoP = estadoP;
+    }
+
+    /**
+     * @return the idP
+     */
+    public Integer getIdP() {
+        return idP;
+    }
+
+    /**
+     * @param idP the idP to set
+     */
+    public void setIdP(Integer idP) {
+        this.idP = idP;
+    }
+
+    /**
+     * @return the key
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * @param key the key to set
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * @return the iv
+     */
+    public String getIv() {
+        return iv;
+    }
+
+    /**
+     * @param iv the iv to set
+     */
+    public void setIv(String iv) {
+        this.iv = iv;
+    }
+
     public Integer getCodigoDEE() {
         return codigoDEE;
     }
@@ -335,11 +475,20 @@ public class mtoUsuarios extends PEmpleado{
     private Integer codigoDD;
     private String descrip;
     
+    //atributos para proveedor
+    private String nombreP;
+    private Integer telefonoP;
+    private String correoP;
+    private Integer faxP;
+    private String direccionP;
+    private Integer estadoP;
+    private Integer idP;
+    
     /**
      * Llaves necesarias para la combinacion e incriptacion de claves
      */
-    String key = "92AE31A79FEEB2A3"; //llave
-    String iv = "0123456789ABCDEF"; // vector de inicialización    
+    private String key = "92AE31A79FEEB2A3"; //llave
+    private String iv = "0123456789ABCDEF"; // vector de inicialización    
     
     
     public mtoUsuarios(){
@@ -355,18 +504,18 @@ public class mtoUsuarios extends PEmpleado{
           
             //Se pasan por referencia por seguridad
             //importar clase PreparedStatement
-            PreparedStatement cmd = cn.prepareStatement(sql);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
             //Llenar los parametros de la clase, se coloca en el ordne de la tabla
-            cmd.setString(1, correo);
+            cmd.setString(1, getCorreo());
             //Importar clase resultset
             ResultSet rs= cmd.executeQuery();
             //Recorrer la lista de registro
             if (rs.next()) {
                 resp = true;
-                 contraseña = obj.decrypt(key,iv,rs.getString(1));
+                 setContraseña(obj.decrypt(getKey(), getIv(), rs.getString(1)));
             }
             cmd.close();
-            cn.close();
+            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -380,7 +529,7 @@ public class mtoUsuarios extends PEmpleado{
         resp2[2]="";
         try {
             String sql = "SELECT idEstado, nombreEstado, descripcion FROM estadoEmpleado WHERE nombreEstado=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
             cmd.setString(1, getNombreE());
             ResultSet rs = cmd.executeQuery();
             if (rs.next()) {
@@ -407,14 +556,14 @@ public class mtoUsuarios extends PEmpleado{
             try {
 
                 String sql2 = "INSERT INTO estadoEmpleado(idEstado,nombreEstado,descripcion) VALUES ((SELECT MAX(idEstado)+1 FROM estadoEmpleado),?,?)";
-                PreparedStatement cmd2 = cn.prepareStatement(sql2);
-                cmd2.setString(1, nombreE);
-                cmd2.setString(2, descripcionE);
+                PreparedStatement cmd2 = getCn().prepareStatement(sql2);
+                cmd2.setString(1, getNombreE());
+                cmd2.setString(2, getDescripcionE());
                 if (!cmd2.execute()) {
                     resp = true;
                 } 
                 cmd2.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -431,7 +580,7 @@ public class mtoUsuarios extends PEmpleado{
         }else if (resp2[0].equals(getNombreE()) && !resp2[1].equals(getDescripcionE())) {
             try {
                 String sql = "UPDATE estadoEmpleado SET descripcion=? WHERE idEstado=?";
-                PreparedStatement cmd = cn.prepareStatement(sql);        
+                PreparedStatement cmd = getCn().prepareStatement(sql);        
                 cmd.setString(1, getDescripcionE());
                 cmd.setInt(2, getCodigoE());
 
@@ -439,14 +588,14 @@ public class mtoUsuarios extends PEmpleado{
                     resp = true;
                 }
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
         }else{
             try {
                 String sql = "UPDATE estadoEmpleado SET nombreEstado=?,descripcion=? WHERE idEstado=?";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+                PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1,getNombreE());
                 cmd.setString(2, getDescripcionE());
                 cmd.setInt(3, getCodigoE());
@@ -455,7 +604,7 @@ public class mtoUsuarios extends PEmpleado{
                     resp = true;
                 }
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -468,14 +617,14 @@ public class mtoUsuarios extends PEmpleado{
         try {
             String sql ="DELETE FROM estadoEmpleado WHERE idEstado=?";
             
-            PreparedStatement cmd = cn.prepareStatement(sql);
-            cmd.setInt(1,codigoE);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            cmd.setInt(1, getCodigoE());
             
             if (!cmd.execute()) {
                 resp=true;
             }
             cmd.close();
-            cn.close();
+            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());         
         }
@@ -489,7 +638,7 @@ public class mtoUsuarios extends PEmpleado{
         resp2[2]="";
         try {
             String sql = "SELECT idDocumento,nombre,estado FROM documento WHERE nombre=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
             cmd.setString(1, getNombreD());
             ResultSet rs = cmd.executeQuery();
             if (rs.next()) {
@@ -514,14 +663,14 @@ public class mtoUsuarios extends PEmpleado{
             try {
 
                 String sql2 = "INSERT INTO documento(idDocumento,nombre,estado) VALUES ((SELECT MAX(idDocumento)+1 FROM documento),?,?)";
-                PreparedStatement cmd2 = cn.prepareStatement(sql2);
+                PreparedStatement cmd2 = getCn().prepareStatement(sql2);
                 cmd2.setString(1, getNombreD());
                 cmd2.setString(2, getEstadoD());
                 if (!cmd2.execute()) {
                     resp = true;
                 } 
                 cmd2.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -538,7 +687,7 @@ public class mtoUsuarios extends PEmpleado{
         } else if(resp2[0].equals(getNombreD()) && !resp2[1].equals(getEstadoD())) {
             try {
                 String sql = "UPDATE documento SET estado=? WHERE idDocumento=?";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+                PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1, getEstadoD());
                 cmd.setInt(2, getCodigoD());
 
@@ -546,14 +695,14 @@ public class mtoUsuarios extends PEmpleado{
                     resp = true;
                 }
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
         }else{
             try {
                 String sql = "UPDATE documento SET nombre=?,estado=? WHERE idDocumento=?";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+                PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1,getNombreD());
                 cmd.setString(2, getEstadoD());
                 cmd.setInt(3, getCodigoD());
@@ -562,7 +711,7 @@ public class mtoUsuarios extends PEmpleado{
                     resp = true;
                 }
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -570,19 +719,38 @@ public class mtoUsuarios extends PEmpleado{
         return resp;
     }
     
-    public boolean eliminarDocumento(){
-        boolean resp=false;
-        try {
-            String sql ="DELETE FROM documento WHERE idDocumento=?";
+     public boolean consultasRandom(){
+     boolean resp=false;
+     try {
+            String sql ="alter table proveedor add estado bit";
             
-            PreparedStatement cmd = cn.prepareStatement(sql);
-            cmd.setInt(1,codigoD);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            
             
             if (!cmd.execute()) {
                 resp=true;
             }
             cmd.close();
-            cn.close();
+            getCn().close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+     return resp;
+     }
+    
+    public boolean eliminarDocumento(){
+        boolean resp=false;
+        try {
+            String sql ="DELETE FROM documento WHERE idDocumento=?";
+            
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            cmd.setInt(1, getCodigoD());
+            
+            if (!cmd.execute()) {
+                resp=true;
+            }
+            cmd.close();
+            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -594,7 +762,7 @@ public class mtoUsuarios extends PEmpleado{
         try {
             String sql = "SELECT *"
                     + "FROM usuarioEmpleado WHERE correoElectronico=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
             cmd.setString(1,getCorreoEmpleado());
             ResultSet rs = cmd.executeQuery();
             while (rs.next()) {
@@ -621,7 +789,7 @@ public class mtoUsuarios extends PEmpleado{
                 String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
                         + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen, pregunta1,respuesta1, pregunta2, respuesta2)"
                         + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+                PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setInt(1,getCodigoTipo());
                 cmd.setString(2,getNombreEmpleado());
                 cmd.setString(3,getApellidoEmpleado());
@@ -639,7 +807,7 @@ public class mtoUsuarios extends PEmpleado{
                     resp=true;
                 } 
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -652,28 +820,28 @@ public class mtoUsuarios extends PEmpleado{
         boolean resp=false;       
             try {
                 String sql ="UPDATE usuarioEmpleado SET idTipo=?, nombres=?, apellidos=?, telefono=?, correoElectronico=?, contraseña=?, direccion=?, idEstado=?, imagen=?, pregunta1=?, respuesta1=?, pregunta2=?, respuesta2=? WHERE idEmpleado=?";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+                PreparedStatement cmd = getCn().prepareStatement(sql);
  
-                cmd.setInt(1, codigoTipo);
-                cmd.setString(2,nombreEmpleado);
-                cmd.setString(3,apellidoEmpleado);
-                cmd.setInt(4,telefono);
-                cmd.setString(5,correoEmpleado);
-                cmd.setString(6, contraseñaEmpleado);
-                cmd.setString(7,direccion);
-                cmd.setInt(8,codigoEstado);
-                cmd.setString(9,imagen);
-                cmd.setString(10, pregunta1);
-                cmd.setString(11, respuesta1);
-                cmd.setString(12,pregunta2);
-                cmd.setString(13,respuesta2);
-                cmd.setInt(14,codigoEmpleado);
+                cmd.setInt(1, getCodigoTipo());
+                cmd.setString(2, getNombreEmpleado());
+                cmd.setString(3, getApellidoEmpleado());
+                cmd.setInt(4, getTelefono());
+                cmd.setString(5, getCorreoEmpleado());
+                cmd.setString(6, getContraseñaEmpleado());
+                cmd.setString(7, getDireccion());
+                cmd.setInt(8, getCodigoEstado());
+                cmd.setString(9, getImagen());
+                cmd.setString(10, getPregunta1());
+                cmd.setString(11, getRespuesta1());
+                cmd.setString(12, getPregunta2());
+                cmd.setString(13, getRespuesta2());
+                cmd.setInt(14, getCodigoEmpleado());
       
                 if (!cmd.execute()) {
                 resp=true;    
                 }
                 cmd.close();
-                cn.close();
+                getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }       
@@ -683,28 +851,28 @@ public class mtoUsuarios extends PEmpleado{
     public boolean guardarDocumentoEmpleado(){
         boolean resp=false;
         try {
-            String sql2 ="SELECT idDocumento FROM documentoEmpleado WHERE idEmpleado="+codigoDE;
-            PreparedStatement cmd2 = cn.prepareStatement(sql2);
+            String sql2 ="SELECT idDocumento FROM documentoEmpleado WHERE idEmpleado="+getCodigoDE();
+            PreparedStatement cmd2 = getCn().prepareStatement(sql2);
             ResultSet ver2 = cmd2.executeQuery();
             if (ver2.next()) {
-                if (ver2.getInt(1)==codigoDD) {
+                if (ver2.getInt(1)==getCodigoDD()) {
                     JOptionPane.showMessageDialog(this,"Error ya existe este tipo de documento registrado a este empleado");
                 }else{
                     String sql = "INSERT INTO documentoEmpleado(idDocumentoE , idDocumento, idEmpleado, descripcion) "
                             + "VALUES((SELECT MAX(idDocumentoE) FROM documentoEmpleado )+1,?,?,?)";
-                    PreparedStatement cmd = cn.prepareStatement(sql);
-                    System.out.println("1: " + codigoDD);
-                    System.out.println("2: " + codigoDE);
-                    System.out.println("3: " + descrip);
-                    cmd.setInt(1, codigoDD);
-                    cmd.setInt(2, codigoDE);
-                    cmd.setString(3, descrip);
+                    PreparedStatement cmd = getCn().prepareStatement(sql);
+                    System.out.println("1: " + getCodigoDD());
+                    System.out.println("2: " + getCodigoDE());
+                    System.out.println("3: " + getDescrip());
+                    cmd.setInt(1, getCodigoDD());
+                    cmd.setInt(2, getCodigoDE());
+                    cmd.setString(3, getDescrip());
 
                     if (!cmd.execute()) {
                         resp = true;
                     }
                     cmd.close();
-                    cn.close();
+                    getCn().close();
                 }
             }     
         } catch (Exception e) {
@@ -717,20 +885,20 @@ public class mtoUsuarios extends PEmpleado{
         boolean resp=false;
         try { 
             String sql="UPDATE documentoEmpleado SET idDocumento=?,idEmpleado=?,descripcion=? WHERE idDocumentoE=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
-            System.out.println("1: " + codigoDD);
-            System.out.println("2: " + codigoDE);
-            System.out.println("3: " + descrip);
-            System.out.println("4: " + codigoDEE);
-            cmd.setInt(1,codigoDD);
-            cmd.setInt(2,codigoDE);
-            cmd.setString(3,descrip);
-            cmd.setInt(4,codigoDEE);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            System.out.println("1: " + getCodigoDD());
+            System.out.println("2: " + getCodigoDE());
+            System.out.println("3: " + getDescrip());
+            System.out.println("4: " + getCodigoDEE());
+            cmd.setInt(1, getCodigoDD());
+            cmd.setInt(2, getCodigoDE());
+            cmd.setString(3, getDescrip());
+            cmd.setInt(4, getCodigoDEE());
             if (!cmd.execute()) {
                 resp=true;
             }
             cmd.close();
-            cn.close();
+            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -741,16 +909,83 @@ public class mtoUsuarios extends PEmpleado{
         boolean resp=false;
         try {
             String sql="DELETE FROM documentoEmpleado WHERE idDocumentoE=?";
-            PreparedStatement cmd = cn.prepareStatement(sql);
-            cmd.setInt(1,codigoDEE);
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            cmd.setInt(1, getCodigoDEE());
             if (!cmd.execute()) {
                 resp=true;
             }
             cmd.close();
-            cn.close();
+            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        return resp;
+    }
+    
+    public boolean guardarProveedor(){
+        boolean resp=false;
+        try {
+                String sql = "INSERT INTO proveedor(idProveedor, nombreProveedor,"
+                        + " direccion, telefono, fax, correoElectronico, estado)"
+                        + "VALUES ((SELECT MAX(idProveedor)+1 FROM proveedor),?,?,?,?,?,?)";
+                PreparedStatement cmd = getCn().prepareStatement(sql);
+                cmd.setString(1,getNombreP());
+                cmd.setString(2,getDireccionP());
+                cmd.setInt(3,getTelefonoP());
+                cmd.setInt(4,getFaxP());
+                cmd.setString(5,getCorreoP());
+                cmd.setInt(6,getEstadoP());
+                
+                if (!cmd.execute()) {
+                    resp=true;
+                } 
+                cmd.close();
+                getCn().close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        return resp;
+    }
+    public boolean modificarProveedor(){
+        boolean resp=false;
+        try {
+                String sql = "UPDATE proveedor SET nombreProveedor=?,direccion=?,telefono=?, fax=?,correoElectronico=?,estado=? WHERE idProveedor=?";
+                PreparedStatement cmd = getCn().prepareStatement(sql);
+                cmd.setString(1,getNombreP());
+                cmd.setString(2,getDireccionP());
+                cmd.setInt(3,getTelefonoP());
+                cmd.setInt(4,getFaxP());
+                cmd.setString(5,getCorreoP());
+                cmd.setInt(6,getEstadoP());
+                cmd.setInt(7,getIdP());
+                
+                if (!cmd.execute()) {
+                    resp=true;
+                } 
+                cmd.close();
+                getCn().close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        return resp;
+    }
+    
+    public boolean checkProveedor(){
+        boolean resp=true;
+        try {
+                String sql = "select nombreProveedor FROM proveedor WHERE idProveedor=?";
+                PreparedStatement cmd = getCn().prepareStatement(sql);
+                
+                cmd.setInt(1,getIdP());
+                
+                if (!cmd.execute()) {
+                    resp=false;
+                } 
+                cmd.close();
+             
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         return resp;
     }
 }
