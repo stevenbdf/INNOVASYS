@@ -12,11 +12,50 @@ package formularios;
 public class help extends javax.swing.JFrame {
 
     /**
-     * Creates new form help
+     * Creates new form help boton incorrecto era el otro
      */
-    public help() {
+    
+    int formulario;
+    String [] textos = new String [25];
+    
+    public help(int form) {
+        //aqui vas a poner el texto de cada formulario 
+        textos [0] = "<html>en esta ventana se ingresa al sistema si inicias como invitado podras contruir pc's y sacar presupuestos pero no benchmak<html>";
+        textos [1] = "<html>En esta ventana puedes solicitar ayuda a un administrador mediante un correo electronico<html>";
+        textos [2] = "<html>en la caja registradora podras detallar los productos a vender o buscar un presupuesto realizado con anticipacion desde la app<html>";
+        textos [3] = "<html>en esta ventana podras comunicarte con algun cliente para darle soporte tecnico mediante chat<html>";
+        textos [4] = "<html>en este apartado puedes construir una pc con los componentes que tu elijas<html>";
+        textos [5] = "<html>en este apartado puedes construir una pc con los componentes que tu elijas<html>";
+        textos [6] = "<html>en este apartado puedes construir una pc con los componentes que tu elijas<html>";
+        textos [7] = "<html>en este apartado puedes construir una pc con los componentes que tu elijas<html>";
+        textos [8] = "<html>en esta ventana podras modificar los datos de la empresa<html>";
+        textos [9] = "<html>en esta ventana podras gestionar datos de el empleado y datos de documentos<html>";
+        textos [10] = "<html>en este apartado podras gestionar las bitacoras de un cliente o un empleado para asi generar un reporte<html>";
+        textos [11] = "<html>aqui podras consultar los clientes de la empresa<html>";
+        textos [12] = "<html>aqui podras gestionar el inventario y los reportes creados<html>";
+        textos [13] = "<html>en esta ventana podras crear un presupuesto a partir de una pc que se haya construido anteriormente<html>";
+        textos [14] = "<html>en esta ventana podras gestionar los productos y elegir a que categoria pertenecera<html>";
+        textos [15] = "<html>aqui podras gestionar los proveedores que distribuyen a la empresa<html>";
+        textos [16] = "<html>En este apartado se puede gestionar<p> los tipos de usuario y administrar los privilegios de cada uno<html>";
+        textos [17] = "<html>aqui se puede gestionar las ventas de un determinado periodo de tiempo<html>";
+        textos [18] = "<html>en esta ventana se muestra el total a pagar el pago realizado por el cliente y el cambio que se entregara al cliente<html>";
+        textos [19] = "<html>en este apartado debes ingresar el correo al caul se mandara la contraseña<html>";
+        textos [20] = "<html>en esta ventana se puede agregar un nuevo cliente<html>";
+        textos [21] = "<html>en esta ventana muestra los pedidos por ensamblar y es posible aplazarlos por si hay algun inconveniente<html>";
+        textos [22] = "<html> Lamentamos las molestias <p> por favor <p> intente mas tarde <html>";
+        textos [23] = "<html> Lamentamos las molestias <p> por favor <p> intente mas tarde <html>";
+        textos [24] = "<html> Lamentamos las molestias <p> por favor <p> intente mas tarde <html>";
         initComponents();
+        
         setLocationRelativeTo(null);
+        formulario=form;
+        
+        for (int i = 0; i < 25; i++) {
+            if (formulario==i) {
+                lblTexto.setText(textos[i]);
+                break;
+            }
+        }
     }
 
     /**
@@ -32,6 +71,7 @@ public class help extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
+        lblTexto = new javax.swing.JLabel();
         jButtonok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,36 +85,55 @@ public class help extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Ayuda");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 10, -1, 36));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        lblTexto.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 168, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jButtonok.setBackground(new java.awt.Color(51, 51, 51));
         jButtonok.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButtonok.setForeground(new java.awt.Color(204, 204, 204));
         jButtonok.setText("OK");
-        jButtonok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jButtonok.setContentAreaFilled(false);
         jButtonok.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -91,37 +150,18 @@ public class help extends javax.swing.JFrame {
                 jButtonokActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonok, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 245, 90, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jButtonok, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jButtonok, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,6 +191,11 @@ public class help extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jButtonokActionPerformed
 
+    private void jPanel2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel2AncestorAdded
+        // TODO add your handling code here:
+        //this.lblTexto.setText("<html>al iniciar como invitado podras contruir pcs<p> y sacar presupuestos pero no benchmak<html>");
+    }//GEN-LAST:event_jPanel2AncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -177,11 +222,13 @@ public class help extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(help.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //porque llenaste aqui el arreglo? siempre lo he llenado ahi, aps no mejor llenalo afuera
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new help().setVisible(true);
+                new help(0).setVisible(true);
             }
         });
     }
@@ -192,5 +239,6 @@ public class help extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }

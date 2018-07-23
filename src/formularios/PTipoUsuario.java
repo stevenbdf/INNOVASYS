@@ -43,6 +43,13 @@ public class PTipoUsuario extends javax.swing.JPanel {
 //		}
         modeloCombo = new DefaultComboBoxModel(new String[]{});
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
+       ImageIcon foto00 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono00 = new ImageIcon(foto00.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp1.setIcon(icono00);
+       
         llenaComboBox();
         jTFBuscarT.setEnabled(false);
         
@@ -1066,13 +1073,17 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
     private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
         // TODO add your handling code here:
-        help form = new help();
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+         * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+         */
+        help form = new help(16);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
     private void lblhelp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelp1MouseClicked
         // TODO add your handling code here:
-        help form = new help();
+        help form = new help(16);
         form.show();
     }//GEN-LAST:event_lblhelp1MouseClicked
 
