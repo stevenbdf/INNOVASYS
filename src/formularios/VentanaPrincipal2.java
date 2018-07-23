@@ -32,8 +32,92 @@ import javax.swing.Timer;
 public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     
+    ImageIcon foto0 = new ImageIcon(getClass().getResource("/images/Inventario.png")); 
+    ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto1 = new ImageIcon(getClass().getResource("/images/ConstruirPC.png")); 
+    ImageIcon icono1 = new ImageIcon(foto1.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto2 = new ImageIcon(getClass().getResource("/images/Productos.png")); 
+    ImageIcon icono2 = new ImageIcon(foto2.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto3 = new ImageIcon(getClass().getResource("/images/Presupuesto.png")); 
+    ImageIcon icono3 = new ImageIcon(foto3.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto4 = new ImageIcon(getClass().getResource("/images/OrdenesCola.png")); 
+    ImageIcon icono4 = new ImageIcon(foto4.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto5 = new ImageIcon(getClass().getResource("/images/CajaRegistradora.png")); 
+    ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Ventas.png")); 
+    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto7 = new ImageIcon(getClass().getResource("/images/ChatCenter.png")); 
+    ImageIcon icono7 = new ImageIcon(foto7.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto8 = new ImageIcon(getClass().getResource("/images/Empresa.png")); 
+    ImageIcon icono8 = new ImageIcon(foto8.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto9 = new ImageIcon(getClass().getResource("/images/Tipo-Usuario.png")); 
+    ImageIcon icono9 = new ImageIcon(foto9.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto10 = new ImageIcon(getClass().getResource("/images/Bitacoras.png")); 
+    ImageIcon icono10 = new ImageIcon(foto10.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto11 = new ImageIcon(getClass().getResource("/images/Clientes.png")); 
+    ImageIcon icono11 = new ImageIcon(foto11.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto12 = new ImageIcon(getClass().getResource("/images/Proveedores.png")); 
+    ImageIcon icono12 = new ImageIcon(foto12.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto13 = new ImageIcon(getClass().getResource("/images/Empleados.png")); 
+    ImageIcon icono13 = new ImageIcon(foto13.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto0s = new ImageIcon(getClass().getResource("/images/Inventario1.png")); 
+    ImageIcon icono0s = new ImageIcon(foto0s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto1s = new ImageIcon(getClass().getResource("/images/ConstruirPC1.png")); 
+    ImageIcon icono1s = new ImageIcon(foto1s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto2s = new ImageIcon(getClass().getResource("/images/Productos1.png")); 
+    ImageIcon icono2s = new ImageIcon(foto2s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto3s = new ImageIcon(getClass().getResource("/images/Presupuesto1.png")); 
+    ImageIcon icono3s = new ImageIcon(foto3s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto4s = new ImageIcon(getClass().getResource("/images/OrdenesCola1.png")); 
+    ImageIcon icono4s = new ImageIcon(foto4s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto5s = new ImageIcon(getClass().getResource("/images/CajaRegistradora1.png")); 
+    ImageIcon icono5s = new ImageIcon(foto5s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto6s = new ImageIcon(getClass().getResource("/images/Ventas1.png")); 
+    ImageIcon icono6s = new ImageIcon(foto6s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto7s = new ImageIcon(getClass().getResource("/images/ChatCenter1.png")); 
+    ImageIcon icono7s = new ImageIcon(foto7s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto8s = new ImageIcon(getClass().getResource("/images/Empresa1.png")); 
+    ImageIcon icono8s = new ImageIcon(foto8s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto9s = new ImageIcon(getClass().getResource("/images/Tipo-Usuario1.png")); 
+    ImageIcon icono9s = new ImageIcon(foto9s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto10s = new ImageIcon(getClass().getResource("/images/Bitacoras2.png")); 
+    ImageIcon icono10s = new ImageIcon(foto10s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto11s = new ImageIcon(getClass().getResource("/images/Clientes1.png")); 
+    ImageIcon icono11s = new ImageIcon(foto11s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto12s = new ImageIcon(getClass().getResource("/images/Proveedores1.png")); 
+    ImageIcon icono12s = new ImageIcon(foto12s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+    
+    ImageIcon foto13s = new ImageIcon(getClass().getResource("/images/Empleados1.png")); 
+    ImageIcon icono13s = new ImageIcon(foto13s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
     
     Integer dia,diames, mes, año, tipoU;
+    int posiciones[] = new int[14];
     public VentanaPrincipal2(String correo) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -43,6 +127,9 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         initComponents();
         timer.start();
         obtenerFecha();
+        
+           
+            
         
         try {
             Conexion cn = new Conexion();
@@ -77,73 +164,22 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         Empleados.setVisible(false);
         TipoUsuario1.setVisible(false);
         Productos.setVisible(false);
-        definirPrivilegios();              
+                     
         
         
         setLocationRelativeTo(null);
         
-        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
+       Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
+       ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(jLabel2.getWidth(),jLabel2.getHeight(),Image.SCALE_DEFAULT));
        jLabel2.setIcon(icono);
        
-       ImageIcon foto6 = new ImageIcon (getClass().getResource("/images/Proveedores.png"));
-       ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(Proveedores.getWidth(),Proveedores.getHeight(),Image.SCALE_DEFAULT));
-       Proveedores.setIcon(icono6);
+       definirPrivilegios();
        
-       ImageIcon foto3 = new ImageIcon (getClass().getResource("/images/ChatCenter.png"));
-       ImageIcon icono3 = new ImageIcon(foto3.getImage().getScaledInstance(ChatCenter.getWidth(),ChatCenter.getHeight(),Image.SCALE_DEFAULT));
-       ChatCenter.setIcon(icono3);
        
-        ImageIcon foto4 = new ImageIcon (getClass().getResource("/images/Empleados.png"));
-       ImageIcon icono4 = new ImageIcon(foto4.getImage().getScaledInstance(Empleados.getWidth(),Empleados.getHeight(),Image.SCALE_DEFAULT));
-       Empleados.setIcon(icono4);
-       
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Empresa.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Empresa.getWidth(),Empresa.getHeight(),Image.SCALE_DEFAULT));
-       Empresa.setIcon(icono5);
-       
-       ImageIcon foto7 = new ImageIcon (getClass().getResource("/images/CajaRegistradora.png"));
-       ImageIcon icono7 = new ImageIcon(foto7.getImage().getScaledInstance(CajaRegistradora.getWidth(),CajaRegistradora.getHeight(),Image.SCALE_DEFAULT));
-       CajaRegistradora.setIcon(icono7);
-       
-        ImageIcon foto8 = new ImageIcon (getClass().getResource("/images/Inventario.png"));
-       ImageIcon icono8 = new ImageIcon(foto8.getImage().getScaledInstance(Inventario.getWidth(),Inventario.getHeight(),Image.SCALE_DEFAULT));
-       Inventario.setIcon(icono8);
-       
-       ImageIcon foto9 = new ImageIcon (getClass().getResource("/images/Productos.png"));
-       ImageIcon icono9 = new ImageIcon(foto9.getImage().getScaledInstance(Productos.getWidth(),Productos.getHeight(),Image.SCALE_DEFAULT));
-       Productos.setIcon(icono9);
-       
-        ImageIcon foto10 = new ImageIcon (getClass().getResource("/images/Tipo-Usuario.png"));
-       ImageIcon icono10 = new ImageIcon(foto10.getImage().getScaledInstance(TipoUsuario1.getWidth(),TipoUsuario1.getHeight(),Image.SCALE_DEFAULT));
-       TipoUsuario1.setIcon(icono10);
-       
-       ImageIcon foto11= new ImageIcon (getClass().getResource("/images/ConstruirPC.png"));
-       ImageIcon icono11 = new ImageIcon(foto11.getImage().getScaledInstance(ConstruirEquipo.getWidth(),ConstruirEquipo.getHeight(),Image.SCALE_DEFAULT));
-       ConstruirEquipo.setIcon(icono11);
-       
-        ImageIcon foto12 = new ImageIcon (getClass().getResource("/images/Bitacoras.png"));
-       ImageIcon icono12 = new ImageIcon(foto12.getImage().getScaledInstance(Bitacoras.getWidth(),Bitacoras.getHeight(),Image.SCALE_DEFAULT));
-       Bitacoras.setIcon(icono12);
-       
-       ImageIcon foto13 = new ImageIcon (getClass().getResource("/images/Clientes.png"));
-       ImageIcon icono13 = new ImageIcon(foto13.getImage().getScaledInstance(Clientes.getWidth(),Clientes.getHeight(),Image.SCALE_DEFAULT));
-       Clientes.setIcon(icono13);
-       
-       ImageIcon foto14 = new ImageIcon (getClass().getResource("/images/Presupuesto.png"));
-       ImageIcon icono14 = new ImageIcon(foto14.getImage().getScaledInstance(Presupuesto.getWidth(),Presupuesto.getHeight(),Image.SCALE_DEFAULT));
-       Presupuesto.setIcon(icono14);
-       
-       ImageIcon foto15 = new ImageIcon (getClass().getResource("/images/Ventas.png"));
-       ImageIcon icono15 = new ImageIcon(foto15.getImage().getScaledInstance(Ventas.getWidth(),Ventas.getHeight(),Image.SCALE_DEFAULT));
-       Ventas.setIcon(icono15);
-       
-       ImageIcon foto16 = new ImageIcon (getClass().getResource("/images/OrdenesCola.png"));
-       ImageIcon icono16 = new ImageIcon(foto16.getImage().getScaledInstance(Ordenes.getWidth(),Ordenes.getHeight(),Image.SCALE_DEFAULT));
-       Ordenes.setIcon(icono16);
     }
-
+    
+    int[] casos = new int[14];
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -601,7 +637,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    int prove, chat, empleado, empresa, caja, invent, producto, tipo, construir, bitacor, client, presup, vent, orde; 
     private void obtenerFecha(){
         Calendar calendario = Calendar.getInstance();
         dia=(calendario.get(Calendar.DAY_OF_WEEK));
@@ -609,7 +645,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         mes=(calendario.get(Calendar.MONTH)+1);
         año=(calendario.get(Calendar.YEAR));
         
-        switch (dia-1){
+        switch (dia+1){
             case 1:
                 fecha1.setText("Lunes");
                 break;
@@ -676,6 +712,10 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     
     Boolean[] valores = new Boolean[16];
     
+    Integer[] botones = new Integer[14];
+    
+    
+    //agregar cases que hacen fala privilegios NO repetivos
     private void definirPrivilegios(){
         Conexion cn = new Conexion();
         for (int i = 0; i < valores.length; i++) {
@@ -699,53 +739,1589 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             }
             
             
-            for (int i = 0; i <valores.length; i++) {
+            for (int i = 0; i <14; i++) {
                 if (valores[i]==true) {
-                   
+                    System.out.println("i: "+i);
                     switch (i) {
-                        case 0:
-                            Inventario.setVisible(true);
+                        case 0:         
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Inventario.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true);
+                                             producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                        
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 1:
-                            ConstruirEquipo.setVisible(true);
-                            Presupuesto.setVisible(true);
+                           
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                    if (posiciones[j]==0) {
+                                        
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/ConstruirPC.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true);
+                                             producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                        
+                                    }
+                                    break;
+                                }         
+                            }
                             break;
                         case 2:
-                            Productos.setVisible(true);
-                            break;
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Productos.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true);
+                                            posiciones[j]=1;casos[i]=j; producto=i;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
+                           break;
+                        case 3:
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Presupuesto.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                        
+                                    }
+                                    break;
+                                }
+                                
+                            }
+                           break;
                         case 4:
-                            Ordenes.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/OrdenesCola.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                        
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 5:
-                            CajaRegistradora.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/CajaRegistradora.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            producto=i;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 6:
-                            Ventas.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Ventas.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                   switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); 
+                                            posiciones[j]=1;casos[i]=j;
+                                            producto=i;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 7:
-                            ChatCenter.setVisible(true);
+                           for (int j = 0; j < 14; j++) {
+                               System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/ChatCenter.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 8:
-                            Empresa.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Empresa.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 9:
-                            Ventas.setVisible(true);
-                            break;
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Tipo-Usuario.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                       case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
+                            break;    
                         case 10:
-                            Bitacoras.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Bitacoras.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 11:
-                            Clientes.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Clientes.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true);
+                                            posiciones[j]=1;casos[i]=j; producto=i;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                        
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 12:
-                            Proveedores.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Proveedores.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                        case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         case 13:
-                            Empleados.setVisible(true);
-                            TipoUsuario1.setVisible(true);
-                            break;
-                        case 14:
-                            Productos.setVisible(true);
+                            for (int j = 0; j < 14; j++) {
+                                System.out.println("j: "+j);
+                                if (posiciones[j]==0) {
+                                    ImageIcon foto6 = new ImageIcon(getClass().getResource("/images/Empleados.png"));
+                                    ImageIcon icono6 = new ImageIcon(foto6.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
+                                    switch(j){
+                                       case 0:
+                                            Proveedores.setIcon(icono6);
+                                            Proveedores.setVisible(true);
+                                            prove=i;
+                                            posiciones[j]=1;
+                                            casos[i]=j;
+                                            botones[i]=0;
+                                            System.out.println("botones case :"+i+" valor: "+botones[i]);
+                                            break;
+                                        case 1:
+                                            ChatCenter.setIcon(icono6);
+                                            ChatCenter.setVisible(true);
+                                            chat=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=1;
+                                            break;
+                                        case 2:
+                                            Empleados.setIcon(icono6);
+                                            Empleados.setVisible(true);
+                                            empleado=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=2;
+                                            break;
+                                        case 3:
+                                            Empresa.setIcon(icono6);
+                                            Empresa.setVisible(true);
+                                            empresa=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=3;
+                                            break;
+                                        case 4:
+                                            CajaRegistradora.setIcon(icono6);
+                                            CajaRegistradora.setVisible(true);
+                                            caja=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=4;
+                                            break;
+                                        case 5:
+                                            Inventario.setIcon(icono6);
+                                            Inventario.setVisible(true);
+                                            invent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=5;
+                                            break;
+                                        case 6:
+                                            Productos.setIcon(icono6);
+                                            Productos.setVisible(true); producto=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=6;
+                                            break;
+                                        case 7:
+                                            TipoUsuario1.setIcon(icono6);
+                                            TipoUsuario1.setVisible(true);
+                                            tipo=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=7;
+                                            break;
+                                        case 8:
+                                            ConstruirEquipo.setIcon(icono6);
+                                            ConstruirEquipo.setVisible(true);
+                                            construir=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=8;
+                                            break;
+                                        case 9:
+                                            Bitacoras.setIcon(icono6);
+                                            Bitacoras.setVisible(true);
+                                            bitacor=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=9;
+                                            break;
+                                        case 10:
+                                            Clientes.setIcon(icono6);
+                                            Clientes.setVisible(true);
+                                            client=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=10;
+                                            break;
+                                        case 11:
+                                            Presupuesto.setIcon(icono6);
+                                            Presupuesto.setVisible(true);
+                                            presup=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=11;
+                                            break;
+                                        case 12:
+                                            Ventas.setIcon(icono6);
+                                            Ventas.setVisible(true);
+                                            vent=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=12;
+                                            break;
+                                        case 13:
+                                            Ordenes.setIcon(icono6);
+                                            Ordenes.setVisible(true);
+                                            orde=i;
+                                            posiciones[j]=1;casos[i]=j;
+                                            botones[i]=13;
+                                            break;
+                                    }
+                                    break;
+                                }
+                                
+                            }
                             break;
                         default:
                            
@@ -931,11 +2507,10 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     }//GEN-LAST:event_ProveedoresMouseMoved
 
     private void ProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveedoresMouseExited
-        // TODO add your handling code here:
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/Proveedores.png"));
-       ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(Proveedores.getWidth(),Proveedores.getHeight(),Image.SCALE_DEFAULT));
-       Proveedores.setIcon(icono);
-      
+        // TODO add your handling code here: 
+        if (Proveedores.isVisible()==true) {
+            Proveedores.setIcon(definirIconoExit(prove));
+        }
     }//GEN-LAST:event_ProveedoresMouseExited
 
     private void ProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveedoresMouseClicked
@@ -958,10 +2533,10 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ChatCenterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseExited
         // TODO add your handling code here:
-        //ChatCenter.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK));
-         ImageIcon foto = new ImageIcon (getClass().getResource("/images/ChatCenter.png"));
-       ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(ChatCenter.getWidth(),ChatCenter.getHeight(),Image.SCALE_DEFAULT));
-       ChatCenter.setIcon(icono);
+//        
+        if (ChatCenter.isVisible()==true) {
+                    ChatCenter.setIcon(definirIconoExit(chat));
+                }
     }//GEN-LAST:event_ChatCenterMouseExited
 
     private void ChatCenterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseClicked
@@ -995,21 +2570,21 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(jLabel1.getWidth(),jLabel1.getHeight(),Image.SCALE_DEFAULT));
        jLabel1.setIcon(icono);
     }//GEN-LAST:event_jLabel1MouseExited
+    
 
     private void ProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveedoresMouseEntered
         // TODO add your handling code here:
-        Proveedores.setToolTipText("Gestionar Proveedores");
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/Proveedores1.png"));
-       ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(Proveedores.getWidth(),Proveedores.getHeight(),Image.SCALE_DEFAULT));
-       Proveedores.setIcon(icono);
+        if (Proveedores.isVisible()==true) {
+            Proveedores.setIcon(definirIconoEnter(prove));
+        }
     }//GEN-LAST:event_ProveedoresMouseEntered
 
+    
     private void ChatCenterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseEntered
         // TODO add your handling code here:
-        ChatCenter.setToolTipText("Chat Center");
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/ChatCenter1.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(ChatCenter.getWidth(),ChatCenter.getHeight(),Image.SCALE_DEFAULT));
-        ChatCenter.setIcon(icono);
+        if (ChatCenter.isVisible()==true) {
+            ChatCenter.setIcon(definirIconoEnter(chat));
+        }            
     }//GEN-LAST:event_ChatCenterMouseEntered
 
     private void EmpleadosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseMoved
@@ -1031,17 +2606,16 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void EmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseEntered
         // TODO add your handling code here:
-        Empleados.setToolTipText("Gestionar Empleados");
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Empleados1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Empleados.getWidth(),Empleados.getHeight(),Image.SCALE_DEFAULT));
-       Empleados.setIcon(icono5);
+       if (Empleados.isVisible()==true) {
+            Empleados.setIcon(definirIconoEnter(empleado));
+        }
     }//GEN-LAST:event_EmpleadosMouseEntered
 
     private void EmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseExited
         // TODO add your handling code here:
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Empleados.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Empleados.getWidth(),Empleados.getHeight(),Image.SCALE_DEFAULT));
-       Empleados.setIcon(icono5);
+       if (Empleados.isVisible()==true) {
+            Empleados.setIcon(definirIconoExit(empleado));
+        }
     }//GEN-LAST:event_EmpleadosMouseExited
 
     private void EmpresaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseMoved
@@ -1061,19 +2635,102 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         PanelPrincipal.repaint();
     }//GEN-LAST:event_EmpresaMouseClicked
 
+    
+    public ImageIcon definirIconoExit(int botonT){
+
+            
+                
+            switch (botonT) {
+            case 0:
+                return icono0;         
+            case 1:        
+                return icono1;
+            case 2:
+                return icono2;   
+            case 3:
+                return icono3;
+            case 4:
+                return icono4;
+            case 5:
+               return icono5;
+            case 6:
+                return icono6;
+            case 7:
+                return icono7;
+            case 8:
+                return icono8;
+            case 9:
+                return icono9;
+            case 10:
+                return icono10;
+            case 11:
+                return icono11;
+            case 12:
+                return icono12;
+            case 13:
+                return icono13;
+            default:
+                System.out.println("i: nada");
+                break;
+            }
+
+        return null;
+    }
+    
+    public ImageIcon definirIconoEnter(int botonT){
+
+           
+                
+            switch (botonT) {
+            case 0:
+                return icono0s;         
+            case 1:        
+                return icono1s;
+            case 2:
+                return icono2s;   
+            case 3:
+                return icono3s;
+            case 4:
+                return icono4s;
+            case 5:
+               return icono5s;
+            case 6:
+                return icono6s;
+            case 7:
+                return icono7s;
+            case 8:
+                return icono8s;
+            case 9:
+                return icono9s;
+            case 10:
+                return icono10s;
+            case 11:
+                return icono11s;
+            case 12:
+                return icono12s;
+            case 13:
+                return icono13s;
+            default:
+                System.out.println("i: nada");
+                break;
+            }
+            
+        return null;
+    }
     private void EmpresaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseEntered
         // TODO add your handling code here:
-       Empresa.setToolTipText("Gestionar Datos de la Empresa");
-       ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Empresa1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Empresa.getWidth(),Empresa.getHeight(),Image.SCALE_DEFAULT));
-       Empresa.setIcon(icono5);
+      if (Empresa.isVisible()==true) {  
+              Empresa.setIcon(definirIconoEnter(empresa));
+          }
     }//GEN-LAST:event_EmpresaMouseEntered
 
     private void EmpresaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseExited
         // TODO add your handling code here:
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Empresa.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Empresa.getWidth(),Empresa.getHeight(),Image.SCALE_DEFAULT));
-       Empresa.setIcon(icono5);
+       if (Empresa.isVisible()==true) {
+
+              Empresa.setIcon(definirIconoExit(empresa));
+          }
+
     }//GEN-LAST:event_EmpresaMouseExited
 
     private void CajaRegistradoraMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CajaRegistradoraMouseMoved
@@ -1097,17 +2754,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void CajaRegistradoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CajaRegistradoraMouseEntered
         // TODO add your handling code here:
-        CajaRegistradora.setToolTipText("Caja Registradora Virtual");
-       ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/CajaRegistradora1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(CajaRegistradora.getWidth(),CajaRegistradora.getHeight(),Image.SCALE_DEFAULT));
-       CajaRegistradora.setIcon(icono5);
+       if (CajaRegistradora.isVisible()==true) {
+ 
+              CajaRegistradora.setIcon(definirIconoEnter(caja));
+          }
+      
     }//GEN-LAST:event_CajaRegistradoraMouseEntered
 
     private void CajaRegistradoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CajaRegistradoraMouseExited
         // TODO add your handling code here:
-       ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/CajaRegistradora.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(CajaRegistradora.getWidth(),CajaRegistradora.getHeight(),Image.SCALE_DEFAULT));
-       CajaRegistradora.setIcon(icono5);
+     if (CajaRegistradora.isVisible()==true) {
+
+              CajaRegistradora.setIcon(definirIconoExit(caja));
+          }
+   
     }//GEN-LAST:event_CajaRegistradoraMouseExited
 
     private void InventarioMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseMoved
@@ -1128,17 +2788,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void InventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseEntered
         // TODO add your handling code here:
-        Inventario.setToolTipText("Gestionar Inventario");
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Inventario1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Inventario.getWidth(),Inventario.getHeight(),Image.SCALE_DEFAULT));
-       Inventario.setIcon(icono5);
+        if (Inventario.isVisible()==true) {
+
+              Inventario.setIcon(definirIconoEnter(invent));
+          }
+
     }//GEN-LAST:event_InventarioMouseEntered
 
     private void InventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseExited
         // TODO add your handling code here:
-       ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Inventario.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Inventario.getWidth(),Inventario.getHeight(),Image.SCALE_DEFAULT));
-       Inventario.setIcon(icono5);
+       if (Inventario.isVisible()==true) {
+
+              Inventario.setIcon(definirIconoExit(invent));
+          }
+
     }//GEN-LAST:event_InventarioMouseExited
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -1163,17 +2826,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosMouseExited
         // TODO add your handling code here:
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Productos.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Productos.getWidth(),Productos.getHeight(),Image.SCALE_DEFAULT));
-       Productos.setIcon(icono5);
+       if (Productos.isVisible()==true) {
+  
+              Productos.setIcon(definirIconoExit(producto));
+         
+      }
     }//GEN-LAST:event_ProductosMouseExited
 
     private void ProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosMouseEntered
         // TODO add your handling code here:
-        Productos.setToolTipText("Gestionar Productos");
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Productos1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(Productos.getWidth(),Productos.getHeight(),Image.SCALE_DEFAULT));
-       Productos.setIcon(icono5);
+       if (Productos.isVisible()==true) {
+
+              Productos.setIcon(definirIconoEnter(producto));
+          
+      }
     }//GEN-LAST:event_ProductosMouseEntered
 
     private void TipoUsuario1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoUsuario1MouseMoved
@@ -1194,17 +2860,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void TipoUsuario1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoUsuario1MouseExited
         // TODO add your handling code here:
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Tipo-Usuario.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(TipoUsuario1.getWidth(),TipoUsuario1.getHeight(),Image.SCALE_DEFAULT));
-       TipoUsuario1.setIcon(icono5);
+       if (TipoUsuario1.isVisible()==true) {
+ 
+              TipoUsuario1.setIcon(definirIconoExit(tipo));
+          }
+
     }//GEN-LAST:event_TipoUsuario1MouseExited
 
     private void TipoUsuario1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoUsuario1MouseEntered
         // TODO add your handling code here:
-        TipoUsuario1.setToolTipText("Gestionar Tipo Usuario");
-        ImageIcon foto5 = new ImageIcon (getClass().getResource("/images/Tipo-Usuario1.png"));
-       ImageIcon icono5 = new ImageIcon(foto5.getImage().getScaledInstance(TipoUsuario1.getWidth(),TipoUsuario1.getHeight(),Image.SCALE_DEFAULT));
-       TipoUsuario1.setIcon(icono5);
+       if (TipoUsuario1.isVisible()==true) {
+     
+              TipoUsuario1.setIcon(definirIconoEnter(tipo));
+          
+      }
     }//GEN-LAST:event_TipoUsuario1MouseEntered
 
     private void ConstruirEquipoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstruirEquipoMouseMoved
@@ -1225,17 +2894,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ConstruirEquipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstruirEquipoMouseEntered
         // TODO add your handling code here:
-        ConstruirEquipo.setToolTipText("Construir Equipo");
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/ConstruirPC1.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(ConstruirEquipo.getWidth(),ConstruirEquipo.getHeight(),Image.SCALE_DEFAULT));
-        ConstruirEquipo.setIcon(icono);
+        if (ConstruirEquipo.isVisible()==true) {
+     
+              ConstruirEquipo.setIcon(definirIconoEnter(construir));
+          }
+      
     }//GEN-LAST:event_ConstruirEquipoMouseEntered
 
     private void ConstruirEquipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstruirEquipoMouseExited
         // TODO add your handling code here:
-         ImageIcon foto = new ImageIcon (getClass().getResource("/images/ConstruirPC.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(ConstruirEquipo.getWidth(),ConstruirEquipo.getHeight(),Image.SCALE_DEFAULT));
-        ConstruirEquipo.setIcon(icono);
+        if (ConstruirEquipo.isVisible()==true) {
+         
+              ConstruirEquipo.setIcon(definirIconoExit(construir));
+          }
+      
     }//GEN-LAST:event_ConstruirEquipoMouseExited
 
     private void BitacorasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BitacorasMouseMoved
@@ -1256,17 +2928,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void BitacorasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BitacorasMouseEntered
         // TODO add your handling code here:
-        Bitacoras.setToolTipText("Gestionar Bitacoras");
-        ImageIcon foto12 = new ImageIcon (getClass().getResource("/images/Bitacoras2.png"));
-       ImageIcon icono12 = new ImageIcon(foto12.getImage().getScaledInstance(Bitacoras.getWidth(),Bitacoras.getHeight(),Image.SCALE_DEFAULT));
-       Bitacoras.setIcon(icono12);
+       if (Bitacoras.isVisible()==true) {
+          
+              Bitacoras.setIcon(definirIconoEnter(bitacor));
+          }
+      
     }//GEN-LAST:event_BitacorasMouseEntered
 
     private void BitacorasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BitacorasMouseExited
         // TODO add your handling code here:
-        ImageIcon foto12 = new ImageIcon (getClass().getResource("/images/Bitacoras.png"));
-       ImageIcon icono12 = new ImageIcon(foto12.getImage().getScaledInstance(Bitacoras.getWidth(),Bitacoras.getHeight(),Image.SCALE_DEFAULT));
-       Bitacoras.setIcon(icono12);
+      if (Bitacoras.isVisible()==true) {
+     
+              Bitacoras.setIcon(definirIconoExit(bitacor));
+          }
+   
     }//GEN-LAST:event_BitacorasMouseExited
 
     private void ClientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseMoved
@@ -1287,17 +2962,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseEntered
         // TODO add your handling code here:
-        Clientes.setToolTipText("Gestionar Clientes");
-        ImageIcon foto13 = new ImageIcon (getClass().getResource("/images/Clientes1.png"));
-       ImageIcon icono13 = new ImageIcon(foto13.getImage().getScaledInstance(Clientes.getWidth(),Clientes.getHeight(),Image.SCALE_DEFAULT));
-       Clientes.setIcon(icono13);
+       if (Clientes.isVisible()==true) {
+        
+              Clientes.setIcon(definirIconoEnter(client));
+          }
+     
     }//GEN-LAST:event_ClientesMouseEntered
 
     private void ClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseExited
         // TODO add your handling code here:
-        ImageIcon foto13 = new ImageIcon (getClass().getResource("/images/Clientes.png"));
-       ImageIcon icono13 = new ImageIcon(foto13.getImage().getScaledInstance(Clientes.getWidth(),Clientes.getHeight(),Image.SCALE_DEFAULT));
-       Clientes.setIcon(icono13);
+     if (Clientes.isVisible()==true) {
+          
+              Clientes.setIcon(definirIconoExit(client));
+          }
+      
         
     }//GEN-LAST:event_ClientesMouseExited
 
@@ -1319,17 +2997,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void PresupuestoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresupuestoMouseEntered
         // TODO add your handling code here:
-        Presupuesto.setToolTipText("Crear Presupuesto");
-        ImageIcon foto14 = new ImageIcon (getClass().getResource("/images/Presupuesto1.png"));
-       ImageIcon icono14 = new ImageIcon(foto14.getImage().getScaledInstance(Presupuesto.getWidth(),Presupuesto.getHeight(),Image.SCALE_DEFAULT));
-       Presupuesto.setIcon(icono14);
+       if (Presupuesto.isVisible()==true) {
+         
+              Presupuesto.setIcon(definirIconoEnter(presup));
+          }
+    
     }//GEN-LAST:event_PresupuestoMouseEntered
 
     private void PresupuestoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresupuestoMouseExited
         // TODO add your handling code here:
-        ImageIcon foto14 = new ImageIcon (getClass().getResource("/images/Presupuesto.png"));
-       ImageIcon icono14 = new ImageIcon(foto14.getImage().getScaledInstance(Presupuesto.getWidth(),Presupuesto.getHeight(),Image.SCALE_DEFAULT));
-       Presupuesto.setIcon(icono14);
+       if (Presupuesto.isVisible()==true) {
+        
+              Presupuesto.setIcon(definirIconoExit(presup));
+          }
+    
     }//GEN-LAST:event_PresupuestoMouseExited
 
     private void VentasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasMouseMoved
@@ -1350,17 +3031,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void VentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasMouseEntered
         // TODO add your handling code here:
-        Ventas.setToolTipText("Gestionar Ventas");
-        ImageIcon foto15 = new ImageIcon (getClass().getResource("/images/Ventas1.png"));
-       ImageIcon icono15 = new ImageIcon(foto15.getImage().getScaledInstance(Ventas.getWidth(),Ventas.getHeight(),Image.SCALE_DEFAULT));
-       Ventas.setIcon(icono15);
+       if (Ventas.isVisible()==true) {
+         
+              Ventas.setIcon(definirIconoEnter(vent));
+          }
+   
     }//GEN-LAST:event_VentasMouseEntered
 
     private void VentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasMouseExited
         // TODO add your handling code here:
-        ImageIcon foto15 = new ImageIcon (getClass().getResource("/images/Ventas.png"));
-       ImageIcon icono15 = new ImageIcon(foto15.getImage().getScaledInstance(Ventas.getWidth(),Ventas.getHeight(),Image.SCALE_DEFAULT));
-       Ventas.setIcon(icono15);
+       if (Ventas.isVisible()==true) {
+      
+              Ventas.setIcon(definirIconoExit(vent));
+ 
+        }
     }//GEN-LAST:event_VentasMouseExited
 
     private void OrdenesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenesMouseMoved
@@ -1381,25 +3065,32 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void OrdenesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenesMouseEntered
         // TODO add your handling code here:
-        Ordenes.setToolTipText("Gestionar Pedidos");
-         ImageIcon foto16 = new ImageIcon (getClass().getResource("/images/OrdenesCola1.png"));
-       ImageIcon icono16 = new ImageIcon(foto16.getImage().getScaledInstance(Ordenes.getWidth(),Ordenes.getHeight(),Image.SCALE_DEFAULT));
-       Ordenes.setIcon(icono16);
+        if (Ordenes.isVisible()==true) {
+         
+              Ordenes.setIcon(definirIconoEnter(orde));
+         
+      }
     }//GEN-LAST:event_OrdenesMouseEntered
 
+    
     private void OrdenesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenesMouseExited
         // TODO add your handling code here:
-         ImageIcon foto16 = new ImageIcon (getClass().getResource("/images/OrdenesCola.png"));
-       ImageIcon icono16 = new ImageIcon(foto16.getImage().getScaledInstance(Ordenes.getWidth(),Ordenes.getHeight(),Image.SCALE_DEFAULT));
-       Ordenes.setIcon(icono16);
+     if (Ordenes.isVisible()==true) {
+          
+              Ordenes.setIcon(definirIconoExit(orde));
+      
+      }
+       
     }//GEN-LAST:event_OrdenesMouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        mtoUsuarios objeto = new mtoUsuarios();
-        objeto.setCorreoEmpleado("TEST");
-        String[]datos= objeto.consultarEmpleado();
-        
+        for (int i = 0; i <botones.length; i++) {
+            
+                System.out.println("boton: "+i+" valor: "+botones[i]);
+            
+            
+        }
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
