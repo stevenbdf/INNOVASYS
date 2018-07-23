@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import javax.swing.UIManager;
 
 /**
@@ -16,6 +17,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
     /**
      * Creates new form PGestionarBitacoras
      */
+    verificaciones verificar = new verificaciones();
     public PGestionarBitacoras() {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -107,6 +109,11 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
+        });
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -154,6 +161,18 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         // TODO add your handling code here:
          jButton5.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton5MouseExited
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTextField8.getText().length() <20 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

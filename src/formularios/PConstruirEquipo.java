@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import static formularios.VentanaPrincipal2.PanelPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.UIManager;
@@ -18,6 +19,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     /**
      * Creates new form PConstruirEquipo
      */
+    verificaciones verificar = new verificaciones();
     public PConstruirEquipo() {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -89,6 +91,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
 
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -201,6 +208,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -358,6 +370,30 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         // TODO add your handling code here:
         jButton3.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vprecio(vchar) == true
+                && (jTextField8.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vprecio(vchar) == true
+                && (jTextField9.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField9KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

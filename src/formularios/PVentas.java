@@ -351,8 +351,8 @@ public class PVentas extends javax.swing.JPanel {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField9.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTextField9.getText().length() < 5)) {
 
         } else {
             evt.consume();
@@ -363,8 +363,8 @@ public class PVentas extends javax.swing.JPanel {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField8.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTextField8.getText().length() < 5)) {
 
         } else {
             evt.consume();

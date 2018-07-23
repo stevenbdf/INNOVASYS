@@ -187,8 +187,8 @@ public class Pago1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField1.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTextField1.getText().length() < 5)) {
 
         } else {
             evt.consume();
@@ -199,8 +199,8 @@ public class Pago1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField2.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTextField2.getText().length() < 5)) {
 
         } else {
             evt.consume();
@@ -211,8 +211,8 @@ public class Pago1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField3.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTextField3.getText().length() < 5)) {
 
         } else {
             evt.consume();

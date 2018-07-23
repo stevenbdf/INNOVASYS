@@ -24,6 +24,14 @@ public class verificaciones {
          return verificado;
     }
     
+    public boolean vprecio (char key){
+        boolean verificado =false;
+         if ( Character.isDigit(key)|| key==('.')){
+             verificado=true; 
+         };
+         return verificado;
+    }
+    
     public boolean vletras (char key){
         boolean verificado =false;
          if ( Character.isLetter(key) || key==(' ')){

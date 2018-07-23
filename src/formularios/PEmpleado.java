@@ -31,7 +31,8 @@ public class PEmpleado extends javax.swing.JPanel {
     /**
      * Creates new form PEmpleado
      */
-    
+    //Instancia de clase verificaciones
+    verificaciones verificar = new verificaciones();
     //Instancia clase conexion
     Conexion con = new Conexion();
     Conexion cn = new Conexion();
@@ -466,36 +467,66 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFTelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFTelefono.setToolTipText("");
         jTFTelefono.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFTelefonoKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, -1));
 
         jTFNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombreEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFNombreEmpleado.setToolTipText("");
         jTFNombreEmpleado.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreEmpleadoKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 200, -1));
 
         jTFApellido.setBackground(new java.awt.Color(204, 204, 204));
         jTFApellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFApellido.setToolTipText("");
         jTFApellido.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFApellidoKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 200, -1));
 
         jTFDireccion.setBackground(new java.awt.Color(204, 204, 204));
         jTFDireccion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDireccion.setToolTipText("");
         jTFDireccion.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDireccionKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, -1));
 
         jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
         jTFCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFCorreo.setToolTipText("");
         jTFCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCorreoKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 200, -1));
 
         jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFContraseña.setToolTipText("");
         jTFContraseña.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFContraseñaKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 200, -1));
 
         btnModificarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -571,6 +602,9 @@ public class PEmpleado extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarEmpleadoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarEmpleadoKeyTyped(evt);
+            }
         });
         jPanel1.add(jTFBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, 30));
 
@@ -639,12 +673,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado.setContentAreaFilled(false);
         btnAgregarEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleadoAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -707,12 +741,22 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFRespuesta1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFRespuesta1.setToolTipText("");
         jTFRespuesta1.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFRespuesta1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFRespuesta1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, -1));
 
         jTFRespuesta2.setBackground(new java.awt.Color(204, 204, 204));
         jTFRespuesta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFRespuesta2.setToolTipText("");
         jTFRespuesta2.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFRespuesta2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFRespuesta2KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTFRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 170, -1));
 
         cmdPregunta2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -794,12 +838,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado1.setContentAreaFilled(false);
         btnAgregarEmpleado1.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleado1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -878,6 +922,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDescripcionDE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDescripcionDE.setToolTipText("");
         jTFDescripcionDE.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFDescripcionDE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDescripcionDEKeyTyped(evt);
+            }
+        });
         jPanel2.add(jTFDescripcionDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 120, -1));
 
         jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -938,6 +987,9 @@ public class PEmpleado extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarDocumentoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarDocumentoKeyTyped(evt);
+            }
         });
 
         rdNombreDocumento.setBackground(new java.awt.Color(102, 102, 102));
@@ -974,6 +1026,9 @@ public class PEmpleado extends javax.swing.JPanel {
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFNombreDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreDKeyTyped(evt);
             }
         });
 
@@ -1196,6 +1251,9 @@ public class PEmpleado extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFNombreEKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreEKeyTyped(evt);
+            }
         });
 
         lblCodigoEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1246,6 +1304,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDescripcionE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFDescripcionE.setToolTipText("");
         jTFDescripcionE.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFDescripcionE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDescripcionEKeyTyped(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -1571,6 +1634,14 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void jTFBuscarEstadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEstadoKeyTyped
         // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFBuscarEstado.getText().length() <11 )) {
+
+        } else {
+            evt.consume();
+        }
         
     }//GEN-LAST:event_jTFBuscarEstadoKeyTyped
 
@@ -2172,6 +2243,175 @@ public class PEmpleado extends javax.swing.JPanel {
         cmbDocumento.setSelectedItem(String.valueOf(modeloTablaDocumentosEmpleados.getValueAt(jTable4.getSelectedRow(), (1))));
         jTFDescripcionDE.setText(String.valueOf(modeloTablaDocumentosEmpleados.getValueAt(jTable4.getSelectedRow(), (3))));
     }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jTFNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFNombreEmpleado.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNombreEmpleadoKeyTyped
+
+    private void jTFApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFApellido.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFApellidoKeyTyped
+
+    private void jTFTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTelefonoKeyTyped
+        // TODO add your handling code here:char vchar = evt.getKeyChar();
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vnumeros(vchar) == true
+                && (jTFTelefono.getText().length() < 8)) {
+
+        } else {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jTFTelefonoKeyTyped
+
+    private void jTFCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCorreoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vcorreoevent(vchar) == true
+                && (jTFCorreo.getText().length() < 30)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFCorreoKeyTyped
+
+    private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFContraseña.getText().length() < 20)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFContraseñaKeyTyped
+
+    private void jTFDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFDireccion.getText().length() < 40)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFDireccionKeyTyped
+
+    private void jTFBuscarEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFBuscarEmpleado.getText().length() <20 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFBuscarEmpleadoKeyTyped
+
+    private void jTFRespuesta1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta1KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFRespuesta1.getText().length() <30 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFRespuesta1KeyTyped
+
+    private void jTFRespuesta2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta2KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFRespuesta2.getText().length() <20 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFRespuesta2KeyTyped
+
+    private void jTFDescripcionDEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionDEKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vnumeros(vchar) == true
+                && (jTFDescripcionDE.getText().length() <14 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFDescripcionDEKeyTyped
+
+    private void jTFBuscarDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarDocumentoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFBuscarDocumento.getText().length() <14 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFBuscarDocumentoKeyTyped
+
+    private void jTFNombreDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFNombreD.getText().length() <20 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNombreDKeyTyped
+
+    private void jTFNombreEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletras(vchar) == true
+                && (jTFNombreE.getText().length() <20 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNombreEKeyTyped
+
+    private void jTFDescripcionEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionEKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTFDescripcionE.getText().length() <40 )) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFDescripcionEKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

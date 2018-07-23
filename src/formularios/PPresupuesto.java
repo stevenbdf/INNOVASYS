@@ -200,6 +200,11 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
         add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 87, 30));
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
@@ -273,7 +278,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benchmark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benchmark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -444,6 +449,18 @@ public class PPresupuesto extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vnumeros(vchar) == true
+                && (jTextField10.getText().length() < 5)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField10KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

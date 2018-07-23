@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clases.verificaciones;
 import javax.swing.UIManager;
 
 /**
@@ -16,6 +17,7 @@ public class Ayuda1 extends javax.swing.JFrame {
     /**
      * Creates new form Ayuda1
      */
+    verificaciones verificar = new verificaciones();
     public Ayuda1() {
 //        try {
 //			
@@ -106,6 +108,11 @@ public class Ayuda1 extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextArea1KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 280, 120));
@@ -174,6 +181,18 @@ public class Ayuda1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
+        // TODO add your handling code here:
+         char vchar = evt.getKeyChar();
+        
+        if (verificar.vletrasynumeros(vchar) == true
+                && (jTextArea1.getText().length() < 250)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextArea1KeyTyped
 
     /**
      * @param args the command line arguments
