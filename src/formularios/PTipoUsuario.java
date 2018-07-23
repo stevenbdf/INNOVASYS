@@ -425,6 +425,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
         cbInventario.setBackground(new java.awt.Color(102, 102, 102));
         cbInventario.setForeground(new java.awt.Color(255, 255, 255));
         cbInventario.setText("Ver Inventario");
+        cbInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbInventarioActionPerformed(evt);
+            }
+        });
         jPanel5.add(cbInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         cbConstruirEquipo.setBackground(new java.awt.Color(102, 102, 102));
@@ -439,12 +444,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         cbSolicitarAyuda.setBackground(new java.awt.Color(102, 102, 102));
         cbSolicitarAyuda.setForeground(new java.awt.Color(255, 255, 255));
-        cbSolicitarAyuda.setText("Solicitar Ayuda");
+        cbSolicitarAyuda.setText("Crear Presupuesto");
         jPanel5.add(cbSolicitarAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         cbOrdenesCola.setBackground(new java.awt.Color(102, 102, 102));
         cbOrdenesCola.setForeground(new java.awt.Color(255, 255, 255));
-        cbOrdenesCola.setText("Ver ordenes en cola");
+        cbOrdenesCola.setText("Ordenes en Cola");
         jPanel5.add(cbOrdenesCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         cbCajaRegistradora.setBackground(new java.awt.Color(102, 102, 102));
@@ -505,6 +510,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
         cbGestionarInventario.setBackground(new java.awt.Color(102, 102, 102));
         cbGestionarInventario.setForeground(new java.awt.Color(255, 255, 255));
         cbGestionarInventario.setText("Gestionar Inventario");
+        cbGestionarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbGestionarInventarioActionPerformed(evt);
+            }
+        });
         jPanel5.add(cbGestionarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 370, 320));
@@ -1086,6 +1096,27 @@ public class PTipoUsuario extends javax.swing.JPanel {
         help form = new help(16);
         form.show();
     }//GEN-LAST:event_lblhelp1MouseClicked
+
+    private void cbGestionarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGestionarInventarioActionPerformed
+        // TODO add your handling code here:
+        
+            cbInventario.setSelected(true);
+            if (cbGestionarInventario.isSelected()==false) {
+            cbInventario.setSelected(false);
+        }
+        
+    }//GEN-LAST:event_cbGestionarInventarioActionPerformed
+    
+    private void cbInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbInventarioActionPerformed
+        // TODO add your handling code here:
+        
+            cbGestionarInventario.setSelected(true);
+           if (cbInventario.isSelected()==false) {
+            cbGestionarInventario.setSelected(false);
+        }
+        
+        
+    }//GEN-LAST:event_cbInventarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -146,6 +146,7 @@ public class PProveedores extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(modeloTablaProveedores);
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -210,22 +211,22 @@ public class PProveedores extends javax.swing.JPanel {
                 jTextField1KeyTyped(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 78, 30));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 100, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Codigo:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre  Proveedor:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jLabel3.setText("Nombre:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 106, 60, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Telefono:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, 30));
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -292,12 +293,12 @@ public class PProveedores extends javax.swing.JPanel {
                 jTextField3KeyTyped(evt);
             }
         });
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 155, 30));
+        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 155, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Direccion:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, 20));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -311,7 +312,7 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fax:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 260, 30, 30));
 
         jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -325,7 +326,7 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Correo Electronico:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 30));
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -344,7 +345,7 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Estado:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -370,8 +371,8 @@ public class PProveedores extends javax.swing.JPanel {
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Activo", "Inactivo" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, -1));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -524,7 +525,7 @@ public class PProveedores extends javax.swing.JPanel {
                 
             if(jTextField1.getText().isEmpty()){
                 
-                if (texto=="Activo") {
+                if (texto.equals("Activo")) {
                    objeto.setEstadoP(1);
                    if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
@@ -532,7 +533,7 @@ public class PProveedores extends javax.swing.JPanel {
                     }else{
                         JOptionPane.showMessageDialog(this, "Error al agregar");
                     }
-                }else if (texto=="Inactivo") {
+                }else if (texto.equals("Inactivo")) {
                     objeto.setEstadoP(0);
                     if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
@@ -550,7 +551,7 @@ public class PProveedores extends javax.swing.JPanel {
                     if(objeto.checkProveedor()){
                     JOptionPane.showMessageDialog(this, "Ya existe ese usuario registrado");
                 }else{
-                    if (texto=="Activo") {
+                    if (texto.equals("Activo")) {
                        objeto.setEstadoP(1);
                        if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
@@ -558,7 +559,7 @@ public class PProveedores extends javax.swing.JPanel {
                         }else{
                             JOptionPane.showMessageDialog(this, "Error al agregar");
                         }
-                    }else if (texto=="Inactivo") {
+                    }else if (texto.equals("Inactivo")) {
                         objeto.setEstadoP(0);
                         if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
@@ -591,14 +592,14 @@ public class PProveedores extends javax.swing.JPanel {
         String texto= String.valueOf(jComboBox1.getSelectedItem());
         objeto.setIdP(Integer.valueOf(jTextField1.getText()));
         
-            if (texto=="Activo") {
+            if (texto.equals("Activo")) {
                objeto.setEstadoP(1);
                if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
                 }else{
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
-            }else if (texto=="Inactivo") {
+            }else if (texto.equals("Inactivo")) {
                 objeto.setEstadoP(0);
                 if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
@@ -619,7 +620,7 @@ public class PProveedores extends javax.swing.JPanel {
         jTextField7.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (5))));
         
         String texto = String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (6)));
-        if (texto=="true") {
+        if (texto.equals("true")) {
             jComboBox1.setSelectedItem("Activo");
         }else{
             jComboBox1.setSelectedItem("Inactivo");
