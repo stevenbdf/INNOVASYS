@@ -988,4 +988,28 @@ public class mtoUsuarios extends PEmpleado{
             }
         return resp;
     }
+    public int id()
+    {
+        int cnt1 = 0;
+        String sql="Select * from usuarioEmpleado";
+        
+        Object dato[] = new Object[1];
+                try{
+                    PreparedStatement us = getCn().prepareStatement(sql);
+                    ResultSet res = us.executeQuery();
+
+                    while(res.next()){
+                        for(int i =0;i<1;i++)
+                        {
+                            dato[i] =res.getObject(i+1);
+                        }
+                        cnt1 = Integer.valueOf(dato[0].toString());
+                    }
+                    res.close();
+                }
+                catch(Exception ex){
+                        System.out.println("Error tabla:"+ex.getMessage());
+                } 
+                return cnt1;
+    }
 }

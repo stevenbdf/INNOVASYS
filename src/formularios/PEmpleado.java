@@ -7,6 +7,10 @@ package formularios;
 import clases.*;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -36,6 +40,10 @@ public class PEmpleado extends javax.swing.JPanel {
     //Instancia clase conexion
     Conexion con = new Conexion();
     Conexion cn = new Conexion();
+    //Guardar imagen
+    File dest;
+    File source;
+    JFileChooser Archivos = new JFileChooser();
     /**
      * Creacion de modelo de lista
      */
@@ -1501,21 +1509,21 @@ public class PEmpleado extends javax.swing.JPanel {
     
     private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
         // TODO add your handling code here:
-        int resultado;
-        fileChooser ventana = new fileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
-        ventana.jfchCargarFoto.setFileFilter(filtro);
-        resultado = ventana.jfchCargarFoto.showOpenDialog(null);
-        if (JFileChooser.APPROVE_OPTION == resultado) {
-            fichero = ventana.jfchCargarFoto.getSelectedFile();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos JPG", "JPG");
+        Archivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        Archivos.setFileFilter(filtro);
+        int resultado = Archivos.showOpenDialog(this);
+        source = Archivos.getSelectedFile();
+        if(Archivos!=null)
+        {
             try {
-                ImageIcon icon = new ImageIcon(fichero.toString());
+                ImageIcon icon = new ImageIcon(source.toString());
                 ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                 lblFoto.setIcon(icono);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
             }
-        }       
+        }      
     }//GEN-LAST:event_btnExaminarActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -1954,9 +1962,21 @@ public class PEmpleado extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+        int id=objeto.id();
+        if(Archivos!=null)
+       {
+           dest = new File("../images/img"+(id+1)+".jpg");
+            try {
+                copyFile(source, dest);  
+            } catch (IOException ex) {
+                Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }
+        else
+        {
+        }
         objeto.setDireccion(jTFDireccion.getText());
-        objeto.setImagen(String.valueOf(fichero));
+        objeto.setImagen(String.valueOf(dest));
         objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
         objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
         objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
@@ -2511,7 +2531,24 @@ public class PEmpleado extends javax.swing.JPanel {
         help form = new help(9);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
-
+    
+    private static void copyFile(File source, File dest)
+	        throws IOException {
+	    FileChannel inputChannel = null;
+	    FileChannel outputChannel = null;
+	    try {
+	        inputChannel = new FileInputStream(source).getChannel();
+	        outputChannel = new FileOutputStream(dest).getChannel();
+	        outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+	    }
+            catch(Exception ex){
+                System.out.println("Error:"+ex.getMessage());
+            }
+            finally {
+	        inputChannel.close();
+	        outputChannel.close();
+	    }
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
