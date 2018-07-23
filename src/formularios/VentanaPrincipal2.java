@@ -2515,14 +2515,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveedoresMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PProveedores datos = new PProveedores();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(prove);
         
     }//GEN-LAST:event_ProveedoresMouseClicked
 
@@ -2541,20 +2534,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ChatCenterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseClicked
         // TODO add your handling code here:
-//        PanelPrincipal.setVisible(true);
-//        jLabel2.setVisible(false);
-//        PChatCenter chatcenter = new PChatCenter();
-//        chatcenter.setSize(680,500);
-//        PanelPrincipal.removeAll();
-//        PanelPrincipal.add(chatcenter, BorderLayout.CENTER);
-//        PanelPrincipal.revalidate();
-//        PanelPrincipal.repaint();
-        Runtime obj = Runtime.getRuntime();
-        try {
-            obj.exec("C:\\Users\\User\\Desktop\\Chat.exe");
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        definirClick(chat);
     }//GEN-LAST:event_ChatCenterMouseClicked
 
     private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved
@@ -2593,14 +2573,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void EmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PEmpleado empleado = new PEmpleado();
-        empleado.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(empleado, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(empleado);
        
     }//GEN-LAST:event_EmpleadosMouseClicked
 
@@ -2625,21 +2598,168 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void EmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PDatosEmpresa datos = new PDatosEmpresa();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(empresa);
     }//GEN-LAST:event_EmpresaMouseClicked
 
+    public void definirClick(int label) {
+        System.out.println("Label : "+label);
+        switch (label) {
+            case 0:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PInventario inventario = new PInventario();
+                inventario.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(inventario, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 1:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PConstruirEquipo tipossss = new PConstruirEquipo();
+                tipossss.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(tipossss, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 2:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PProductos productos = new PProductos();
+                productos.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(productos, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 3:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PPresupuesto press = new PPresupuesto();
+                press.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(press, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 4:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                VerOrdenesCola datos = new VerOrdenesCola();
+                datos.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(datos, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 5:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PCajaVirtual cajas = new PCajaVirtual();
+                cajas.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(cajas, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 6:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PVentas ventass = new PVentas();
+                ventass.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(ventass, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 7:
+//        PanelPrincipal.setVisible(true);
+//        jLabel2.setVisible(false);
+//        PChatCenter chatcenter = new PChatCenter();
+//        chatcenter.setSize(680,500);
+//        PanelPrincipal.removeAll();
+//        PanelPrincipal.add(chatcenter, BorderLayout.CENTER);
+//        PanelPrincipal.revalidate();
+//        PanelPrincipal.repaint();
+                Runtime obj = Runtime.getRuntime();
+                try {
+                    obj.exec("C:\\Users\\User\\Desktop\\Chat.exe");
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case 8:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PDatosEmpresa empresas = new PDatosEmpresa();
+                empresas.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(empresas, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+
+            case 9:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PTipoUsuario tiposs = new PTipoUsuario();
+                tiposs.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(tiposs, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 10:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PGestionarBitacoras tiposss = new PGestionarBitacoras();
+                tiposss.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(tiposss, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 11:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PGestionarClientes clientes = new PGestionarClientes();
+                clientes.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(clientes, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 12:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PProveedores proveedores = new PProveedores();
+                proveedores.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(proveedores, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            case 13:
+                PanelPrincipal.setVisible(true);
+                jLabel2.setVisible(false);
+                PEmpleado empleadoss = new PEmpleado();
+                empleadoss.setSize(680, 500);
+                PanelPrincipal.removeAll();
+                PanelPrincipal.add(empleadoss, BorderLayout.CENTER);
+                PanelPrincipal.revalidate();
+                PanelPrincipal.repaint();
+                break;
+            default:
+                System.out.println("i: nada");
+                break;
+        }
+    }
     
     public ImageIcon definirIconoExit(int botonT){
 
-            
-                
+   
             switch (botonT) {
             case 0:
                 return icono0;         
@@ -2717,6 +2837,8 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             
         return null;
     }
+    
+    
     private void EmpresaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseEntered
         // TODO add your handling code here:
       if (Empresa.isVisible()==true) {  
@@ -2739,15 +2861,8 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void CajaRegistradoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CajaRegistradoraMouseClicked
         // TODO add your handling code here
-       
-            PanelPrincipal.setVisible(true);
-             jLabel2.setVisible(false);
-        PCajaVirtual caja = new PCajaVirtual();
-        caja.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(caja, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+       definirClick(caja);
+        
 
         
     }//GEN-LAST:event_CajaRegistradoraMouseClicked
@@ -2776,14 +2891,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void InventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PInventario inventario = new PInventario();
-        inventario.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(inventario, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(invent);
     }//GEN-LAST:event_InventarioMouseClicked
 
     private void InventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseEntered
@@ -2814,14 +2922,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PProductos productos = new PProductos();
-        productos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(productos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(producto);
     }//GEN-LAST:event_ProductosMouseClicked
 
     private void ProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosMouseExited
@@ -2848,14 +2949,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void TipoUsuario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoUsuario1MouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PTipoUsuario tipo= new PTipoUsuario();
-        tipo.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(tipo, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(tipo);
     }//GEN-LAST:event_TipoUsuario1MouseClicked
 
     private void TipoUsuario1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TipoUsuario1MouseExited
@@ -2882,14 +2976,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ConstruirEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstruirEquipoMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PConstruirEquipo tipo= new PConstruirEquipo();
-        tipo.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(tipo, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(construir);
     }//GEN-LAST:event_ConstruirEquipoMouseClicked
 
     private void ConstruirEquipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstruirEquipoMouseEntered
@@ -2916,14 +3003,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void BitacorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BitacorasMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PGestionarBitacoras tipo= new PGestionarBitacoras();
-        tipo.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(tipo, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(bitacor);
     }//GEN-LAST:event_BitacorasMouseClicked
 
     private void BitacorasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BitacorasMouseEntered
@@ -2950,14 +3030,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PGestionarClientes datos = new PGestionarClientes();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(client);
     }//GEN-LAST:event_ClientesMouseClicked
 
     private void ClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseEntered
@@ -2985,14 +3058,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void PresupuestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresupuestoMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PPresupuesto datos = new PPresupuesto();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(presup);
     }//GEN-LAST:event_PresupuestoMouseClicked
 
     private void PresupuestoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresupuestoMouseEntered
@@ -3019,14 +3085,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void VentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        PVentas datos = new PVentas();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(vent);
     }//GEN-LAST:event_VentasMouseClicked
 
     private void VentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasMouseEntered
@@ -3053,14 +3112,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
     private void OrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenesMouseClicked
         // TODO add your handling code here:
-        PanelPrincipal.setVisible(true);
-        jLabel2.setVisible(false);
-        VerOrdenesCola datos = new VerOrdenesCola();
-        datos.setSize(680,500);
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(datos, BorderLayout.CENTER);
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();
+        definirClick(orde);
     }//GEN-LAST:event_OrdenesMouseClicked
 
     private void OrdenesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenesMouseEntered
