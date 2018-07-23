@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package formularios;
+import clases.mtoDatosEmpresa;
 import clases.verificaciones;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -25,6 +26,32 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        mtoDatosEmpresa obj = new mtoDatosEmpresa();
+        if (obj.consultarDatos()) {
+            nombre.setText(obj.getNombre());
+            domicilio.setText(obj.getDomicilio());
+            fecha.setText(obj.getFecha());
+            descripcion.setText(obj.getDescripcion());
+            try{
+                ImageIcon foto0 = new ImageIcon(getClass().getResource(obj.getLogo()));
+            ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+            logo.setIcon(icono0);
+            }catch(Exception e){
+                logo.setText("");
+            }
+            
+            
+            tel1.setText(String.valueOf(obj.getTelefono1()));
+            tel2.setText(String.valueOf(obj.getTelefono2()));
+            fax1.setText(String.valueOf(obj.getFax1()));
+            fax2.setText(String.valueOf(obj.getFax2()));
+            correo1.setText(String.valueOf(obj.getCorreo1()));
+            correo2.setText(String.valueOf(obj.getCorreo2()));
+            propietario.setText(obj.getPropietario());
+            noFactura.setText(String.valueOf(obj.getNoFactura()));
+            noCredito.setText(String.valueOf(obj.getNoFiscal()));
+        }
+    
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
@@ -41,39 +68,40 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        domicilio = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tel1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descripcion = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        tel2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        fax2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        fax1 = new javax.swing.JTextField();
+        correo1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        correo2 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        propietario = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        noFactura = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        noCredito = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         lblhelp = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        fecha = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -85,57 +113,57 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel1.setText("Gestion de los Datos de la Empresa");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 31));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nombre.setBackground(new java.awt.Color(204, 204, 204));
+        nombre.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nombreActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                nombreKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 60, 187, 30));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 60, 187, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Empresa:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        domicilio.setBackground(new java.awt.Color(204, 204, 204));
+        domicilio.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        domicilio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                domicilioActionPerformed(evt);
             }
         });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        domicilio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                domicilioKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 187, 30));
+        jPanel1.add(domicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 187, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Domicilio:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        tel1.setBackground(new java.awt.Color(204, 204, 204));
+        tel1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        tel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                tel1ActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        tel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                tel1KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 60, 126, 30));
+        jPanel1.add(tel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 60, 126, 30));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,10 +175,10 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel5.setText("Descripcion:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 20));
 
-        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descripcion.setBackground(new java.awt.Color(204, 204, 204));
+        descripcion.setColumns(20);
+        descripcion.setRows(5);
+        jScrollPane1.setViewportView(descripcion);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 172, 111));
 
@@ -158,21 +186,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Logo:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 139, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 305, 172, -1));
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,7 +201,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 450, 81, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 81, -1));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,147 +213,147 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel8.setText("Telefono 2:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tel2.setBackground(new java.awt.Color(204, 204, 204));
+        tel2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        tel2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tel2ActionPerformed(evt);
             }
         });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        tel2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                tel2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 101, 126, 30));
+        jPanel1.add(tel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 101, 126, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Fax 2:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 191, -1, -1));
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        fax2.setBackground(new java.awt.Color(204, 204, 204));
+        fax2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        fax2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                fax2ActionPerformed(evt);
             }
         });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        fax2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                fax2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 183, 126, 30));
+        jPanel1.add(fax2, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 183, 126, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Fax 1:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 150, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        fax1.setBackground(new java.awt.Color(204, 204, 204));
+        fax1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        fax1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                fax1ActionPerformed(evt);
             }
         });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        fax1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
+                fax1KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 142, 126, 30));
+        jPanel1.add(fax1, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 142, 126, 30));
 
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        correo1.setBackground(new java.awt.Color(204, 204, 204));
+        correo1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        correo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                correo1ActionPerformed(evt);
             }
         });
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        correo1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField7KeyTyped(evt);
+                correo1KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 224, 126, 30));
+        jPanel1.add(correo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 224, 126, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Correo Electronico1:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        correo2.setBackground(new java.awt.Color(204, 204, 204));
+        correo2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        correo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                correo2ActionPerformed(evt);
             }
         });
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        correo2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                correo2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 265, 126, 30));
+        jPanel1.add(correo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 265, 126, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Correo Electronico2:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        propietario.setBackground(new java.awt.Color(204, 204, 204));
+        propietario.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        propietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                propietarioActionPerformed(evt);
             }
         });
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        propietario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
+                propietarioKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 306, 126, 30));
+        jPanel1.add(propietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 306, 126, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Propietario:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 312, -1, -1));
 
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        noFactura.setBackground(new java.awt.Color(204, 204, 204));
+        noFactura.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        noFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                noFacturaActionPerformed(evt);
             }
         });
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+        noFactura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
+                noFacturaKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 347, 126, 30));
+        jPanel1.add(noFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 347, 126, 30));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("No.Correlativo de Factura:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 353, -1, -1));
 
-        jTextField11.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        noCredito.setBackground(new java.awt.Color(204, 204, 204));
+        noCredito.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        noCredito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                noCreditoActionPerformed(evt);
             }
         });
-        jTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
+        noCredito.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField11KeyTyped(evt);
+                noCreditoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 388, 126, 30));
+        jPanel1.add(noCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 388, 126, 30));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,7 +379,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 140, 50));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 140, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -375,7 +388,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-        jPanel1.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 180, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -393,6 +405,26 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         });
         jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
 
+        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField12.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField12KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 187, 30));
+
+        fecha.setText("jLabel17");
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 160, 30));
+
+        logo.setText("jLabel17");
+        jPanel1.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 120, 110));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -405,49 +437,49 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void domicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domicilioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_domicilioActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tel1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void tel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_tel2ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void fax2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fax2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_fax2ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void fax1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fax1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_fax1ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void correo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_correo1ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void correo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_correo2ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void propietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propietarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_propietarioActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void noFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_noFacturaActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void noCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noCreditoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_noCreditoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -477,137 +509,137 @@ public class PDatosEmpresa extends javax.swing.JPanel {
          jButton2.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton2MouseExited
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField1.getText().length() < 30)) {
+                && (nombre.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_nombreKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void domicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_domicilioKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTextField2.getText().length() <60)) {
+                && (domicilio.getText().length() <60)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_domicilioKeyTyped
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void tel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tel1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField3.getText().length() < 8)) {
+                && (tel1.getText().length() < 8)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_tel1KeyTyped
 
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+    private void tel2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tel2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField4.getText().length() < 8)) {
+                && (tel2.getText().length() < 8)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField4KeyTyped
+    }//GEN-LAST:event_tel2KeyTyped
 
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+    private void fax1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fax1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField6.getText().length() < 14)) {
+                && (fax1.getText().length() < 14)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField6KeyTyped
+    }//GEN-LAST:event_fax1KeyTyped
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+    private void fax2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fax2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField5.getText().length() < 14)) {
+                && (fax2.getText().length() < 14)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_fax2KeyTyped
 
-    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+    private void correo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correo1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vcorreoevent(vchar) == true
-                && (jTextField7.getText().length() < 30)) {
+                && (correo1.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField7KeyTyped
+    }//GEN-LAST:event_correo1KeyTyped
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    private void correo2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correo2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vcorreoevent(vchar) == true
-                && (jTextField8.getText().length() < 30)) {
+                && (correo2.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField8KeyTyped
+    }//GEN-LAST:event_correo2KeyTyped
 
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+    private void propietarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_propietarioKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletras(vchar) == true
-                && (jTextField9.getText().length() < 30)) {
+                && (propietario.getText().length() < 30)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField9KeyTyped
+    }//GEN-LAST:event_propietarioKeyTyped
 
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+    private void noFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noFacturaKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField10.getText().length() < 5)) {
+                && (noFactura.getText().length() < 5)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField10KeyTyped
+    }//GEN-LAST:event_noFacturaKeyTyped
 
-    private void jTextField11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyTyped
+    private void noCreditoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noCreditoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField11.getText().length() < 5)) {
+                && (noCredito.getText().length() < 5)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField11KeyTyped
+    }//GEN-LAST:event_noCreditoKeyTyped
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
@@ -623,9 +655,23 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jTextField12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserCombo dateChooserCombo2;
+    private javax.swing.JTextField correo1;
+    private javax.swing.JTextField correo2;
+    private javax.swing.JTextArea descripcion;
+    private javax.swing.JTextField domicilio;
+    private javax.swing.JTextField fax1;
+    private javax.swing.JTextField fax2;
+    private javax.swing.JLabel fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -645,20 +691,15 @@ public class PDatosEmpresa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JLabel lblhelp;
+    private javax.swing.JLabel logo;
+    private javax.swing.JTextField noCredito;
+    private javax.swing.JTextField noFactura;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField propietario;
+    private javax.swing.JTextField tel1;
+    private javax.swing.JTextField tel2;
     // End of variables declaration//GEN-END:variables
 }

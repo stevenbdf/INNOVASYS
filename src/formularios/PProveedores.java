@@ -50,7 +50,7 @@ public class PProveedores extends javax.swing.JPanel {
     }
     private void setFilas() {
         try {
-            String consulta = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado FROM proveedor";
+            String consulta = "SELECT idProveedor, nombreProveedor, direccion, telefono, fax,correoElectronico,estado FROM proveedor";
 
             PreparedStatement us = con.conectar().prepareStatement(consulta);
             ResultSet res = us.executeQuery();
@@ -462,7 +462,7 @@ public class PProveedores extends javax.swing.JPanel {
         char vchar = evt.getKeyChar();
        
         if (verificar.vnumeros(vchar) == true
-                && (jTextField6.getText().length() < 40)) {
+                && (jTextField6.getText().length() < 14)) {
 
         } else {
             evt.consume();
@@ -514,7 +514,7 @@ public class PProveedores extends javax.swing.JPanel {
         mtoUsuarios objeto = new mtoUsuarios();
 //        objeto.consultasRandom();
         if(!(jTextField3.getText().isEmpty()&&jTextField2.getText().isEmpty()
-            &&jTextField7.getText().isEmpty()&&jTextField6.getText().isEmpty()
+            && jTextField7.getText().isEmpty()&&jTextField6.getText().isEmpty()
             &&jTextField5.getText().isEmpty()&&jTextField1.getText().isEmpty())){
                 objeto.setNombreP(String.valueOf(jTextField3.getText()));
                 objeto.setTelefonoP(Integer.valueOf(jTextField2.getText()));
@@ -529,6 +529,11 @@ public class PProveedores extends javax.swing.JPanel {
                    objeto.setEstadoP(1);
                    if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                        
+                        int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
                         setFilas();
                     }else{
                         JOptionPane.showMessageDialog(this, "Error al agregar");
@@ -537,6 +542,10 @@ public class PProveedores extends javax.swing.JPanel {
                     objeto.setEstadoP(0);
                     if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                        int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
                         setFilas();
                     }else{
                         JOptionPane.showMessageDialog(this, "Error al agrgar");
@@ -555,6 +564,10 @@ public class PProveedores extends javax.swing.JPanel {
                        objeto.setEstadoP(1);
                        if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                            int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
                             setFilas();
                         }else{
                             JOptionPane.showMessageDialog(this, "Error al agregar");
@@ -563,6 +576,10 @@ public class PProveedores extends javax.swing.JPanel {
                         objeto.setEstadoP(0);
                         if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
+                            int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
                             setFilas();
                         }else{
                             JOptionPane.showMessageDialog(this, "Error al agrgar");
@@ -596,6 +613,11 @@ public class PProveedores extends javax.swing.JPanel {
                objeto.setEstadoP(1);
                if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
+                    int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
+                       setFilas();
                 }else{
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
@@ -603,6 +625,11 @@ public class PProveedores extends javax.swing.JPanel {
                 objeto.setEstadoP(0);
                 if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
+                    int filas = modeloTablaProveedores.getRowCount();
+                       for (int i = 0; filas > i; i++) {
+                           modeloTablaProveedores.removeRow(0);
+                       }
+                       setFilas();
                 }else{
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
