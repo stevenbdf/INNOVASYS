@@ -34,6 +34,9 @@ public class Login1 extends javax.swing.JFrame {
        ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(Logo.getWidth(),Logo.getHeight(),Image.SCALE_DEFAULT));
        Logo.setIcon(icono);
+       ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
        
        
        
@@ -66,6 +69,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        lblhelp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -266,6 +270,22 @@ public class Login1 extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 25, 25));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -452,6 +472,20 @@ public class Login1 extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(0);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
    
     
     /**
@@ -506,6 +540,7 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
+    private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

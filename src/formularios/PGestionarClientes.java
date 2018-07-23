@@ -9,8 +9,10 @@ package formularios;
 import clases.Conexion;
 import clases.mtoClientes;
 import clases.verificaciones;
+import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 
 import javax.swing.table.DefaultTableModel;
 /**
@@ -43,6 +45,9 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
+       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+       lblhelp.setIcon(icono0);
 //        jDateChooser1.setMaxSelectableDate(StringADate("18-07-2018"));
 //        jDateChooser1.setMinSelectableDate(StringADate("17-07-2018"));
         
@@ -78,6 +83,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -197,6 +203,22 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jDateChooser2.setDateFormatString("yyyy-MM-dd");
         add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 30));
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 30));
+
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -276,6 +298,20 @@ public class PGestionarClientes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField8KeyTyped
 
+    private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelpAncestorAdded
+
+    private void lblhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelpMouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(11);
+        form.show();
+    }//GEN-LAST:event_lblhelpMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
@@ -287,6 +323,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblhelp;
     private javax.swing.JRadioButton r_codigo;
     private javax.swing.JRadioButton r_nombre;
     private javax.swing.JTable tbl_clientes;

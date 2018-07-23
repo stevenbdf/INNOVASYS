@@ -28,9 +28,7 @@ public class PInventario extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
-       ImageIcon foto00 = new ImageIcon (getClass().getResource("/images/help.png"));
-       ImageIcon icono00 = new ImageIcon(foto00.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
-       lblhelp1.setIcon(icono00);
+       lblhelp1.setIcon(icono0);
     }
 
     /**
@@ -72,6 +70,7 @@ public class PInventario extends javax.swing.JPanel {
         dateChooserCombo3 = new datechooser.beans.DateChooserCombo();
         jLabel16 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        lblhelp2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -312,12 +311,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -326,6 +325,22 @@ public class PInventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
+
+        lblhelp2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelp2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelp2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(lblhelp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
 
         jTabbedPane2.addTab("Gestionar Inventario", jPanel3);
 
@@ -420,12 +435,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelp1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -636,6 +651,20 @@ public class PInventario extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelp1MouseClicked
 
+    private void lblhelp2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelp2AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblhelp2AncestorAdded
+
+    private void lblhelp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhelp2MouseClicked
+        // TODO add your handling code here:
+        //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
+        /**
+        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
+        */
+        help form = new help(12);
+        form.show();
+    }//GEN-LAST:event_lblhelp2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
@@ -684,5 +713,6 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel lblhelp1;
+    private javax.swing.JLabel lblhelp2;
     // End of variables declaration//GEN-END:variables
 }
