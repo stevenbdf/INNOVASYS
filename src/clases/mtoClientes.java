@@ -210,25 +210,25 @@ public class mtoClientes extends RegistroClientes{
     {
         
         String sql="Select * from cliente";
-        Object dato[] = new Object[8];
+        Object dato[] = new Object[14];
         try{
             PreparedStatement us = cn.prepareStatement(sql);
             ResultSet res = us.executeQuery();
             
             while(res.next()){
-                for(int i =0;i<11;i++)
+                for(int i =0;i<14;i++)
                 {
-                    if(i>6)
-                    {
-                        
-                    }
-                    else
-                    {
+//                    if(i>6)
+//                    {
+//                        
+//                    }
+//                    else
+//                    {
                         dato[i] =res.getObject(i+1);
-                    }
+//                    }
                     
                 }
-                dato[7] =res.getObject(11);
+//                dato[7] =res.getObject(11);
                 model.addRow(dato);
             }
             res.close();
@@ -238,9 +238,12 @@ public class mtoClientes extends RegistroClientes{
         } 
         return model;
     }
-    public DefaultTableModel buscar(DefaultTableModel  model, String palabra,int codigo)
+    public DefaultTableModel buscar(DefaultTableModel  model, String palabra,int codigo, String palabra2)
     {
         String sql1="";
+        System.out.println("MIN: "+palabra);
+        System.out.println("MAX: "+palabra2);
+        System.out.println("Cod: "+codigo);
         switch(codigo)
         {
             case 1:
@@ -249,14 +252,17 @@ public class mtoClientes extends RegistroClientes{
             case 2:
                 sql1="Select * from cliente where idCliente Like '"+palabra+"%'";
             break;
+            case 3:
+                sql1="Select * from cliente where fechaRegistro BETWEEN '"+palabra+"' AND '"+palabra2+"'";
+            break;
         }
-        Object dato[] = new Object[8];
+        Object dato[] = new Object[14];
         try{
             PreparedStatement us = cn.prepareStatement(sql1);
             ResultSet res = us.executeQuery();
             
             while(res.next()){
-                for(int i =0;i<8;i++)
+                for(int i =0;i<14;i++)
                 {
                     dato[i] =res.getObject(i+1);
                 }

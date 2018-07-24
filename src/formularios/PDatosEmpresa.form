@@ -78,7 +78,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="139" y="60" width="187" height="30"/>
+              <AbsoluteConstraints x="139" y="60" width="200" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -113,7 +113,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="139" y="101" width="187" height="30"/>
+              <AbsoluteConstraints x="139" y="101" width="200" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -190,7 +190,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="140" y="180" width="172" height="111"/>
+              <AbsoluteConstraints x="140" y="180" width="200" height="111"/>
             </Constraint>
           </Constraints>
 
@@ -247,10 +247,11 @@
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="170" y="440" width="81" height="-1"/>
+              <AbsoluteConstraints x="170" y="430" width="81" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -627,23 +628,17 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="fecha">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel17"/>
-          </Properties>
+        <Component class="com.toedter.calendar.JDateChooser" name="fecha">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="150" y="140" width="160" height="30"/>
+              <AbsoluteConstraints x="140" y="140" width="180" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="logo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel17"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="140" y="320" width="120" height="110"/>
+              <AbsoluteConstraints x="150" y="310" width="130" height="110"/>
             </Constraint>
           </Constraints>
         </Component>

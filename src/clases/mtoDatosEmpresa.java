@@ -242,7 +242,8 @@ public class mtoDatosEmpresa {
                 domicilio=ver.getString(3);
                 fecha=ver.getString(4);
                 descripcion=ver.getString(5);
-                logo=ver.getString(6);
+                logo= ver.getString(6);
+                System.out.println("Logo: "+logo);
                 telefono1=ver.getInt(7);
                 telefono2=ver.getInt(8);
                 fax1=ver.getInt(9);
@@ -258,6 +259,37 @@ public class mtoDatosEmpresa {
             System.out.println(e.toString());
         }
         return retorno;
+    }
+    
+    public boolean modificarDatos(){
+        boolean resp=false;
+        try {
+                String sql = "update datosEmpresa set nombreEmpresa= ?,domicilioLegal =?, fechaConstitucion=?,descripcion=?,logo=?,telefono=?,telefono2=?,fax=?,fax2=?,correoElectronico=?,correoElectronico2=?,propietario=?,noSerieFactura=?,noSerieFiscal=?";
+                PreparedStatement cmd = cn.prepareStatement(sql);
+                cmd.setString(1,getNombre());
+                cmd.setString(2,getDomicilio());
+                cmd.setString(3,getFecha());
+                cmd.setString(4,getDescripcion());
+                cmd.setString(5,getLogo());
+                cmd.setInt(6,getTelefono1());
+                cmd.setInt(7,getTelefono2());
+                cmd.setInt(8,getFax1());
+                cmd.setInt(9,getFax2());
+                cmd.setString(10,getCorreo1());
+                cmd.setString(11,getCorreo2());
+                cmd.setString(12,getPropietario());
+                cmd.setInt(13,getNoFactura());
+                cmd.setInt(14,getNoFiscal());
+                
+                if (!cmd.execute()) {
+                    resp=true;
+                } 
+                cmd.close();
+                cn.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        return resp;
     }
     
 }

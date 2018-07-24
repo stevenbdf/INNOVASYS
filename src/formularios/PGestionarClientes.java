@@ -58,7 +58,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
     
     public String[] getColumnas()
     {
-        String columna[] = {"idCliente","Nombre","Apellido","Corporativo","DUI","NIT","Correo Electronico","Telefono"};
+        String columna[] = {"CODIGO","NOMBRE","APELLIDO","CORPORATIVO","DUI","NIT","CORREO","PREGUNTA1","PREGUNTA2","TELEFONO","RESPUESTA1","RESPUESTA2", "FECHA REGISTRO", "CONTRASEÑA"};
         return columna;
     }
     /**
@@ -81,8 +81,8 @@ public class PGestionarClientes extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        fechaMax = new com.toedter.calendar.JDateChooser();
+        fechaMin = new com.toedter.calendar.JDateChooser();
         lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
@@ -105,6 +105,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_clientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(tbl_clientes);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 530, 250));
@@ -200,9 +201,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, 30));
 
-        jDateChooser2.setDateFormatString("yyyy-MM-dd");
-        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 30));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 30));
+        fechaMax.setDateFormatString("yyyy-MM-dd");
+        add(fechaMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 30));
+
+        fechaMin.setDateFormatString("yyyy-MM-dd");
+        add(fechaMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 30));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -246,7 +249,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
         tbl_client.removeRow(i);
         i-=1;
        }
-        tbl_clientes.setModel(cli.buscar(tbl_client,jTextField8.getText(),variable));
+        tbl_clientes.setModel(cli.buscar(tbl_client,jTextField8.getText(),variable,""));
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void r_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_codigoActionPerformed
@@ -266,16 +269,14 @@ public class PGestionarClientes extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-            Conexion cn = new Conexion();
-            String sql = "SELECT fechaRegistro FROM cliente WHERE idCliente = 15";
-            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
-            ResultSet ver = cmd.executeQuery();
-            if (ver.next()) {
-                System.out.println(ver.getString(1));
-                jDateChooser2.setDate(objeto.StringADate(ver.getString(1)));
+            for (int i = 0; i < tbl_clientes.getRowCount(); i++) {
+                tbl_client.removeRow(i);
+                i -= 1;
             }
-            cn.conectar().close();
-            cmd.close();
+            String fch1=objeto.getFecha(fechaMin);
+            String fch2=objeto.getFecha(fechaMax);
+            
+            tbl_clientes.setModel(cli.buscar(tbl_client, fch1 , 3, fch2));
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -313,10 +314,10 @@ public class PGestionarClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_lblhelpMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser fechaMax;
+    private com.toedter.calendar.JDateChooser fechaMin;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

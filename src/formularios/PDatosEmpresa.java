@@ -7,8 +7,15 @@ package formularios;
 import clases.mtoDatosEmpresa;
 import clases.verificaciones;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author steve
@@ -30,15 +37,21 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         if (obj.consultarDatos()) {
             nombre.setText(obj.getNombre());
             domicilio.setText(obj.getDomicilio());
-            fecha.setText(obj.getFecha());
+            fecha.setDate(verificar.StringADate(obj.getFecha()));
             descripcion.setText(obj.getDescripcion());
+            String logito=obj.getLogo();
+            System.out.println(logito);
             try{
-                ImageIcon foto0 = new ImageIcon(getClass().getResource(obj.getLogo()));
-            ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-            logo.setIcon(icono0);
-            }catch(Exception e){
-                logo.setText("");
+                System.out.println("Logito: "+logito);
+            ImageIcon icon = new ImageIcon(logito);
+                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(130, 110, Image.SCALE_DEFAULT));
+                logo.setIcon(icono);
+            
+            } catch (Exception e){
+
             }
+            
+            
             
             
             tel1.setText(String.valueOf(obj.getTelefono1()));
@@ -100,7 +113,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
-        fecha = new javax.swing.JLabel();
+        fecha = new com.toedter.calendar.JDateChooser();
         logo = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -125,7 +138,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 nombreKeyTyped(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 60, 187, 30));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 60, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,7 +157,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 domicilioKeyTyped(evt);
             }
         });
-        jPanel1.add(domicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 187, 30));
+        jPanel1.add(domicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,7 +193,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         descripcion.setRows(5);
         jScrollPane1.setViewportView(descripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 172, 111));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 200, 111));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,7 +214,12 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 81, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 81, -1));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -418,12 +436,8 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 101, 187, 30));
-
-        fecha.setText("jLabel17");
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 160, 30));
-
-        logo.setText("jLabel17");
-        jPanel1.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 120, 110));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 180, 30));
+        jPanel1.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 130, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -483,6 +497,31 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(!nombre.getText().isEmpty()&&!domicilio.getText().isEmpty()&&!descripcion.getText().isEmpty()&&!tel1.getText().isEmpty()&&!tel2.getText().isEmpty())
+        {
+            
+            mtoDatosEmpresa objeto = new mtoDatosEmpresa();
+            verificaciones obj = new verificaciones();
+            objeto.setNombre(nombre.getText());
+            objeto.setDomicilio(domicilio.getText());
+            objeto.setFecha(verificar.getFecha(fecha));
+            objeto.setDescripcion(descripcion.getText());
+            objeto.setLogo(datos);
+            objeto.setTelefono1(Integer.valueOf(tel1.getText()));
+            objeto.setTelefono2(Integer.valueOf(tel2.getText()));
+            objeto.setFax1(Integer.valueOf(fax1.getText()));
+            objeto.setFax2(Integer.valueOf(fax2.getText()));
+            objeto.setCorreo1(correo1.getText());
+            objeto.setCorreo2(correo2.getText());
+            objeto.setPropietario(propietario.getText());
+            objeto.setNoFactura(Integer.valueOf(noFactura.getText()));
+            objeto.setNoFiscal(Integer.valueOf(noCredito.getText()));
+            if (objeto.modificarDatos()) {
+            JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
+            }else{
+                JOptionPane.showMessageDialog(this,"Datos no modificados");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
@@ -662,6 +701,27 @@ public class PDatosEmpresa extends javax.swing.JPanel {
     private void jTextField12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12KeyTyped
+    File fichero;
+    String datos;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int resultado;
+        fileChooser ventana = new fileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
+        ventana.jfchCargarFoto.setFileFilter(filtro);
+        resultado = ventana.jfchCargarFoto.showOpenDialog(null);
+        if (JFileChooser.APPROVE_OPTION == resultado) {
+            fichero = ventana.jfchCargarFoto.getSelectedFile();
+            datos=String.valueOf(fichero);
+            try {
+                ImageIcon icon = new ImageIcon(fichero.toString());
+                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_DEFAULT));
+                logo.setIcon(icono);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
+            }
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -671,7 +731,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
     private javax.swing.JTextField domicilio;
     private javax.swing.JTextField fax1;
     private javax.swing.JTextField fax2;
-    private javax.swing.JLabel fecha;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
