@@ -38,8 +38,10 @@ public class PProveedores extends javax.swing.JPanel {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
 //		catch (Exception e) {
+                
 //		}
         initComponents();
+        jTextField1.setEnabled(false);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
@@ -140,6 +142,8 @@ public class PProveedores extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -206,6 +210,11 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
@@ -263,7 +272,7 @@ public class PProveedores extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 90, -1));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
@@ -284,7 +293,7 @@ public class PProveedores extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 90, -1));
 
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -373,6 +382,48 @@ public class PProveedores extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, 30));
+
+        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Limpiar");
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton7.setContentAreaFilled(false);
+        jButton7.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 90, -1));
+
+        jButton8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Eliminar");
+        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton8.setContentAreaFilled(false);
+        jButton8.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -423,14 +474,9 @@ public class PProveedores extends javax.swing.JPanel {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField1.getText().length() <6)) {
-
-        } else {
+        
             evt.consume();
-        }
+        
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
@@ -684,11 +730,72 @@ public class PProveedores extends javax.swing.JPanel {
         jTFBuscarP.setEnabled(true);
     }//GEN-LAST:event_rdCodigoPActionPerformed
 
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText(null);
+        
+        jTextField3.setText(null);
+        
+        jTextField2.setText(null);
+        
+        jTextField5.setText(null);
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jComboBox1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un proveedor para eliminar");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setIdP(Integer.valueOf(jTextField1.getText()));
+            if (obj.eliminarProveedor()) {
+                JOptionPane.showMessageDialog(this, "Proveedor eliminado");
+                jTextField1.setText(null);
+
+                jTextField3.setText(null);
+
+                jTextField2.setText(null);
+
+                jTextField5.setText(null);
+                jTextField6.setText(null);
+                jTextField7.setText(null);
+                jComboBox1.setSelectedIndex(0);
+            }else{
+                JOptionPane.showMessageDialog(this, "Productos relacionados a este proveedor");
+            }         
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

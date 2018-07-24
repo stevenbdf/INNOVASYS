@@ -312,13 +312,13 @@ public class mtoProductos {
                 String sql = "";
                 switch (tipo) {
                     case 1:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE idProducto like '" + valores + "%'";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE idProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     case 2:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '" + valores + "%'";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     case 3:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '" + valores + "%'";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '" + valores + "%'  AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     default:
                         sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";

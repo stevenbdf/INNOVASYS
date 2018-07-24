@@ -645,7 +645,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         mes=(calendario.get(Calendar.MONTH)+1);
         año=(calendario.get(Calendar.YEAR));
         
-        switch (dia+1){
+        switch (dia-1){
             case 1:
                 fecha1.setText("Lunes");
                 break;
@@ -2685,7 +2685,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 //        PanelPrincipal.repaint();
                 Runtime obj = Runtime.getRuntime();
                 try {
-                    obj.exec("C:\\Users\\User\\Desktop\\Chat.exe");
+                    obj.exec("F:\\INNOVASYS\\INNOVASYS\\gg.exe");
                 } catch (IOException ex) {
                     Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
                 }

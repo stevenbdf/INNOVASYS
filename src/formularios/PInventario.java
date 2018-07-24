@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 package formularios;
+import clases.Conexion;
+import clases.mtoInventario;
 import clases.verificaciones;
 import java.awt.Image;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author steve
@@ -19,17 +25,28 @@ public class PInventario extends javax.swing.JPanel {
      * Creates new form PInventario
      */
     verificaciones verificar = new verificaciones();
+    DefaultTableModel modeloTablaInventario;
+    DefaultComboBoxModel modeloComboCategoria;
     public PInventario() {
+        mtoInventario obj = new mtoInventario();
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
 //		catch (Exception e) {
 //		}
         initComponents();
-        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
-       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
-       lblhelp.setIcon(icono0);
-       lblhelp1.setIcon(icono0);
+        jTFCodigo.setEnabled(false);
+        mtoInventario objeto = new mtoInventario();
+        modeloComboCategoria = new DefaultComboBoxModel(new String[]{});
+        cmbProducto.setModel(obj.llenarComboCategoria(modeloComboCategoria));
+        modeloTablaInventario = new DefaultTableModel(null, objeto.getColumnasCategoria());
+        
+        jTable1.setModel(objeto.setFilasInventario(modeloTablaInventario));
+        
+        ImageIcon foto0 = new ImageIcon(getClass().getResource("/images/help.png"));
+        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        lblhelp.setIcon(icono0);
+        lblhelp1.setIcon(icono0);
     }
 
     /**
@@ -43,31 +60,13 @@ public class PInventario extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField9 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
-        jLabel17 = new javax.swing.JLabel();
-        lblhelp1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTFCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTFCodigoP = new javax.swing.JTextField();
         jTFGanancia = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblStock = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTFCantidad = new javax.swing.JTextField();
         jTFImpuestos = new javax.swing.JTextField();
@@ -86,6 +85,26 @@ public class PInventario extends javax.swing.JPanel {
         fecha = new com.toedter.calendar.JDateChooser();
         cmbProducto = new javax.swing.JComboBox<>();
         btnModificar = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        rdEntrada = new javax.swing.JRadioButton();
+        rdSalida = new javax.swing.JRadioButton();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jTextField9 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        lblhelp1 = new javax.swing.JLabel();
+        fecha1 = new com.toedter.calendar.JDateChooser();
+        fecha2 = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,114 +113,6 @@ public class PInventario extends javax.swing.JPanel {
         jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         jTabbedPane2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(680, 500));
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
-        jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Fecha Min:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 26, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Fecha Max:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 88, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Precio compra:");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Stock Min:");
-        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
-
-        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Mas alto");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
-
-        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Mas bajo");
-        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
-
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
-            }
-        });
-        jPanel4.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
-
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Buscar");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton4.setContentAreaFilled(false);
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, 651, 291));
-
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Generar reporte");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton5.setContentAreaFilled(false);
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 430, -1, 30));
-        jPanel4.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, 30));
-        jPanel4.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 30));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
-            }
-        });
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-
-        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelp1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelp1MouseClicked(evt);
-            }
-        });
-        jPanel4.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 25, 25));
-
-        jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
@@ -233,24 +144,10 @@ public class PInventario extends javax.swing.JPanel {
         jLabel3.setText("Producto:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, 30));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Codigo:");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, 30));
-
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Precio compra:");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, 30));
-
-        jTFCodigoP.setBackground(new java.awt.Color(204, 204, 204));
-        jTFCodigoP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFCodigoP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCodigoPKeyTyped(evt);
-            }
-        });
-        jPanel3.add(jTFCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 30));
 
         jTFGanancia.setBackground(new java.awt.Color(204, 204, 204));
         jTFGanancia.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -261,10 +158,10 @@ public class PInventario extends javax.swing.JPanel {
         });
         jPanel3.add(jTFGanancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 78, 30));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Cantidad:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 30));
+        lblStock.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblStock.setForeground(new java.awt.Color(255, 255, 255));
+        lblStock.setText("Stock:");
+        jPanel3.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -296,8 +193,8 @@ public class PInventario extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Fecha transaccion:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 96, -1, 30));
+        jLabel9.setText("Tipo Transaccion:");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 110, 30));
 
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -375,6 +272,12 @@ public class PInventario extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 238, 616, 210));
@@ -420,10 +323,10 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(lblhelp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
 
         fecha.setDateFormatString("yyyy-MM-dd");
-        jPanel3.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 99, 160, 30));
+        jPanel3.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
 
         cmbProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 120, 30));
+        jPanel3.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 170, 30));
 
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
@@ -445,7 +348,145 @@ public class PInventario extends javax.swing.JPanel {
         });
         jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 80, 30));
 
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Fecha transaccion:");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, 30));
+
+        rdEntrada.setText("Entrada");
+        rdEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdEntradaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rdEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+
+        rdSalida.setText("Salida");
+        rdSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdSalidaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rdSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Cantidad:");
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 30));
+
         jTabbedPane2.addTab("Gestionar Inventario", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Fecha Min:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 26, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Fecha Max:");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 88, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Precio compra:");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Stock Min:");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+
+        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setText("Mas alto");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setText("Mas bajo");
+        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
+
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+        jPanel4.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
+
+        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Buscar");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton4.setContentAreaFilled(false);
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 651, 291));
+
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Generar reporte");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton5.setContentAreaFilled(false);
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 430, -1, 30));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelp1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelp1MouseClicked(evt);
+            }
+        });
+        jPanel4.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 25, 25));
+
+        fecha1.setDateFormatString("yyyy-MM-dd");
+        jPanel4.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 160, 30));
+
+        fecha2.setDateFormatString("yyyy-MM-dd");
+        jPanel4.add(fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 160, 30));
+
+        jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
         jPanel1.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
@@ -473,6 +514,22 @@ public class PInventario extends javax.swing.JPanel {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        if (jTFCodigo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Error no ha seleccionado ningun registro");
+        }else{
+            mtoInventario objeto = new mtoInventario();
+            objeto.setCodigoI(Integer.valueOf(jTFCodigo.getText()));
+            if (objeto.eliminarInventario()) {
+                JOptionPane.showMessageDialog(this,"Registro Eliminado correctamente");
+                int filas = modeloTablaInventario.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaInventario.removeRow(0);
+                }         
+                objeto.setFilasInventario(modeloTablaInventario );
+            }else{
+                JOptionPane.showMessageDialog(this,"Error no al borrar");
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jTFPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPrecioActionPerformed
@@ -527,18 +584,6 @@ public class PInventario extends javax.swing.JPanel {
     private void jTFCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCodigoActionPerformed
-
-    private void jTFCodigoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoPKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vletras(vchar) == true
-                && (jTFCodigoP.getText().length() < 20)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTFCodigoPKeyTyped
 
     private void jTFCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCantidadKeyTyped
         // TODO add your handling code here:
@@ -654,12 +699,170 @@ public class PInventario extends javax.swing.JPanel {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+        String fechass=verificar.getFecha(fecha);
+        System.out.println("Fecha: "+fechass);
+        if ( jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass==null) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");       
+        }else{
+            mtoInventario objeto = new mtoInventario();
+            Conexion cn = new Conexion();
+            objeto.setCodigoI(Integer.valueOf(jTFCodigo.getText()));
+            try {
+                String sql ="SELECT idProducto FROM producto WHERE nombreProducto='"+cmbProducto.getSelectedItem()+"'";
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    objeto.setCodigoP(ver.getInt(1));
+                }else{
+                    System.out.println("Error");
+                }
+                
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            if (rdEntrada.isSelected()) {
+                objeto.setCodigoT(1);
+            }else if (rdSalida.isSelected()) {
+                objeto.setCodigoT(2);
+            }
+            objeto.setFecha(verificar.getFecha(fecha));
+            objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
+            objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
+            try {
+                String sql ="SELECT stock FROM inventario WHERE idInventario ="+jTFCodigo.getText();
+                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql);
+                ResultSet ver2 = cmd2.executeQuery();
+                if (ver2.next()) {
+                    System.out.println("Entra el if");
+                    int cantidad= Integer.valueOf(jTFCantidad.getText());
+                    if (objeto.getCodigoT()==1) {
+                        objeto.setStock((ver2.getInt(1)+cantidad));
+                    }else if (objeto.getCodigoT()==2 && ver2.getInt(1)>=cantidad) {
+                        objeto.setStock((ver2.getInt(1)-cantidad));
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Error no hay suficiente stock para restar");
+                    }
+                }
+                
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            objeto.setCantidad(Integer.valueOf(jTFCantidad.getText()));
+            objeto.setImpuestos(Double.valueOf(jTFImpuestos.getText()));
+            objeto.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+            
+            
+            if (objeto.modificarInventario()) {
+                JOptionPane.showMessageDialog(this,"Registro modificado");
+                int filas = modeloTablaInventario.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaInventario.removeRow(0);
+                }         
+                objeto.setFilasInventario(modeloTablaInventario );
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al modificar");
+            }
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"Fecha seleccionada: "+verificar.getFecha(fecha));
+        String fechass = verificar.getFecha(fecha);
+        System.out.println("Fecha: " + fechass);
+        if (jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass==null) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");       
+        }else{
+            mtoInventario objeto = new mtoInventario();
+            Conexion cn = new Conexion();
+            
+            try {
+                String sql ="SELECT idProducto FROM producto WHERE nombreProducto='"+cmbProducto.getSelectedItem()+"'";
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    objeto.setCodigoP(ver.getInt(1));
+                }else{
+                    System.out.println("Error");
+                }
+                
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            if (rdEntrada.isSelected()) {
+                objeto.setCodigoT(1);
+            }else if (rdSalida.isSelected()) {
+                objeto.setCodigoT(2);
+            }
+            objeto.setFecha(verificar.getFecha(fecha));
+            objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
+            objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
+            try {
+                String sql2 ="SELECT stock FROM inventario WHERE idProductos="+objeto.getCodigoP();
+                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                ResultSet ver2 = cmd2.executeQuery();
+                Integer cantidad2=Integer.valueOf(jTFCantidad.getText());
+                if (ver2.next()) {
+                    if (objeto.getCodigoT()==1) {
+                        objeto.setStock((ver2.getInt(1)+cantidad2));
+                    }else if (objeto.getCodigoT()==2 && ver2.getInt(1)>=cantidad2) {
+                        objeto.setStock((ver2.getInt(1)-cantidad2));
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Error no hay suficiente stock para restar");
+                    }
+                }else{
+                    objeto.setStock(cantidad2);
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            objeto.setCantidad(Integer.valueOf(jTFCantidad.getText()));
+            objeto.setImpuestos(Double.valueOf(jTFImpuestos.getText()));
+            objeto.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+            
+            
+            if (objeto.guardarInventario()) {
+                JOptionPane.showMessageDialog(this,"Registro guardado");
+                int filas = modeloTablaInventario.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaInventario.removeRow(0);
+                }         
+                objeto.setFilasInventario(modeloTablaInventario );
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al guardar");
+            }
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
+    String codigoI="";
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        codigoI=(String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (0))));
+        jTFCodigo.setText(codigoI);
+        cmbProducto.setSelectedItem((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (1)))));
+        if ((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (2)))).equals("Entrada")) {
+            rdEntrada.setSelected(true);
+            rdSalida.setSelected(false);
+        }else if ((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (2)))).equals("Salida")) {
+            rdSalida.setSelected(true);
+            rdEntrada.setSelected(false);
+        }
+        fecha.setDate(verificar.StringADate((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (3))))));
+        jTFPrecio.setText((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (4)))));
+        jTFGanancia.setText((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (5)))));
+        lblStock.setText("Stock: "+(String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (6)))));
+        jTFCantidad.setText((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (7)))));
+        jTFImpuestos.setText((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (8)))));
+        cmbEstado.setSelectedItem((String.valueOf(modeloTablaInventario.getValueAt(jTable1.getSelectedRow(), (9)))));
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void rdEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdEntradaActionPerformed
+        // TODO add your handling code here:
+        rdSalida.setSelected(false);
+    }//GEN-LAST:event_rdEntradaActionPerformed
+
+    private void rdSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdSalidaActionPerformed
+        // TODO add your handling code here:
+        rdEntrada.setSelected(false);
+    }//GEN-LAST:event_rdSalidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -668,9 +871,9 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbProducto;
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private datechooser.beans.DateChooserCombo dateChooserCombo2;
     private com.toedter.calendar.JDateChooser fecha;
+    private com.toedter.calendar.JDateChooser fecha1;
+    private com.toedter.calendar.JDateChooser fecha2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
@@ -681,11 +884,11 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -697,7 +900,6 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTFCantidad;
     private javax.swing.JTextField jTFCodigo;
-    private javax.swing.JTextField jTFCodigoP;
     private javax.swing.JTextField jTFGanancia;
     private javax.swing.JTextField jTFImpuestos;
     private javax.swing.JTextField jTFPrecio;
@@ -705,8 +907,11 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel lblhelp1;
     private javax.swing.JLabel lblhelp2;
+    private javax.swing.JRadioButton rdEntrada;
+    private javax.swing.JRadioButton rdSalida;
     // End of variables declaration//GEN-END:variables
 }

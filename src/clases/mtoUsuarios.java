@@ -988,4 +988,22 @@ public class mtoUsuarios extends PEmpleado{
             }
         return resp;
     }
+    
+    public boolean eliminarProveedor(){
+        boolean ret=false;
+        try {
+            String sql = "DELETE FROM proveedor WHERE idProveedor=?";
+                PreparedStatement cmd = getCn().prepareStatement(sql);
+                
+                cmd.setInt(1,getIdP());
+                
+                if (!cmd.execute()) {
+                    ret=true;
+                } 
+                cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return ret;
+    }
 }

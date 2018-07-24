@@ -1,0 +1,261 @@
+Initialize engine version: 5.6.6f2 (6bac21139588)
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Version:  Direct3D 11.0 [level 11.1]
+    Version:  Direct3D 11.0 [level 11.1]
+D=0x1616)
+    Renderer: Intel(R    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+    Driver:   20.19.15.4549
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+Begin MonoManager ReloadAssembly
+Begin MonoManager ReloadAssembly
+Begin MonoManager ReloadAssembly
+Begin MonoManager ReloadAssembly
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+- Completed reload, in  0.894 seconds
+- Completed reload, in  0.709 seconds
+- Completed reload, in  0.897 seconds
+- Completed reload, in  0.896 seconds
+- Completed reload, in  0.891 seconds
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+- Completed reload, in  0.095 seconds
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+<RI> Initializing input.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Input initialized.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Initializing input.
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Input initialized.
+<RI> Input initialized.
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+- Completed reload, in  0.188 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 5.6.6f2 (6bac21139588)
+GfxDevice: creating device client; threaded=1
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2111 MB
+    Driver:   20.19.15.4549
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Common.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
+Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
+- Completed reload, in  0.074 seconds
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.

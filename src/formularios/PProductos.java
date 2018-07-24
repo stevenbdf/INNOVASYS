@@ -177,6 +177,9 @@ public class PProductos extends javax.swing.JPanel {
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField4KeyTyped(evt);
             }
@@ -187,12 +190,22 @@ public class PProductos extends javax.swing.JPanel {
         jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Nombre");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, 30));
 
         jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Codigo");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, 30));
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -367,8 +380,6 @@ public class PProductos extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
-
-        lblFoto.setText("jLabel1");
         jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 130, 130));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -606,10 +617,15 @@ public class PProductos extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,"Combo categoria: "+cmbCategoria.getSelectedItem());
+        JOptionPane.showMessageDialog(this,"Combo proveedore: "+cmbProveedor.getSelectedItem());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
         // TODO add your handling code here:
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -863,7 +879,7 @@ public class PProductos extends javax.swing.JPanel {
             Conexion cn = new Conexion();
             obj.setNombreP(jTFNombreP.getText());
             obj.setImagen(String.valueOf(fichero));
-            obj.setDescripP(jTADescripcion.getText());
+            obj.setDescripP(jTADescripcionP.getText());
             try {
                 String sql = "SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='" + cmbCategoria.getSelectedItem() + "'";
                 PreparedStatement cmd = cn.conectar().prepareStatement(sql);
@@ -885,18 +901,18 @@ public class PProductos extends javax.swing.JPanel {
             if (obj.guardarProducto()) {
                 JOptionPane.showMessageDialog(this, "Producto guardado correctamente");
                 //Como sacarlo
-                
-                
+                int filas = modeloTablaProducto.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaProducto.removeRow(0);
+                }
+                obj.setFilasProductos(modeloTablaProducto, 0, "");
+
 
             } else {
                 JOptionPane.showMessageDialog(this, "Error al guardar producto");
             }
 
-            int filas = modeloTablaProducto.getRowCount();
-            for (int i = 0; filas > i; i++) {
-                modeloTablaProducto.removeRow(0);
-            }
-            obj.setFilasProductos(modeloTablaProducto, 0, "");
+            
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -910,16 +926,16 @@ public class PProductos extends javax.swing.JPanel {
             obj.setCodigoP(Integer.valueOf(codigoP));
             obj.setNombreP(jTFNombreP.getText());
             obj.setImagen(String.valueOf(fichero));
-            obj.setDescripP(jTADescripcion.getText());
+            obj.setDescripP(jTADescripcionP.getText());
             try {
-                String sql = "SELECT idCategoria WHERE nombreCategoria='" + cmbCategoria.getSelectedItem() + "'";
+                String sql = "SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='" + cmbCategoria.getSelectedItem() + "'";
                 PreparedStatement cmd = cn.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
                     obj.setCodigoCategoria(ver.getInt(1));
                 }
 
-                String sql2 = "SELECT idProveedor WHERE nombreProveedor='" + cmbProveedor.getSelectedItem() + "'";
+                String sql2 = "SELECT idProveedor FROM proveedor WHERE nombreProveedor='" + cmbProveedor.getSelectedItem() + "'";
                 PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
                 ResultSet ver2 = cmd2.executeQuery();
                 if (ver2.next()) {
@@ -931,16 +947,17 @@ public class PProductos extends javax.swing.JPanel {
             }
             if (obj.modificarProducto()) {
                 JOptionPane.showMessageDialog(this, "Producto modificado correctamente");
+                int filas = modeloTablaProducto.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaProducto.removeRow(0);
+                }
+                obj.setFilasProductos(modeloTablaProducto, 0, "");
 
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar producto");
             }
 
-            int filas = modeloTablaProducto.getRowCount();
-            for (int i = 0; filas > i; i++) {
-                modeloTablaProducto.removeRow(0);
-            }
-            obj.setFilasProductos(modeloTablaProducto, 0, "");
+            
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -957,14 +974,16 @@ public class PProductos extends javax.swing.JPanel {
                 jTFNombreP.setText(null);
                 jTADescripcionP.setText(null);
                 lblFoto.setText(null);
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al eliminar producto");
-            }
-            int filas = modeloTablaProducto.getRowCount();
+                
+                int filas = modeloTablaProducto.getRowCount();
             for (int i = 0; filas > i; i++) {
                 modeloTablaProducto.removeRow(0);
             }
             obj.setFilasProductos(modeloTablaProducto, 0, "");
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al eliminar producto");
+            }
+            
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -1017,7 +1036,62 @@ public class PProductos extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
+        codigoP=String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (0)));
+        lblCodigoP.setText("Codigo: "+codigoP);
+        jTFNombreP.setText(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (1))));
+        jTADescripcionP.setText(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (2))));
+        cmbCategoria.setSelectedItem(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (4))));
+        cmbProveedor.setSelectedItem(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (3))));
+        try {
+            Conexion cn = new Conexion();
+            String sql ="SELECT imagen FROM producto WHERE idProducto = '"+codigoP+"'";
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+               ImageIcon icon = new ImageIcon(ver.getString(1));
+                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+                lblFoto.setIcon(icono);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        // TODO add your handling code here:
+        mtoProductos obj = new mtoProductos();
+         if (jRadioButton1.isSelected()) {
+            int filas = modeloTablaProducto.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaProducto.removeRow(0);
+            }
+            obj.setFilasProductos(modeloTablaProducto,2, jTextField4.getText());
+        } else if (jRadioButton2.isSelected()) {
+            int filas = modeloTablaProducto.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaProducto.removeRow(0);
+            }
+            obj.setFilasProductos(modeloTablaProducto,1, jTextField4.getText());
+        }else if (jRadioButton7.isSelected()) {
+            int filas = modeloTablaProducto.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaProducto.removeRow(0);
+            }
+           obj.setFilasProductos(modeloTablaProducto, 3, jTextField4.getText());
+        }
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        jRadioButton2.setSelected(false);
+        jRadioButton7.setSelected(false);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        jRadioButton1.setSelected(false);
+        jRadioButton7.setSelected(false);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
