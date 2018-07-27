@@ -11,6 +11,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import clases.mtoUsuarios;
 import clases.verificaciones;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -363,6 +364,10 @@ public class Login1 extends javax.swing.JFrame {
             } else {
                 if (objeto.consultarContraseña()) {
                     if (objeto.getContraseña().equals(jTFContraseña.getText())) {
+                        
+                        objeto.setCorreo(jTFCorreo.getText());
+                        objeto.bitacora();
+                        
                         JOptionPane.showMessageDialog(this, "Bienvenido");
                         VentanaPrincipal2 ventana = new VentanaPrincipal2(jTFCorreo.getText());
                         ventana.show();
@@ -470,7 +475,14 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-       
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        hoy.add(Calendar.MONTH,1);
+        int mes = hoy.get(Calendar.MONTH)+1;
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+
+        System.out.println("Normal MIO: "+ año+"-"+mes+"-"+dia);
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded

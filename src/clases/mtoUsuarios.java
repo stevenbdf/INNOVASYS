@@ -52,7 +52,44 @@ public class mtoUsuarios extends PEmpleado{
     public Integer getTelefonoP() {
         return telefonoP;
     }
+    
+    public boolean bitacora(){
+        boolean resp= false;
+        try {
+             String sql = "SELECT idEmpleado FROM usuarioEmpleado WHERE correoElectronico=?";
+          
+            //Se pasan por referencia por seguridad
+            //importar clase PreparedStatement
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            //Llenar los parametros de la clase, se coloca en el ordne de la tabla
+            cmd.setString(1, getCorreo());
+            //Importar clase resultset
+            ResultSet rs= cmd.executeQuery();
+            //Recorrer la lista de registro
+            if (rs.next()) {
+                int ids = Integer.valueOf(rs.getString(1));
+                try {
 
+                String sql2 = "INSERT bitacoraEmpleado VALUES ((SELECT MAX(idBitacora)+1 FROM bitacoraEmpleado),getDate(),?)";
+                PreparedStatement cmd2 = getCn().prepareStatement(sql2);
+                cmd2.setInt(1, ids);
+                if (!cmd2.execute()) {
+                    resp = true;
+                    System.out.println("Ingresado en bitacora");
+                } 
+                cmd2.close();
+                getCn().close();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+            }
+            cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return resp;
+    }
+    
     /**
      * @param telefonoP the telefonoP to set
      */
@@ -515,7 +552,6 @@ public class mtoUsuarios extends PEmpleado{
                  setContraseña(obj.decrypt(getKey(), getIv(), rs.getString(1)));
             }
             cmd.close();
-            getCn().close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }

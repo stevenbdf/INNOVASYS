@@ -163,6 +163,55 @@ public class mtoInventario {
         cn= con.conectar();
     }
     
+    public DefaultTableModel setFilasReportes(DefaultTableModel  model, int tipo, String fecha1, String fecha2, int stock, String group)
+    {
+        try{
+        String sql="";
+        switch(tipo){
+//            case 1:
+//                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, \n" +
+//" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE precioCompra=>"+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra "+group;
+//                break;
+            case 1:
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"'and '"+fecha2+"' AND precioCompra>="+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra"+group;
+                break;
+           
+            default:
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia,  " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE tipoTransaccion.idTipoT=inventario.idTipoT AND producto.idProducto=inventario.idProductos ORDER BY precioCompra desc";
+                break;
+        }
+        Object dato[] = new Object[10];
+        
+            PreparedStatement us = cn.prepareStatement(sql);
+            ResultSet res = us.executeQuery();
+            
+            while(res.next()){
+                for(int i =0;i<9;i++)
+                {
+   
+                        dato[i] = res.getObject(i+1);  
+                }
+        
+                        if (res.getInt(10)==0) {
+                            Object valor = (String) "NO";
+                            dato[3] = valor;
+                        }else{
+                            Object valor = (String) "SI";
+                            dato[3] = valor;
+                        }
+
+                model.addRow(dato);
+            }
+           
+        }
+        catch(Exception ex){
+                System.out.println(ex.toString());
+        } 
+        return model;
+    }
+    
     public DefaultTableModel setFilasReportes(DefaultTableModel  model, int tipo, String valores)
     {
         try{
@@ -287,7 +336,7 @@ public class mtoInventario {
             String sql ="INSERT INTO inventario(idInventario, idProductos,"
                     + " idTipoT, fechaTransaccion, precioCompra, "
                     + "porcentajeGanacia , stock, cantidad, impuestos, "
-                    + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario),?,?,?,?,?,?,?,?,?) ";
+                    + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario)+1,?,?,?,?,?,?,?,?,?) ";
            PreparedStatement cmd = cn.prepareStatement(sql);
            
            

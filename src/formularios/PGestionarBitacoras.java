@@ -5,10 +5,12 @@
  */
 package formularios;
 
+import clases.mtoBitacora;
 import clases.verificaciones;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +22,9 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
      * Creates new form PGestionarBitacoras
      */
     verificaciones verificar = new verificaciones();
+    
+    DefaultTableModel model;
+    mtoBitacora mto = new mtoBitacora();
     public PGestionarBitacoras() {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -27,11 +32,20 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        porC.setVisible(false);
+        porE.setVisible(false);
+        model = new DefaultTableModel(null, getcolumnas());
+        TablaB.setModel(mto.Tabla(model));
+        
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
     }
-
+    public String[] getcolumnas()
+        {
+            String columnas[]={"IdBitacora","Fecha","Nombre","Apellido"};
+            return columnas;
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,18 +57,18 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
+        TablaB = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        porC = new javax.swing.JRadioButton();
+        porE = new javax.swing.JRadioButton();
         jButton5 = new javax.swing.JButton();
         lblhelp = new javax.swing.JLabel();
+        fecha_max = new com.toedter.calendar.JDateChooser();
+        fecha_min = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -65,7 +79,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jLabel10.setText("Gestionar Bitacoras");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,10 +90,9 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaB);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 530, 230));
-        add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(java.awt.Color.white);
@@ -90,7 +103,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Fecha Min:");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
-        add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 30));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(java.awt.Color.white);
@@ -106,6 +118,11 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 jButton2MouseExited(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -116,21 +133,24 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField8KeyTyped(evt);
             }
         });
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setForeground(java.awt.Color.white);
-        jRadioButton1.setText("Cliente");
-        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
+        porC.setBackground(new java.awt.Color(102, 102, 102));
+        porC.setForeground(java.awt.Color.white);
+        porC.setText("Cliente");
+        add(porC, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setForeground(java.awt.Color.white);
-        jRadioButton2.setText("Empleado");
-        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, 30));
+        porE.setBackground(new java.awt.Color(102, 102, 102));
+        porE.setForeground(java.awt.Color.white);
+        porE.setText("Empleado");
+        add(porE, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, 30));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(java.awt.Color.white);
@@ -162,6 +182,8 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -210,21 +232,44 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String fechami = verificar.getFecha(fecha_min);
+        String fechamx = verificar.getFecha(fecha_max);
+        if(!fechami.isEmpty()&&!fechamx.isEmpty())
+        {
+            for (int i = 0; i < TablaB.getRowCount(); i++) {
+            model.removeRow(i);
+            i-=1;
+            }
+            mto.buscarFecha(model,fechami,fechamx);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        // TODO add your handling code here:
+        for (int i = 0; i < TablaB.getRowCount(); i++) {
+        model.removeRow(i);
+        i-=1;
+       }
+        mto.buscar(model, jTextField8.getText());
+    }//GEN-LAST:event_jTextField8KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private datechooser.beans.DateChooserCombo dateChooserCombo2;
+    private javax.swing.JTable TablaB;
+    private com.toedter.calendar.JDateChooser fecha_max;
+    private com.toedter.calendar.JDateChooser fecha_min;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblhelp;
+    private javax.swing.JRadioButton porC;
+    private javax.swing.JRadioButton porE;
     // End of variables declaration//GEN-END:variables
 }

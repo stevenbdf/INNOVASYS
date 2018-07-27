@@ -27,6 +27,7 @@ public class PInventario extends javax.swing.JPanel {
     verificaciones verificar = new verificaciones();
     DefaultTableModel modeloTablaInventario;
     DefaultComboBoxModel modeloComboCategoria;
+    DefaultTableModel modeloTablaReportes;
     public PInventario() {
         mtoInventario obj = new mtoInventario();
 //                try {
@@ -39,6 +40,7 @@ public class PInventario extends javax.swing.JPanel {
         mtoInventario objeto = new mtoInventario();
         modeloComboCategoria = new DefaultComboBoxModel(new String[]{});
         cmbProducto.setModel(obj.llenarComboCategoria(modeloComboCategoria));
+        modeloTablaReportes = new DefaultTableModel(null, objeto.getColumnasCategoria());
         modeloTablaInventario = new DefaultTableModel(null, objeto.getColumnasCategoria());
         
         jTable1.setModel(objeto.setFilasInventario(modeloTablaInventario));
@@ -432,6 +434,11 @@ public class PInventario extends javax.swing.JPanel {
         jButton4.setText("Buscar");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton4.setContentAreaFilled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -725,7 +732,7 @@ public class PInventario extends javax.swing.JPanel {
             }else if (rdSalida.isSelected()) {
                 objeto.setCodigoT(2);
             }
-            objeto.setFecha(verificar.getFecha(fecha));
+            objeto.setFecha(fechass);
             objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
             objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
             try {
@@ -793,7 +800,7 @@ public class PInventario extends javax.swing.JPanel {
             }else if (rdSalida.isSelected()) {
                 objeto.setCodigoT(2);
             }
-            objeto.setFecha(verificar.getFecha(fecha));
+            objeto.setFecha(fechass);
             objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
             objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
             try {
@@ -863,6 +870,28 @@ public class PInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
         rdEntrada.setSelected(false);
     }//GEN-LAST:event_rdSalidaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        mtoInventario objeto=new mtoInventario();
+        verificaciones obj = new verificaciones();
+        if (jRadioButton3.isSelected()) {
+         JOptionPane.showMessageDialog(this,"Registro guardado");
+                int filas = modeloTablaReportes.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaReportes.removeRow(0);
+                }         
+                objeto.setFilasReportes(modeloTablaReportes,1,obj.getFecha(fecha1),obj.getFecha(fecha2),Integer.valueOf(jTextField9.getText()),"asc" );   
+        }else if(jRadioButton4.isSelected()){
+             JOptionPane.showMessageDialog(this,"Registro guardado");
+                int filas = modeloTablaReportes.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaReportes.removeRow(0);
+                }         
+                objeto.setFilasReportes(modeloTablaReportes,1,obj.getFecha(fecha1),obj.getFecha(fecha2),Integer.valueOf(jTextField9.getText()),"desc" );   
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

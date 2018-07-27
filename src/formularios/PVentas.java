@@ -5,10 +5,14 @@
  */
 package formularios;
 
+import clases.mtoVentas;
 import clases.verificaciones;
 import java.awt.Image;
+import java.awt.Point;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +23,9 @@ public class PVentas extends javax.swing.JPanel {
     /**
      * Creates new form PVentas
      */
-    verificaciones verificar = new verificaciones();
+   verificaciones verificar = new verificaciones();
+    DefaultTableModel model;
+    mtoVentas mto = new mtoVentas();
     public PVentas() {
 //        try {
 //			
@@ -28,11 +34,22 @@ public class PVentas extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        
+         modificar.setVisible(false);
+        estado.setVisible(false);
+        lbl_estado.setVisible(false);
+        fact.setSelected(true);
+        model = new DefaultTableModel(null, getcolumnas());
+        TablaB.setModel(mto.Tabla(model,0));
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
     }
-
+     public String[] getcolumnas()
+    {
+        String columnas[]={"N°","Fecha","Nombre Empleado","Nombre Cliente","Monto Total"};
+        return columnas;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,34 +61,35 @@ public class PVentas extends javax.swing.JPanel {
 
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField9 = new javax.swing.JTextField();
+        modificar = new javax.swing.JButton();
+        monto = new javax.swing.JTextField();
+        estado = new javax.swing.JComboBox<>();
+        tipo = new javax.swing.JLabel();
+        fecha = new javax.swing.JLabel();
+        empleado = new javax.swing.JLabel();
+        codigo = new javax.swing.JLabel();
+        lbl_estado = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         jLabel23 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        fecha_min = new com.toedter.calendar.JDateChooser();
+        fecha_max = new com.toedter.calendar.JDateChooser();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        fact = new javax.swing.JRadioButton();
+        cred = new javax.swing.JRadioButton();
+        emple = new javax.swing.JRadioButton();
+        codi = new javax.swing.JRadioButton();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaB = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -85,129 +103,122 @@ public class PVentas extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Fecha de Creación");
-
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Codigo Venta");
-
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Empleado Autor");
-
-        jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Estado:");
-
-        jComboBox5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Tipo Venta");
-
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Total:");
 
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+        modificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        modificar.setForeground(new java.awt.Color(255, 255, 255));
+        modificar.setText("Modificar");
+        modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        modificar.setContentAreaFilled(false);
+        modificar.setPreferredSize(new java.awt.Dimension(63, 30));
+        modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                modificarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                modificarMouseExited(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Modificar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.setPreferredSize(new java.awt.Dimension(63, 30));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+        monto.setBackground(new java.awt.Color(204, 204, 204));
+        monto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        monto.setEnabled(false);
+        monto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                montoKeyTyped(evt);
             }
         });
+
+        estado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tipo.setForeground(new java.awt.Color(255, 255, 255));
+        tipo.setText("Tipo Venta");
+
+        fecha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fecha.setForeground(new java.awt.Color(255, 255, 255));
+        fecha.setText("Fecha de Creación");
+
+        empleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        empleado.setForeground(new java.awt.Color(255, 255, 255));
+        empleado.setText("Empleado Autor");
+
+        codigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        codigo.setForeground(new java.awt.Color(255, 255, 255));
+        codigo.setText("Codigo Venta");
+
+        lbl_estado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lbl_estado.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_estado.setText("Estado:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addGap(71, 71, 71))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel17))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel18))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel15))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel21)
-                .addGap(7, 7, 7)
-                .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(42, 42, 42))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel22)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_estado)
+                    .addComponent(jLabel22))
+                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(43, 43, 43)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tipo)
+                            .addGap(29, 29, 29))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(codigo))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(empleado))
+                        .addComponent(fecha)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(16, 16, 16)
+                                    .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(43, 43, 43)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel17)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel18)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel19)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135)
+                .addComponent(lbl_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel22)
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addComponent(codigo)
+                    .addGap(14, 14, 14)
+                    .addComponent(empleado)
+                    .addGap(14, 14, 14)
+                    .addComponent(fecha)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tipo)
+                    .addGap(18, 18, 18)
+                    .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)))
         );
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 220, 290));
-
-        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Credito Fiscal");
-        add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, 30));
-
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
-            }
-        });
-        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 100, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,47 +240,15 @@ public class PVentas extends javax.swing.JPanel {
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 250));
-
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha Max:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-        add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, 30));
-
-        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Codigo");
-        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tipo Venta:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, 30));
-
-        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Empleado");
-        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
-
-        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Factura");
-        add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 30));
-        add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, 30));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -279,31 +258,6 @@ public class PVentas extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Monto Min:");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
-
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
-            }
-        });
-        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
-
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Buscar");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton3.setContentAreaFilled(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(63, 30));
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
-            }
-        });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(153, 0, 153));
@@ -325,27 +279,135 @@ public class PVentas extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
+        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 130, 30));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 130, 30));
+
+        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Buscar");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton3.setContentAreaFilled(false);
+        jButton3.setPreferredSize(new java.awt.Dimension(63, 30));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
+        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Buscar");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton4.setContentAreaFilled(false);
+        jButton4.setPreferredSize(new java.awt.Dimension(63, 30));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
+        fact.setBackground(new java.awt.Color(102, 102, 102));
+        fact.setForeground(new java.awt.Color(255, 255, 255));
+        fact.setText("Factura");
+        fact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                factActionPerformed(evt);
+            }
+        });
+        add(fact, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 30));
+
+        cred.setBackground(new java.awt.Color(102, 102, 102));
+        cred.setForeground(new java.awt.Color(255, 255, 255));
+        cred.setText("Credito Fiscal");
+        cred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                credActionPerformed(evt);
+            }
+        });
+        add(cred, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, 30));
+
+        emple.setBackground(new java.awt.Color(102, 102, 102));
+        emple.setForeground(new java.awt.Color(255, 255, 255));
+        emple.setText("Empleado");
+        emple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleActionPerformed(evt);
+            }
+        });
+        add(emple, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
+
+        codi.setBackground(new java.awt.Color(102, 102, 102));
+        codi.setForeground(new java.awt.Color(255, 255, 255));
+        codi.setText("Codigo");
+        codi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codiActionPerformed(evt);
+            }
+        });
+        add(codi, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
+
+        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField10KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
+        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
+
+        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField9KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 100, 30));
+
+        TablaB.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablaB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaBMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaB);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 250));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        // TODO add your handling code here:
-         jButton3.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton3MouseEntered
-
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        // TODO add your handling code here:
-         jButton3.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton3MouseExited
-
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-        // TODO add your handling code here:
-         jButton2.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton2MouseEntered
-
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        // TODO add your handling code here:
-         jButton2.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
         // TODO add your handling code here:
@@ -356,42 +418,6 @@ public class PVentas extends javax.swing.JPanel {
         // TODO add your handling code here:
          jButton5.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton5MouseExited
-
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vletrasynumeros(vchar) == true
-                && (jTextField10.getText().length() < 10)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField10KeyTyped
-
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vprecio(vchar) == true
-                && (jTextField9.getText().length() < 5)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField9KeyTyped
-
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vprecio(vchar) == true
-                && (jTextField8.getText().length() < 5)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField8KeyTyped
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
@@ -407,37 +433,194 @@ public class PVentas extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        // TODO add your handling code here:
+        jButton3.setContentAreaFilled(true);
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        // TODO add your handling code here:
+        jButton3.setContentAreaFilled(false);
+    }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String fechami = verificar.getFecha(fecha_min);
+        String fechamx = verificar.getFecha(fecha_max);
+        if(!fechami.isEmpty()&&!fechamx.isEmpty())
+        {
+            for (int i = 0; i < TablaB.getRowCount(); i++) {
+                model.removeRow(i);
+                i-=1;
+            }
+            mto.buscarFecha(model,fechami,fechamx,t);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
+        // TODO add your handling code here:
+        jButton3.setContentAreaFilled(true);
+    }//GEN-LAST:event_jButton4MouseEntered
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
+        // TODO add your handling code here:
+        jButton3.setContentAreaFilled(false);
+    }//GEN-LAST:event_jButton4MouseExited
+    int t=0,p=0;
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String fechami = verificar.getFecha(fecha_min);
+        String fechamx = verificar.getFecha(fecha_max);
+        if(!fechami.isEmpty()&&!fechamx.isEmpty())
+        {
+            for (int i = 0; i < TablaB.getRowCount(); i++) {
+                model.removeRow(i);
+                i-=1;
+            }
+            mto.buscarFecha(model,fechami,fechamx,t);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void factActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factActionPerformed
+        cred.setSelected(false);
+        t=0;
+        for (int i = 0; i < TablaB.getRowCount(); i++) {
+            model.removeRow(i);
+            i-=1;
+        }
+        mto.Tabla(model,t);
+    }//GEN-LAST:event_factActionPerformed
+
+    private void credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credActionPerformed
+        fact.setSelected(false);
+        t=1;
+        for (int i = 0; i < TablaB.getRowCount(); i++) {
+            model.removeRow(i);
+            i-=1;
+        }
+        mto.Tabla(model,t);
+    }//GEN-LAST:event_credActionPerformed
+
+    private void empleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleActionPerformed
+        codi.setSelected(false);
+        p=1;
+    }//GEN-LAST:event_empleActionPerformed
+
+    private void codiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codiActionPerformed
+        emple.setSelected(false);
+        p=0;
+    }//GEN-LAST:event_codiActionPerformed
+
+    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
+        for (int i = 0; i < TablaB.getRowCount(); i++) {
+            model.removeRow(i);
+            i-=1;
+        }
+        mto.buscar(model,jTextField10.getText(),p,t);
+    }//GEN-LAST:event_jTextField10KeyReleased
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+
+        if (verificar.vletrasynumeros(vchar) == true
+            && (jTextField10.getText().length() < 10)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField10KeyTyped
+
+    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
+        for (int i = 0; i < TablaB.getRowCount(); i++) {
+            model.removeRow(i);
+            i-=1;
+        }
+        mto.buscarMonto(model,jTextField9.getText(),t);
+    }//GEN-LAST:event_jTextField9KeyReleased
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+
+        if (verificar.vprecio(vchar) == true
+            && (jTextField9.getText().length() < 5)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void modificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseEntered
+        // TODO add your handling code here:
+        modificar.setContentAreaFilled(true);
+    }//GEN-LAST:event_modificarMouseEntered
+
+    private void modificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseExited
+        // TODO add your handling code here:
+        modificar.setContentAreaFilled(false);
+    }//GEN-LAST:event_modificarMouseExited
+
+    private void montoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_montoKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+
+        if (verificar.vprecio(vchar) == true
+            && (monto.getText().length() < 5)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_montoKeyTyped
+
+    private void TablaBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaBMousePressed
+        JTable table = (JTable) evt.getSource();
+        Point point = evt.getPoint();
+        int row = table.rowAtPoint(point);
+        if(evt.getClickCount() == 1)
+        {
+            codigo.setText(TablaB.getValueAt(TablaB.getSelectedRow(),0).toString());
+            fecha.setText(TablaB.getValueAt(TablaB.getSelectedRow(),1).toString());
+            empleado.setText(TablaB.getValueAt(TablaB.getSelectedRow(),2).toString());
+            monto.setText(TablaB.getValueAt(TablaB.getSelectedRow(),4).toString());
+            if(t==0)
+            {
+                tipo.setText("Factura");
+            }
+            else tipo.setText("Credito Fiscal");
+        }
+    }//GEN-LAST:event_TablaBMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private datechooser.beans.DateChooserCombo dateChooserCombo2;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable TablaB;
+    private javax.swing.JRadioButton codi;
+    private javax.swing.JLabel codigo;
+    private javax.swing.JRadioButton cred;
+    private javax.swing.JRadioButton emple;
+    private javax.swing.JLabel empleado;
+    private javax.swing.JComboBox<String> estado;
+    private javax.swing.JRadioButton fact;
+    private javax.swing.JLabel fecha;
+    private com.toedter.calendar.JDateChooser fecha_max;
+    private com.toedter.calendar.JDateChooser fecha_min;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lbl_estado;
     private javax.swing.JLabel lblhelp;
+    private javax.swing.JButton modificar;
+    private javax.swing.JTextField monto;
+    private javax.swing.JLabel tipo;
     // End of variables declaration//GEN-END:variables
 }

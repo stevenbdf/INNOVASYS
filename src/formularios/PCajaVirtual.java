@@ -5,10 +5,19 @@
  */
 package formularios;
 
+import clases.Conexion;
+import clases.mtoPresupuesto;
 import clases.verificaciones;
 import java.awt.Image;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +29,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
      * Creates new form PCajaVirtual
      */
     verificaciones verificar = new verificaciones();
+    DefaultComboBoxModel modeloComboPro;
+    DefaultTableModel modeloTablaProductos;
+    DefaultComboBoxModel modeloComboCliente;
+    DefaultComboBoxModel modeloComboPedidos;
     public PCajaVirtual() {
 //        try {
 //			
@@ -27,10 +40,21 @@ public class PCajaVirtual extends javax.swing.JPanel {
 //		}
 //		catch (Exception e) {
 //		}
+        modeloTablaProductos = new DefaultTableModel(null, getColumnasProductos());
+        modeloComboPro = new DefaultComboBoxModel(new String[]{});
+        modeloComboCliente = new DefaultComboBoxModel(new String[]{});
+        modeloComboPedidos = new DefaultComboBoxModel(new String[]{});
         initComponents();
+
+        
+       llenaComboBoxProductos();
+        llenaComboBoxClientes();
+       
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+       jTFSubTotal.setVisible(false);
+       lblSub.setVisible(false);
     }
 
     /**
@@ -49,42 +73,38 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdFactura = new javax.swing.JRadioButton();
+        rdCredito = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbCliente = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTFCodigoP = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jTFCategoria = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jTFPrecio = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jTFCantidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        lblSub = new javax.swing.JLabel();
+        jTFSubTotal = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jTFTotal = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        cmbPedido = new javax.swing.JComboBox<>();
+        cmbProducto = new javax.swing.JComboBox<>();
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -118,87 +138,64 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Codigo cliente:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 85, -1, 20));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTFCodigo.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCodigo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTFCodigoActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                jTFCodigoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 82, 30));
+        jPanel1.add(jTFCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 82, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Nombres:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
-
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 143, 30));
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Apellidos:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
-
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
-            }
-        });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 120, 30));
+        jLabel9.setText("Cliente:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Seleccione una  opcion:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 20));
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jRadioButton1.setText("Factura");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rdFactura.setBackground(new java.awt.Color(102, 102, 102));
+        rdFactura.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        rdFactura.setForeground(new java.awt.Color(204, 204, 204));
+        rdFactura.setText("Factura");
+        rdFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rdFacturaActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        jPanel1.add(rdFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jRadioButton2.setText("Credito Fiscal");
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+        rdCredito.setBackground(new java.awt.Color(102, 102, 102));
+        rdCredito.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        rdCredito.setForeground(new java.awt.Color(204, 204, 204));
+        rdCredito.setText("Credito Fiscal");
+        jPanel1.add(rdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Pedido:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 85, -1, 20));
 
-        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbCliente.setBackground(new java.awt.Color(51, 51, 51));
+        cmbCliente.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        cmbCliente.setForeground(new java.awt.Color(51, 51, 51));
+        cmbCliente.setModel(modeloComboCliente);
+        cmbCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 120, -1));
+        jPanel1.add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 150, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(153, 0, 153));
@@ -210,118 +207,74 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel14.setText("Codigo Producto:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCodigoP.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCodigoP.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFCodigoP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                jTFCodigoPKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 83, 30));
+        jPanel1.add(jTFCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 83, 30));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Nombre:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
-            }
-        });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 150, 30));
-
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Categoria:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCategoria.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCategoria.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
+                jTFCategoriaKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 100, 30));
-
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Imagen:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 130, 120));
+        jPanel1.add(jTFCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 130, 30));
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(modeloTablaProductos);
         jTable1.setGridColor(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 464, 127));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 620, 127));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Precio:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTFPrecio.setBackground(new java.awt.Color(204, 204, 204));
+        jTFPrecio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTFPrecioActionPerformed(evt);
             }
         });
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField7KeyTyped(evt);
+                jTFPrecioKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 83, 30));
+        jPanel1.add(jTFPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 83, 30));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cantidad:");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCantidad.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCantidad.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                jTFCantidadKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 97, 30));
+        jPanel1.add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 97, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -337,7 +290,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 70, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 70, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -353,35 +311,35 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 jButton2MouseExited(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 70, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 30));
 
-        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Sub-Total:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
+        lblSub.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lblSub.setForeground(new java.awt.Color(255, 255, 255));
+        lblSub.setText("Sub-Total:");
+        jPanel1.add(lblSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFSubTotal.setBackground(new java.awt.Color(204, 204, 204));
+        jTFSubTotal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFSubTotal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
+                jTFSubTotalKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 88, 30));
+        jPanel1.add(jTFSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 88, 30));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Total:");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, -1, -1));
 
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
+        jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTFTotal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
+                jTFTotalKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 87, 30));
+        jPanel1.add(jTFTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 87, 30));
 
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -407,10 +365,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(153, 0, 153));
         jLabel22.setText("Detalle de venta");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel23MouseClicked(evt);
@@ -435,6 +393,28 @@ public class PCajaVirtual extends javax.swing.JPanel {
         });
         jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 25, 25));
 
+        cmbPedido.setBackground(new java.awt.Color(51, 51, 51));
+        cmbPedido.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        cmbPedido.setForeground(new java.awt.Color(51, 51, 51));
+        cmbPedido.setModel(modeloComboPedidos);
+        cmbPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 120, 30));
+
+        cmbProducto.setBackground(new java.awt.Color(51, 51, 51));
+        cmbProducto.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        cmbProducto.setForeground(new java.awt.Color(51, 51, 51));
+        cmbProducto.setModel(modeloComboPro);
+        cmbProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 150, 30));
+
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -454,7 +434,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+        private String[] getColumnasProductos() {
+                String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL" };
+                return columnas;
+            }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         Pago1 pago = new Pago1();
@@ -492,149 +475,188 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jButton1.setContentAreaFilled(true);
     }//GEN-LAST:event_jButton1MouseEntered
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTFPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTFPrecioActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void cmbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+        
+        llenaComboBoxPedidos(String.valueOf(cmbCliente.getSelectedItem()));
+        
+    }//GEN-LAST:event_cmbClienteActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void rdFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_rdFacturaActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jTFCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTFCodigoActionPerformed
 
     private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
         this.hide();
     }//GEN-LAST:event_jLabel23MouseClicked
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void jTFCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyTyped
         // TODO add your handling code here:
          char vchar = evt.getKeyChar();
         
+//        if (verificar.vnumeros(vchar) == true
+//                && (jTextField1.getText().length() < 6)) {
+//
+//        } else {
+//            evt.consume();
+//        }
+    }//GEN-LAST:event_jTFCodigoKeyTyped
+    private void llenaComboBoxPedidos(String correo) {
+        modeloComboPedidos.removeAllElements();
+        try {
+                Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql2="SELECT idCliente FROM cliente WHERE correoElectronico='"+correo+"'";
+            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+            ResultSet ver2 = verDatos2.executeQuery();
+            
+            if(ver2.next()) {
+                System.out.println("Correo: "+ver2.getInt(1));
+                String sql = "SELECT idPedido FROM pedido WHERE idCliente="+ver2.getInt(1);
+                jTFCodigo.setText(""+ver2.getInt(1));
+                PreparedStatement verDatos = con.conectar().prepareStatement(sql);
+                ResultSet ver = verDatos.executeQuery();
+                while (ver.next()) {
+                    
+                    modeloComboPedidos.addElement(ver.getObject("idPedido"));
+                }
+            }else{
+                modeloComboPedidos.addElement("");
+            }   
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }  
+    
+    
+    
+    private void llenaComboBoxClientes() {
+        modeloComboCliente.removeAllElements();
+        try {
+                Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "SELECT correoElectronico FROM cliente";
+            PreparedStatement verDatos = con.conectar().prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();
+            while (ver.next()) {
+
+                modeloComboCliente.addElement(ver.getObject("correoElectronico"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }    
+    
+    private void llenaComboBoxProductos() {
+        modeloComboPro.removeAllElements();
+        
+        try {
+            Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql = "select idProductos from inventario group by idProductos ";
+            PreparedStatement verDatos = con.conectar().prepareStatement(sql);
+            ResultSet ver = verDatos.executeQuery();  
+            while (ver.next()) {
+                System.out.println("asd: "+ver.next());
+                String sql2 = "select nombreProducto FROM producto WHERE idProducto="+ver.getObject("idProductos");
+            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+            ResultSet ver2 = verDatos2.executeQuery();
+                if(ver2.next()){
+
+                    modeloComboPro.addElement(ver2.getString(1));
+                }
+                    
+                 
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }
+    private void jTFCodigoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoPKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        
         if (verificar.vnumeros(vchar) == true
-                && (jTextField1.getText().length() < 6)) {
+                && (jTFCodigoP.getText().length() < 6)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_jTFCodigoPKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vletras(vchar) == true
-                && (jTextField2.getText().length() < 40)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vletras(vchar) == true
-                && (jTextField3.getText().length() < 40)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField3KeyTyped
-
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vnumeros(vchar) == true
-                && (jTextField4.getText().length() < 6)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField4KeyTyped
-
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vletras(vchar) == true
-                && (jTextField5.getText().length() < 40)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField5KeyTyped
-
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        // TODO add your handling code here:
+    private void jTFCategoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCategoriaKeyTyped
+//jTFCodigoTODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTextField6.getText().length() < 20)) {
+                && (jTFCategoria.getText().length() < 20)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField6KeyTyped
+    }//GEN-LAST:event_jTFCategoriaKeyTyped
 
-    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+    private void jTFPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPrecioKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
-        if (verificar.vprecio(vchar) == true
-                && (jTextField3.getText().length() < 40)) {
+//        if (verificar.vprecio(vchar) == true
+//                && (jTextField3.getText().length() < 40)) {
+//
+//        } else {
+//            evt.consume();
+//        }
+    }//GEN-LAST:event_jTFPrecioKeyTyped
 
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField7KeyTyped
-
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    private void jTFCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCantidadKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vnumeros(vchar) == true
-                && (jTextField8.getText().length() < 5)) {
+                && (jTFCantidad.getText().length() < 5)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField8KeyTyped
+    }//GEN-LAST:event_jTFCantidadKeyTyped
 
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+    private void jTFSubTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFSubTotalKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vprecio(vchar) == true
-                && (jTextField9.getText().length() < 6)) {
+                && (jTFSubTotal.getText().length() < 6)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField9KeyTyped
+    }//GEN-LAST:event_jTFSubTotalKeyTyped
 
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+    private void jTFTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
         
         if (verificar.vprecio(vchar) == true
-                && (jTextField10.getText().length() < 6)) {
+                && (jTFTotal.getText().length() < 6)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField10KeyTyped
+    }//GEN-LAST:event_jTFTotalKeyTyped
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
@@ -650,25 +672,109 @@ public class PCajaVirtual extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void cmbPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPedidoActionPerformed
+        // TODO add your handling code here:
+//        try {
+//            String sql ="SELECT * FROM detallePedido WHERE ";
+//        } catch (Exception e) {
+//            System.out.println(e.toString());
+//        }
+    }//GEN-LAST:event_cmbPedidoActionPerformed
+    Integer stockGeneral=0;
+    private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+            System.out.println("combo: "+cmbProducto.getSelectedItem());
+            String sql ="SELECT idProducto, categoriaProducto.nombreCategoria, imagen  FROM producto, categoriaProducto "
+                    + " WHERE nombreProducto='"+cmbProducto.getSelectedItem()+"' AND categoriaProducto.idCategoria = producto.idCategoria";
+            PreparedStatement cmd = con.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                jTFCodigoP.setText(String.valueOf(ver.getInt(1)));
+                jTFCategoria.setText(ver.getString(2));
+                
+            }
+        } catch (Exception e) {
+            System.out.println("Aqui");
+            System.out.println(e.toString());
+        }
+        
+        mtoPresupuesto obj = new mtoPresupuesto();
+        String[] datos = obj.consultarProducto(jTFCodigoP.getText());
+        stockGeneral= Integer.valueOf(datos[3]);
+        System.out.println("stock g: "+stockGeneral);
+        double precio = (Double.parseDouble(datos[1])) + (Double.parseDouble(datos[2]));
+        double precio2= (Double.parseDouble(datos[0])) * (precio/100) ;
+        double precio3= precio2 +(Double.parseDouble(datos[0]));
+        jTFPrecio.setText(String.valueOf(precio3));
+    }//GEN-LAST:event_cmbProductoActionPerformed
+    Integer contador=0;
+    double total=0;
+    Integer[][] stockes = new Integer[2][50];
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (Integer.valueOf(jTFCantidad.getText())>stockGeneral) {
+            JOptionPane.showMessageDialog(this,"No se cuenta con suficiente stock de este producto");
+        }else{
+            if (true) {
+                
+            }
+         int validacion=0;
+            for (int i = 0; i <contador; i++) {
+                if (stockes[0][i]==Integer.valueOf(jTFCodigoP.getText())) {
+                    
+                    validacion=1;
+                }
+            }
+            if (validacion==1) {
+                JOptionPane.showMessageDialog(this,"Ya se encuentra este producto en el detalle");
+            }else{
+                Object[] datos = new Object[7];
+//        Object valor0 = new Object(jTFCodigoP.getText());
+                datos[0] = contador;
+                datos[1] = jTFCodigoP.getText();
+                datos[2] = cmbProducto.getSelectedItem();
+                datos[3] = jTFCategoria.getText();
+                datos[4] = jTFPrecio.getText();
+                datos[5] = jTFCantidad.getText();
+                double subtotal = (Double.parseDouble(jTFPrecio.getText())) * Integer.valueOf(jTFCantidad.getText());
+                datos[6] = subtotal;
+                modeloTablaProductos.addRow(datos);
+                //0 Codigo Pro
+                stockes[0][contador] = Integer.valueOf(jTFCodigoP.getText());
+                System.out.println("Codigo Producto: " + stockes[0][contador]);
+                //1 Stock final
+                stockes[1][contador] = stockGeneral - (Integer.valueOf(jTFCantidad.getText()));
+                System.out.println("Codigo Stock Final: " + stockes[1][contador]);
+
+                contador++;
+                total = total + subtotal;
+                jTFTotal.setText("" + total);
+                System.out.println("Contador: " + contador);
+            }
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbCliente;
+    private javax.swing.JComboBox<String> cmbPedido;
+    private javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -678,22 +784,19 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTFCantidad;
+    private javax.swing.JTextField jTFCategoria;
+    private javax.swing.JTextField jTFCodigo;
+    private javax.swing.JTextField jTFCodigoP;
+    private javax.swing.JTextField jTFPrecio;
+    private javax.swing.JTextField jTFSubTotal;
+    private javax.swing.JTextField jTFTotal;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblSub;
     private javax.swing.JLabel lblhelp;
+    private javax.swing.JRadioButton rdCredito;
+    private javax.swing.JRadioButton rdFactura;
     // End of variables declaration//GEN-END:variables
 }
