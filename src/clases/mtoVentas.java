@@ -7,6 +7,8 @@ package clases;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +18,13 @@ import javax.swing.table.DefaultTableModel;
 public class mtoVentas {
     Conexion cn = new Conexion();
     String sql;
+    
+    public static java.sql.Date sumarFechasDias(java.sql.Date fch, int dias) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.DATE, dias);
+        return new java.sql.Date(cal.getTimeInMillis());
+    }
     
     public DefaultTableModel Tabla(DefaultTableModel  model,int num)
     {
@@ -36,7 +45,15 @@ public class mtoVentas {
             while(res.next()){
                 for(int i =0;i<5;i++)
                 {
-                    dato[i] =res.getObject(i+1);
+                    
+                    if (i==1) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
+                        dato[i] =res.getObject(i+1);
+                    
+                    }
+                    
                 }
                 model.addRow(dato);
             }
@@ -85,7 +102,13 @@ public class mtoVentas {
             while(res.next()){
                 for(int i =0;i<5;i++)
                 {
-                    dato[i] =res.getObject(i+1);
+                    if (i==1) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
+                       dato[i] =res.getObject(i+1); 
+                    }
+                    
                 }
                 model.addRow(dato);
             }
@@ -101,7 +124,9 @@ public class mtoVentas {
         switch(num)
         {
             case 0:
-                sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal from factura, cliente,usuarioEmpleado where factura.idCliente = cliente.idCliente AND factura.idEmpleado = usuarioEmpleado.idEmpleado AND factura.fecha <= '"+fecha2+"'";
+                System.out.println("fecha1: "+fecha1);
+                System.out.println("fecha2: "+fecha2);
+                sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal from factura, cliente,usuarioEmpleado where factura.idCliente = cliente.idCliente AND factura.idEmpleado = usuarioEmpleado.idEmpleado AND factura.fecha BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
             break;
             case 1:
                 sql="select noCreditoFiscal, creditoFiscal.fecha, usuarioEmpleado.nombres,cliente.nombre,monto_total from creditoFiscal, cliente,usuarioEmpleado where creditoFiscal.idCliente = cliente.idCliente AND creditoFiscal.idEmpleado = usuarioEmpleado.idEmpleado AND creditoFiscal.fecha <= '"+fecha2+"'";
@@ -115,7 +140,13 @@ public class mtoVentas {
             while(res.next()){
                 for(int i =0;i<5;i++)
                 {
-                    dato[i] =res.getObject(i+1);
+                    
+                    if (i==1) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
+                       dato[i] =res.getObject(i+1); 
+                    }
                 }
                 model.addRow(dato);
             }
@@ -146,7 +177,12 @@ public class mtoVentas {
             while(res.next()){
                 for(int i =0;i<5;i++)
                 {
-                    dato[i] =res.getObject(i+1);
+                    if (i==1) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
+                       dato[i] =res.getObject(i+1); 
+                    }
                 }
                 model.addRow(dato);
             }

@@ -538,6 +538,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                             cmd3.setInt(2, stockes[1][i]);
                             if (!cmd3.execute()) {
                                 System.out.println("Ingresado");
+                                JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
                             }
                         }
                     } catch (Exception e) {
@@ -549,6 +550,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                             cmd3.setInt(2, stockes[1][i]);
                             if (!cmd3.execute()) {
                                 System.out.println("Ingresado");
+                                JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
                             }
                         }
                     }

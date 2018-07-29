@@ -116,7 +116,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     ImageIcon foto13s = new ImageIcon(getClass().getResource("/images/Empleados1.png")); 
     ImageIcon icono13s = new ImageIcon(foto13s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
     
-    Integer dia,diames, mes, año, tipoU;
+    Integer dia,diames, mes, año, tipoU, codigoEmpleado;
     int posiciones[] = new int[14];
     public VentanaPrincipal2(String correo) {
 //        try {
@@ -133,14 +133,14 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         
         try {
             Conexion cn = new Conexion();
-            String sql ="SELECT nombres, apellidos, idTipo FROM usuarioEmpleado WHERE correoElectronico='"+correo+"'";
+            String sql ="SELECT nombres, apellidos, idTipo, idEmpleado FROM usuarioEmpleado WHERE correoElectronico='"+correo+"'";
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
             ResultSet look = cmd.executeQuery();
             if (look.next()) {
                 jblnombre.setText(look.getString(1));
                 apellido2.setText(look.getString(2));
                 tipoU=look.getInt(3);
-                System.out.println("tipo U1:"+tipoU);
+                codigoEmpleado=look.getInt(4);
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -2657,7 +2657,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 5:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PCajaVirtual cajas = new PCajaVirtual();
+                PCajaVirtual cajas = new PCajaVirtual(codigoEmpleado,jblnombre.getText());
                 cajas.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(cajas, BorderLayout.CENTER);

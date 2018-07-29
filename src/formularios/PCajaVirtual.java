@@ -6,12 +6,14 @@
 package formularios;
 
 import clases.Conexion;
+import clases.mtoCajaRegistradora;
 import clases.mtoPresupuesto;
 import clases.verificaciones;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -33,23 +35,31 @@ public class PCajaVirtual extends javax.swing.JPanel {
     DefaultTableModel modeloTablaProductos;
     DefaultComboBoxModel modeloComboCliente;
     DefaultComboBoxModel modeloComboPedidos;
-    public PCajaVirtual() {
+    
+    Integer codigoEmpleado=1;
+    
+    public PCajaVirtual(int codigoE, String nombre) {
 //        try {
 //			
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
 //		catch (Exception e) {
 //		}
+        codigoEmpleado=codigoE;
         modeloTablaProductos = new DefaultTableModel(null, getColumnasProductos());
         modeloComboPro = new DefaultComboBoxModel(new String[]{});
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         modeloComboPedidos = new DefaultComboBoxModel(new String[]{});
         initComponents();
-
+        try {
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
         
        llenaComboBoxProductos();
         llenaComboBoxClientes();
-       
+       lblNombre.setText(nombre);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
@@ -69,9 +79,9 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTFCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -92,8 +102,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jTFPrecio = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTFCantidad = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         lblSub = new javax.swing.JLabel();
         jTFSubTotal = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
@@ -105,6 +115,9 @@ public class PCajaVirtual extends javax.swing.JPanel {
         lblhelp = new javax.swing.JLabel();
         cmbPedido = new javax.swing.JComboBox<>();
         cmbProducto = new javax.swing.JComboBox<>();
+        NuevaVenta = new javax.swing.JRadioButton();
+        Pedido = new javax.swing.JRadioButton();
+        jLabel17 = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -120,20 +133,20 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel2.setText("Codigo:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("201524");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        lblCodigo.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigo.setText("201524");
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Empleado:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Steven Diaz");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        lblNombre.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Steven Diaz");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,12 +165,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 jTFCodigoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 82, 30));
+        jPanel1.add(jTFCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 80, 70, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Cliente:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -184,7 +197,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Pedido:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 85, -1, 20));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, 20));
 
         cmbCliente.setBackground(new java.awt.Color(51, 51, 51));
         cmbCliente.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -195,7 +208,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 cmbClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 150, 30));
+        jPanel1.add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 150, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(153, 0, 153));
@@ -276,42 +289,47 @@ public class PCajaVirtual extends javax.swing.JPanel {
         });
         jPanel1.add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 97, 30));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Agregar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgregar.setBackground(new java.awt.Color(51, 51, 51));
+        btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                btnAgregarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                btnAgregarMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 70, 30));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 70, 30));
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Eliminar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                btnEliminarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                btnEliminarMouseExited(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 30));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 30));
 
         lblSub.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         lblSub.setForeground(new java.awt.Color(255, 255, 255));
@@ -378,12 +396,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 30, 30));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -402,7 +420,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 cmbPedidoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 120, 30));
+        jPanel1.add(cmbPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 120, 30));
 
         cmbProducto.setBackground(new java.awt.Color(51, 51, 51));
         cmbProducto.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -414,6 +432,33 @@ public class PCajaVirtual extends javax.swing.JPanel {
             }
         });
         jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 150, 30));
+
+        NuevaVenta.setBackground(new java.awt.Color(102, 102, 102));
+        NuevaVenta.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        NuevaVenta.setForeground(new java.awt.Color(204, 204, 204));
+        NuevaVenta.setText("Nueva Venta");
+        NuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaVentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(NuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+
+        Pedido.setBackground(new java.awt.Color(102, 102, 102));
+        Pedido.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        Pedido.setForeground(new java.awt.Color(204, 204, 204));
+        Pedido.setText("Pedido");
+        Pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Venta por:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, 30));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
@@ -434,15 +479,27 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-        private String[] getColumnasProductos() {
-                String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL" };
-                return columnas;
-            }
+    
+    
+    private String[] getColumnasProductos() {
+        String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL"};
+        return columnas;
+    }
+    Integer codCliente=1;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Pago1 pago = new Pago1();
-        pago.show();
+        
 
+        Object envio [][] = new Object[2][modeloTablaProductos.getRowCount()];
+        System.out.println("# row: "+modeloTablaProductos.getRowCount());
+                for (int i = 0;modeloTablaProductos.getRowCount() > i ; i++) {
+                    envio[0][i] =modeloTablaProductos.getValueAt(i, (1));
+                    envio[1][i] =modeloTablaProductos.getValueAt(i, (5));
+                }
+        
+        
+        Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio);
+        pago.show();        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
@@ -455,25 +512,25 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jButton3.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton3MouseExited
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
         // TODO add your handling code here:
-        jButton2.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton2MouseExited
+        btnEliminar.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnEliminarMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
         // TODO add your handling code here:
-        jButton2.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton2MouseEntered
+        btnEliminar.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnEliminarMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+    private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
         // TODO add your handling code here:
-        jButton1.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton1MouseExited
+        btnAgregar.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnAgregarMouseExited
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
         // TODO add your handling code here:
-        jButton1.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton1MouseEntered
+        btnAgregar.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnAgregarMouseEntered
 
     private void jTFPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPrecioActionPerformed
         // TODO add your handling code here:
@@ -481,8 +538,9 @@ public class PCajaVirtual extends javax.swing.JPanel {
 
     private void cmbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClienteActionPerformed
         // TODO add your handling code here:
-        
-        llenaComboBoxPedidos(String.valueOf(cmbCliente.getSelectedItem()));
+        if (Pedido.isSelected()) {
+            llenaComboBoxPedidos(String.valueOf(cmbCliente.getSelectedItem()));
+        }
         
     }//GEN-LAST:event_cmbClienteActionPerformed
 
@@ -569,8 +627,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
             PreparedStatement verDatos = con.conectar().prepareStatement(sql);
             ResultSet ver = verDatos.executeQuery();  
             while (ver.next()) {
-                System.out.println("asd: "+ver.next());
-                String sql2 = "select nombreProducto FROM producto WHERE idProducto="+ver.getObject("idProductos");
+            String sql2 = "select nombreProducto FROM producto WHERE idProducto="+ver.getObject("idProductos");
             PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
             ResultSet ver2 = verDatos2.executeQuery();
                 if(ver2.next()){
@@ -671,14 +728,59 @@ public class PCajaVirtual extends javax.swing.JPanel {
         help form = new help(2);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
-
+    double SubTotal=0, Total=0;
+    int indices=0;
     private void cmbPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPedidoActionPerformed
         // TODO add your handling code here:
-//        try {
-//            String sql ="SELECT * FROM detallePedido WHERE ";
-//        } catch (Exception e) {
-//            System.out.println(e.toString());
-//        }
+        
+        Object datos[] = new Object[7];
+         int filas = modeloTablaProductos.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modeloTablaProductos.removeRow(0);
+        }
+        try {
+            Conexion cn = new Conexion();
+            String sql = "SELECT dp.idProducto , pro.nombreProducto , cat.nombreCategoria, cantidadProducto "
+                    + " FROM pedido p, detallePedido dp, producto pro, categoriaProducto cat "
+                    + " WHERE dp.idProducto=pro.idProducto  AND cat.idCategoria=pro.idCategoria "
+                    + " AND p.idPedido=dp.idPedido AND dp.idPedido="+cmbPedido.getSelectedItem();
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            while(ver.next()){
+                for (int i = 0; i <5; i++) {
+                    System.out.println("i: "+i);
+                    if (i==1 || i==2 || i==3 ) {
+                        datos[i]=ver.getObject(i);
+                    }
+                    if (i==0) {
+                        datos[i]=indices;
+                        indices++;
+                    }
+                    if (i==4) {
+                        System.out.println("Entra");
+                        String sql2 ="SELECT ((((porcentajeGanacia+impuestos)/100)*precioCompra)+precioCompra) "
+                                + " FROM inventario "
+                                + " WHERE idProductos= "+datos[1] +" ORDER BY porcentajeGanacia DESC ";
+                        PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                        ResultSet ver2 = cmd2.executeQuery();
+                        if (ver2.next()) {
+                             DecimalFormat df = new DecimalFormat("#.00");
+                            datos[i]= df.format(ver2.getDouble(1));
+                            datos[i+1]= ver.getObject(4);
+                            double data = Double.valueOf(String.valueOf((datos[i+1])))* Double.valueOf(String.valueOf((datos[i])));
+                            Total=Total+data;
+                            jTFTotal.setText(String.valueOf(df.format(Total)));
+                            datos[i+2]= data;
+                        }
+                    }
+                }
+                
+                modeloTablaProductos.addRow(datos);
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }//GEN-LAST:event_cmbPedidoActionPerformed
     Integer stockGeneral=0;
     private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
@@ -712,9 +814,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
     Integer contador=0;
     double total=0;
     Integer[][] stockes = new Integer[2][50];
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        if (Integer.valueOf(jTFCantidad.getText())>stockGeneral) {
+        if(jTFCantidad.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Ingrese una cantidad porfavor");
+        }else{
+            if (Integer.valueOf(jTFCantidad.getText())>stockGeneral) {
             JOptionPane.showMessageDialog(this,"No se cuenta con suficiente stock de este producto");
         }else{
             if (true) {
@@ -754,16 +859,55 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 System.out.println("Contador: " + contador);
             }
         }
+        }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidoActionPerformed
+        // TODO add your handling code here:
+        //jTable1.removeAll();
+       Pedido.setSelected(true);
+        NuevaVenta.setSelected(false);
+        jTFCodigo.setEnabled(false);
+        cmbProducto.setEnabled(false);
+        jTFCategoria.setEnabled(false);
+        jTFPrecio.setEnabled(false);
+        jTFCantidad.setEnabled(false);
+        btnAgregar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        cmbPedido.setEnabled(true);
+    }//GEN-LAST:event_PedidoActionPerformed
+        
+    private void NuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaVentaActionPerformed
+        // TODO add your handling code here:
+        //jTable1.removeAll();
+       Pedido.setSelected(false);
+       NuevaVenta.setSelected(true);
+       jTFCodigo.setEnabled(true);
+        cmbProducto.setEnabled(true);
+        jTFCategoria.setEnabled(true);
+        jTFPrecio.setEnabled(true);
+        jTFCantidad.setEnabled(true);
+        btnAgregar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        cmbPedido.setEnabled(false);
+    }//GEN-LAST:event_NuevaVentaActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        // modeloTablaProductos.removeRow(jTable1.getSelectedRow());
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton NuevaVenta;
+    private javax.swing.JRadioButton Pedido;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbPedido;
     private javax.swing.JComboBox<String> cmbProducto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -772,15 +916,14 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -794,6 +937,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JTextField jTFSubTotal;
     private javax.swing.JTextField jTFTotal;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSub;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JRadioButton rdCredito;

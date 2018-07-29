@@ -5,7 +5,12 @@
  */
 package formularios;
 
+import clases.Conexion;
+import clases.mtoCajaRegistradora;
 import clases.verificaciones;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -18,7 +23,11 @@ public class Pago1 extends javax.swing.JFrame {
      * Creates new form Pago1
      */
     verificaciones  verificar = new verificaciones();
-    public Pago1() {
+    int codEmpleado=0, codCliente=0;
+    String correoCliente;
+    double PTotal=0.0;
+    Object[][] tabla;
+    public Pago1(String cliente, int empleado, double total, Object[][] recibo) {
 //        try {
 //			
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -26,6 +35,26 @@ public class Pago1 extends javax.swing.JFrame {
 //		catch (Exception e) {
 //		}
         initComponents();
+        codEmpleado=empleado;
+        correoCliente=cliente;
+        PTotal=total;
+        tabla=recibo;
+        
+            try {
+            Conexion cn = new Conexion();
+            String consulta2 = "SELECT cliente.idCliente FROM cliente WHERE cliente.correoElectronico= '" +correoCliente+"'";
+            PreparedStatement cons = cn.conectar().prepareStatement(consulta2);
+            ResultSet vers = cons.executeQuery();
+            if (vers.next()) {
+                codCliente = vers.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        jTFTotal.setText(String.valueOf(total));
+        
          setLocationRelativeTo(null);
     }
 
@@ -40,13 +69,13 @@ public class Pago1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTFCambio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTFIngreso = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,72 +90,85 @@ public class Pago1 extends javax.swing.JFrame {
         jLabel4.setText("Cambio($):");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTFCambio.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCambio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTFCambioActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCambio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                jTFCambioKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 68, 30));
+        jPanel1.add(jTFCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 68, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Agregar Pago");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 29, -1, -1));
-
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Finalizar Venta");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 240, 130, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 29, -1, -1));
+
+        btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setText("Finalizar Venta");
+        btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnFinalizar.setContentAreaFilled(false);
+        btnFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseExited(evt);
+            }
+        });
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 240, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Total ($):");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
+        jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTFTotalActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFTotal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                jTFTotalKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 92, 68, 30));
+        jPanel1.add(jTFTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 92, 68, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingreso ($):");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFIngreso.setBackground(new java.awt.Color(204, 204, 204));
+        jTFIngreso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFIngreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFIngresoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                jTFIngresoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 140, 68, 30));
+        jPanel1.add(jTFIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 140, 68, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jLabel5.setToolTipText("");
@@ -161,63 +203,91 @@ public class Pago1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTFCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCambioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTFCambioActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTFTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTFTotalActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         this.hide();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void btnFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarMouseEntered
         // TODO add your handling code here:
-         jButton1.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton1MouseEntered
+         btnFinalizar.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnFinalizarMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+    private void btnFinalizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarMouseExited
         // TODO add your handling code here:
-         jButton1.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton1MouseExited
+         btnFinalizar.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnFinalizarMouseExited
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vprecio(vchar) == true
-                && (jTextField1.getText().length() < 5)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField1KeyTyped
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void jTFTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTotalKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
         if (verificar.vprecio(vchar) == true
-                && (jTextField2.getText().length() < 5)) {
+                && (jTFTotal.getText().length() < 5)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_jTFTotalKeyTyped
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void jTFIngresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIngresoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
         if (verificar.vprecio(vchar) == true
-                && (jTextField3.getText().length() < 5)) {
+                && (jTFIngreso.getText().length() < 5)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_jTFIngresoKeyTyped
+
+    private void jTFCambioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCambioKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+       
+        if (verificar.vprecio(vchar) == true
+                && (jTFCambio.getText().length() < 5)) {
+
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFCambioKeyTyped
+
+    private void jTFIngresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIngresoKeyReleased
+        // TODO add your handling code here:
+        jTFCambio.setText(String.valueOf(Double.valueOf(jTFTotal.getText())- Double.valueOf(jTFIngreso.getText())) );
+    }//GEN-LAST:event_jTFIngresoKeyReleased
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        // TODO add your handling code here:
+        mtoCajaRegistradora obj = new mtoCajaRegistradora();
+        obj.setCodigoEmpleado(codEmpleado);
+        obj.setCodigoCliente(codCliente);
+        obj.setMontoTotal(Double.valueOf(jTFTotal.getText()));
+        
+        if (obj.guardarFactura(tabla)) {
+            JOptionPane.showMessageDialog(this,"Factura realizada correctamente");
+        }
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        for (int i = 0; i < tabla.length; i++) {
+            System.out.println("Valor 0: "+tabla[0][i]);
+            System.out.println("Valor 1: "+tabla[1][i]);
+        }
+        System.out.println("Empleado: "+codEmpleado);
+        System.out.println("Cliente: "+codCliente);
+        
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,21 +319,22 @@ public class Pago1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pago1().setVisible(true);
+                Object[][] valor = new Object[2][2];
+                new Pago1("",1,1.0,valor).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTFCambio;
+    private javax.swing.JTextField jTFIngreso;
+    private javax.swing.JTextField jTFTotal;
     // End of variables declaration//GEN-END:variables
 }
