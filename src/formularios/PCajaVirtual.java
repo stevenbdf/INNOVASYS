@@ -264,6 +264,11 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTable1.setModel(modeloTablaProductos);
         jTable1.setGridColor(new java.awt.Color(153, 153, 153));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 620, 127));
@@ -408,12 +413,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 30, 30));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -503,7 +508,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
         
 
         Object envio [][] = new Object[2][modeloTablaProductos.getRowCount()];
-        System.out.println("# row: "+modeloTablaProductos.getRowCount());
+        if (modeloTablaProductos.getRowCount()!=0) {
+           System.out.println("# row: "+modeloTablaProductos.getRowCount());
                 for (int i = 0;modeloTablaProductos.getRowCount() > i ; i++) {
                     envio[0][i] =modeloTablaProductos.getValueAt(i, (1));
                     envio[1][i] =modeloTablaProductos.getValueAt(i, (5));
@@ -511,7 +517,11 @@ public class PCajaVirtual extends javax.swing.JPanel {
         
         
         Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio);
-        pago.show();        
+        pago.show();  
+        }else{
+            JOptionPane.showMessageDialog(this,"Ingrese un producto al detalle de venta para continuar");
+        }
+               
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
@@ -905,11 +915,39 @@ public class PCajaVirtual extends javax.swing.JPanel {
         btnEliminar.setEnabled(true);
         cmbPedido.setEnabled(false);
     }//GEN-LAST:event_NuevaVentaActionPerformed
-
+    int x=-1;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        // modeloTablaProductos.removeRow(jTable1.getSelectedRow());
+        if (x!=-1) {
+            Integer posicion =Integer.valueOf(String.valueOf(modeloTablaProductos.getValueAt(jTable1.getSelectedRow(), (0))));
+            Integer stockT =Integer.valueOf(String.valueOf(modeloTablaProductos.getValueAt(jTable1.getSelectedRow(), (5))));
+            
+        //0 Codigo Pro
+         stockes[0][posicion]=0;
+            System.out.println("Codigo Producto 2: "+stockes[0][posicion]);
+        //1 Stock final
+            stockes[1][posicion]= stockes[1][posicion]+(stockT) ;
+            System.out.println("Codigo Stock Final 2: "+stockes[1][posicion]);
+            DecimalFormat df = new DecimalFormat("#.00");
+            total=total-(Double.valueOf(String.valueOf(modeloTablaProductos.getValueAt(jTable1.getSelectedRow(), (6)))));
+           modeloTablaProductos.removeRow(x);
+           jTFTotal.setText(""+df.format(total));
+            if (jTable1.getRowCount()==0) {
+                contador=0;
+                total=0;
+                jTFTotal.setText(""+total);
+                System.out.println("Contador: "+contador);
+            }
+        x=-1; 
+        }else{
+            JOptionPane.showMessageDialog(this,"Selecciona una fila para eliminar");
+        }   
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        x=jTable1.getSelectedRow();
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

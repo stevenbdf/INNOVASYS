@@ -792,21 +792,22 @@ public class mtoUsuarios extends PEmpleado{
         }
         return resp;
     }
-    
+    int i=1;
     public String[] consultarEmpleado() {
         ArrayList <String> datos = new ArrayList();
         try {
-            String sql = "SELECT *"
-                    + "FROM usuarioEmpleado WHERE correoElectronico=?";
+            String sql = "SELECT * "
+                    + " FROM usuarioEmpleado WHERE correoElectronico=?";
             PreparedStatement cmd = getCn().prepareStatement(sql);
             cmd.setString(1,getCorreoEmpleado());
             ResultSet rs = cmd.executeQuery();
+            
             while (rs.next()) {
-                for (int i = 1; i <(rs.getMetaData().getColumnCount())+1; i++) {
+                
                   datos.add(rs.getString(i));
-                }           
+                  i++;
             }
-            cmd.close();
+            
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
@@ -818,9 +819,11 @@ public class mtoUsuarios extends PEmpleado{
     public boolean guardarEmpleado(){
         boolean resp=false;
         String[] datos = consultarEmpleado();
-        if (datos[5].equals(getCorreoEmpleado())) {
+        try {
+            if (datos[5].equals(getCorreoEmpleado())) {
             JOptionPane.showMessageDialog(this,"Error ya existe un empleado con ese correo electronico");
-        }else{
+        }
+        } catch (Exception e) {
             try {
                 String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
                         + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen, pregunta1,respuesta1, pregunta2, respuesta2)"
@@ -842,12 +845,12 @@ public class mtoUsuarios extends PEmpleado{
                 if (!cmd.execute()) {
                     resp=true;
                 } 
-                cmd.close();
-                getCn().close();
-            } catch (Exception e) {
-                System.out.println(e.toString());
+                
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
             }
         }
+        
         return resp;
     }
     

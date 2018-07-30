@@ -113,9 +113,9 @@ public class PEmpleado extends javax.swing.JPanel {
         initComponents();
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
-       lblhelp.setIcon(icono0);
-       lblhelp1.setIcon(icono0);
-       lblhelp2.setIcon(icono0);
+//       lblhelp.setIcon(icono0);
+//       lblhelp1.setIcon(icono0);
+//       lblhelp2.setIcon(icono0);
        
         llenarList(0, "");
         llenaComboBoxTipoUsuario();
@@ -377,7 +377,6 @@ public class PEmpleado extends javax.swing.JPanel {
         cmdPregunta2 = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
         btnEliminarEmpleado = new javax.swing.JButton();
-        lblhelp2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         cmbDocumento = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
@@ -394,7 +393,6 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDescripcionDE = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        lblhelp1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -430,7 +428,6 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel25 = new javax.swing.JLabel();
         rdCodigoEstado = new javax.swing.JRadioButton();
         btnEliminarE = new javax.swing.JButton();
-        lblhelp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -798,22 +795,6 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jPanel1.add(btnEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
-        lblhelp2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelp2AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelp2MouseClicked(evt);
-            }
-        });
-        jPanel1.add(lblhelp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 25, 25));
-
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -963,22 +944,6 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Documento:");
         jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 30));
-
-        lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelp1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelp1MouseClicked(evt);
-            }
-        });
-        jPanel2.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
@@ -1464,22 +1429,6 @@ public class PEmpleado extends javax.swing.JPanel {
         );
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 670, 210));
-
-        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelpAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelpMouseClicked(evt);
-            }
-        });
-        jPanel3.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
 
         jTabbedPane1.addTab("Otros", jPanel3);
 
@@ -2118,6 +2067,26 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
         // TODO add your handling code here:
+        Integer codE= Integer.valueOf(CodigoEmpleado);
+        if (codE!=null || codE!=0) {
+            try {
+                Conexion cn = new Conexion();
+                String sql="DELETE FROM usuarioEmpleado WHERE idEmpleado="+codE;
+                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                if (!cmd.execute()) {
+                    JOptionPane.showMessageDialog(this, "Empleado eliminado");
+                    int filas = modeloTablaEmpleados.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaEmpleados.removeRow(0);
+                    }
+                    setFilasEmpleado(0, "");
+                }
+                
+            } catch (Exception e) {
+                System.out.println("eliminar e: "+e);
+            }
+            
+        }
     }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
 
     private void rdNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreEmpleadoActionPerformed
@@ -2608,9 +2577,6 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel lblCodigoEstado;
     private javax.swing.JLabel lblEmpleadoDE;
     private javax.swing.JLabel lblFoto;
-    private javax.swing.JLabel lblhelp;
-    private javax.swing.JLabel lblhelp1;
-    private javax.swing.JLabel lblhelp2;
     private javax.swing.JRadioButton rdCodigoDocumento;
     private javax.swing.JRadioButton rdCodigoEmpleado;
     private javax.swing.JRadioButton rdCodigoEstado;
