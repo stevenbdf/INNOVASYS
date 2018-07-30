@@ -10,6 +10,7 @@ import clases.mtoCajaRegistradora;
 import clases.verificaciones;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -68,7 +69,7 @@ public class Pago1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblTexto = new javax.swing.JLabel();
         jTFCambio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnFinalizar = new javax.swing.JButton();
@@ -85,10 +86,10 @@ public class Pago1 extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Cambio($):");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        lblTexto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblTexto.setForeground(new java.awt.Color(255, 255, 255));
+        lblTexto.setText("Cambio($):");
+        jPanel1.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jTFCambio.setBackground(new java.awt.Color(204, 204, 204));
         jTFCambio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -263,7 +264,22 @@ public class Pago1 extends javax.swing.JFrame {
 
     private void jTFIngresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIngresoKeyReleased
         // TODO add your handling code here:
-        jTFCambio.setText(String.valueOf(Double.valueOf(jTFTotal.getText())- Double.valueOf(jTFIngreso.getText())) );
+        DecimalFormat df = new DecimalFormat("#.00");
+        double total = Double.valueOf(jTFTotal.getText());
+        double ingreso =Double.valueOf(jTFIngreso.getText());
+        if (ingreso>total) {
+            double cambio= ingreso-total;
+            lblTexto.setText("Cambio($):");
+           jTFCambio.setText(String.valueOf(df.format(cambio))); 
+        }else if (ingreso<total) {
+            double cambio2= total-ingreso;
+            lblTexto.setText("Falta($):");
+           jTFCambio.setText(String.valueOf(df.format(cambio2))); 
+        }else if (ingreso==total) {
+            jTFCambio.setText(String.valueOf(df.format(0))); 
+        }
+        
+        
     }//GEN-LAST:event_jTFIngresoKeyReleased
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
@@ -330,11 +346,11 @@ public class Pago1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFCambio;
     private javax.swing.JTextField jTFIngreso;
     private javax.swing.JTextField jTFTotal;
+    private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }

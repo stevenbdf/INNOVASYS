@@ -666,6 +666,10 @@ public class RegistroClientes extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         mtoClientes obj = new mtoClientes();
         Conexion cn = new Conexion();
+        verificaciones obj2 = new verificaciones();
+        if (obj2.vcorreo(jTFCorreo.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
+        } else {
         if (jTFContraseña1.getText().equals(jTFContraseña2.getText())) {
             try {
                 String sql = "SELECT dui,nit, correoElectronico FROM cliente WHERE dui='" + Integer.valueOf(jTFDui.getText()) + "' OR nit='" + Integer.valueOf(jTFNit.getText()) + "' OR correoElectronico='" + jTFCorreo.getText() + "'";
@@ -715,6 +719,7 @@ public class RegistroClientes extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+        }   
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

@@ -1,11 +1,13 @@
 Initialize engine version: 5.6.6f2 (6bac21139588)
 GfxDevice: creating device client; threaded=1
+d3d11: failed to create device and context (887a0004).
+GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Version:  Direct3D 9.0c [igdumd32.dll 8.14.10.1930]
+    Renderer: Intel(R) 82945G Express Chipset Family
     Vendor:   Intel
-    VRAM:     2111 MB
-    Driver:   20.19.15.4549
+    VRAM:     64 MB (via DXGI)
+    Caps:     Shader=20 DepthRT=0 NativeDepth=0 NativeShadow=0 DF16=0 INTZ=0 NULL=0 RESZ=0 SlowINTZ=0 ATOC=0 BC4=0 BC5=0
 Begin MonoManager ReloadAssembly
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -31,20 +33,34 @@ Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (
 Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
 Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
-- Completed reload, in  0.073 seconds
+- Completed reload, in  0.300 seconds
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
-desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+WARNING: Shader Unsupported: 'Hidden/Internal-DeferredShading' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DeferredShading' - Setting to default shader.
+WARNING: Shader Unsupported: 'Hidden/Internal-DeferredReflections' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DeferredReflections' - Setting to default shader.
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-DepthNormalsTexture' - Setting to default shader.
+WARNING: Shader Unsupported: 'Hidden/Internal-MotionVectors' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-MotionVectors' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-MotionVectors' - Setting to default shader.
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse' - Pass 'PREPASS' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/CubeBlur' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/CubeCopy' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/CubeBlend' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/VideoDecode' - Pass 'YCBCR_TO_RGB1' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/VideoDecode' - Setting to default shader.
+WARNING: Shader Unsupported: 'Hidden/Internal-CombineDepthNormals' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/Internal-CombineDepthNormals' - Setting to default shader.
+desktop: 1280x1024 60Hz; virtual: 1280x1024 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-<RI> Initialized touch support.
-UnloadTime: 1.967360 ms
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.771919 ms
-
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 379.
-Total: 0.900404 ms (FindLiveObjects: 0.041987 ms CreateObjectMapping: 0.037788 ms MarkObjects: 0.779573 ms  DeleteObjects: 0.040121 ms)
-
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 4e0 -> priority: 1 
-  Thread -> id: 38ec -> priority: 1 

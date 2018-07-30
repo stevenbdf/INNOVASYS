@@ -64,7 +64,7 @@ public class mtoBitacora {
     }
     public DefaultTableModel buscarFecha(DefaultTableModel  model, String fecha1,String fecha2)
     {
-        sql="select idBitacora,fechaEntrada,nombres,apellidos from bitacoraEmpleado, usuarioEmpleado where bitacoraEmpleado.idEmpleado = usuarioEmpleado.idEmpleado AND fechaEntrada >= '"+fecha1+"' AND fechaEntrada <= '"+fecha2+"'";
+        sql="select idBitacora,fechaEntrada,nombres,apellidos from bitacoraEmpleado, usuarioEmpleado where bitacoraEmpleado.idEmpleado = usuarioEmpleado.idEmpleado AND fechaEntrada BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
         Object dato[] = new Object[4];
         try{
             PreparedStatement us = cn.conectar().prepareStatement(sql);

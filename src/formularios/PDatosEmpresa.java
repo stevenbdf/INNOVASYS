@@ -9,6 +9,8 @@ import clases.verificaciones;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -33,6 +35,21 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        
+        Calendar c2 = new GregorianCalendar();
+        fecha.setCalendar(c2);
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        int año2 = hoy.get(Calendar.YEAR) - 25;
+        hoy.add(Calendar.MONTH, 1);
+        int mes = hoy.get(Calendar.MONTH);
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+        String fechaP = año + "-" + mes + "-" + dia;
+        String fechaP2 = año2 + "-" + mes + "-" + dia;
+            
+        fecha.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha.setMinSelectableDate(verificar.StringADate(fechaP2));
+        
         mtoDatosEmpresa obj = new mtoDatosEmpresa();
         if (obj.consultarDatos()) {
             nombre.setText(obj.getNombre());
@@ -497,11 +514,15 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        verificaciones obj = new verificaciones();
+        if ((obj.vcorreo(correo1.getText()) == false) || (obj.vcorreo(correo2.getText()) == false)) {
+            JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
+        } else {
         if(!nombre.getText().isEmpty()&&!domicilio.getText().isEmpty()&&!descripcion.getText().isEmpty()&&!tel1.getText().isEmpty()&&!tel2.getText().isEmpty())
         {
             
             mtoDatosEmpresa objeto = new mtoDatosEmpresa();
-            verificaciones obj = new verificaciones();
+            
             objeto.setNombre(nombre.getText());
             objeto.setDomicilio(domicilio.getText());
             objeto.setFecha(verificar.getFecha(fecha));
@@ -521,6 +542,8 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(this,"Datos no modificados");
             }
+        }
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

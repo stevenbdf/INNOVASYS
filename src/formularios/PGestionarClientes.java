@@ -12,6 +12,8 @@ import clases.verificaciones;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +47,24 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        
+        Calendar c2 = new GregorianCalendar();
+        fechaMin.setCalendar(c2);
+        fechaMax.setCalendar(c2);
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        int año2 = hoy.get(Calendar.YEAR) - 10;
+        hoy.add(Calendar.MONTH, 1);
+        int mes = hoy.get(Calendar.MONTH);
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+        String fechaP = año + "-" + mes + "-" + dia;
+        String fechaP2 = año2 + "-" + mes + "-" + dia;
+            
+        fechaMin.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fechaMin.setMinSelectableDate(verificar.StringADate(fechaP2));
+        fechaMax.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fechaMax.setMinSelectableDate(verificar.StringADate(fechaP2));
+        
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);

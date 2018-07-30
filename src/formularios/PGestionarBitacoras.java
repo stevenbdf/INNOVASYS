@@ -8,6 +8,8 @@ package formularios;
 import clases.mtoBitacora;
 import clases.verificaciones;
 import java.awt.Image;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +34,24 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        
+        Calendar c2 = new GregorianCalendar();
+        fecha_min.setCalendar(c2);
+        fecha_max.setCalendar(c2);
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        int año2 = hoy.get(Calendar.YEAR) - 10;
+        hoy.add(Calendar.MONTH, 1);
+        int mes = hoy.get(Calendar.MONTH);
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+        String fechaP = año + "-" + mes + "-" + dia;
+        String fechaP2 = año2 + "-" + mes + "-" + dia;
+            
+        fecha_min.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha_min.setMinSelectableDate(verificar.StringADate(fechaP2));
+        fecha_max.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha_max.setMinSelectableDate(verificar.StringADate(fechaP2));
+        
         porC.setVisible(false);
         porE.setVisible(false);
         model = new DefaultTableModel(null, getcolumnas());
@@ -97,12 +117,12 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(java.awt.Color.white);
         jLabel13.setText("Fecha Max:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 126, -1, 20));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Fecha Min:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, 30));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(java.awt.Color.white);
@@ -168,12 +188,12 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, 30));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,8 +202,8 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
-        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
-        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 160, 30));
+        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -234,10 +254,12 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String fechami = verificar.getFecha(fecha_min);
-        String fechamx = verificar.getFecha(fecha_max);
+        String fechami = verificar.getFecha3(fecha_min);
+        String fechamx = verificar.getFecha2(fecha_max);
         if(!fechami.isEmpty()&&!fechamx.isEmpty())
         {
+            System.out.println("fecha min: "+fechami);
+            System.out.println("fecha max: "+fechamx);
             for (int i = 0; i < TablaB.getRowCount(); i++) {
             model.removeRow(i);
             i-=1;

@@ -10,6 +10,8 @@ import clases.verificaciones;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -36,6 +38,20 @@ public class PInventario extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        Calendar c2 = new GregorianCalendar();
+        fecha.setCalendar(c2);
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        int año2 = hoy.get(Calendar.YEAR) - 10;
+        hoy.add(Calendar.MONTH, 1);
+        int mes = hoy.get(Calendar.MONTH);
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+        String fechaP = año + "-" + mes + "-" + dia;
+        String fechaP2 = año2 + "-" + mes + "-" + dia;
+            
+        fecha.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha.setMinSelectableDate(verificar.StringADate(fechaP2));
+        
         jTFCodigo.setEnabled(false);
         mtoInventario objeto = new mtoInventario();
         modeloComboCategoria = new DefaultComboBoxModel(new String[]{});
@@ -608,8 +624,8 @@ public class PInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vnumeros(vchar) == true
-                && (jTFPrecio.getText().length() < 3)) {
+        if (verificar.vprecio(vchar) == true
+                && (jTFPrecio.getText().length() < 6)) {
 
         } else {
             evt.consume();
@@ -776,7 +792,10 @@ public class PInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
         String fechass = verificar.getFecha(fecha);
         System.out.println("Fecha: " + fechass);
-        if (jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass==null) {
+        verificaciones obj = new verificaciones();
+        System.out.println("Fecha: " + fechass);
+        if(obj.vfecham(fechass, 2000)){
+        if (jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass=="") {
             JOptionPane.showMessageDialog(this,"Error campos vacios");       
         }else{
             mtoInventario objeto = new mtoInventario();
@@ -837,6 +856,10 @@ public class PInventario extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(this,"Error al guardar");
             }
+        }
+            
+    }else{
+            JOptionPane.showMessageDialog(this,"Ingrese una fecha valida");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
     String codigoI="";

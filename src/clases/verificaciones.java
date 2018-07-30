@@ -1,18 +1,25 @@
 package clases;
 
 import com.toedter.calendar.JDateChooser;
+import static java.lang.Integer.parseInt;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import static org.apache.commons.codec.binary.Base64.decodeBase64;
 import static org.apache.commons.codec.binary.Base64.encodeBase64;
 /**
  *
  * @author User
+ *  sebas
  */
 public class verificaciones {
     
@@ -63,6 +70,82 @@ public class verificaciones {
          return verificado;
     }
     
+    SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat Formato2 = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat Formato3 = new SimpleDateFormat("yyyyMMdd");
+    
+    public static java.util.Date sumarFechasDias(java.util.Date fch, int dias) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.DATE, dias);
+        return new java.util.Date(cal.getTimeInMillis());
+    }
+    
+    public String getFecha(JDateChooser jd) {
+        if (jd.getDate() != null) {
+            return Formato.format(jd.getDate());
+        } else {
+            return null;
+        }
+    }
+    public String getFecha3(JDateChooser jd) {
+        if (jd.getDate() != null) {
+            
+            return Formato3.format(jd.getDate());
+        } else {
+            return null;
+        }
+    }
+    public String getFecha2(JDateChooser jd) {
+        if (jd.getDate() != null) {
+            
+            return Formato2.format(sumarFechasDias(jd.getDate(),1));
+        } else {
+            return null;
+        }
+    }
+    public boolean vfecham(String fechaE,int anos){
+        boolean verificado =false;
+        SimpleDateFormat formato_del_Texto = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechas = null;
+        try {
+            fechas = formato_del_Texto.parse(fechaE);
+        } catch (ParseException ex) {
+            Logger.getLogger(verificaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String[] arrayf = fechaE.split("-");
+        int ano= parseInt(arrayf[0]);
+        if (ano>=anos) {
+            verificado=true;
+        }
+        return verificado;
+    }
+    
+    public boolean vfechamax(String fechaE){
+        boolean verificado =false;
+        SimpleDateFormat formato_del_Texto = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechas = null;
+        try {
+            fechas = formato_del_Texto.parse(fechaE);
+        } catch (ParseException ex) {
+            Logger.getLogger(verificaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Calendar calendario = Calendar.getInstance();
+        String[] arrayf = fechaE.split("-");
+        int ano= parseInt(arrayf[0]);
+        int anoactual= (calendario.get(Calendar.YEAR));
+        int mes= parseInt(arrayf[1]);
+        int mesactual= (calendario.get(Calendar.MONTH)+1);
+        int dia= parseInt (arrayf[2]);
+        int diaactual= (calendario.get(Calendar.DAY_OF_MONTH));
+        
+        if ((ano<=anoactual)&&(mes<=mesactual)&&(dia<=diaactual)) {
+            verificado=true;
+        }
+        return verificado;
+    }
+    
     public boolean vcorreo (String key){
         boolean verificado =false;
            Pattern pattern = Pattern
@@ -104,14 +187,7 @@ public class verificaciones {
     }
         
 
-        SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
-        public String getFecha(JDateChooser jd) {
-            if (jd.getDate() != null) {
-                return Formato.format(jd.getDate());
-            } else {
-                return null;
-            }
-        }
+        
         
         public java.util.Date StringADate(String fecha) {
         SimpleDateFormat formato_del_Texto = new SimpleDateFormat("yyyy-MM-dd");

@@ -9,6 +9,8 @@ import clases.mtoVentas;
 import clases.verificaciones;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -34,7 +36,22 @@ public class PVentas extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        Calendar c2 = new GregorianCalendar();
+        fecha_min.setCalendar(c2);
+        fecha_max.setCalendar(c2);
+        Calendar hoy = Calendar.getInstance();
+        int año = hoy.get(Calendar.YEAR);
+        int año2 = hoy.get(Calendar.YEAR) - 10;
+        hoy.add(Calendar.MONTH, 1);
+        int mes = hoy.get(Calendar.MONTH);
+        int dia = hoy.get(Calendar.DAY_OF_MONTH);
+        String fechaP = año + "-" + mes + "-" + dia;
+        String fechaP2 = año2 + "-" + mes + "-" + dia;
         
+        fecha_min.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha_min.setMinSelectableDate(verificar.StringADate(fechaP2));
+        fecha_max.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fecha_max.setMinSelectableDate(verificar.StringADate(fechaP2));
          modificar.setVisible(false);
         estado.setVisible(false);
         lbl_estado.setVisible(false);

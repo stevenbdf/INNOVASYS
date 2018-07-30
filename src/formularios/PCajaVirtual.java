@@ -51,6 +51,18 @@ public class PCajaVirtual extends javax.swing.JPanel {
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         modeloComboPedidos = new DefaultComboBoxModel(new String[]{});
         initComponents();
+        
+        lblCodigo.setText(String.valueOf(codigoE));
+        lblNombre.setText(nombre);
+        
+        lblOpciones.setVisible(false);
+        rdFactura.setVisible(false);
+        rdCredito.setVisible(false);
+        cmbProducto.setEnabled(false);
+        jTFCodigo.setEditable(false);
+        jTFCodigoP.setEditable(false);
+        jTFCategoria.setEditable(false);
+        jTFPrecio.setEditable(false);
         try {
             
         } catch (Exception e) {
@@ -85,7 +97,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTFCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblOpciones = new javax.swing.JLabel();
         rdFactura = new javax.swing.JRadioButton();
         rdCredito = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
@@ -172,10 +184,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel9.setText("Cliente:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, 30));
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Seleccione una  opcion:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 20));
+        lblOpciones.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lblOpciones.setForeground(new java.awt.Color(255, 255, 255));
+        lblOpciones.setText("Seleccione una  opcion:");
+        jPanel1.add(lblOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 20));
 
         rdFactura.setBackground(new java.awt.Color(102, 102, 102));
         rdFactura.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -560,12 +572,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         // TODO add your handling code here:
          char vchar = evt.getKeyChar();
         
-//        if (verificar.vnumeros(vchar) == true
-//                && (jTextField1.getText().length() < 6)) {
-//
-//        } else {
-//            evt.consume();
-//        }
+        if (verificar.vnumeros(vchar) == true
+                && (jTFCodigoP.getText().length() < 6)) {
+
+        } else {
+            evt.consume();
+        }
     }//GEN-LAST:event_jTFCodigoKeyTyped
     private void llenaComboBoxPedidos(String correo) {
         modeloComboPedidos.removeAllElements();
@@ -910,7 +922,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -939,6 +950,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblOpciones;
     private javax.swing.JLabel lblSub;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JRadioButton rdCredito;

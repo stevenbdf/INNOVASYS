@@ -52,6 +52,10 @@ public class PPresupuesto extends javax.swing.JPanel {
         initComponents();
         
         
+        jTFCodigoP.setEditable(false);
+        jTFCategoria.setEditable(false);
+        jTFPrecio.setEditable(false);
+        
         Calendar hoy = Calendar.getInstance();
         int año = hoy.get(Calendar.YEAR);
         hoy.add(Calendar.MONTH,1);

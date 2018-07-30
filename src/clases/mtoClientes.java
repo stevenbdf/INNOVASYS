@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -206,6 +208,14 @@ public class mtoClientes extends RegistroClientes{
         Conexion con = new Conexion();
         cn= con.conectar();
     }
+    
+    public static java.sql.Date sumarFechasDias(java.sql.Date fch, int dias) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.DATE, dias);
+        return new java.sql.Date(cal.getTimeInMillis());
+    }
+    
     public DefaultTableModel setfilas(DefaultTableModel  model)
     {
         
@@ -224,7 +234,13 @@ public class mtoClientes extends RegistroClientes{
 //                    }
 //                    else
 //                    {
+                        if (i==12) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
                         dato[i] =res.getObject(i+1);
+                    
+                    }
 //                    }
                     
                 }
@@ -264,7 +280,13 @@ public class mtoClientes extends RegistroClientes{
             while(res.next()){
                 for(int i =0;i<14;i++)
                 {
-                    dato[i] =res.getObject(i+1);
+                    if (i==12) {
+                        dato[i]= sumarFechasDias(res.getDate(i+1),2);
+                        
+                    }else{
+                        dato[i] =res.getObject(i+1);
+                    
+                    }
                 }
                 model.addRow(dato);
             }
@@ -296,7 +318,7 @@ public class mtoClientes extends RegistroClientes{
             Date now = new Date(System.currentTimeMillis());
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
                 
-            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contraseña, preguntaSeguridad1, preguntaSeguridad2, telefono, "
+            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contra, preguntaSeguridad1, preguntaSeguridad2, telefono, "
                     + " RespuestaSeguridad1, RespuestaSeguridad2, fechaRegistro) VALUES ((SELECT MAX(idCliente) FROM cliente)+1,?,?,?,?,"+nit+",?,?,?,?,?,?,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreCliente);

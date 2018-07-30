@@ -558,6 +558,7 @@ public class PProveedores extends javax.swing.JPanel {
         // TODO add your handling code here:
         verificaciones obj = new verificaciones();      
         mtoUsuarios objeto = new mtoUsuarios();
+        if(obj.vcorreo(jTextField7.getText())){
 //        objeto.consultasRandom();
         if(!(jTextField3.getText().isEmpty()&&jTextField2.getText().isEmpty()
             && jTextField7.getText().isEmpty()&&jTextField6.getText().isEmpty()
@@ -639,6 +640,10 @@ public class PProveedores extends javax.swing.JPanel {
         }else{
                 JOptionPane.showMessageDialog(this,"Ingrese todos los datos");
             }
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Ingrese un formato de correo valido");
+        }
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -647,6 +652,7 @@ public class PProveedores extends javax.swing.JPanel {
         
         verificaciones obj = new verificaciones();      
         mtoUsuarios objeto = new mtoUsuarios();
+        if(obj.vcorreo(jTextField7.getText())){
         objeto.setNombreP(String.valueOf(jTextField3.getText()));
         objeto.setTelefonoP(Integer.valueOf(jTextField2.getText()));
         objeto.setCorreoP(String.valueOf(jTextField7.getText()));
@@ -680,6 +686,9 @@ public class PProveedores extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
             
+        }
+        }else{
+            JOptionPane.showMessageDialog(this,"Ingrese un formato de correo valido");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 

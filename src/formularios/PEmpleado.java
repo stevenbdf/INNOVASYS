@@ -1940,9 +1940,10 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
-        verificaciones obj = new verificaciones();      
+        verificaciones obj = new verificaciones();
+        
         mtoUsuarios objeto = new mtoUsuarios();
+        if(obj.vcorreo(jTFCorreo.getText())){
         objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
         objeto.setApellidoEmpleado(jTFApellido.getText());
         objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
@@ -1992,7 +1993,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 for (int i = 0; filas > i; i++) {
                     modeloTablaEmpleados.removeRow(0);
                 }
-                setFilasEmpleado(0,"");    
+                setFilasEmpleado(0,"");
+            
+        }else{
+             JOptionPane.showMessageDialog(this,"Ingrese un correo con formato valido");
+        }    
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -2032,6 +2037,7 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
        mtoUsuarios objeto = new mtoUsuarios();
         verificaciones obj = new verificaciones();
+        if(obj.vcorreo(jTFCorreo.getText())){
         objeto.setCodigoEmpleado(Integer.valueOf(CodigoEmpleado));
         objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
         objeto.setApellidoEmpleado(jTFApellido.getText());
@@ -2080,7 +2086,10 @@ public class PEmpleado extends javax.swing.JPanel {
                 for (int i = 0; filas > i; i++) {
                     modeloTablaEmpleados.removeRow(0);
                 }
-                setFilasEmpleado(0,"");    
+                setFilasEmpleado(0,"");
+        }else{
+             JOptionPane.showMessageDialog(this,"Ingrese un correo con formato valido");
+        }
     }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
