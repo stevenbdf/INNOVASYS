@@ -5,6 +5,7 @@
  */
 package clases;
 
+import static clases.mtoVentas.sumarFechasDias;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -301,7 +302,12 @@ public class mtoInventario {
                 for(int i =0;i<dato.length;i++)
                 {
    
-                        dato[i] = res.getObject(i+1);  
+                    if (i == 3) {
+                        dato[i] = sumarFechasDias(res.getDate(i + 1), 2);
+
+                    } else {
+                        dato[i] = res.getObject(i + 1);
+                    }
                 }
         
                 model.addRow(dato);

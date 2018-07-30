@@ -6,6 +6,7 @@
 package formularios;
 import clases.Conexion;
 import clases.mtoInventario;
+import static clases.mtoVentas.sumarFechasDias;
 import clases.verificaciones;
 import java.awt.Image;
 import java.sql.PreparedStatement;
@@ -40,6 +41,8 @@ public class PInventario extends javax.swing.JPanel {
         initComponents();
         Calendar c2 = new GregorianCalendar();
         fecha.setCalendar(c2);
+        Fmin.setCalendar(c2);
+        Fmax.setCalendar(c2);
         Calendar hoy = Calendar.getInstance();
         int año = hoy.get(Calendar.YEAR);
         int año2 = hoy.get(Calendar.YEAR) - 10;
@@ -51,6 +54,10 @@ public class PInventario extends javax.swing.JPanel {
             
         fecha.setMaxSelectableDate(verificar.StringADate(fechaP));
         fecha.setMinSelectableDate(verificar.StringADate(fechaP2));
+        Fmin.setMaxSelectableDate(verificar.StringADate(fechaP));
+        Fmin.setMinSelectableDate(verificar.StringADate(fechaP2));
+        Fmax.setMaxSelectableDate(verificar.StringADate(fechaP));
+        Fmax.setMinSelectableDate(verificar.StringADate(fechaP2));
         
         jTFCodigo.setEnabled(false);
         mtoInventario objeto = new mtoInventario();
@@ -60,7 +67,7 @@ public class PInventario extends javax.swing.JPanel {
         modeloTablaInventario = new DefaultTableModel(null, objeto.getColumnasCategoria());
         
         jTable1.setModel(objeto.setFilasInventario(modeloTablaInventario));
-        
+        //jTable2.setModel(setFilasReportes(modeloTablaReportes,1,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin.getText())));
         ImageIcon foto0 = new ImageIcon(getClass().getResource("/images/help.png"));
         ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         lblhelp.setIcon(icono0);
@@ -112,17 +119,17 @@ public class PInventario extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField9 = new javax.swing.JTextField();
+        rdAlto = new javax.swing.JRadioButton();
+        rdBajo = new javax.swing.JRadioButton();
+        jTFStockMin = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         lblhelp1 = new javax.swing.JLabel();
-        fecha1 = new com.toedter.calendar.JDateChooser();
-        fecha2 = new com.toedter.calendar.JDateChooser();
+        Fmin = new com.toedter.calendar.JDateChooser();
+        Fmax = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -309,12 +316,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,12 +332,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
 
         lblhelp2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelp2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -407,7 +414,7 @@ public class PInventario extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha Max:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 88, -1, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -419,31 +426,36 @@ public class PInventario extends javax.swing.JPanel {
         jLabel15.setText("Stock Min:");
         jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
 
-        jRadioButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Mas alto");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        rdAlto.setBackground(new java.awt.Color(102, 102, 102));
+        rdAlto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        rdAlto.setForeground(new java.awt.Color(255, 255, 255));
+        rdAlto.setText("Mas alto");
+        rdAlto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                rdAltoActionPerformed(evt);
             }
         });
-        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        jPanel4.add(rdAlto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
 
-        jRadioButton4.setBackground(new java.awt.Color(102, 102, 102));
-        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Mas bajo");
-        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
+        rdBajo.setBackground(new java.awt.Color(102, 102, 102));
+        rdBajo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        rdBajo.setForeground(new java.awt.Color(255, 255, 255));
+        rdBajo.setText("Mas bajo");
+        rdBajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBajoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(rdBajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFStockMin.setBackground(new java.awt.Color(204, 204, 204));
+        jTFStockMin.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFStockMin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
+                jTFStockMinKeyTyped(evt);
             }
         });
-        jPanel4.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
+        jPanel4.add(jTFStockMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 80, 82, 30));
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -457,17 +469,6 @@ public class PInventario extends javax.swing.JPanel {
         });
         jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 80, 70, 30));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane2.setViewportView(jTable2);
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 651, 291));
@@ -488,12 +489,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelp1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -503,11 +504,11 @@ public class PInventario extends javax.swing.JPanel {
         });
         jPanel4.add(lblhelp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 25, 25));
 
-        fecha1.setDateFormatString("yyyy-MM-dd");
-        jPanel4.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 160, 30));
+        Fmin.setDateFormatString("yyyy-MM-dd");
+        jPanel4.add(Fmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 160, 30));
 
-        fecha2.setDateFormatString("yyyy-MM-dd");
-        jPanel4.add(fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 160, 30));
+        Fmax.setDateFormatString("yyyy-MM-dd");
+        jPanel4.add(Fmax, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 160, 30));
 
         jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
@@ -563,9 +564,11 @@ public class PInventario extends javax.swing.JPanel {
         this.hide();
     }//GEN-LAST:event_jLabel16MouseClicked
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void rdAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAltoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+        rdAlto.setSelected(true);
+        rdBajo.setSelected(false);
+    }//GEN-LAST:event_rdAltoActionPerformed
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
@@ -656,17 +659,17 @@ public class PInventario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTFImpuestosKeyTyped
 
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+    private void jTFStockMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFStockMinKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
         if (verificar.vnumeros(vchar) == true
-                && (jTextField9.getText().length() < 4)) {
+                && (jTFStockMin.getText().length() < 4)) {
 
         } else {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField9KeyTyped
+    }//GEN-LAST:event_jTFStockMinKeyTyped
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
@@ -790,7 +793,7 @@ public class PInventario extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        String fechass = verificar.getFecha(fecha);
+        String fechass = verificar.getFecha3(fecha);
         System.out.println("Fecha: " + fechass);
         verificaciones obj = new verificaciones();
         System.out.println("Fecha: " + fechass);
@@ -896,36 +899,85 @@ public class PInventario extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
-        mtoInventario objeto=new mtoInventario();
-        verificaciones obj = new verificaciones();
-        if (jRadioButton3.isSelected()) {
-         JOptionPane.showMessageDialog(this,"Registro guardado");
+        if (jTFStockMin.getText().isEmpty() || (rdAlto.isSelected()==false && rdBajo.isSelected()==false)) {
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            if (rdAlto.isSelected()) {
                 int filas = modeloTablaReportes.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaReportes.removeRow(0);
                 }         
-                objeto.setFilasReportes(modeloTablaReportes,1,obj.getFecha(fecha1),obj.getFecha(fecha2),Integer.valueOf(jTextField9.getText()),"asc" );   
-        }else if(jRadioButton4.isSelected()){
-             JOptionPane.showMessageDialog(this,"Registro guardado");
+            jTable2.setModel(setFilasReportes(modeloTablaReportes,1,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin.getText())));
+            }else if (rdBajo.isSelected()) {
                 int filas = modeloTablaReportes.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaReportes.removeRow(0);
                 }         
-                objeto.setFilasReportes(modeloTablaReportes,1,obj.getFecha(fecha1),obj.getFecha(fecha2),Integer.valueOf(jTextField9.getText()),"desc" );   
+            jTable2.setModel(setFilasReportes(modeloTablaReportes,0,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin.getText())));
+            }
+            
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void rdBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBajoActionPerformed
+        // TODO add your handling code here:
+        rdAlto.setSelected(false);
+        rdBajo.setSelected(true);
+    }//GEN-LAST:event_rdBajoActionPerformed
+    public DefaultTableModel setFilasReportes(DefaultTableModel  model, int tipo, String fecha1, String fecha2, int stock)
+    {
+        Conexion cn = new Conexion();
+        try{
+        String sql="";
+        switch(tipo){
+
+            case 1:
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra ASC";
+                break;
+           
+            default:
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra DESC";
+                break;
+        }
+        Object dato[] = new Object[10];
+        
+            PreparedStatement us = cn.conectar().prepareStatement(sql);
+            ResultSet res = us.executeQuery();
+            
+            while(res.next()){
+                for(int i =0;i<10;i++)
+                {
+   
+                        if (i == 3) {
+                        dato[i] = sumarFechasDias(res.getDate(i + 1), 2);
+
+                    } else {
+                        dato[i] = res.getObject(i + 1);
+                    }  
+                }
+           
+
+                model.addRow(dato);
+            }
+           
+        }
+        catch(Exception ex){
+                System.out.println(ex.toString());
+        } 
+        return model;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Fmax;
+    private com.toedter.calendar.JDateChooser Fmin;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbProducto;
     private com.toedter.calendar.JDateChooser fecha;
-    private com.toedter.calendar.JDateChooser fecha1;
-    private com.toedter.calendar.JDateChooser fecha2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
@@ -946,8 +998,6 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTFCantidad;
@@ -955,14 +1005,16 @@ public class PInventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTFGanancia;
     private javax.swing.JTextField jTFImpuestos;
     private javax.swing.JTextField jTFPrecio;
+    private javax.swing.JTextField jTFStockMin;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel lblhelp1;
     private javax.swing.JLabel lblhelp2;
+    private javax.swing.JRadioButton rdAlto;
+    private javax.swing.JRadioButton rdBajo;
     private javax.swing.JRadioButton rdEntrada;
     private javax.swing.JRadioButton rdSalida;
     // End of variables declaration//GEN-END:variables
