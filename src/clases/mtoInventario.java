@@ -174,8 +174,9 @@ public class mtoInventario {
 //" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE precioCompra=>"+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra "+group;
 //                break;
             case 1:
+                System.out.println("Entra aqui case 1");
                 sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
-" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"'and '"+fecha2+"' AND precioCompra>="+stock+" AND producto.idProducto=inventario.idProductos ORDER BY precioCompra"+group;
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE  tipoTransaccion.idTipoT=inventario.idTipoT AND producto.idProducto=inventario.idProductos AND precioCompra>="+stock+" AND fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' ORDER BY precioCompra "+group;
                 break;
            
             default:
@@ -290,7 +291,7 @@ public class mtoInventario {
        
         
                 String sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, "
-                        + " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE tipoTransaccion.idTipoT=inventario.idTipoT AND producto.idProducto=inventario.idProductos ORDER BY fechaTransaccion desc";
+                        + " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE tipoTransaccion.idTipoT=inventario.idTipoT AND producto.idProducto=inventario.idProductos ORDER BY idInventario DESC";
               
         
         Object dato[] = new Object[10];

@@ -280,11 +280,12 @@ public class mtoClientes extends RegistroClientes{
             while(res.next()){
                 for(int i =0;i<14;i++)
                 {
-                    if (i==12) {
+                    if (i==13) {
                         dato[i]= sumarFechasDias(res.getDate(i+1),2);
-                        
+                        System.out.println("Objeto: "+i+" valor: "+res.getDate(i+1));
                     }else{
                         dato[i] =res.getObject(i+1);
+                        System.out.println("Objeto: "+i+" valor: "+res.getObject(i+1));
                     
                     }
                 }
@@ -318,7 +319,7 @@ public class mtoClientes extends RegistroClientes{
             Date now = new Date(System.currentTimeMillis());
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
                 
-            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contra, preguntaSeguridad1, preguntaSeguridad2, telefono, "
+            String sql ="INSERT INTO cliente(idCliente, nombre, apellido, corporativo, dui, nit, correoElectronico, contraseña, preguntaSeguridad1, preguntaSeguridad2, telefono, "
                     + " RespuestaSeguridad1, RespuestaSeguridad2, fechaRegistro) VALUES ((SELECT MAX(idCliente) FROM cliente)+1,?,?,?,?,"+nit+",?,?,?,?,?,?,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreCliente);

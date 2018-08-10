@@ -64,7 +64,7 @@ public class mtoPresupuesto {
             System.out.println("Valores: "+valores);
                   String sql = "SELECT precioCompra, porcentajeGanacia, impuestos, stock  "
                     + " FROM inventario  "
-                    + " WHERE idProductos = "+valores+" AND fechaTransaccion=(SELECT MAX(fechaTransaccion) FROM inventario WHERE idProductos="+valores+" ) ";
+                    + " WHERE idProductos = "+valores+" AND fechaTransaccion=(SELECT MAX(fechaTransaccion) FROM inventario WHERE idProductos="+valores+" ) ORDER BY idInventario DESC ";
                
             PreparedStatement cmd = cn.prepareStatement(sql);
             ResultSet ver = cmd.executeQuery();

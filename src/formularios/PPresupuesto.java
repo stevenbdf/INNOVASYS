@@ -539,7 +539,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                         PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
                         if (stockes[0][i]!=0) {
                             cmd3.setInt(1, stockes[0][i]);
-                            cmd3.setInt(2, stockes[1][i]);
+                            cmd3.setObject(2,  datos[5]);
                             if (!cmd3.execute()) {
                                 System.out.println("Ingresado");
                                 JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
@@ -552,6 +552,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                         if (stockes[0][i]!=0) {
                             cmd3.setInt(1, stockes[0][i]);
                             cmd3.setInt(2, stockes[1][i]);
+                            System.out.println("cantidad; "+stockes[1][i]);
                             if (!cmd3.execute()) {
                                 System.out.println("Ingresado");
                                 JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
@@ -705,6 +706,7 @@ public class PPresupuesto extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbProductoMouseClicked
     Integer contador=0;
     double total=0;
+    Object[] datos = new Object[7];
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         if (Integer.valueOf(jTFCantidad.getText())>stockGeneral) {
@@ -723,7 +725,7 @@ public class PPresupuesto extends javax.swing.JPanel {
             if (validacion==1) {
                 JOptionPane.showMessageDialog(this,"Ya se encuentra este producto en el detalle");
             }else{
-                Object[] datos = new Object[7];
+//                Object[] datos = new Object[7];
 //        Object valor0 = new Object(jTFCodigoP.getText());
                 datos[0] = contador;
                 datos[1] = jTFCodigoP.getText();
@@ -739,6 +741,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 System.out.println("Codigo Producto: " + stockes[0][contador]);
                 //1 Stock final
                 stockes[1][contador] = stockGeneral - (Integer.valueOf(jTFCantidad.getText()));
+                System.out.println("Contador; "+contador);
                 System.out.println("Codigo Stock Final: " + stockes[1][contador]);
 
                 contador++;
