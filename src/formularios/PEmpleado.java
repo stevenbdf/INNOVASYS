@@ -1252,6 +1252,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 jButton11MouseExited(evt);
             }
         });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jTable3.setBackground(new java.awt.Color(204, 204, 204));
         jTable3.setModel(modeloTablaEstados);
@@ -1687,17 +1692,19 @@ public class PEmpleado extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_jTFBuscarEstadoKeyTyped
-
+    int tipo_estado=0;
     private void rdNombreEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreEstadoActionPerformed
         // TODO add your handling code here:
         rdCodigoEstado.setSelected(false);
         jTFBuscarEstado.setEnabled(true);
+        tipo_estado=2;
     }//GEN-LAST:event_rdNombreEstadoActionPerformed
 
     private void rdCodigoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoEstadoActionPerformed
         // TODO add your handling code here:
         rdNombreEstado.setSelected(false);
         jTFBuscarEstado.setEnabled(true);
+        tipo_estado=1;
     }//GEN-LAST:event_rdCodigoEstadoActionPerformed
 
     private void jTFBuscarEstadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEstadoKeyReleased
@@ -2596,6 +2603,55 @@ public class PEmpleado extends javax.swing.JPanel {
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    String path ="";
+        try {
+            Conexion con = new Conexion();
+//            //establecemos la ruta donde esta el reportes
+//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
+//            //se decodifica por algun caracter especial
+//            path = URLDecoder.decode(path,"UTF-8");
+//            System.out.println("path: "+path);
+//            //Se crea la conexion
+//            
+//            //Se crean los parametros
+//            Map parametros = new HashMap();
+//            parametros.put("Nombre","Steven Diaz");
+//            //Se crea el objeto reporte
+//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
+//            //se crea el objeto de impresion del reporte 
+//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
+//            //ahora se crea el visor, donde se muestra el reporte
+//            JasperViewer visor = new JasperViewer(imprimir, false);
+//            visor.setTitle("Reporte de proyectos e integrantes");
+//            visor.setVisible(true);
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteEstadosE.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            parametros.put("nombreEs",jTFBuscarEstado.getText()); 
+            parametros.put("tipo",tipo_estado); 
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Secciones");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
