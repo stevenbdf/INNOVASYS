@@ -7,11 +7,15 @@ package formularios;
 import clases.*;
 import java.awt.Image;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -22,6 +26,12 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author steve
@@ -385,7 +395,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel32 = new javax.swing.JLabel();
         jTFBuscarCorreo = new javax.swing.JTextField();
         btnAgregarEmpleado1 = new javax.swing.JButton();
-        btnModificarEmpleado1 = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
         btnEliminarEmpleado1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -393,6 +403,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDescripcionDE = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        btnModificarEmpleado2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -679,12 +690,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado.setContentAreaFilled(false);
         btnAgregarEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleadoAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -844,12 +855,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado1.setContentAreaFilled(false);
         btnAgregarEmpleado1.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleado1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -867,26 +878,26 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
-        btnModificarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnModificarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificarEmpleado1.setText("Modificar");
-        btnModificarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnModificarEmpleado1.setContentAreaFilled(false);
-        btnModificarEmpleado1.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnModificarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnReport.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnReport.setText("Generar Reporte");
+        btnReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnReport.setContentAreaFilled(false);
+        btnReport.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarEmpleado1MouseEntered(evt);
+                btnReportMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarEmpleado1MouseExited(evt);
+                btnReportMouseExited(evt);
             }
         });
-        btnModificarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarEmpleado1ActionPerformed(evt);
+                btnReportActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModificarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
+        jPanel2.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 110, -1));
 
         btnEliminarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
@@ -944,6 +955,27 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Documento:");
         jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 30));
+
+        btnModificarEmpleado2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnModificarEmpleado2.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarEmpleado2.setText("Modificar");
+        btnModificarEmpleado2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnModificarEmpleado2.setContentAreaFilled(false);
+        btnModificarEmpleado2.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnModificarEmpleado2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleado2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleado2MouseExited(evt);
+            }
+        });
+        btnModificarEmpleado2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarEmpleado2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificarEmpleado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
@@ -2172,56 +2204,62 @@ public class PEmpleado extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAgregarEmpleado1ActionPerformed
 
-    private void btnModificarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1MouseEntered
+    private void btnReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarEmpleado1MouseEntered
+    }//GEN-LAST:event_btnReportMouseEntered
 
-    private void btnModificarEmpleado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1MouseExited
+    private void btnReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarEmpleado1MouseExited
+    }//GEN-LAST:event_btnReportMouseExited
 
-    private void btnModificarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado1ActionPerformed
-        // TODO add your handling code here:
-        if (jTFDescripcionDE.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this," Error campos vacios");
-        }else{
-            mtoUsuarios obj = new mtoUsuarios();
-            Conexion cn = new Conexion();
-            try {
-                String sql = "SELECT idDocumento FROM documento WHERE nombre='" + String.valueOf(cmbDocumento.getSelectedItem()) + "'";
-                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
-                ResultSet ver = cmd.executeQuery();
-                if (ver.next()) {
-                    obj.setCodigoDD(ver.getInt(1));
-                }
-                
-                System.out.println("Correo: "+nombreEmpleadoDE);
-                String sql2 = "SELECT idEmpleado FROM usuarioEmpleado WHERE correoElectronico='" + nombreEmpleadoDE + "'";
-                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
-                ResultSet ver2 = cmd2.executeQuery();
-                if (ver2.next()) {
-                    obj.setCodigoDE(ver2.getInt(1));
-                }
-                
-                
-            } catch (Exception e) {
-                System.out.println("Boton");
-                System.out.println(e.toString());
-            }
-            obj.setDescrip(jTFDescripcionDE.getText());
-            obj.setCodigoDEE(Integer.valueOf(CodigoDocumentoDD));
-            if (obj.modificarDocumentoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Documento modificado correctamente al empleado: "+nombreEmpleadoDE);
-                int filas = modeloTablaDocumentosEmpleados.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaDocumentosEmpleados.removeRow(0);
-                }
-                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al modificar documentos");
-            }
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+       String path ="";
+        try {
+            Conexion con = new Conexion();
+//            //establecemos la ruta donde esta el reportes
+//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
+//            //se decodifica por algun caracter especial
+//            path = URLDecoder.decode(path,"UTF-8");
+//            System.out.println("path: "+path);
+//            //Se crea la conexion
+//            
+//            //Se crean los parametros
+//            Map parametros = new HashMap();
+//            parametros.put("Nombre","Steven Diaz");
+//            //Se crea el objeto reporte
+//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
+//            //se crea el objeto de impresion del reporte 
+//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
+//            //ahora se crea el visor, donde se muestra el reporte
+//            JasperViewer visor = new JasperViewer(imprimir, false);
+//            visor.setTitle("Reporte de proyectos e integrantes");
+//            visor.setVisible(true);
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteDocumentos.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            parametros.put("nombre",String.valueOf(jList1.getSelectedValue())); 
+            
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Secciones");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnModificarEmpleado1ActionPerformed
+    }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnEliminarEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1MouseEntered
         // TODO add your handling code here:
@@ -2490,6 +2528,18 @@ public class PEmpleado extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
 
+    private void btnModificarEmpleado2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado2MouseEntered
+
+    private void btnModificarEmpleado2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleado2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado2MouseExited
+
+    private void btnModificarEmpleado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEmpleado2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
@@ -2506,7 +2556,8 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnModificarD;
     private javax.swing.JButton btnModificarE;
     private javax.swing.JButton btnModificarEmpleado;
-    private javax.swing.JButton btnModificarEmpleado1;
+    private javax.swing.JButton btnModificarEmpleado2;
+    private javax.swing.JButton btnReport;
     private javax.swing.JComboBox<String> cmbDocumento;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbEstadoD;

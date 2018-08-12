@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteBitacoras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa5d8d22-3fec-4884-9eb7-dfe8d81de307">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteBitacoras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000048"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="480"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="tipo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
@@ -33,7 +33,6 @@ $P{tipo} ==2 ?
 "where u.idEmpleado=b.idEmpleado "]]></defaultValueExpression>
 	</parameter>
 	<parameter name="imagen" class="java.lang.String"/>
-	<parameter name="autor" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[$P!{consulta}]]>
 	</queryString>
@@ -47,50 +46,43 @@ $P{tipo} ==2 ?
 	<title>
 		<band height="112" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="79" width="126" height="33" uuid="4642db49-8030-4199-9cd0-c4298b651292"/>
+				<reportElement x="0" y="79" width="126" height="33"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Fecha de Generacion:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="0" y="0" width="453" height="79" backcolor="#000000" uuid="675fa599-4bef-48d0-8f82-27ae62666588"/>
+				<reportElement x="0" y="0" width="453" height="79" backcolor="#000000"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="455" y="0" width="100" height="79" uuid="cc0d861e-bf50-4f74-b8e4-445d7016fb57"/>
+				<reportElement x="455" y="0" width="100" height="79"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="453" height="79" forecolor="#CC00CC" uuid="852d8c11-b513-41e4-bc6e-336390e2b495"/>
+				<reportElement x="0" y="0" width="453" height="79" forecolor="#CC00CC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="34" isBold="false" isItalic="true" isUnderline="false"/>
+					<font fontName="Century Gothic" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Reporte de Bitacoras]]></text>
 			</staticText>
 			<image scaleImage="FillFrame">
-				<reportElement x="455" y="0" width="100" height="79" uuid="5b492598-2979-45fa-9c48-ecba923abdd1"/>
+				<reportElement x="455" y="0" width="100" height="79"/>
 				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="125" y="79" width="145" height="33" uuid="2f335120-6df0-4de7-824a-953024ec992c"/>
+				<reportElement x="125" y="79" width="145" height="33"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="404" y="79" width="48" height="33" uuid="0adf1323-8b2e-4dc8-8d69-1f90b0b93e71"/>
+				<reportElement x="404" y="79" width="48" height="33"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Autor:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="455" y="79" width="100" height="33" uuid="811270f4-dff5-47aa-b563-9f96b7cbff14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{autor}]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -99,42 +91,42 @@ $P{tipo} ==2 ?
 	<columnHeader>
 		<band height="44" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="11" width="38" height="33" backcolor="#000000" uuid="c5f8641b-e6f7-43aa-bc01-0a74d8798108"/>
+				<reportElement x="0" y="11" width="38" height="33" backcolor="#000000"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="38" y="11" width="138" height="33" backcolor="#000000" uuid="8dbff4e5-082b-4c73-a1b2-990a785da577"/>
+				<reportElement x="38" y="11" width="138" height="33" backcolor="#000000"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="11" width="38" height="33" forecolor="#FF00FF" uuid="ef13c985-68b1-43fc-b987-51db39e75618"/>
+				<reportElement x="0" y="11" width="38" height="33" forecolor="#FF00FF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[#]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="176" y="11" width="197" height="33" backcolor="#000000" uuid="56861e46-c5a4-4064-9025-8d407833d9ba"/>
+				<reportElement x="176" y="11" width="197" height="33" backcolor="#000000"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="38" y="11" width="138" height="33" forecolor="#FF00FF" uuid="a24bc34f-8609-4218-a97c-ecb3610ede85"/>
+				<reportElement x="38" y="11" width="138" height="33" forecolor="#FF00FF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Fecha de Entrada]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="176" y="11" width="197" height="33" forecolor="#FF00FF" uuid="b30ddfde-35b6-413b-9c23-b124c5724118"/>
+				<reportElement x="176" y="11" width="197" height="33" forecolor="#FF00FF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="373" y="11" width="152" height="33" backcolor="#000000" uuid="30021730-284f-45b7-a218-ae307d3ff0bb"/>
+				<reportElement x="373" y="11" width="152" height="33" backcolor="#000000"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="373" y="11" width="152" height="33" forecolor="#FF00FF" uuid="a54f7741-3892-45b2-9cf3-29d3c2520d3d"/>
+				<reportElement x="373" y="11" width="152" height="33" forecolor="#FF00FF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Apellido]]></text>
 			</staticText>
@@ -143,36 +135,36 @@ $P{tipo} ==2 ?
 	<detail>
 		<band height="32" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="38" height="30" uuid="b4e653d1-34f9-4d17-a12b-96e53a94b3ef"/>
+				<reportElement x="0" y="0" width="38" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idBitacora}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="38" y="0" width="138" height="30" uuid="ea3dc597-28c4-4862-983e-6e2a3f4d54df"/>
+				<reportElement x="38" y="0" width="138" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaEntrada}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="0" width="197" height="30" uuid="e031ab02-0de8-44a6-96f4-2c96a9c2a0b1"/>
+				<reportElement x="176" y="0" width="197" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="30" width="525" height="2" uuid="463b27ae-2db7-4f04-85d7-e808a1e84317"/>
+				<reportElement x="0" y="30" width="525" height="2"/>
 				<graphicElement>
 					<pen lineStyle="Dashed" lineColor="#FF00FF"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="373" y="0" width="152" height="30" uuid="8122a81f-4b40-444b-9be3-c6737ddeae00"/>
+				<reportElement x="373" y="0" width="152" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="11"/>
+					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
 			</textField>
@@ -184,12 +176,13 @@ $P{tipo} ==2 ?
 	<pageFooter>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="420" y="0" width="80" height="20" uuid="7683ab29-8c7f-4cdc-b430-fd68feb8d432"/>
+				<reportElement x="420" y="0" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="500" y="0" width="40" height="20" uuid="222acd45-851f-459b-9b1f-641ec9fdde9c"/>
+				<reportElement x="500" y="0" width="40" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
