@@ -1009,6 +1009,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 jButton10MouseExited(evt);
             }
         });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jTable2.setBackground(new java.awt.Color(204, 204, 204));
         jTable2.setModel(modeloTablaDocumentos);
@@ -1800,12 +1805,13 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnEliminarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarDMouseExited
-
+    int tipo=0;
     private void rdNombreDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreDocumentoActionPerformed
         // TODO add your handling code here:
         rdCodigoDocumento.setSelected(false);
         rdEstadoDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
+        tipo=1;
     }//GEN-LAST:event_rdNombreDocumentoActionPerformed
 
     private void rdCodigoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoDocumentoActionPerformed
@@ -1813,6 +1819,7 @@ public class PEmpleado extends javax.swing.JPanel {
         rdNombreDocumento.setSelected(false);
         rdEstadoDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
+        tipo=3;
     }//GEN-LAST:event_rdCodigoDocumentoActionPerformed
 
     private void rdEstadoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdEstadoDocumentoActionPerformed
@@ -1820,8 +1827,9 @@ public class PEmpleado extends javax.swing.JPanel {
         rdCodigoDocumento.setSelected(false);
         rdNombreDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
+        tipo=2;
     }//GEN-LAST:event_rdEstadoDocumentoActionPerformed
-
+    
     private void jTFBuscarDocumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarDocumentoKeyReleased
         // TODO add your handling code here:
         if (rdCodigoDocumento.isSelected()) {
@@ -2539,6 +2547,55 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnModificarEmpleado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarEmpleado2ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    String path ="";
+        try {
+            Conexion con = new Conexion();
+//            //establecemos la ruta donde esta el reportes
+//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
+//            //se decodifica por algun caracter especial
+//            path = URLDecoder.decode(path,"UTF-8");
+//            System.out.println("path: "+path);
+//            //Se crea la conexion
+//            
+//            //Se crean los parametros
+//            Map parametros = new HashMap();
+//            parametros.put("Nombre","Steven Diaz");
+//            //Se crea el objeto reporte
+//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
+//            //se crea el objeto de impresion del reporte 
+//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
+//            //ahora se crea el visor, donde se muestra el reporte
+//            JasperViewer visor = new JasperViewer(imprimir, false);
+//            visor.setTitle("Reporte de proyectos e integrantes");
+//            visor.setVisible(true);
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteDocumento.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            parametros.put("nombreD",jTFBuscarDocumento.getText()); 
+            parametros.put("tipo",tipo); 
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Secciones");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
