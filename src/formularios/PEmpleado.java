@@ -11,9 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,7 +21,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -32,6 +29,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author steve
@@ -50,7 +48,7 @@ public class PEmpleado extends javax.swing.JPanel {
      * Creacion de modelo de lista
      */
     DefaultListModel modeloLista = new DefaultListModel();
-    
+    String correo="";
     private void llenarList(int tipo,String valores) {
         try {
             String sql3="";
@@ -102,7 +100,7 @@ public class PEmpleado extends javax.swing.JPanel {
     File fichero;
     String datos=String.valueOf(fichero);
     
-    public PEmpleado() {
+    public PEmpleado(String correoE) {
         
         modeloTablaEstados = new DefaultTableModel(null, getColumnasEstado());
         setFilasEstado(0, "");
@@ -121,6 +119,7 @@ public class PEmpleado extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        correo=correoE;
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
 //       lblhelp.setIcon(icono0);
@@ -2255,13 +2254,32 @@ public class PEmpleado extends javax.swing.JPanel {
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            parametros.put("imagen","F:\\2018\\Ejercicio2.png");            
             parametros.put("nombre",String.valueOf(jList1.getSelectedValue())); 
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             
+            parametros.put("autor", correo); 
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Secciones");
+            visor.setTitle("Reporte de Documento de Empleados");
             visor.setVisible(true);
  
             
@@ -2583,13 +2601,32 @@ public class PEmpleado extends javax.swing.JPanel {
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo);          
             parametros.put("nombreD",jTFBuscarDocumento.getText()); 
             parametros.put("tipo",tipo); 
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Secciones");
+            visor.setTitle("Reporte de Documentos");
             visor.setVisible(true);
  
             
@@ -2632,13 +2669,32 @@ public class PEmpleado extends javax.swing.JPanel {
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-            parametros.put("imagen","C:/Users/Susy francelia/Desktop/INNOVASYS/src/images/logo.jpg");            
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo);           
             parametros.put("nombreEs",jTFBuscarEstado.getText()); 
             parametros.put("tipo",tipo_estado); 
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Secciones");
+            visor.setTitle("Reporte de Estado Empleados");
             visor.setVisible(true);
  
             

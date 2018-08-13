@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Steven
  */
-public class mtoUsuarios extends PEmpleado{
+public class mtoUsuarios {
 
     /**
      * @return the cn
@@ -582,12 +582,12 @@ public class mtoUsuarios extends PEmpleado{
         }
         return resp2;
     }
-    
+    PEmpleado nuevo= new PEmpleado("");
     public boolean guardarEstadoEmpleado(){
         boolean resp = false;
         String[] resp2=consultarEstado();
         if (resp2[0] .equals(getNombreE())) {
-            JOptionPane.showMessageDialog(this,"Error ya existe un estado con ese nombre");
+            JOptionPane.showMessageDialog(nuevo,"Error ya existe un estado con ese nombre");
         } else {
             try {
 
@@ -612,7 +612,7 @@ public class mtoUsuarios extends PEmpleado{
         boolean resp= false;
         String[] resp2=consultarEstado();
         if (resp2[0].equals(getNombreE()) && resp2[1].equals(getDescripcionE())) {
-                JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");                   
+                JOptionPane.showMessageDialog(nuevo, "Modifique algun dato para realizar esta accion");                   
         }else if (resp2[0].equals(getNombreE()) && !resp2[1].equals(getDescripcionE())) {
             try {
                 String sql = "UPDATE estadoEmpleado SET descripcion=? WHERE idEstado=?";
@@ -693,7 +693,7 @@ public class mtoUsuarios extends PEmpleado{
         boolean resp=false;
         String[] resp2=consultarDocumento();
         if (resp2[0].equals(getNombreD())) {
-            JOptionPane.showMessageDialog(this,"Error ya existe un documento con ese nombre");
+            JOptionPane.showMessageDialog(nuevo,"Error ya existe un documento con ese nombre");
         }
         else {
             try {
@@ -719,7 +719,7 @@ public class mtoUsuarios extends PEmpleado{
         String[] resp2=consultarDocumento();
         if (resp2[0].equals(getNombreD()) && resp2[1].equals(getEstadoD())) {
             
-                JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");                   
+                JOptionPane.showMessageDialog(nuevo, "Modifique algun dato para realizar esta accion");                   
         } else if(resp2[0].equals(getNombreD()) && !resp2[1].equals(getEstadoD())) {
             try {
                 String sql = "UPDATE documento SET estado=? WHERE idDocumento=?";
@@ -821,7 +821,7 @@ public class mtoUsuarios extends PEmpleado{
         String[] datos = consultarEmpleado();
         try {
             if (datos[5].equals(getCorreoEmpleado())) {
-            JOptionPane.showMessageDialog(this,"Error ya existe un empleado con ese correo electronico");
+            JOptionPane.showMessageDialog(nuevo,"Error ya existe un empleado con ese correo electronico");
         }
         } catch (Exception e) {
             try {
@@ -895,7 +895,7 @@ public class mtoUsuarios extends PEmpleado{
             ResultSet ver2 = cmd2.executeQuery();
             if (ver2.next()) {
                 if (ver2.getInt(1)==getCodigoDD()) {
-                    JOptionPane.showMessageDialog(this,"Error ya existe este tipo de documento registrado a este empleado");
+                    JOptionPane.showMessageDialog(nuevo,"Error ya existe este tipo de documento registrado a este empleado");
                 }else{
                     String sql = "INSERT INTO documentoEmpleado(idDocumentoE , idDocumento, idEmpleado, descripcion) "
                             + "VALUES((SELECT MAX(idDocumentoE) FROM documentoEmpleado )+1,?,?,?)";

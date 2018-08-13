@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteBitacoras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7016d7f4-6782-47ac-a22b-ea468807c6ad">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nombre" class="java.lang.String">
 		<defaultValueExpression><![CDATA[Steven]]></defaultValueExpression>
 	</parameter>
 	<parameter name="imagen" class="java.lang.String"/>
+	<parameter name="autor" class="java.lang.String"/>
+	<parameter name="#registro" class="java.lang.String"/>
+	<parameter name="nombreEmpresa" class="java.lang.String"/>
+	<parameter name="domicilio" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="correo" class="java.lang.String"/>
+	<parameter name="propietario" class="java.lang.String"/>
+	<parameter name="fechaConstitucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[2018-01-01]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select idDocumentoE, nombres,apellidos,nombre,descripcion from documentoEmpleado,usuarioEmpleado,documento where documentoEmpleado.idDocumento = documento.idDocumento and documentoEmpleado.idEmpleado = usuarioEmpleado.idEmpleado And usuarioEmpleado.correoElectronico =$P{nombre}]]>
 	</queryString>
@@ -19,49 +29,109 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="112" splitType="Stretch">
+		<band height="151" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="79" width="126" height="33" uuid="6b045bb7-aa5a-452b-9166-28fd4e42773a"/>
+				<reportElement x="0" y="118" width="126" height="33" uuid="6b045bb7-aa5a-452b-9166-28fd4e42773a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Fecha de Generacion:]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="0" y="0" width="453" height="79" backcolor="#000000" uuid="6a6fbd48-3fb7-40b8-b45a-c2258d30e340"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="455" y="0" width="100" height="79" uuid="bc0ebe2d-198f-4d39-8b47-630f86ecf9f2"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="0" y="0" width="453" height="79" forecolor="#CC00CC" uuid="da3dd6e8-faae-40dc-a310-1c85f6832397"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" isBold="false" isItalic="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Reporte de Documentos Empleado]]></text>
-			</staticText>
-			<image scaleImage="FillFrame">
-				<reportElement x="455" y="0" width="100" height="79" uuid="704fcb82-612b-4429-a7b7-f170ae72b8a1"/>
-				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
-			</image>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="125" y="79" width="145" height="33" uuid="2155a941-1523-4116-a6ca-7cfdc0dd1da0"/>
+				<reportElement x="125" y="118" width="145" height="33" uuid="2155a941-1523-4116-a6ca-7cfdc0dd1da0"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="404" y="79" width="48" height="33" uuid="17d96ceb-d047-4387-987a-a084f377f6d1"/>
+				<reportElement x="358" y="118" width="48" height="33" uuid="17d96ceb-d047-4387-987a-a084f377f6d1"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Autor:]]></text>
 			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="420" y="0" width="135" height="118" uuid="771a9d19-51e8-4157-9bb6-8afd2c7599c5"/>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="1" y="0" width="420" height="117" backcolor="#000000" uuid="024622f0-a292-400d-819d-ab38e5d743d1"/>
+			</rectangle>
+			<textField>
+				<reportElement x="54" y="62" width="100" height="17" forecolor="#FF00FF" uuid="798093b4-607d-4a77-8f36-c4cb7c1f5270"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreEmpresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="62" width="19" height="17" forecolor="#FF00FF" uuid="bf69f9bf-575d-40c7-bbf5-783984671f52"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="94" width="113" height="13" forecolor="#FF00FF" uuid="706218b4-2d8b-4177-b8a2-d459ad98af8a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="94" width="51" height="13" forecolor="#FF00FF" uuid="99a0e29a-5318-474e-b02f-89de43aadf5a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="62" width="100" height="17" forecolor="#FF00FF" uuid="644ddc3e-e19f-407e-a962-fc1fd46d4941"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaConstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="94" width="80" height="13" forecolor="#FF00FF" backcolor="#000000" uuid="3ce75687-d179-4f80-896c-be1c5d935f9c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{propietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="0" width="417" height="62" forecolor="#CC00CC" uuid="63e6cd9e-3be7-4f2f-93fe-fe1340822753"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="22" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Reporte de Documentos de Empleados]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="22" y="62" width="32" height="17" forecolor="#FF00FF" uuid="50623b2f-667f-480a-a0cf-2554969c7a13"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{#registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="79" width="267" height="15" forecolor="#FF00FF" uuid="019b468f-fca6-42a3-b6f1-b167f16cf2b6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{domicilio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="117" width="149" height="33" uuid="3192dfe1-d678-4fb7-9dfe-27aef3028210"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{autor}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="44" splitType="Stretch">
@@ -169,6 +239,6 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="207" splitType="Stretch"/>
+		<band height="25" splitType="Stretch"/>
 	</summary>
 </jasperReport>

@@ -117,6 +117,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     ImageIcon icono13s = new ImageIcon(foto13s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
     
     Integer dia,diames, mes, año, tipoU, codigoEmpleado;
+    String correoE;
     int posiciones[] = new int[14];
     public VentanaPrincipal2(String correo) {
 //        try {
@@ -127,7 +128,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         initComponents();
         timer.start();
         obtenerFecha();
-        
+        correoE=correo;
            
             
         
@@ -2607,7 +2608,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 0:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PInventario inventario = new PInventario();
+                PInventario inventario = new PInventario(correoE);
                 inventario.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(inventario, BorderLayout.CENTER);
@@ -2714,7 +2715,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 10:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PGestionarBitacoras tiposss = new PGestionarBitacoras();
+                PGestionarBitacoras tiposss = new PGestionarBitacoras(correoE);
                 tiposss.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(tiposss, BorderLayout.CENTER);
@@ -2744,7 +2745,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 13:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PEmpleado empleadoss = new PEmpleado();
+                PEmpleado empleadoss = new PEmpleado(correoE);
                 empleadoss.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(empleadoss, BorderLayout.CENTER);

@@ -40,9 +40,9 @@ public class mtoBitacora {
         } 
         return model;
     }
-    public DefaultTableModel buscar(DefaultTableModel  model, String palabra)
+    public DefaultTableModel buscar(DefaultTableModel  model, String palabra, String fecha1, String fecha2)
     {
-        sql="select idBitacora,fechaEntrada,nombres,apellidos from bitacoraEmpleado, usuarioEmpleado where bitacoraEmpleado.idEmpleado = usuarioEmpleado.idEmpleado and usuarioEmpleado.nombres Like '"+palabra+"%'";
+        sql="select idBitacora,fechaEntrada,nombres,apellidos from bitacoraEmpleado, usuarioEmpleado where bitacoraEmpleado.idEmpleado = usuarioEmpleado.idEmpleado and usuarioEmpleado.nombres Like '"+palabra+"%' AND fechaEntrada BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
         Object dato[] = new Object[4];
         try{
             PreparedStatement us = cn.conectar().prepareStatement(sql);

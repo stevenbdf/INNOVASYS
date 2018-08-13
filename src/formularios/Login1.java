@@ -13,7 +13,8 @@ import clases.mtoUsuarios;
 import clases.verificaciones;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author steven
@@ -26,9 +27,15 @@ public class Login1 extends javax.swing.JFrame {
      */
     
     public Login1() {
+        
+        
+        
         //Test github version 2.1
         //JASJAS k chido
         initComponents();
+        
+        
+        
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
         setLocationRelativeTo(null);
         //Cambiar logo por el label que querras
@@ -39,9 +46,18 @@ public class Login1 extends javax.swing.JFrame {
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
        
-       
+       jButton1.addKeyListener(new PresionarTecla());
        
        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
+    }
+    
+    public class PresionarTecla extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                jButton1ActionPerformed(null);
+            }
+        }
     }
 
     /**
@@ -139,6 +155,11 @@ public class Login1 extends javax.swing.JFrame {
         jTFCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFCorreoActionPerformed(evt);
+            }
+        });
+        jTFCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCorreoKeyTyped(evt);
             }
         });
         jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 150, 30));
@@ -461,6 +482,14 @@ public class Login1 extends javax.swing.JFrame {
         } else {
             evt.consume();
         }
+        
+        //Se asegura de capturar la tecla enter y descartar todas las demas
+        char cTeclaPresionada = evt.getKeyChar();
+
+//Da click al boton elegido
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            jButton1.doClick();
+        }
     }//GEN-LAST:event_jTFContraseñaKeyTyped
 
     private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
@@ -498,6 +527,17 @@ public class Login1 extends javax.swing.JFrame {
         help form = new help(0);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
+
+    private void jTFCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCorreoKeyTyped
+        // TODO add your handling code here:
+        //Se asegura de capturar la tecla enter y descartar todas las demas
+        char cTeclaPresionada = evt.getKeyChar();
+
+//Da click al boton elegido
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            jButton1.doClick();
+        }
+    }//GEN-LAST:event_jTFCorreoKeyTyped
    
     
     /**

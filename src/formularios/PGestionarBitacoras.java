@@ -11,6 +11,8 @@ import clases.verificaciones;
 import java.awt.Image;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -40,14 +42,15 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
     
     DefaultTableModel model;
     mtoBitacora mto = new mtoBitacora();
-    public PGestionarBitacoras() {
+    String correo;
+    public PGestionarBitacoras(String correoE) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
 //		catch (Exception e) {
 //		}
         initComponents();
-        
+        correo=correoE;
         Calendar c2 = new GregorianCalendar();
         fecha_min.setCalendar(c2);
         fecha_max.setCalendar(c2);
@@ -269,9 +272,10 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         help form = new help(10);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
-
+    int tocado=0;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         String fechami = verificar.getFecha3(fecha_min);
         String fechamx = verificar.getFecha2(fecha_max);
         if(!fechami.isEmpty()&&!fechamx.isEmpty())
@@ -283,16 +287,19 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
             i-=1;
             }
             mto.buscarFecha(model,fechami,fechamx);
+            tocado=1;
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
         // TODO add your handling code here:
+        String fechami = verificar.getFecha3(fecha_min);
+        String fechamx = verificar.getFecha2(fecha_max);
         for (int i = 0; i < TablaB.getRowCount(); i++) {
         model.removeRow(i);
         i-=1;
        }
-        mto.buscar(model, jTextField8.getText());
+        mto.buscar(model, jTextField8.getText(),fechami,fechamx);
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -319,21 +326,49 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 //            visor.setTitle("Reporte de proyectos e integrantes");
 //            visor.setVisible(true);
             
-            
-            String archivo= getClass().getResource("/reportes/InventarioExpo.jrxml").getPath();
+            String fechami = verificar.getFecha3(fecha_min);
+            String fechamx = verificar.getFecha2(fecha_max);
+            String archivo= getClass().getResource("/reportes/ReporteBitacoras.jrxml").getPath();
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
+            int tipo=0;
+            if (tocado!=0) {
+                tipo=1;
+                if (!jTextField8.getText().isEmpty()) {
+                    tipo=2;
+                }
+            }
+            parametros.put("tipo", tipo);
+            parametros.put("fechaMenor", fechami);
+            parametros.put("fechaMayor", fechamx);
+            parametros.put("nombre", jTextField8.getText());
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             
-            
-            
-            
+            parametros.put("autor", correo);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Secciones");
+            visor.setTitle("Reporte de Bitacora");
             visor.setVisible(true);
- 
+            tocado=0;
             
         } catch (JRException e) {
             System.out.println("AQUI1");

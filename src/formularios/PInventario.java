@@ -43,7 +43,8 @@ public class PInventario extends javax.swing.JPanel {
     DefaultTableModel modeloTablaInventario;
     DefaultComboBoxModel modeloComboCategoria;
     DefaultTableModel modeloTablaReportes;
-    public PInventario() {
+    String correo;
+    public PInventario(String correoE) {
         mtoInventario obj = new mtoInventario();
 //                try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -51,6 +52,7 @@ public class PInventario extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        correo=correoE;
         Calendar c2 = new GregorianCalendar();
         fecha.setCalendar(c2);
         Fmin.setCalendar(c2);
@@ -445,7 +447,7 @@ public class PInventario extends javax.swing.JPanel {
         rdAlto.setBackground(new java.awt.Color(102, 102, 102));
         rdAlto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         rdAlto.setForeground(new java.awt.Color(255, 255, 255));
-        rdAlto.setText("Mas bajo");
+        rdAlto.setText("Mas Alto");
         rdAlto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdAltoActionPerformed(evt);
@@ -456,7 +458,7 @@ public class PInventario extends javax.swing.JPanel {
         rdBajo.setBackground(new java.awt.Color(102, 102, 102));
         rdBajo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         rdBajo.setForeground(new java.awt.Color(255, 255, 255));
-        rdBajo.setText("Mas alto");
+        rdBajo.setText("Mas Bajo");
         rdBajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBajoActionPerformed(evt);
@@ -1001,23 +1003,43 @@ public class PInventario extends javax.swing.JPanel {
                 if (rdAlto.isSelected()) {
                     orden = 1;
                 }
+                
                 parametros.put("orden", orden);
             }else{
                 if (rdAlto.isSelected()) {
                     orden = 2;
-                }else {
+                }else if (rdBajo.isSelected()){
                     orden = 3;
                 }
                 parametros.put("orden", orden);
                 parametros.put("codigoP",Integer.valueOf(jTFProductoEspecifico.getText()));
             }
+            System.out.println("Orden :"+orden);
             
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             
-            
+            parametros.put("autor", correo);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Secciones");
+            visor.setTitle("Reporte de Inventario");
             visor.setVisible(true);
  
             

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioExpo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="0.9892233445006757"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioExpo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ab33b1f-e858-4162-8ba3-9a9903dcac0c">
+	<property name="ireport.zoom" value="1.815000000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -23,7 +23,7 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="New Dataset 1">
+	<subDataset name="New Dataset 1" uuid="81cdda4b-3eb6-40ff-9927-61227978b30f">
 		<queryString language="SQL">
 			<![CDATA[select * from datosEmpresa]]>
 		</queryString>
@@ -48,16 +48,31 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<parameter name="consulta" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{orden}==1 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+"  ORDER BY precioCompra ASC"
+		<defaultValueExpression><![CDATA[$P{orden}==0 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" ORDER BY precioCompra DESC"
+:
+$P{orden}==1 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+"  ORDER BY precioCompra ASC"
 :
 $P{orden}==2 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra ASC"
 :
 $P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"
-
-: "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"]]></defaultValueExpression>
+:
+"select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["G:\\2018\\Java 2018\\Pruebas Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="autor" class="java.lang.String"/>
+	<parameter name="#registro" class="java.lang.String"/>
+	<parameter name="nombreEmpresa" class="java.lang.String"/>
+	<parameter name="domicilio" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="correo" class="java.lang.String"/>
+	<parameter name="propietario" class="java.lang.String"/>
+	<parameter name="fechaConstitucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[2018-01-01]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA["SELECT logo FROM datosEmpresa"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[$P!{consulta}]]>
@@ -66,200 +81,273 @@ $P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccio
 	<field name="nombreProducto" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="fechaTransaccion" class="java.sql.Date"/>
-	<field name="precioCompra" class="java.lang.Double"/>
-	<field name="porcentajeGanacia" class="java.lang.Double"/>
+	<field name="precioCompra" class="java.math.BigDecimal"/>
+	<field name="porcentajeGanacia" class="java.math.BigDecimal"/>
 	<field name="stock" class="java.lang.Integer"/>
 	<field name="cantidad" class="java.lang.Integer"/>
-	<field name="impuestos" class="java.lang.Double"/>
+	<field name="impuestos" class="java.math.BigDecimal"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="nombreEmpresa" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="118" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="421" y="0" width="135" height="118" uuid="72640666-90d5-4c75-b8dd-729debb42d23"/>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="2" y="0" width="420" height="117" backcolor="#000000" uuid="dee5ee76-170c-4205-80f7-aa42408f1c32"/>
+			</rectangle>
+			<textField>
+				<reportElement x="55" y="62" width="100" height="17" forecolor="#FF00FF" uuid="611c4b87-4867-48fe-85a7-2cd1c59aca57"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreEmpresa}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="79"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Prueba Reporte de Inventario]]></text>
+				<reportElement x="4" y="62" width="19" height="17" forecolor="#FF00FF" uuid="bf03422e-226b-44c3-95ac-751de1534632"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="55" y="94" width="113" height="13" forecolor="#FF00FF" uuid="7e3a50a4-481d-4630-9dc6-79d2d7e96037"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="94" width="51" height="13" forecolor="#FF00FF" uuid="a5ed953d-befc-4500-975b-d33e0df7b122"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="62" width="100" height="17" forecolor="#FF00FF" uuid="725466fe-8908-4284-8a5b-1594152048b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaConstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="94" width="80" height="13" forecolor="#FF00FF" backcolor="#000000" uuid="d9e0afd9-bf7e-4561-9896-752fe5e7a312"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{propietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="0" width="417" height="62" forecolor="#CC00CC" uuid="7adfc008-e93b-4b5b-b969-366a3c08566c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="22" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Reporte de Inventario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="62" width="32" height="17" forecolor="#FF00FF" uuid="ea78ef80-e96c-4955-8362-da84fe79b1bc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{#registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="79" width="267" height="15" forecolor="#FF00FF" uuid="a5ba40cd-bc53-49c0-bd33-f5871616366c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{domicilio}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="42" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="85" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement x="126" y="0" width="145" height="33" uuid="66518800-770f-43c8-9397-34391a13a796"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="85" height="20"/>
-				<textElement/>
-				<text><![CDATA[Fecha Creacion:]]></text>
+				<reportElement x="1" y="0" width="126" height="33" uuid="ea56aed1-8578-476c-b243-6143422c4cd7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Fecha de Generacion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="1" width="48" height="33" uuid="4c380566-71a8-463a-9191-67be84f61f56"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Autor:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="385" y="0" width="170" height="42"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{nombreEmpresa}]]></textFieldExpression>
+				<reportElement x="406" y="1" width="149" height="33" uuid="eaec7101-7fb6-42c0-91a4-e05ceef7e3ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{autor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="30" splitType="Stretch">
-			<rectangle>
-				<reportElement x="1" y="0" width="32" height="30"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="33" y="0" width="83" height="30"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="116" y="0" width="64" height="30"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="180" y="0" width="62" height="30"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="242" y="0" width="52" height="30"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="294" y="0" width="52" height="30"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="1" y="0" width="31" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="0" y="0" width="23" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="19732761-9788-45c8-882a-d1f42c3c5423"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[#]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="0" width="83" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="23" y="0" width="93" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="0d879a82-3d20-43e6-b069-930dda56725c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="116" y="0" width="64" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="116" y="0" width="64" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="792242f0-f3f4-4dcb-9992-0eb721f83d3e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Transaccion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="0" width="62" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="180" y="0" width="62" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="f0d43325-ef90-457c-8d77-a944826cbc9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="242" y="0" width="52" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="242" y="0" width="52" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="3682e6f8-b718-44a3-aea8-e876429e4d59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[$ Compra]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="294" y="0" width="52" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="294" y="0" width="52" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="d1322fb9-2119-47fe-8f15-e7b6643d14e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[% Ganancia]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="346" y="0" width="39" height="30"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="346" y="0" width="39" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="346" y="0" width="39" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="5decfe2f-f975-4eca-a621-0530cba045a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Stock]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="385" y="0" width="43" height="30"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="385" y="0" width="43" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="385" y="0" width="43" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="d3559a6e-6690-4a18-a46a-8f6b8acf8efa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="428" y="0" width="50" height="30"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="428" y="0" width="51" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="428" y="0" width="51" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="a941538c-16b6-4f83-8ebe-f42fac1e27b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[% Impuesto]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="478" y="0" width="77" height="30"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="479" y="0" width="76" height="30"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement mode="Opaque" x="478" y="0" width="77" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="f2bde3f3-2572-45a3-9521-96b4a0997e80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="8"/>
+				</textElement>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement style="table_TD" x="1" y="0" width="32" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Opaque" x="1" y="0" width="32" height="20" uuid="efc79324-c679-4c29-bfcf-e2994c9207d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{idInventario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="33" y="0" width="83" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="33" y="10" width="83" height="10" uuid="fd9439d5-4d64-4161-b2b3-f067eddf01b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="116" y="0" width="64" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="116" y="0" width="64" height="20" uuid="e7fb2385-f7e7-49fb-949a-8a2f4b5ae73c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement style="table_TD" x="180" y="0" width="62" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="180" y="0" width="62" height="20" uuid="60e0add8-221d-4582-942c-beb4370d3720"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{fechaTransaccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="242" y="0" width="52" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="242" y="0" width="52" height="20" uuid="5aa84ccb-9277-4cc5-88e9-dd988a2bc09d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{precioCompra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="294" y="0" width="52" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="294" y="0" width="52" height="20" uuid="28da3fe4-3eae-493e-8b38-c69c346f8d2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{porcentajeGanacia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="346" y="0" width="39" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="346" y="0" width="39" height="20" uuid="216bc110-306c-4dc9-99db-26f5ec493ff8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="385" y="0" width="43" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="385" y="0" width="43" height="20" uuid="d8f74eec-e65a-402f-9c3a-938936d3d6af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" x="428" y="0" width="50" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="428" y="0" width="50" height="20" uuid="7c29fa0b-5284-4dc9-ba87-0f4056910240"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{impuestos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="table_TD" mode="Transparent" x="478" y="0" width="77" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled"/>
+				<reportElement mode="Transparent" x="478" y="0" width="77" height="20" backcolor="#CCCCCC" uuid="bf5a2cc1-40ba-445b-8556-8543882ca827"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="01c85344-7f06-4a1f-90a5-fe05bfa99b66"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#FF00FF"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="65" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="30" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="53" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
-				<reportElement x="438" y="17" width="80" height="20"/>
+				<reportElement x="428" y="0" width="80" height="20" uuid="95700c7e-5bcb-4e05-8200-348dcb46b80b"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="518" y="17" width="40" height="20"/>
-				<textElement/>
+				<reportElement x="508" y="0" width="40" height="20" uuid="0d5a7ff6-a93b-43db-90ab-2902cb32296f"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
+	</pageFooter>
+	<summary>
+		<band height="53" splitType="Stretch"/>
 	</summary>
 </jasperReport>
