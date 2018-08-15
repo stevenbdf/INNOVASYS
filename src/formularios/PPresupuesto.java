@@ -526,7 +526,63 @@ public class PPresupuesto extends javax.swing.JPanel {
         // TODO add your handling code here:
         btnGuardar.setContentAreaFilled(true);
     }//GEN-LAST:event_btnGuardarMouseEntered
-    
+    void crearReporte(){
+        try {
+            Conexion con = new Conexion();
+
+            String archivo= getClass().getResource("/reportes/Presupuesto.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+                      
+            try {
+                String sql ="SELECT TOP 1 idPedido FROM pedido ORDER BY idPedido DESC";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("valores",ver.getInt(1)); 
+                }
+            } catch (Exception e) {
+                System.out.println("No hay pedidos");
+            }
+           
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", jComboBox1.getSelectedItem()); 
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Presupuesto");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         try {
@@ -549,69 +605,13 @@ public class PPresupuesto extends javax.swing.JPanel {
                         String sql3 = "INSERT INTO detallePedido(idDetalleP, idPedido, idProducto, cantidadProducto) "
                                 + " VALUES ((SELECT MAX (idDetalleP) FROM detallePedido)+1,(SELECT MAX(idPedido) FROM pedido ),?, ?)";
                         PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
-                        if (stockes[0][i] != 0) {
+                        if (stockes[0][i]!=0) {
                             cmd3.setInt(1, stockes[0][i]);
-                            cmd3.setObject(2, datos[5]);
+                            cmd3.setInt(2, stockes[1][i]);
                             if (!cmd3.execute()) {
-                                System.out.println("Ingresado");
-                                JOptionPane.showMessageDialog(this, "Presupuesto guardado correctamente");
-                                //esto es lo que termine de crear, falta solucionar errror de cantidad
-                                if (i==contador-1) {
-                                    try {
-                                    Conexion con = new Conexion();
-                                    String archivo = getClass().getResource("/reportes/Presupuesto.jrxml").getPath();
-                                    archivo = URLDecoder.decode(archivo, "UTF-8");
-                                    JasperReport report = JasperCompileManager.compileReport(archivo);
-                                    Map parametros = new HashMap();
-
-                                    
-                                    try {
-                                        String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
-                                                + "FROM datosEmpresa";
-                                        PreparedStatement cmd = con.conectar().prepareStatement(sql);
-                                        ResultSet ver = cmd.executeQuery();
-                                        if (ver.next()) {
-                                            parametros.put("#registro", ver.getInt(1));
-                                            parametros.put("nombreEmpresa", ver.getString(2));
-                                            parametros.put("domicilio", ver.getString(3));
-                                            parametros.put("fechaConstitucion", ver.getString(4));
-                                            parametros.put("imagen", ver.getString(5));
-                                            parametros.put("telefono", ver.getString(6));
-                                            parametros.put("correo", ver.getString(7));
-                                            parametros.put("propietario", ver.getString(8));
-                                        }
-                                    } catch (Exception e) {
-                                        System.out.println(e.getMessage());
-                                    }
-
-                                    parametros.put("autor", jComboBox1.getSelectedItem());
-                                    int codigo=0;
-                                    try {
-                                        String sql ="select top 1 idPedido from pedido order by idPedido desc";
-                                        PreparedStatement cmd = con.conectar().prepareStatement(sql);
-                                        ResultSet ver = cmd.executeQuery();
-                                        if (ver.next()) {
-                                         codigo=ver.getInt(1);   
-                                        }
-                                    } catch (Exception e) {
-                                        System.out.println(e.getMessage());
-                                    }
-                                    
-                                    parametros.put("valores",codigo);
-                                    JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
-
-                                    JasperViewer visor = new JasperViewer(print, false);
-                                    visor.setTitle("Pedido");
-                                    visor.setVisible(true);
-
-                                } catch (JRException e) {
-                                    System.out.println("AQUI1");
-                                    System.out.println(e.getMessage());
-
-                                } catch (UnsupportedEncodingException ex) {
-                                    System.out.println("AQUI2");
-                                    Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                if (i==(contador-1)) {
+                                    JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
+                                    crearReporte();
                                 }
                                 
                             }
@@ -623,10 +623,11 @@ public class PPresupuesto extends javax.swing.JPanel {
                         if (stockes[0][i]!=0) {
                             cmd3.setInt(1, stockes[0][i]);
                             cmd3.setInt(2, stockes[1][i]);
-                            System.out.println("cantidad; "+stockes[1][i]);
                             if (!cmd3.execute()) {
-                                System.out.println("Ingresado");
-                                JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
+                                if (i==(contador-1)) {
+                                    JOptionPane.showMessageDialog(this,"Presupuesto guardado correctamente");
+                                    crearReporte();
+                                }
                             }
                         }
                     }
@@ -637,7 +638,6 @@ public class PPresupuesto extends javax.swing.JPanel {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
@@ -796,7 +796,7 @@ public class PPresupuesto extends javax.swing.JPanel {
             if (validacion==1) {
                 JOptionPane.showMessageDialog(this,"Ya se encuentra este producto en el detalle");
             }else{
-//                Object[] datos = new Object[7];
+                Object[] datos = new Object[7];
 //        Object valor0 = new Object(jTFCodigoP.getText());
                 datos[0] = contador;
                 datos[1] = jTFCodigoP.getText();
@@ -811,8 +811,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 stockes[0][contador] = Integer.valueOf(jTFCodigoP.getText());
                 System.out.println("Codigo Producto: " + stockes[0][contador]);
                 //1 Stock final
-                stockes[1][contador] = stockGeneral - (Integer.valueOf(jTFCantidad.getText()));
-                System.out.println("Contador; "+contador);
+                stockes[1][contador] = Integer.valueOf(jTFCantidad.getText());
                 System.out.println("Codigo Stock Final: " + stockes[1][contador]);
 
                 contador++;
