@@ -2628,7 +2628,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 2:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PProductos productos = new PProductos();
+                PProductos productos = new PProductos(correoE);
                 productos.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(productos, BorderLayout.CENTER);
@@ -2735,7 +2735,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 12:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PProveedores proveedores = new PProveedores();
+                PProveedores proveedores = new PProveedores(correoE);
                 proveedores.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(proveedores, BorderLayout.CENTER);

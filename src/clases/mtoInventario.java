@@ -333,65 +333,172 @@ public class mtoInventario {
     private double impuestos;
     private String estado;
     
-    public boolean guardarInventario(){
-        boolean retorno=false;
+    public boolean guardarInventario() {
+        boolean retorno = false;
         try {
-            
-            
-            
-            
-            String sql ="INSERT INTO inventario(idInventario, idProductos,"
-                    + " idTipoT, fechaTransaccion, precioCompra, "
-                    + "porcentajeGanacia , stock, cantidad, impuestos, "
-                    + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario)+1,?,?,?,?,?,?,?,?,?) ";
-           PreparedStatement cmd = cn.prepareStatement(sql);
-           
-           
-           
-           cmd.setInt(1,codigoP);
-           cmd.setInt(2,codigoT);
-           cmd.setString(3,fecha);
-           cmd.setDouble(4,precioCompra);
-           cmd.setDouble(5,porcentajeGanancia);
-           cmd.setInt(6,Stock);
-           cmd.setInt(7,cantidad);
-           cmd.setDouble(8,impuestos);
-           cmd.setString(9,estado);
-            if (!cmd.execute()) {
-                 retorno=true;
-            }
-            
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            try {
-                String sql = "INSERT INTO inventario(idInventario, idProductos,"
-                        + " idTipoT, fechaTransaccion, precioCompra, "
-                        + "porcentajeGanacia , stock, cantidad, impuestos, "
-                        + " estado ) VALUES(1,?,?,?,?,?,?,?,?,?) ";
-                PreparedStatement cmd = cn.prepareStatement(sql);
+            String sql2 = "SELECT precioCompra FROM inventario"
+                    + " WHERE idProductos=? ORDER BY idInventario DESC";
+            PreparedStatement cmd2 = cn.prepareStatement(sql2);
+            cmd2.setInt(1, codigoP);
+            ResultSet ver2 = cmd2.executeQuery();
+            if (ver2.next()) {
+                double precioEntrada = precioCompra ;
+                double precioExistente = ver2.getDouble(1) ;
+                if (precioEntrada != precioExistente) {
+                    double costoPromedio=(precioEntrada+precioExistente)/2;
+                    System.out.println("costo p: "+costoPromedio);
+                    System.out.println("precio e: "+precioEntrada);
+                    System.out.println("precioExistente :"+precioExistente);
+                    try {
 
-                
-                cmd.setInt(1, codigoP);
-                cmd.setInt(2, codigoT);
-                cmd.setString(3, fecha);
-                cmd.setDouble(4, precioCompra);
-                cmd.setDouble(5, porcentajeGanancia);
-                cmd.setInt(6, Stock);
-                cmd.setInt(7, cantidad);
-                cmd.setDouble(8, impuestos);
-                cmd.setString(9, estado);
-                if (!cmd.execute()) {
-                    retorno = true;
+                        String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                + " idTipoT, fechaTransaccion, precioCompra, "
+                                + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario)+1,?,?,?,?,?,?,?,?,?) ";
+                        PreparedStatement cmd = cn.prepareStatement(sql);
+
+                        cmd.setInt(1, codigoP);
+                        cmd.setInt(2, codigoT);
+                        cmd.setString(3, fecha);
+                        cmd.setDouble(4, costoPromedio);
+                        cmd.setDouble(5, porcentajeGanancia);
+                        cmd.setInt(6, Stock);
+                        cmd.setInt(7, cantidad);
+                        cmd.setDouble(8, impuestos);
+                        cmd.setString(9, estado);
+                        if (!cmd.execute()) {
+                            retorno = true;
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println(e.toString());
+                        try {
+                            String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                    + " idTipoT, fechaTransaccion, precioCompra, "
+                                    + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                    + " estado ) VALUES(1,?,?,?,?,?,?,?,?,?) ";
+                            PreparedStatement cmd = cn.prepareStatement(sql);
+
+                            cmd.setInt(1, codigoP);
+                            cmd.setInt(2, codigoT);
+                            cmd.setString(3, fecha);
+                            cmd.setDouble(4, precioCompra);
+                            cmd.setDouble(5, porcentajeGanancia);
+                            cmd.setInt(6, Stock);
+                            cmd.setInt(7, cantidad);
+                            cmd.setDouble(8, impuestos);
+                            cmd.setString(9, estado);
+                            if (!cmd.execute()) {
+                                retorno = true;
+                            }
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
+                        }
+                    }
+                }else{
+                    try {
+
+                        String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                + " idTipoT, fechaTransaccion, precioCompra, "
+                                + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario)+1,?,?,?,?,?,?,?,?,?) ";
+                        PreparedStatement cmd = cn.prepareStatement(sql);
+
+                        cmd.setInt(1, codigoP);
+                        cmd.setInt(2, codigoT);
+                        cmd.setString(3, fecha);
+                        cmd.setDouble(4, precioCompra);
+                        cmd.setDouble(5, porcentajeGanancia);
+                        cmd.setInt(6, Stock);
+                        cmd.setInt(7, cantidad);
+                        cmd.setDouble(8, impuestos);
+                        cmd.setString(9, estado);
+                        if (!cmd.execute()) {
+                            retorno = true;
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println(e.toString());
+                        try {
+                            String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                    + " idTipoT, fechaTransaccion, precioCompra, "
+                                    + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                    + " estado ) VALUES(1,?,?,?,?,?,?,?,?,?) ";
+                            PreparedStatement cmd = cn.prepareStatement(sql);
+
+                            cmd.setInt(1, codigoP);
+                            cmd.setInt(2, codigoT);
+                            cmd.setString(3, fecha);
+                            cmd.setDouble(4, precioCompra);
+                            cmd.setDouble(5, porcentajeGanancia);
+                            cmd.setInt(6, Stock);
+                            cmd.setInt(7, cantidad);
+                            cmd.setDouble(8, impuestos);
+                            cmd.setString(9, estado);
+                            if (!cmd.execute()) {
+                                retorno = true;
+                            }
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
+                        }
+                    }
                 }
-            } catch (Exception ex) {
-                System.out.println(ex.toString()); 
             }
+            else{
+                try {
+
+                        String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                + " idTipoT, fechaTransaccion, precioCompra, "
+                                + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                + " estado ) VALUES((SELECT MAX(idInventario) FROM inventario)+1,?,?,?,?,?,?,?,?,?) ";
+                        PreparedStatement cmd = cn.prepareStatement(sql);
+
+                        cmd.setInt(1, codigoP);
+                        cmd.setInt(2, codigoT);
+                        cmd.setString(3, fecha);
+                        cmd.setDouble(4, precioCompra);
+                        cmd.setDouble(5, porcentajeGanancia);
+                        cmd.setInt(6, Stock);
+                        cmd.setInt(7, cantidad);
+                        cmd.setDouble(8, impuestos);
+                        cmd.setString(9, estado);
+                        if (!cmd.execute()) {
+                            retorno = true;
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println(e.toString());
+                        try {
+                            String sql = "INSERT INTO inventario(idInventario, idProductos,"
+                                    + " idTipoT, fechaTransaccion, precioCompra, "
+                                    + "porcentajeGanacia , stock, cantidad, impuestos, "
+                                    + " estado ) VALUES(1,?,?,?,?,?,?,?,?,?) ";
+                            PreparedStatement cmd = cn.prepareStatement(sql);
+
+                            cmd.setInt(1, codigoP);
+                            cmd.setInt(2, codigoT);
+                            cmd.setString(3, fecha);
+                            cmd.setDouble(4, precioCompra);
+                            cmd.setDouble(5, porcentajeGanancia);
+                            cmd.setInt(6, Stock);
+                            cmd.setInt(7, cantidad);
+                            cmd.setDouble(8, impuestos);
+                            cmd.setString(9, estado);
+                            if (!cmd.execute()) {
+                                retorno = true;
+                            }
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
+                        }
+                    }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return retorno;
     }
     
     public boolean modificarInventario(){
-        System.out.println("Entra");
         boolean retorno=false;
         try {
              

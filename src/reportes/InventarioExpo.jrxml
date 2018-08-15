@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioExpo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ab33b1f-e858-4162-8ba3-9a9903dcac0c">
-	<property name="ireport.zoom" value="1.815000000000013"/>
+	<property name="ireport.zoom" value="1.3636363636363735"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -274,53 +274,73 @@ $P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccio
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="1" y="0" width="32" height="20" uuid="efc79324-c679-4c29-bfcf-e2994c9207d0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<reportElement mode="Opaque" x="1" y="0" width="22" height="20" uuid="efc79324-c679-4c29-bfcf-e2994c9207d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{idInventario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="33" y="10" width="83" height="10" uuid="fd9439d5-4d64-4161-b2b3-f067eddf01b1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<reportElement mode="Transparent" x="23" y="0" width="93" height="20" uuid="fd9439d5-4d64-4161-b2b3-f067eddf01b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="116" y="0" width="64" height="20" uuid="e7fb2385-f7e7-49fb-949a-8a2f4b5ae73c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement mode="Transparent" x="180" y="0" width="62" height="20" uuid="60e0add8-221d-4582-942c-beb4370d3720"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaTransaccion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="242" y="0" width="52" height="20" uuid="5aa84ccb-9277-4cc5-88e9-dd988a2bc09d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{precioCompra}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="294" y="0" width="52" height="20" uuid="28da3fe4-3eae-493e-8b38-c69c346f8d2a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{porcentajeGanacia}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="346" y="0" width="39" height="20" uuid="216bc110-306c-4dc9-99db-26f5ec493ff8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="385" y="0" width="43" height="20" uuid="d8f74eec-e65a-402f-9c3a-938936d3d6af"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="428" y="0" width="50" height="20" uuid="7c29fa0b-5284-4dc9-ba87-0f4056910240"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{impuestos}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="478" y="0" width="77" height="20" backcolor="#CCCCCC" uuid="bf5a2cc1-40ba-445b-8556-8543882ca827"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Century Gothic"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<line>

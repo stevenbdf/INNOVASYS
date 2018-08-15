@@ -189,7 +189,8 @@ preguntaSeguridad1 varchar(120),
 preguntaSeguridad2 varchar(120),
 telefono int
 );
-
+alter table cliente
+alter column nit numeric(14)
 
 
 
@@ -209,7 +210,8 @@ idEmpleado int not null references usuarioEmpleado(idEmpleado),
 idCliente int not null references cliente(idCliente),
 montoTotal numeric(5,3) not null
 );
-
+alter table factura
+alter column fecha date
 
 
 create table detalleFactura(
@@ -239,8 +241,9 @@ idCliente int not null references cliente(idCliente),
 monto_total numeric(5,3) not null
 );
 
-
-
+alter table pedido
+alter column fecha date
+alter column fecha_vencimiento date
 
 create table detallePedido(
 idDetalleP int not null primary key,

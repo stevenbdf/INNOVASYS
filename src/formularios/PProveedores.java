@@ -9,15 +9,25 @@ import clases.Conexion;
 import clases.mtoUsuarios;
 import clases.verificaciones;
 import java.awt.Image;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -31,7 +41,8 @@ public class PProveedores extends javax.swing.JPanel {
      * Creates new form PProveedores
      */
     verificaciones verificar = new verificaciones();
-    public PProveedores() {
+    String correo;
+    public PProveedores(String correoE) {
          modeloTablaProveedores= new DefaultTableModel(null, getColumnasProveedores());
          setFilas();
 //         try {
@@ -41,6 +52,7 @@ public class PProveedores extends javax.swing.JPanel {
                 
 //		}
         initComponents();
+        correo=correoE;
         jTextField1.setEnabled(false);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
@@ -181,7 +193,7 @@ public class PProveedores extends javax.swing.JPanel {
                 rdNombrePActionPerformed(evt);
             }
         });
-        add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 65, -1, -1));
+        add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 63, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,7 +209,7 @@ public class PProveedores extends javax.swing.JPanel {
                 rdCodigoPActionPerformed(evt);
             }
         });
-        add(rdCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 65, -1, -1));
+        add(rdCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 63, -1, 30));
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -249,6 +261,11 @@ public class PProveedores extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton4MouseExited(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 120, -1));
@@ -731,12 +748,14 @@ public class PProveedores extends javax.swing.JPanel {
         // TODO add your handling code here:
         rdCodigoP.setSelected(false);
         jTFBuscarP.setEnabled(true);
+        tipo2=2;
     }//GEN-LAST:event_rdNombrePActionPerformed
 
     private void rdCodigoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoPActionPerformed
         // TODO add your handling code here:
         rdNombreP.setSelected(false);
         jTFBuscarP.setEnabled(true);
+        tipo2=1;
     }//GEN-LAST:event_rdCodigoPActionPerformed
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
@@ -797,6 +816,75 @@ public class PProveedores extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+int tipo2=0;
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String path ="";
+        try {
+            Conexion con = new Conexion();
+//            //establecemos la ruta donde esta el reportes
+//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
+//            //se decodifica por algun caracter especial
+//            path = URLDecoder.decode(path,"UTF-8");
+//            System.out.println("path: "+path);
+//            //Se crea la conexion
+//            
+//            //Se crean los parametros
+//            Map parametros = new HashMap();
+//            parametros.put("Nombre","Steven Diaz");
+//            //Se crea el objeto reporte
+//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
+//            //se crea el objeto de impresion del reporte 
+//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
+//            //ahora se crea el visor, donde se muestra el reporte
+//            JasperViewer visor = new JasperViewer(imprimir, false);
+//            visor.setTitle("Reporte de proyectos e integrantes");
+//            visor.setVisible(true);
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteProveedores.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+                      
+           parametros.put("tipo",tipo2);
+           parametros.put("valores",jTFBuscarP.getText());
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo); 
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Documento de Empleados");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(PProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,11 +46,11 @@ public class PInventario extends javax.swing.JPanel {
     String correo;
     public PInventario(String correoE) {
         mtoInventario obj = new mtoInventario();
-//                try {
-//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-//		}
-//		catch (Exception e) {
-//		}
+                try {
+                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+		}
+		catch (Exception e) {
+		}
         initComponents();
         correo=correoE;
         Calendar c2 = new GregorianCalendar();
@@ -866,7 +866,7 @@ public class PInventario extends javax.swing.JPanel {
             objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
             objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
             try {
-                String sql2 ="SELECT stock FROM inventario WHERE idProductos="+objeto.getCodigoP();
+                String sql2 ="SELECT stock FROM inventario WHERE idProductos="+objeto.getCodigoP()+" ORDER BY idInventario DESC";
                 PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
                 ResultSet ver2 = cmd2.executeQuery();
                 Integer cantidad2=Integer.valueOf(jTFCantidad.getText());
