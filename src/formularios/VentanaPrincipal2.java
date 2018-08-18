@@ -2648,7 +2648,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 4:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                VerOrdenesCola datos = new VerOrdenesCola();
+                VerOrdenesCola datos = new VerOrdenesCola(correoE);
                 datos.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(datos, BorderLayout.CENTER);
@@ -2725,7 +2725,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 11:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PGestionarClientes clientes = new PGestionarClientes();
+                PGestionarClientes clientes = new PGestionarClientes(correoE);
                 clientes.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(clientes, BorderLayout.CENTER);

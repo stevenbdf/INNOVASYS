@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -228,30 +229,22 @@ public class mtoClientes extends RegistroClientes{
             while(res.next()){
                 for(int i =0;i<14;i++)
                 {
-//                    if(i>6)
-//                    {
-//                        
-//                    }
-//                    else
-//                    {
-                        if (i==12) {
+                    if (i==13) {
                         dato[i]= sumarFechasDias(res.getDate(i+1),2);
-                        
+                        System.out.println("Objeto: "+i+" valor: "+res.getDate(i+1));
                     }else{
                         dato[i] =res.getObject(i+1);
+                        System.out.println("Objeto: "+i+" valor: "+res.getObject(i+1));
                     
                     }
-//                    }
-                    
                 }
-//                dato[7] =res.getObject(11);
                 model.addRow(dato);
             }
             res.close();
         }
         catch(Exception ex){
                 System.out.println("Error tabla:"+ex.getMessage());
-        } 
+        }
         return model;
     }
     public DefaultTableModel buscar(DefaultTableModel  model, String palabra,int codigo, String palabra2)
@@ -293,7 +286,7 @@ public class mtoClientes extends RegistroClientes{
             }
             res.close();
         }
-        catch(Exception ex){
+        catch(SQLException ex){
                 System.out.println("Error tabla:"+ex.getMessage());
         } 
         return model;

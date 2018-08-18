@@ -78,7 +78,7 @@ public class verificaciones {
         Calendar cal = new GregorianCalendar();
         cal.setTimeInMillis(fch.getTime());
         cal.add(Calendar.DATE, dias);
-        return new java.util.Date(cal.getTimeInMillis());
+        return new java.util.Date (cal.getTimeInMillis());
     }
     
     public String getFecha(JDateChooser jd) {

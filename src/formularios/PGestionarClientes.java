@@ -10,13 +10,25 @@ import clases.Conexion;
 import clases.mtoClientes;
 import clases.verificaciones;
 import java.awt.Image;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author steven
@@ -39,7 +51,8 @@ public class PGestionarClientes extends javax.swing.JPanel {
     DefaultTableModel tbl_client;
     mtoClientes cli = new mtoClientes();
     verificaciones objeto = new verificaciones();
-    public PGestionarClientes() {
+    String correo;
+    public PGestionarClientes(String correoE) {
 //        try {
 //			
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -47,7 +60,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
-        
+        correo=correoE;
         Calendar c2 = new GregorianCalendar();
         fechaMin.setCalendar(c2);
         fechaMax.setCalendar(c2);
@@ -275,15 +288,71 @@ public class PGestionarClientes extends javax.swing.JPanel {
     private void r_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_codigoActionPerformed
         r_nombre.setSelected(false);
         variable = 2;
+        tipo2=2;
     }//GEN-LAST:event_r_codigoActionPerformed
 
     private void r_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r_nombreActionPerformed
         r_codigo.setSelected(false);
         variable = 1;
+        tipo2=1;
     }//GEN-LAST:event_r_nombreActionPerformed
-
+    int tipo2=0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+
+            String archivo = getClass().getResource("/reportes/ReporteClientes.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            String fch1 = objeto.getFecha(fechaMin);
+            String fch2 = objeto.getFecha(fechaMax);
+            parametros.put("tipo", tipo2);
+            System.out.println("tipo: " + tipo2);
+            if (tipo2 == 3) {
+                parametros.put("valores", fch1);
+                parametros.put("valores2", fch2);
+            } else {
+                parametros.put("valores", jTextField8.getText());
+            }
+
+            try {
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo); 
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Clientes");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -297,6 +366,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
             String fch2=objeto.getFecha(fechaMax);
             
             tbl_clientes.setModel(cli.buscar(tbl_client, fch1 , 3, fch2));
+            tipo2=3;
         } catch (Exception e) {
             System.out.println(e.toString());
         }
