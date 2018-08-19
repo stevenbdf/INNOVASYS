@@ -3,10 +3,20 @@ select * from cliente
 select * from inventario
 select * from usuarioEmpleado
 update usuarioEmpleado set respuesta1='no' , respuesta2='no'
-update cliente set correoElectronico='eusojdivad@gmail.com' where idCliente=(SELECT MAX(idCliente) from cliente)
+update cliente set correoElectronico='stevenbdf@gmail.com' where idCliente=(SELECT MAX(idCliente) from cliente)
 select * from pedido where idCliente=1 and idEstadoP=5
 SELECT * FROM detallePedido
 select * from estadoPedido where idEstadoP!=5
+
+select * from factura
+select * from detalleFactura
+select * from detallePedido
+
+alter table factura
+alter column fecha date
+
+alter table factura
+alter column montoTotal float
 
 
 alter table pedido 
@@ -14,6 +24,9 @@ alter column fecha_vencimiento date
 
 alter table pedido 
 alter column fecha date
+
+alter table detallePedido 
+alter column cantidadProducto int
 
 alter table pedido 
 alter column monto_total float

@@ -8,11 +8,23 @@ package formularios;
 import clases.Conexion;
 import clases.mtoCajaRegistradora;
 import clases.verificaciones;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -28,7 +40,8 @@ public class Pago1 extends javax.swing.JFrame {
     String correoCliente;
     double PTotal=0.0;
     Object[][] tabla;
-    public Pago1(String cliente, int empleado, double total, Object[][] recibo) {
+    String correo;
+    public Pago1(String cliente, int empleado, double total, Object[][] recibo,String nombre) {
 //        try {
 //			
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -36,6 +49,7 @@ public class Pago1 extends javax.swing.JFrame {
 //		catch (Exception e) {
 //		}
         initComponents();
+        correo=nombre;
         codEmpleado=empleado;
         correoCliente=cliente;
         PTotal=total;
@@ -281,7 +295,65 @@ public class Pago1 extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jTFIngresoKeyReleased
+    void crearReporte(){
+        try {
+            Conexion con = new Conexion();
 
+            String archivo= getClass().getResource("/reportes/Factura.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+                      
+            try {
+                String sql ="SELECT TOP 1 noFactura FROM factura ORDER BY noFactura DESC";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("valores",ver.getInt(1)); 
+                }
+            } catch (Exception e) {
+                System.out.println("No hay facturas");
+            }
+           
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor",correo);
+            parametros.put("cliente",correoCliente);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Factura");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
         mtoCajaRegistradora obj = new mtoCajaRegistradora();
@@ -291,7 +363,9 @@ public class Pago1 extends javax.swing.JFrame {
         
         if (obj.guardarFactura(tabla)) {
             JOptionPane.showMessageDialog(this,"Factura realizada correctamente");
-        }
+            crearReporte();
+    }
+        
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -336,7 +410,7 @@ public class Pago1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Object[][] valor = new Object[2][2];
-                new Pago1("",1,1.0,valor).setVisible(true);
+                new Pago1("",1,1.0,valor,"").setVisible(true);
             }
         });
     }

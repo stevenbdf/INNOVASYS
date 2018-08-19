@@ -37,7 +37,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     DefaultComboBoxModel modeloComboPedidos;
     
     Integer codigoEmpleado=1;
-    
+    String correo;
     public PCajaVirtual(int codigoE, String nombre) {
 //        try {
 //			
@@ -54,7 +54,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         
         lblCodigo.setText(String.valueOf(codigoE));
         lblNombre.setText(nombre);
-        
+        correo=nombre;
         lblOpciones.setVisible(false);
         rdFactura.setVisible(false);
         rdCredito.setVisible(false);
@@ -516,7 +516,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 }
         
         
-        Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio);
+        Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio,correo);
         pago.show();  
         }else{
             JOptionPane.showMessageDialog(this,"Ingrese un producto al detalle de venta para continuar");
@@ -754,9 +754,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
     int indices=0;
     private void cmbPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPedidoActionPerformed
         // TODO add your handling code here:
-        
+        Total = 0;
+        jTFTotal.setText(String.valueOf((Total)));
         Object datos[] = new Object[7];
-         int filas = modeloTablaProductos.getRowCount();
+        int filas = modeloTablaProductos.getRowCount();
         for (int i = 0; filas > i; i++) {
             modeloTablaProductos.removeRow(0);
         }
@@ -765,41 +766,39 @@ public class PCajaVirtual extends javax.swing.JPanel {
             String sql = "SELECT dp.idProducto , pro.nombreProducto , cat.nombreCategoria, cantidadProducto "
                     + " FROM pedido p, detallePedido dp, producto pro, categoriaProducto cat "
                     + " WHERE dp.idProducto=pro.idProducto  AND cat.idCategoria=pro.idCategoria "
-                    + " AND p.idPedido=dp.idPedido AND dp.idPedido="+cmbPedido.getSelectedItem();
+                    + " AND p.idPedido=dp.idPedido AND dp.idPedido=" + cmbPedido.getSelectedItem();
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
             ResultSet ver = cmd.executeQuery();
-            while(ver.next()){
-                for (int i = 0; i <5; i++) {
-                    System.out.println("i: "+i);
-                    if (i==1 || i==2 || i==3 ) {
-                        datos[i]=ver.getObject(i);
+            while (ver.next()) {
+                for (int i = 0; i < 5; i++) {
+                    System.out.println("i: " + i);
+                    if (i == 1 || i == 2 || i == 3) {
+                        datos[i] = ver.getObject(i);
                     }
-                    if (i==0) {
-                        datos[i]=indices;
+                    if (i == 0) {
+                        datos[i] = indices;
                         indices++;
                     }
-                    if (i==4) {
+                    if (i == 4) {
                         System.out.println("Entra");
-                        String sql2 ="SELECT ((((porcentajeGanacia+impuestos)/100)*precioCompra)+precioCompra) "
+                        String sql2 = "SELECT ((((porcentajeGanacia+impuestos)/100)*precioCompra)+precioCompra) "
                                 + " FROM inventario "
-                                + " WHERE idProductos= "+datos[1] +" ORDER BY porcentajeGanacia DESC ";
+                                + " WHERE idProductos= " + datos[1] + " ORDER BY porcentajeGanacia DESC ";
                         PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
                         ResultSet ver2 = cmd2.executeQuery();
                         if (ver2.next()) {
-                             DecimalFormat df = new DecimalFormat("#.00");
-                            datos[i]= df.format(ver2.getDouble(1));
-                            datos[i+1]= ver.getObject(4);
-                            double data = Double.valueOf(String.valueOf((datos[i+1])))* Double.valueOf(String.valueOf((datos[i])));
-                            Total=Total+data;
+                            DecimalFormat df = new DecimalFormat("#.00");
+                            datos[i] = df.format(ver2.getDouble(1));
+                            datos[i + 1] = ver.getObject(4);
+                            double data = Double.valueOf(String.valueOf((datos[i + 1]))) * Double.valueOf(String.valueOf((datos[i])));
+                            Total = Total + data;
                             jTFTotal.setText(String.valueOf(df.format(Total)));
-                            datos[i+2]= data;
+                            datos[i + 2] = data;
                         }
                     }
                 }
-                
                 modeloTablaProductos.addRow(datos);
-            }
-            
+            }      
         } catch (Exception e) {
             System.out.println(e.toString());
         }

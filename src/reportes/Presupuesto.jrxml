@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Presupuesto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3a34555-92d4-418f-9588-79eecf829d39">
-	<property name="ireport.zoom" value="1.2100000000000024"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.2100000000000026"/>
+	<property name="ireport.x" value="9"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -148,7 +148,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic" size="22" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Reporte de Inventario]]></text>
+				<text><![CDATA[Presupuesto]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="21" y="62" width="32" height="17" forecolor="#FF00FF" uuid="2a87ac4e-605f-469c-9efd-82075704d4f6"/>
@@ -310,9 +310,6 @@
 			</line>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="11" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="76" splitType="Stretch">
 			<textField>
