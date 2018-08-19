@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -37,6 +38,9 @@ public class PProveedores extends javax.swing.JPanel {
 
     Conexion con = new Conexion();
     DefaultTableModel modeloTablaProveedores;
+    DefaultTableModel modeloTablaRubros;
+    DefaultComboBoxModel modeloComboRubros;
+    
     /**
      * Creates new form PProveedores
      */
@@ -44,7 +48,11 @@ public class PProveedores extends javax.swing.JPanel {
     String correo;
     public PProveedores(String correoE) {
          modeloTablaProveedores= new DefaultTableModel(null, getColumnasProveedores());
-         setFilas();
+         modeloTablaRubros= new DefaultTableModel(null, getColumnasRubros());
+         modeloComboRubros = new DefaultComboBoxModel(new String[]{});
+         
+         setFilasP(0,"");
+         setFilasRubros(0,"");
 //         try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 //		}
@@ -52,6 +60,7 @@ public class PProveedores extends javax.swing.JPanel {
                 
 //		}
         initComponents();
+        llenarRubros();
         correo=correoE;
         jTextField1.setEnabled(false);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
@@ -59,29 +68,30 @@ public class PProveedores extends javax.swing.JPanel {
        lblhelp.setIcon(icono0);
     }
     private String[] getColumnasProveedores() {
-        String columnas[] = new String[]{"ID PROVEEDOR", "NOMBRE", "DIRECCION", "TELEFONO", "FAX", "CORREO", "ESTADO"};
+        String columnas[] = new String[]{"ID PROVEEDOR", "NOMBRE", "DIRECCION", "TELEFONO", "FAX", "CORREO","RUBRO" ,"ESTADO"};
         return columnas;
     }
-    private void setFilas() {
+    private String[] getColumnasRubros() {
+        String columnas[] = new String[]{"CODIGO", "NOMBRE", "DESCRIPCION"};
+        return columnas;
+    }
+    void llenarRubros(){
+        modeloComboRubros.removeAllElements();
         try {
-            String consulta = "SELECT idProveedor, nombreProveedor, direccion, telefono, fax,correoElectronico,estado FROM proveedor";
-
-            PreparedStatement us = con.conectar().prepareStatement(consulta);
-            ResultSet res = us.executeQuery();
-
-            Object datos[] = new Object[7];
-
-            while (res.next()) {
-                for (int i = 0; i < datos.length; i++) {
-                    datos[i] = res.getObject(i + 1);
-                }
-                modeloTablaProveedores.addRow(datos);
+                Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql2="SELECT nombreRubro FROM rubroProveedor ";
+            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+            ResultSet ver2 = verDatos2.executeQuery();
+            
+            while(ver2.next()){
+                modeloComboRubros.addElement(ver2.getObject("nombreRubro"));
             }
-            res.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(PProveedores.class.getName()).log(Level.SEVERE,null,ex);
-        }
 
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
     }
     private void setFilasP(int tipo,String valores) {
         try {
@@ -89,24 +99,24 @@ public class PProveedores extends javax.swing.JPanel {
             switch (tipo) {
                 //Codigo Empleado
                 case 1:
-                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
-                            + "FROM proveedor WHERE idProveedor like '"+valores+"%'";
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,rubroProveedor.nombreRubro, estado "
+                            + "FROM proveedor, rubroProveedor WHERE idProveedor like '"+valores+"%' AND rubroProveedor.idRubro=proveedor.idRubro";
                     break;
                 //Nombre
                 case 2:
-                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
-                            + "FROM proveedor WHERE nombreProveedor like '"+valores+"%'";
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,rubroProveedor.nombreRubro , estado "
+                            + "FROM proveedor,rubroProveedor WHERE nombreProveedor like '"+valores+"%' AND rubroProveedor.idRubro=proveedor.idRubro";
                     break;
                 default:
-                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,estado "
-                            + "FROM proveedor "
-                            + "WHERE idProveedor>0";
+                    sql = "SELECT idProveedor, nombreProveedor, direccion,telefono, fax,correoElectronico,rubroProveedor.nombreRubro, estado "
+                            + "FROM proveedor,rubroProveedor "
+                            + "WHERE idProveedor>0 AND rubroProveedor.idRubro=proveedor.idRubro";
                     break;
             }
             PreparedStatement us = con.conectar().prepareStatement(sql);
             ResultSet resultado = us.executeQuery();
 
-            Object datos[] = new Object[7];
+            Object datos[] = new Object[8];
 
             while (resultado.next()) {
                 for (int i = 0; i < datos.length; i++) {
@@ -116,6 +126,41 @@ public class PProveedores extends javax.swing.JPanel {
             }
         } catch (Exception e) {
 
+        }
+    }
+    private void setFilasRubros(int tipo,String valores) {
+        try {
+            String sql="";
+            switch (tipo) {
+                //Codigo Empleado
+                case 1:
+                    sql = "SELECT * "
+                            + "FROM rubroProveedor WHERE idRubro like '"+valores+"%'";
+                    break;
+                //Nombre
+                case 2:
+                    sql = "SELECT * "
+                            + "FROM rubroProveedor WHERE nombreRubro like '"+valores+"%'";
+                    break;
+                default:
+                    sql = "SELECT * "
+                            + "FROM rubroProveedor "
+                            + "WHERE idRubro>0";
+                    break;
+            }
+            PreparedStatement us = con.conectar().prepareStatement(sql);
+            ResultSet resultado = us.executeQuery();
+
+            Object datos[] = new Object[3];
+
+            while (resultado.next()) {
+                for (int i = 0; i < datos.length; i++) {
+                    datos[i] = resultado.getObject(i + 1);
+                }
+                modeloTablaRubros.addRow(datos);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -128,168 +173,59 @@ public class PProveedores extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTFBuscarP = new javax.swing.JTextField();
-        rdNombreP = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
-        rdCodigoP = new javax.swing.JRadioButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jTFBuscarP = new javax.swing.JTextField();
+        rdCodigoP = new javax.swing.JRadioButton();
+        rdNombreP = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        cmbRubro = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jTFCodigoR = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTFNombreR = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(modeloTablaProveedores);
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 315, 200));
-
-        jTFBuscarP.setBackground(new java.awt.Color(204, 204, 204));
-        jTFBuscarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTFBuscarP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFBuscarPKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFBuscarPKeyTyped(evt);
-            }
-        });
-        add(jTFBuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 110, 30));
-
-        rdNombreP.setBackground(new java.awt.Color(102, 102, 102));
-        rdNombreP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        rdNombreP.setForeground(new java.awt.Color(255, 255, 255));
-        rdNombreP.setText("Nombre");
-        rdNombreP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdNombrePActionPerformed(evt);
-            }
-        });
-        add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 63, -1, 30));
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Buscar:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, 20));
-
-        rdCodigoP.setBackground(new java.awt.Color(102, 102, 102));
-        rdCodigoP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        rdCodigoP.setForeground(new java.awt.Color(255, 255, 255));
-        rdCodigoP.setText("Codigo");
-        rdCodigoP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdCodigoPActionPerformed(evt);
-            }
-        });
-        add(rdCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 63, -1, 30));
-
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 155, 30));
-
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
-            }
-        });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 100, 30));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Codigo:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 30));
-
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 106, 60, 30));
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Telefono:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, 30));
-
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Generar Reporte");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton4.setContentAreaFilled(false);
-        jButton4.setPreferredSize(new java.awt.Dimension(71, 30));
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton4MouseExited(evt);
-            }
-        });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 120, -1));
-
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Modificar");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.setPreferredSize(new java.awt.Dimension(75, 30));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
-            }
-        });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
@@ -310,116 +246,28 @@ public class PProveedores extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 90, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 90, -1));
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
-            }
-        });
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 155, 30));
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Direccion:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
-
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
-            }
-        });
-        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 155, 30));
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Fax:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 260, 30, 30));
-
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
-            }
-        });
-        add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 155, 30));
-
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Correo Electronico:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 30));
-
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField7KeyTyped(evt);
-            }
-        });
-        add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 155, 30));
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel1.setText("Gestion de los Proveedores");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 31));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Estado:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, 30));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
-
-        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblhelpAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblhelpMouseClicked(evt);
-            }
-        });
-        add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, 30));
-
-        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Limpiar");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton7.setContentAreaFilled(false);
-        jButton7.setPreferredSize(new java.awt.Dimension(75, 30));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Modificar");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton5.setContentAreaFilled(false);
+        jButton5.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton7MouseEntered(evt);
+                jButton5MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton7MouseExited(evt);
+                jButton5MouseExited(evt);
             }
         });
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
-        add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 90, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 90, -1));
 
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
@@ -440,7 +288,374 @@ public class PProveedores extends javax.swing.JPanel {
                 jButton8ActionPerformed(evt);
             }
         });
-        add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 90, -1));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 90, -1));
+
+        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Limpiar");
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton7.setContentAreaFilled(false);
+        jButton7.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 90, -1));
+
+        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Generar Reporte");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton4.setContentAreaFilled(false);
+        jButton4.setPreferredSize(new java.awt.Dimension(71, 30));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 120, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 160, 30));
+
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 155, 30));
+
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Rubro:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Correo Electronico:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
+
+        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 155, 30));
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Fax:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 30, 30));
+
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 155, 30));
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Direccion:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, 30));
+
+        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 155, 30));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Telefono:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, 30));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 60, 30));
+
+        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 155, 30));
+
+        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 100, 30));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Codigo:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, 30));
+
+        jTable1.setModel(modeloTablaProveedores);
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 315, 200));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Buscar:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, 20));
+
+        jTFBuscarP.setBackground(new java.awt.Color(204, 204, 204));
+        jTFBuscarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFBuscarP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFBuscarPKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFBuscarPKeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTFBuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 110, 30));
+
+        rdCodigoP.setBackground(new java.awt.Color(102, 102, 102));
+        rdCodigoP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        rdCodigoP.setForeground(new java.awt.Color(255, 255, 255));
+        rdCodigoP.setText("Codigo");
+        rdCodigoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCodigoPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rdCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, 30));
+
+        rdNombreP.setBackground(new java.awt.Color(102, 102, 102));
+        rdNombreP.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        rdNombreP.setForeground(new java.awt.Color(255, 255, 255));
+        rdNombreP.setText("Nombre");
+        rdNombreP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNombrePActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, 30));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 255));
+        jLabel1.setText("Gestion de los Proveedores");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+
+        lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblhelpAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblhelpMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 25, 25));
+
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Estado:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, 30));
+
+        cmbRubro.setModel(modeloComboRubros);
+        cmbRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRubroActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbRubro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 160, 30));
+
+        jTabbedPane1.addTab("Proveedores", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Codigo:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 60, 50, 30));
+
+        jTFCodigoR.setBackground(new java.awt.Color(204, 204, 204));
+        jTFCodigoR.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFCodigoR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFCodigoRActionPerformed(evt);
+            }
+        });
+        jTFCodigoR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCodigoRKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTFCodigoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 30));
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 255));
+        jLabel12.setText("Gestion de Rubros");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Descripcion:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 80, 30));
+
+        jTFNombreR.setBackground(new java.awt.Color(204, 204, 204));
+        jTFNombreR.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTFNombreR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNombreRActionPerformed(evt);
+            }
+        });
+        jTFNombreR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreRKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTFNombreR, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 150, 30));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Nombre:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 110, 60, 30));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 190, 160));
+
+        jTable2.setModel(modeloTablaRubros);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 310, 240));
+
+        jButton9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Agregar");
+        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton9.setContentAreaFilled(false);
+        jButton9.setPreferredSize(new java.awt.Dimension(71, 30));
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton9MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton9MouseExited(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 90, -1));
+
+        jButton10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Modificar");
+        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton10.setContentAreaFilled(false);
+        jButton10.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton10MouseExited(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 90, -1));
+
+        jButton11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jButton11.setText("Eliminar");
+        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton11.setContentAreaFilled(false);
+        jButton11.setPreferredSize(new java.awt.Dimension(75, 30));
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton11MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton11MouseExited(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 90, -1));
+
+        jTabbedPane1.addTab("Rubro de Proveedores", jPanel2);
+
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -585,12 +800,13 @@ public class PProveedores extends javax.swing.JPanel {
                 objeto.setCorreoP(String.valueOf(jTextField7.getText()));
                 objeto.setFaxP(Integer.valueOf(jTextField6.getText()));
                 objeto.setDireccionP(String.valueOf(jTextField5.getText()));
+                objeto.setCodigoRubro(codigoRubro);
                 String texto= String.valueOf(jComboBox1.getSelectedItem());
                 
             if(jTextField1.getText().isEmpty()){
                 
                 if (texto.equals("Activo")) {
-                   objeto.setEstadoP(1);
+                   objeto.setEstadoP("Activo");
                    if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
                         
@@ -598,19 +814,19 @@ public class PProveedores extends javax.swing.JPanel {
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                        setFilas();
+                        setFilasP(0,"");
                     }else{
                         JOptionPane.showMessageDialog(this, "Error al agregar");
                     }
                 }else if (texto.equals("Inactivo")) {
-                    objeto.setEstadoP(0);
+                    objeto.setEstadoP("Inactivo");
                     if(objeto.guardarProveedor()){
                         JOptionPane.showMessageDialog(this, "Proveedor agregado");
                         int filas = modeloTablaProveedores.getRowCount();
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                        setFilas();
+                        setFilasP(0,"");
                     }else{
                         JOptionPane.showMessageDialog(this, "Error al agrgar");
                     }
@@ -625,26 +841,26 @@ public class PProveedores extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Ya existe ese usuario registrado");
                 }else{
                     if (texto.equals("Activo")) {
-                       objeto.setEstadoP(1);
+                       objeto.setEstadoP("Activo");
                        if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
                             int filas = modeloTablaProveedores.getRowCount();
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                            setFilas();
+                            setFilasP(0,"");
                         }else{
                             JOptionPane.showMessageDialog(this, "Error al agregar");
                         }
                     }else if (texto.equals("Inactivo")) {
-                        objeto.setEstadoP(0);
+                        objeto.setEstadoP("Inactivo");
                         if(objeto.guardarProveedor()){
                             JOptionPane.showMessageDialog(this, "Proveedor agregado");
                             int filas = modeloTablaProveedores.getRowCount();
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                            setFilas();
+                            setFilasP(0,"");
                         }else{
                             JOptionPane.showMessageDialog(this, "Error al agrgar");
                         }
@@ -676,29 +892,30 @@ public class PProveedores extends javax.swing.JPanel {
         objeto.setFaxP(Integer.valueOf(jTextField6.getText()));
         objeto.setDireccionP(String.valueOf(jTextField5.getText()));
         String texto= String.valueOf(jComboBox1.getSelectedItem());
+        objeto.setCodigoRubro(codigoRubro);
         objeto.setIdP(Integer.valueOf(jTextField1.getText()));
         
             if (texto.equals("Activo")) {
-               objeto.setEstadoP(1);
+               objeto.setEstadoP("Activo");
                if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
                     int filas = modeloTablaProveedores.getRowCount();
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                       setFilas();
+                       setFilasP(0,"");
                 }else{
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
             }else if (texto.equals("Inactivo")) {
-                objeto.setEstadoP(0);
+                objeto.setEstadoP("Inactivo");
                 if(objeto.modificarProveedor()){
                     JOptionPane.showMessageDialog(this, "Proveedor modificado");
                     int filas = modeloTablaProveedores.getRowCount();
                        for (int i = 0; filas > i; i++) {
                            modeloTablaProveedores.removeRow(0);
                        }
-                       setFilas();
+                       setFilasP(0,"");
                 }else{
                     JOptionPane.showMessageDialog(this, "Error al modificar");
                 }
@@ -717,9 +934,9 @@ public class PProveedores extends javax.swing.JPanel {
         jTextField5.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (2))));
         jTextField6.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (4))));
         jTextField7.setText(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (5))));
-        
-        String texto = String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (6)));
-        if (texto.equals("true")) {
+        cmbRubro.setSelectedItem(String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (6))));
+        String texto = String.valueOf(modeloTablaProveedores.getValueAt(jTable1.getSelectedRow(), (7)));
+        if (texto.equals("Activo")) {
             jComboBox1.setSelectedItem("Activo");
         }else{
             jComboBox1.setSelectedItem("Inactivo");
@@ -886,16 +1103,153 @@ int tipo2=0;
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTFCodigoRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCodigoRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCodigoRActionPerformed
+
+    private void jTFCodigoRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoRKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCodigoRKeyTyped
+
+    private void jTFNombreRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNombreRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNombreRActionPerformed
+
+    private void jTFNombreRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreRKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNombreRKeyTyped
+
+    private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9MouseEntered
+
+    private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9MouseExited
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        if(jTFNombreR.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setNombreRubro(jTFNombreR.getText());
+            obj.setDescripRubro(jTextArea1.getText());
+            if (obj.guardarRubro()) {
+                JOptionPane.showMessageDialog(this,"Rubro guardado correctamente");
+                int filas = modeloTablaRubros.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaRubros.removeRow(0);
+                }
+                setFilasRubros(0, "");
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al guardar");
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10MouseEntered
+
+    private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10MouseExited
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        if(jTFNombreR.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setNombreRubro(jTFNombreR.getText());
+            obj.setDescripRubro(jTextArea1.getText());
+            obj.setCodigoRubro(Integer.valueOf(jTFCodigoR.getText()));
+            if (obj.modificarRubro()) {
+                JOptionPane.showMessageDialog(this,"Rubro modificado correctamente");
+                int filas = modeloTablaRubros.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaRubros.removeRow(0);
+                }
+                setFilasRubros(0, "");
+            }else{
+                JOptionPane.showMessageDialog(this,"Error al modificar");
+            }
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11MouseEntered
+
+    private void jButton11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11MouseExited
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        if (jTFCodigoR.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un rubro para eliminar");
+        }else{
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setCodigoRubro(Integer.valueOf(jTFCodigoR.getText()));
+            if (obj.eliminarRubro()) {
+                JOptionPane.showMessageDialog(this, "Rubro eliminado");
+                jTFCodigoR.setText(null);
+                jTextArea1.setText(null);
+                jTFNombreR.setText(null);
+                int filas = modeloTablaRubros.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaRubros.removeRow(0);
+                }
+                setFilasRubros(0, "");
+            }else{
+                JOptionPane.showMessageDialog(this, "Proveedores relacionados a este rubro");
+            }         
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        jTFCodigoR.setText(String.valueOf(modeloTablaRubros.getValueAt(jTable2.getSelectedRow(), (0))));
+        jTFNombreR.setText(String.valueOf(modeloTablaRubros.getValueAt(jTable2.getSelectedRow(), (1))));
+        jTextArea1.setText(String.valueOf(modeloTablaRubros.getValueAt(jTable2.getSelectedRow(), (2))));
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+    Integer codigoRubro;
+    private void cmbRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRubroActionPerformed
+        // TODO add your handling code here:
+        try {
+            PreparedStatement cmd = con.conectar().prepareStatement("SELECT idRubro FROM rubroProveedor WHERE nombreRubro='"+cmbRubro.getSelectedItem()+"'");
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                codigoRubro=ver.getInt(1);
+                System.out.println("r: "+codigoRubro);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer combo: "+e);
+        }
+    }//GEN-LAST:event_cmbRubroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbRubro;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -904,9 +1258,18 @@ int tipo2=0;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTFBuscarP;
+    private javax.swing.JTextField jTFCodigoR;
+    private javax.swing.JTextField jTFNombreR;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

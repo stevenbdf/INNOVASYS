@@ -60,7 +60,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="consulta" class="java.lang.String">
-		<defaultValueExpression><![CDATA["select idDetalleP, detallePedido.idProducto, producto.nombreProducto,cantidadProducto, (SELECT TOP 1 precioCompra FROM inventario where idProductos=detallePedido.idProducto ORDER By idInventario DESC  ) as PRECIO, (cantidadProducto*(SELECT TOP 1 precioCompra FROM inventario where idProductos=detallePedido.idProducto ORDER By idInventario DESC  )) as SubPrecio "
+		<defaultValueExpression><![CDATA["select idDetalleP, detallePedido.idProducto, producto.nombreProducto,cantidadProducto, (SELECT TOP 1 (precioCompra * ((porcentajeGanacia + impuestos)/100))+precioCompra FROM inventario where idProductos=detallePedido.idProducto ORDER By idInventario DESC  ) as PRECIO, (cantidadProducto*(SELECT TOP 1 (precioCompra * ((porcentajeGanacia + impuestos)/100))+precioCompra FROM inventario where idProductos=detallePedido.idProducto ORDER By idInventario DESC   )) as SubPrecio "
 +"from detallePedido, producto where detallePedido.idProducto=producto.idProducto AND detallePedido.idPedido='"+$P{valores}+"'"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="autor" class="java.lang.String"/>
@@ -83,8 +83,8 @@
 	<field name="idProducto" class="java.lang.Integer"/>
 	<field name="nombreProducto" class="java.lang.String"/>
 	<field name="cantidadProducto" class="java.lang.Integer"/>
-	<field name="PRECIO" class="java.math.BigDecimal"/>
-	<field name="SubPrecio" class="java.math.BigDecimal"/>
+	<field name="PRECIO" class="java.lang.Double"/>
+	<field name="SubPrecio" class="java.lang.Double"/>
 	<variable name="STotal" class="java.lang.Double" calculation="Sum"/>
 	<variable name="SubPrecio_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{SubPrecio}]]></variableExpression>

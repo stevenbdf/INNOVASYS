@@ -46,11 +46,11 @@ public class PInventario extends javax.swing.JPanel {
     String correo;
     public PInventario(String correoE) {
         mtoInventario obj = new mtoInventario();
-                try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		}
-		catch (Exception e) {
-		}
+//                try {
+//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//		}
+//		catch (Exception e) {
+//		}
         initComponents();
         correo=correoE;
         Calendar c2 = new GregorianCalendar();

@@ -43,6 +43,7 @@ public class PPresupuesto extends javax.swing.JPanel {
      */
     verificaciones verificar = new verificaciones();
     DefaultComboBoxModel modeloComboPro;
+    DefaultComboBoxModel modeloComboCat;
     DefaultTableModel modeloTablaProductos;
     DefaultComboBoxModel modeloComboCliente;
     DefaultComboBoxModel modeloComboEstado;
@@ -59,13 +60,13 @@ public class PPresupuesto extends javax.swing.JPanel {
         modeloTablaProductos = new DefaultTableModel(null, getColumnasProductos());
         
         modeloComboPro = new DefaultComboBoxModel(new String[]{});
+        modeloComboCat = new DefaultComboBoxModel(new String[]{});
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         modeloComboEstado = new DefaultComboBoxModel(new String[]{});
         initComponents();
         
         
         jTFCodigoP.setEditable(false);
-        jTFCategoria.setEditable(false);
         jTFPrecio.setEditable(false);
         
         Calendar hoy = Calendar.getInstance();
@@ -76,9 +77,10 @@ public class PPresupuesto extends javax.swing.JPanel {
         fechaP=año+"-"+mes+"-"+dia;
         lblVence.setText("Vence el: "+fechaP);
         
-        llenaComboBoxProductos();
+        
         llenaComboBoxClientes();
         llenaComboBoxEstado();
+        llenaComboBoxCategoria();
         
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
@@ -92,7 +94,24 @@ public class PPresupuesto extends javax.swing.JPanel {
         String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL" };
         return columnas;
     }
-    
+    private void llenaComboBoxCategoria() {
+        modeloComboCat.removeAllElements();
+        try {
+                Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql2="SELECT idCategoria, nombreCategoria FROM categoriaProducto ";
+            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+            ResultSet ver2 = verDatos2.executeQuery();
+            
+            while(ver2.next()){
+                modeloComboCat.addElement(ver2.getObject("nombreCategoria"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }
     private void llenaComboBoxProductos() {
         modeloComboPro.removeAllElements();
         
@@ -101,22 +120,19 @@ public class PPresupuesto extends javax.swing.JPanel {
             /* Realizamos la consulta a la base de datos*/
             String sql = "select idProductos from inventario group by idProductos ";
             PreparedStatement verDatos = con.conectar().prepareStatement(sql);
-            ResultSet ver = verDatos.executeQuery();  
+            ResultSet ver = verDatos.executeQuery();
             while (ver.next()) {
-                String sql2 = "select nombreProducto FROM producto WHERE idProducto="+ver.getObject("idProductos");
-            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
-            ResultSet ver2 = verDatos2.executeQuery();
-                if(ver2.next()){
-
+                String sql2 = "select nombreProducto FROM producto "
+                        + "  WHERE idProducto=" + ver.getObject("idProductos") + " AND idCategoria="+idCat;
+                PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+                ResultSet ver2 = verDatos2.executeQuery();
+                if (ver2.next()) {
                     modeloComboPro.addElement(ver2.getString(1));
                 }
-                    
-                 
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("Error: " + ex);
-
         }
     }
     /**
@@ -169,7 +185,6 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jLabel10 = new javax.swing.JLabel();
         jTFCodigoP = new javax.swing.JTextField();
-        jTFCategoria = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         jTFCantidad = new javax.swing.JTextField();
@@ -203,6 +218,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         lblVence = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        cmbCategoria = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -224,15 +240,6 @@ public class PPresupuesto extends javax.swing.JPanel {
             }
         });
         add(jTFCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 110, 30));
-
-        jTFCategoria.setBackground(new java.awt.Color(204, 204, 204));
-        jTFCategoria.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTFCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCategoriaKeyTyped(evt);
-            }
-        });
-        add(jTFCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 150, 30));
 
         btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -359,7 +366,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Nombre:");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -464,7 +471,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 cmbProductoActionPerformed(evt);
             }
         });
-        add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 140, 30));
+        add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 140, 30));
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -477,7 +484,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel26.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Categoria:");
-        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
 
         jComboBox2.setModel(modeloComboEstado);
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 140, 30));
@@ -491,6 +498,14 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Estado Presupuesto:");
         add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
+
+        cmbCategoria.setModel(modeloComboCat);
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
+        add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 150, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
@@ -680,18 +695,6 @@ public class PPresupuesto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTFCantidadKeyTyped
 
-    private void jTFCategoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCategoriaKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-       
-        if (verificar.vletrasynumeros(vchar) == true
-                && (jTFCategoria.getText().length() < 30)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTFCategoriaKeyTyped
-
     private void jTFSubTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFSubTotalKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
@@ -741,6 +744,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         
     }//GEN-LAST:event_cmbProductoItemStateChanged
     Integer stockGeneral=0;
+    String categoria;
     private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
         // TODO add your handling code here:
         try {
@@ -752,7 +756,7 @@ public class PPresupuesto extends javax.swing.JPanel {
             ResultSet ver = cmd.executeQuery();
             if (ver.next()) {
                 jTFCodigoP.setText(String.valueOf(ver.getInt(1)));
-                jTFCategoria.setText(ver.getString(2));
+                categoria = ver.getString(2);
                 
             }
         } catch (Exception e) {
@@ -801,7 +805,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 datos[0] = contador;
                 datos[1] = jTFCodigoP.getText();
                 datos[2] = cmbProducto.getSelectedItem();
-                datos[3] = jTFCategoria.getText();
+                datos[3] = categoria;
                 datos[4] = jTFPrecio.getText();
                 datos[5] = jTFCantidad.getText();
                 double subtotal = (Double.parseDouble(jTFPrecio.getText())) * Integer.valueOf(jTFCantidad.getText());
@@ -854,12 +858,29 @@ public class PPresupuesto extends javax.swing.JPanel {
         // TODO add your handling code here:
         x=jTable1.getSelectedRow();
     }//GEN-LAST:event_jTable1MouseClicked
+    Integer idCat;
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        // TODO add your handling code here:
+         try {
+            Conexion con = new Conexion();
+            String sql="SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='"+cmbCategoria.getSelectedItem()+"'";
+            PreparedStatement cmd = con.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                idCat=ver.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        llenaComboBoxProductos();
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -881,7 +902,6 @@ public class PPresupuesto extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCantidad;
-    private javax.swing.JTextField jTFCategoria;
     private javax.swing.JTextField jTFCodigoP;
     private javax.swing.JTextField jTFPrecio;
     private javax.swing.JTextField jTFSubTotal;

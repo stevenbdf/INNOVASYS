@@ -41,7 +41,8 @@ public class Pago1 extends javax.swing.JFrame {
     double PTotal=0.0;
     Object[][] tabla;
     String correo;
-    public Pago1(String cliente, int empleado, double total, Object[][] recibo,String nombre) {
+    Integer largo;
+    public Pago1(String cliente, int empleado, double total, Object[][] recibo,String nombre,int length) {
 //        try {
 //			
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -49,6 +50,7 @@ public class Pago1 extends javax.swing.JFrame {
 //		catch (Exception e) {
 //		}
         initComponents();
+        largo=length;
         correo=nombre;
         codEmpleado=empleado;
         correoCliente=cliente;
@@ -360,8 +362,8 @@ public class Pago1 extends javax.swing.JFrame {
         obj.setCodigoEmpleado(codEmpleado);
         obj.setCodigoCliente(codCliente);
         obj.setMontoTotal(Double.valueOf(jTFTotal.getText()));
-        
-        if (obj.guardarFactura(tabla)) {
+        System.out.println("length tabla: "+tabla.length);
+        if (obj.guardarFactura(tabla,largo)) {
             JOptionPane.showMessageDialog(this,"Factura realizada correctamente");
             crearReporte();
     }
@@ -410,7 +412,7 @@ public class Pago1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Object[][] valor = new Object[2][2];
-                new Pago1("",1,1.0,valor,"").setVisible(true);
+                new Pago1("",1,1.0,valor,"",1).setVisible(true);
             }
         });
     }

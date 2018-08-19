@@ -63,7 +63,7 @@ public class mtoCajaRegistradora {
     private double montoTotal;
     
     
-    public boolean guardarFactura(Object[][] detalle){
+    public boolean guardarFactura(Object[][] detalle,int tamaño){
         boolean retorno=false;
         try {
             
@@ -77,7 +77,7 @@ public class mtoCajaRegistradora {
             System.out.println("Monto Total: "+montoTotal);
             cmd.setDouble(3,montoTotal);
             if (!cmd.execute()) {
-                if (guardarDetalleFactura(detalle)) {
+                if (guardarDetalleFactura(detalle,tamaño)) {
                     retorno=true;
                 }
             }
@@ -87,10 +87,11 @@ public class mtoCajaRegistradora {
         return retorno;
     }
     
-    private boolean guardarDetalleFactura(Object[][] detalle2){
+    private boolean guardarDetalleFactura(Object[][] detalle2, int tamaño2){
         boolean retorno=false;
         try {
-            for (int i = 0; i < detalle2.length; i++) {
+            System.out.println("length detalle: "+detalle2.length);
+            for (int i = 0; i < tamaño2; i++) {
                 String sql = "INSERT INTO detalleFactura(idDetalle,noFactura,idProducto,cantidadProducto) "
                         + " VALUES ((SELECT MAX (idDetalle) FROM detalleFactura)+1, (SELECT MAX(noFactura) FROM factura ), ?,?)";
                 PreparedStatement cmd = cn.prepareStatement(sql);

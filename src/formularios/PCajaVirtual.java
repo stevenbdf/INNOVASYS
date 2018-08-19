@@ -32,6 +32,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
      */
     verificaciones verificar = new verificaciones();
     DefaultComboBoxModel modeloComboPro;
+    DefaultComboBoxModel modeloComboCat;
     DefaultTableModel modeloTablaProductos;
     DefaultComboBoxModel modeloComboCliente;
     DefaultComboBoxModel modeloComboPedidos;
@@ -48,6 +49,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         codigoEmpleado=codigoE;
         modeloTablaProductos = new DefaultTableModel(null, getColumnasProductos());
         modeloComboPro = new DefaultComboBoxModel(new String[]{});
+        modeloComboCat = new DefaultComboBoxModel(new String[]{});
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         modeloComboPedidos = new DefaultComboBoxModel(new String[]{});
         initComponents();
@@ -61,7 +63,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
         cmbProducto.setEnabled(false);
         jTFCodigo.setEditable(false);
         jTFCodigoP.setEditable(false);
-        jTFCategoria.setEditable(false);
         jTFPrecio.setEditable(false);
         try {
             
@@ -69,8 +70,9 @@ public class PCajaVirtual extends javax.swing.JPanel {
             System.out.println(e.toString());
         }
         
-       llenaComboBoxProductos();
+       
         llenaComboBoxClientes();
+        llenaComboBoxCategoria();
        lblNombre.setText(nombre);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
@@ -107,7 +109,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jTFCodigoP = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTFCategoria = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -130,6 +131,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         NuevaVenta = new javax.swing.JRadioButton();
         Pedido = new javax.swing.JRadioButton();
         jLabel17 = new javax.swing.JLabel();
+        cmbCategoria = new javax.swing.JComboBox<>();
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -244,21 +246,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Nombre:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Categoria:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
-
-        jTFCategoria.setBackground(new java.awt.Color(204, 204, 204));
-        jTFCategoria.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTFCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCategoriaKeyTyped(evt);
-            }
-        });
-        jPanel1.add(jTFCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 130, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -448,7 +441,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 cmbProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 150, 30));
+        jPanel1.add(cmbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 150, 30));
 
         NuevaVenta.setBackground(new java.awt.Color(102, 102, 102));
         NuevaVenta.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -476,6 +469,14 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Venta por:");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, 30));
+
+        cmbCategoria.setModel(modeloComboCat);
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 160, 30));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
@@ -516,7 +517,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 }
         
         
-        Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio,correo);
+        Pago1 pago = new Pago1(String.valueOf(cmbCliente.getSelectedItem()),codigoEmpleado,Double.valueOf(jTFTotal.getText()),envio,correo,modeloTablaProductos.getRowCount());
         pago.show();  
         }else{
             JOptionPane.showMessageDialog(this,"Ingrese un producto al detalle de venta para continuar");
@@ -616,8 +617,26 @@ public class PCajaVirtual extends javax.swing.JPanel {
             System.out.println("Error: " + ex);
 
         }
-    }  
-    
+    }
+ 
+    private void llenaComboBoxCategoria() {
+        modeloComboCat.removeAllElements();
+        try {
+                Conexion con = new Conexion();
+            /* Realizamos la consulta a la base de datos*/
+            String sql2="SELECT idCategoria, nombreCategoria FROM categoriaProducto ";
+            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+            ResultSet ver2 = verDatos2.executeQuery();
+            
+            while(ver2.next()){
+                modeloComboCat.addElement(ver2.getObject("nombreCategoria"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+
+        }
+    }
     
     
     private void llenaComboBoxClientes() {
@@ -647,22 +666,19 @@ public class PCajaVirtual extends javax.swing.JPanel {
             /* Realizamos la consulta a la base de datos*/
             String sql = "select idProductos from inventario group by idProductos ";
             PreparedStatement verDatos = con.conectar().prepareStatement(sql);
-            ResultSet ver = verDatos.executeQuery();  
+            ResultSet ver = verDatos.executeQuery();
             while (ver.next()) {
-            String sql2 = "select nombreProducto FROM producto WHERE idProducto="+ver.getObject("idProductos");
-            PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
-            ResultSet ver2 = verDatos2.executeQuery();
-                if(ver2.next()){
-
+                String sql2 = "select nombreProducto FROM producto "
+                        + "  WHERE idProducto=" + ver.getObject("idProductos") + " AND idCategoria="+idCat;
+                PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
+                ResultSet ver2 = verDatos2.executeQuery();
+                if (ver2.next()) {
                     modeloComboPro.addElement(ver2.getString(1));
                 }
-                    
-                 
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("Error: " + ex);
-
         }
     }
     private void jTFCodigoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoPKeyTyped
@@ -676,18 +692,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_jTFCodigoPKeyTyped
-
-    private void jTFCategoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCategoriaKeyTyped
-//jTFCodigoTODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vletrasynumeros(vchar) == true
-                && (jTFCategoria.getText().length() < 20)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTFCategoriaKeyTyped
 
     private void jTFPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPrecioKeyTyped
         // TODO add your handling code here:
@@ -804,19 +808,19 @@ public class PCajaVirtual extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cmbPedidoActionPerformed
     Integer stockGeneral=0;
+    String categoria;
     private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
         // TODO add your handling code here:
         try {
             Conexion con = new Conexion();
             System.out.println("combo: "+cmbProducto.getSelectedItem());
-            String sql ="SELECT idProducto, categoriaProducto.nombreCategoria, imagen  FROM producto, categoriaProducto "
+            String sql ="SELECT idProducto, categoriaProducto.nombreCategoria  FROM producto, categoriaProducto "
                     + " WHERE nombreProducto='"+cmbProducto.getSelectedItem()+"' AND categoriaProducto.idCategoria = producto.idCategoria";
             PreparedStatement cmd = con.conectar().prepareStatement(sql);
             ResultSet ver = cmd.executeQuery();
             if (ver.next()) {
                 jTFCodigoP.setText(String.valueOf(ver.getInt(1)));
-                jTFCategoria.setText(ver.getString(2));
-                
+                categoria=ver.getString(2);
             }
         } catch (Exception e) {
             System.out.println("Aqui");
@@ -861,7 +865,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 datos[0] = contador;
                 datos[1] = jTFCodigoP.getText();
                 datos[2] = cmbProducto.getSelectedItem();
-                datos[3] = jTFCategoria.getText();
+                datos[3] = categoria;
                 datos[4] = jTFPrecio.getText();
                 datos[5] = jTFCantidad.getText();
                 double subtotal = (Double.parseDouble(jTFPrecio.getText())) * Integer.valueOf(jTFCantidad.getText());
@@ -892,7 +896,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
         NuevaVenta.setSelected(false);
         jTFCodigo.setEnabled(false);
         cmbProducto.setEnabled(false);
-        jTFCategoria.setEnabled(false);
         jTFPrecio.setEnabled(false);
         jTFCantidad.setEnabled(false);
         btnAgregar.setEnabled(false);
@@ -903,11 +906,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private void NuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaVentaActionPerformed
         // TODO add your handling code here:
         //jTable1.removeAll();
-       Pedido.setSelected(false);
-       NuevaVenta.setSelected(true);
-       jTFCodigo.setEnabled(true);
+        Pedido.setSelected(false);
+        NuevaVenta.setSelected(true);
+        jTFCodigo.setEnabled(true);
         cmbProducto.setEnabled(true);
-        jTFCategoria.setEnabled(true);
         jTFPrecio.setEnabled(true);
         jTFCantidad.setEnabled(true);
         btnAgregar.setEnabled(true);
@@ -947,6 +949,22 @@ public class PCajaVirtual extends javax.swing.JPanel {
         // TODO add your handling code here:
         x=jTable1.getSelectedRow();
     }//GEN-LAST:event_jTable1MouseClicked
+    Integer idCat;
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+            String sql="SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='"+cmbCategoria.getSelectedItem()+"'";
+            PreparedStatement cmd = con.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                idCat=ver.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        llenaComboBoxProductos();
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -954,6 +972,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JRadioButton Pedido;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbPedido;
     private javax.swing.JComboBox<String> cmbProducto;
@@ -978,7 +997,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCantidad;
-    private javax.swing.JTextField jTFCategoria;
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFCodigoP;
     private javax.swing.JTextField jTFPrecio;

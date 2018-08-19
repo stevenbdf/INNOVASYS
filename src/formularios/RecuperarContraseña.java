@@ -7,6 +7,8 @@ package formularios;
 
 import clases.verificaciones;
 import clases.recuperarContraseña;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -182,7 +184,14 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     String iv = "0123456789ABCDEF"; // vector de inicialización 
     String correo="";
     String contraseña="";
+    String text="";
+    public  String generateRandomText() {
+        SecureRandom random = new SecureRandom();
+        text = new BigInteger(25, random).toString(32);
+        System.out.println("Texto: "+text);
+        return text;
     
+    }
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
         recuperarContraseña obj = new recuperarContraseña();
@@ -233,18 +242,20 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                 }
             }else if(pasos==2){
                 if (jTFDatos.getText().equals(respuestas[1])) {
-                    JOptionPane.showMessageDialog(this,"Respuesta correcta, tu contraseña se ha enviado a tu correo");
+                    JOptionPane.showMessageDialog(this,"Respuesta correcta, se ha enviado un codigo a tu correo");
                     
                         
                         String destinatario = correo; //A quien le quieres escribir.
                         String asunto = "Correo Importante 'Recuperacion de Contraseña' ";
-                        String cuerpo = "Has recuperado tu contraseña con exito , tu contraseña es: "+contraseña;
+                        String cuerpo = "Para continuar con el proceso de recuperacion de contraseña, "
+                                + " \n ingresa el siguiente codigo en el sistema: "+generateRandomText();
                         
                         //evaluamos si se envio el correo
                         if (enviarConGMail(destinatario, asunto, cuerpo)) {
                             JOptionPane.showMessageDialog(this,"Enviado");
-                            btnContinuar.setEnabled(false);
-                            jTFDatos.setEnabled(false);
+                            jTFDatos.setText(null);
+                            lblTexto.setText("Ingresa el codigo que se ha enviado a tu correo");
+                            pasos++;
                         } else {
                             JOptionPane.showMessageDialog(this,"No enviado");
                         }
@@ -254,6 +265,12 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                         
                     
                     
+                }else if (pasos==3){
+                    if (text.equals(jTFDatos.getText())) {
+                    JOptionPane.showMessageDialog(this,"Tu contraseña es: "+contraseña);
+                    }else{
+                    JOptionPane.showMessageDialog(this,"Incorrecto, verifica el codigo");
+                    }
                 }else{
                     JOptionPane.showMessageDialog(this,"Respuesta incorrecta");
                 }

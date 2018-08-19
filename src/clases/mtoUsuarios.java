@@ -19,6 +19,48 @@ import javax.swing.JOptionPane;
 public class mtoUsuarios {
 
     /**
+     * @return the codigoRubro
+     */
+    public Integer getCodigoRubro() {
+        return codigoRubro;
+    }
+
+    /**
+     * @param codigoRubro the codigoRubro to set
+     */
+    public void setCodigoRubro(Integer codigoRubro) {
+        this.codigoRubro = codigoRubro;
+    }
+
+    /**
+     * @return the nombreRubro
+     */
+    public String getNombreRubro() {
+        return nombreRubro;
+    }
+
+    /**
+     * @param nombreRubro the nombreRubro to set
+     */
+    public void setNombreRubro(String nombreRubro) {
+        this.nombreRubro = nombreRubro;
+    }
+
+    /**
+     * @return the descripRubro
+     */
+    public String getDescripRubro() {
+        return descripRubro;
+    }
+
+    /**
+     * @param descripRubro the descripRubro to set
+     */
+    public void setDescripRubro(String descripRubro) {
+        this.descripRubro = descripRubro;
+    }
+
+    /**
      * @return the cn
      */
     public Connection getCn() {
@@ -142,14 +184,14 @@ public class mtoUsuarios {
     /**
      * @return the estadoP
      */
-    public Integer getEstadoP() {
+    public String getEstadoP() {
         return estadoP;
     }
 
     /**
      * @param estadoP the estadoP to set
      */
-    public void setEstadoP(Integer estadoP) {
+    public void setEstadoP(String estadoP) {
         this.estadoP = estadoP;
     }
 
@@ -518,8 +560,13 @@ public class mtoUsuarios {
     private String correoP;
     private Integer faxP;
     private String direccionP;
-    private Integer estadoP;
+    private String estadoP;
     private Integer idP;
+    
+    //atributos para rubros de proveedores
+    private Integer codigoRubro;
+    private String nombreRubro;
+    private String descripRubro;
     
     /**
      * Llaves necesarias para la combinacion e incriptacion de claves
@@ -965,15 +1012,16 @@ public class mtoUsuarios {
         boolean resp=false;
         try {
                 String sql = "INSERT INTO proveedor(idProveedor, nombreProveedor,"
-                        + " direccion, telefono, fax, correoElectronico, estado)"
-                        + "VALUES ((SELECT MAX(idProveedor)+1 FROM proveedor),?,?,?,?,?,?)";
+                        + " direccion, telefono, fax, correoElectronico, idRubro, estado)"
+                        + "VALUES ((SELECT MAX(idProveedor)+1 FROM proveedor),?,?,?,?,?,?, ?)";
                 PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1,getNombreP());
                 cmd.setString(2,getDireccionP());
                 cmd.setInt(3,getTelefonoP());
                 cmd.setInt(4,getFaxP());
                 cmd.setString(5,getCorreoP());
-                cmd.setInt(6,getEstadoP());
+                cmd.setInt(6,getCodigoRubro());
+                cmd.setString(7,getEstadoP());
                 
                 if (!cmd.execute()) {
                     resp=true;
@@ -988,15 +1036,16 @@ public class mtoUsuarios {
     public boolean modificarProveedor(){
         boolean resp=false;
         try {
-                String sql = "UPDATE proveedor SET nombreProveedor=?,direccion=?,telefono=?, fax=?,correoElectronico=?,estado=? WHERE idProveedor=?";
+                String sql = "UPDATE proveedor SET nombreProveedor=?,direccion=?,telefono=?, fax=?,correoElectronico=?, idRubro=?,  estado=? WHERE idProveedor=?";
                 PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1,getNombreP());
                 cmd.setString(2,getDireccionP());
                 cmd.setInt(3,getTelefonoP());
                 cmd.setInt(4,getFaxP());
                 cmd.setString(5,getCorreoP());
-                cmd.setInt(6,getEstadoP());
-                cmd.setInt(7,getIdP());
+                cmd.setInt(6,getCodigoRubro());
+                cmd.setString(7,getEstadoP());
+                cmd.setInt(8,getIdP());
                 
                 if (!cmd.execute()) {
                     resp=true;
@@ -1044,5 +1093,54 @@ public class mtoUsuarios {
             System.out.println(e.toString());
         }
         return ret;
+    }
+    
+    public boolean guardarRubro(){
+        boolean retorno=false;
+        try {
+            String sql ="INSERT INTO rubroProveedor(idRubro,nombreRubro,descripcion) VALUES "
+                    + " ((SELECT MAX(idRubro) FROM rubroProveedor)+1, ?, ?)";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setString(1,nombreRubro);
+            cmd.setString(2,descripRubro);
+            if (!cmd.execute()) {
+                retorno=true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return retorno;
+    }
+    
+    public boolean modificarRubro(){
+        boolean retorno=false;
+        try {
+            String sql ="UPDATE rubroProveedor SET nombreRubro=?, descripcion=? WHERE idRubro=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            cmd.setString(1,nombreRubro);
+            cmd.setString(2,descripRubro);
+            cmd.setInt(3,codigoRubro);
+            if (!cmd.execute()) {
+                retorno=true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return retorno;
+    }
+    public boolean eliminarRubro(){
+        boolean retorno=false;
+        try {
+            String sql ="DELETE FROM rubroProveedor WHERE idRubro=?";
+            PreparedStatement cmd = cn.prepareStatement(sql);
+            
+            cmd.setInt(1,codigoRubro);
+            if (!cmd.execute()) {
+                retorno=true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return retorno;
     }
 }

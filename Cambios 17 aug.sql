@@ -8,6 +8,8 @@ select * from pedido where idCliente=1 and idEstadoP=5
 SELECT * FROM detallePedido
 select * from estadoPedido where idEstadoP!=5
 
+
+
 select * from factura
 select * from detalleFactura
 select * from detallePedido
@@ -50,3 +52,24 @@ alter column fechaRegistro date
 
 alter table inventario 
 alter column fechaTransaccion date
+
+alter table datosEmpresa 
+alter column fechaConstitucion date
+
+create table rubroProveedor(
+idRubro int not null primary key,
+nombreRubro varchar(160) not null,
+descripcion varchar(250) not null
+);
+
+select * from proveedor
+alter table proveedor
+add idRubro int  references rubroProveedor(idRubro)
+
+alter table proveedor
+add estado varchar(65)
+
+update proveedor set estado='Activo'
+
+insert into rubroProveedor values(1,'Tarjetas Graficas','')
+update proveedor set idRubro=2 where idProveedor=2
