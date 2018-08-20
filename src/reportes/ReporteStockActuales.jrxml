@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteStockActuales" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b1a4d120-491b-451f-bb36-537108c91760">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia,
+stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE
+producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND
+idInventario=(select max(idInventario) from inventario where idProductos=(select idProductos from inventario group by idProductos))]]>
+	</queryString>
+	<field name="idInventario" class="java.lang.Integer"/>
+	<field name="nombreProducto" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="fechaTransaccion" class="java.sql.Date"/>
+	<field name="precioCompra" class="java.lang.Double"/>
+	<field name="porcentajeGanacia" class="java.lang.Double"/>
+	<field name="stock" class="java.lang.Integer"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="impuestos" class="java.lang.Double"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="55" height="20" uuid="6dced280-5403-41b5-9b54-862c3dcb038e"/>
+				<text><![CDATA[idInventario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="0" width="55" height="20" uuid="cb5fd152-7ef7-4b6e-a469-8c77204c0fcb"/>
+				<text><![CDATA[nombreProducto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="55" height="20" uuid="b91f8900-8ad6-4b08-a21f-bbf82a9d7ccd"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="0" width="55" height="20" uuid="997208e8-e22a-4459-b4fa-467e181c67a4"/>
+				<text><![CDATA[fechaTransaccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="55" height="20" uuid="abc0945d-b1a4-496e-bbbf-a97bb26f1c4c"/>
+				<text><![CDATA[precioCompra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="0" width="55" height="20" uuid="6086fbda-2701-470a-8895-c88f5f044ff4"/>
+				<text><![CDATA[porcentajeGanacia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="55" height="20" uuid="7f041e54-e4ef-4ed2-aa35-362026ded73d"/>
+				<text><![CDATA[stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="0" width="55" height="20" uuid="e4e3e5ba-6939-4801-9847-a4bb7f7d7744"/>
+				<text><![CDATA[cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="55" height="20" uuid="b9f0db57-046c-436b-bea0-371f4d97985f"/>
+				<text><![CDATA[impuestos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="0" width="55" height="20" uuid="f69c9084-8a2d-4801-8ec9-46c82f8f2d97"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="55" height="20" uuid="c0d75ba2-4209-434c-ba8c-02359c97b444"/>
+				<textFieldExpression><![CDATA[$F{idInventario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="0" width="55" height="20" uuid="44cf47f2-b753-4154-befd-9af7951b7e46"/>
+				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="55" height="20" uuid="fa8337c8-ebf1-48b3-a1b0-2e8701d0e36c"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="0" width="55" height="20" uuid="d91c7520-d6cf-4b0c-ada3-79b0ec224fc5"/>
+				<textFieldExpression><![CDATA[$F{fechaTransaccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="55" height="20" uuid="69d5486f-b570-4272-a8c3-ec8f815fe6ba"/>
+				<textFieldExpression><![CDATA[$F{precioCompra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="0" width="55" height="20" uuid="cf3b5540-e202-4195-a40e-37bd24eda8d0"/>
+				<textFieldExpression><![CDATA[$F{porcentajeGanacia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="55" height="20" uuid="82661e76-d9d8-4863-a627-ba7aca57bec8"/>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="55" height="20" uuid="c82421b4-a0fe-4b8f-99a4-60a1dbc40495"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="55" height="20" uuid="6ef9f0c5-35b8-4e76-8a58-98c677c0d8a0"/>
+				<textFieldExpression><![CDATA[$F{impuestos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="0" width="55" height="20" uuid="7e888e36-f070-4e55-add0-ce442967eff5"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

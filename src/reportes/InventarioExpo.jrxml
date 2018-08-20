@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioExpo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ab33b1f-e858-4162-8ba3-9a9903dcac0c">
-	<property name="ireport.zoom" value="17.87726480659099"/>
-	<property name="ireport.x" value="4668"/>
-	<property name="ireport.y" value="3988"/>
+	<property name="ireport.zoom" value="1.0245201830476154"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -48,15 +48,31 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<parameter name="consulta" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{orden}==0 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" ORDER BY precioCompra DESC"
+		<defaultValueExpression><![CDATA[$P{orden}==0 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado from inventario i, producto p, tipoTransaccion t WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" ORDER BY precioCompra DESC"
 :
-$P{orden}==1 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+"  ORDER BY precioCompra ASC"
+$P{orden}==1 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado from inventario i, producto p, tipoTransaccion t WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+"  ORDER BY precioCompra ASC"
 :
-$P{orden}==2 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra ASC"
+$P{orden}==2 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado from inventario i, producto p, tipoTransaccion t WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra ASC"
 :
-$P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"
+$P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado from inventario i, producto p, tipoTransaccion t WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"
 :
-"select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado, nombreEmpresa from inventario i, producto p, tipoTransaccion t, datosEmpresa WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"]]></defaultValueExpression>
+$P{orden}==8 ?
+"SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+$P{fechaM}+"' and '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND idProductos='"+$P{codigoP}+"'  ORDER BY idInventario DESC"
+:
+$P{orden}==9 ?
+"SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+$P{fechaM}+"' and '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND idProductos='"+$P{codigoP}+"'  ORDER BY idInventario ASC"
+:
+$P{orden}==10 ?
+"SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+$P{fechaM}+"' and '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT  ORDER BY idInventario DESC"
+:
+$P{orden}==11 ?
+"SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+" stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+$P{fechaM}+"' and '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT  ORDER BY idInventario ASC"
+:
+"select idInventario, p.nombreProducto, t.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado from inventario i, producto p, tipoTransaccion t WHERE i.idProductos=p.idProducto AND i.idTipoT=t.idTipoT AND fechaTransaccion BETWEEN '"+$P{fechaM}+"' AND '"+$P{fechaMayor}+"' AND stock>="+$P{Stock}+" AND i.idProductos= "+$P{codigoP}+" ORDER BY precioCompra DESC"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["G:\\2018\\Java 2018\\Pruebas Reportes\\"]]></defaultValueExpression>
@@ -81,13 +97,12 @@ $P{orden}==3 ? "select idInventario, p.nombreProducto, t.nombre, fechaTransaccio
 	<field name="nombreProducto" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="fechaTransaccion" class="java.sql.Date"/>
-	<field name="precioCompra" class="java.math.BigDecimal"/>
-	<field name="porcentajeGanacia" class="java.math.BigDecimal"/>
+	<field name="precioCompra" class="java.lang.Double"/>
+	<field name="porcentajeGanacia" class="java.lang.Double"/>
 	<field name="stock" class="java.lang.Integer"/>
 	<field name="cantidad" class="java.lang.Integer"/>
-	<field name="impuestos" class="java.math.BigDecimal"/>
+	<field name="impuestos" class="java.lang.Double"/>
 	<field name="estado" class="java.lang.String"/>
-	<field name="nombreEmpresa" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

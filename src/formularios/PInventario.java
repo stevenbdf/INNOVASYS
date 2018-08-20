@@ -148,6 +148,8 @@ public class PInventario extends javax.swing.JPanel {
         Fmax = new com.toedter.calendar.JDateChooser();
         jLabel19 = new javax.swing.JLabel();
         jTFStockMin1 = new javax.swing.JTextField();
+        Antiguo = new javax.swing.JRadioButton();
+        Reciente = new javax.swing.JRadioButton();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -436,7 +438,7 @@ public class PInventario extends javax.swing.JPanel {
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Precio compra:");
+        jLabel14.setText("Ordenar por:");
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -447,24 +449,24 @@ public class PInventario extends javax.swing.JPanel {
         rdAlto.setBackground(new java.awt.Color(102, 102, 102));
         rdAlto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         rdAlto.setForeground(new java.awt.Color(255, 255, 255));
-        rdAlto.setText("Mas Alto");
+        rdAlto.setText("Precio Alto");
         rdAlto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdAltoActionPerformed(evt);
             }
         });
-        jPanel4.add(rdAlto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        jPanel4.add(rdAlto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         rdBajo.setBackground(new java.awt.Color(102, 102, 102));
         rdBajo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         rdBajo.setForeground(new java.awt.Color(255, 255, 255));
-        rdBajo.setText("Mas Bajo");
+        rdBajo.setText("Precio Bajo");
         rdBajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBajoActionPerformed(evt);
             }
         });
-        jPanel4.add(rdBajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
+        jPanel4.add(rdBajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
         jTFProductoEspecifico.setBackground(new java.awt.Color(204, 204, 204));
         jTFProductoEspecifico.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -488,7 +490,7 @@ public class PInventario extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 70, 30));
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 70, 30));
 
         jScrollPane2.setViewportView(jTable2);
 
@@ -539,7 +541,7 @@ public class PInventario extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Stock Min:");
-        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
 
         jTFStockMin1.setBackground(new java.awt.Color(204, 204, 204));
         jTFStockMin1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -548,7 +550,29 @@ public class PInventario extends javax.swing.JPanel {
                 jTFStockMin1KeyTyped(evt);
             }
         });
-        jPanel4.add(jTFStockMin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 82, 30));
+        jPanel4.add(jTFStockMin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 82, 30));
+
+        Antiguo.setBackground(new java.awt.Color(102, 102, 102));
+        Antiguo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Antiguo.setForeground(new java.awt.Color(255, 255, 255));
+        Antiguo.setText("Mas Antiguo");
+        Antiguo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AntiguoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(Antiguo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, -1, -1));
+
+        Reciente.setBackground(new java.awt.Color(102, 102, 102));
+        Reciente.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Reciente.setForeground(new java.awt.Color(255, 255, 255));
+        Reciente.setText("Mas Reciente");
+        Reciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecienteActionPerformed(evt);
+            }
+        });
+        jPanel4.add(Reciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
@@ -606,8 +630,11 @@ public class PInventario extends javax.swing.JPanel {
 
     private void rdAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAltoActionPerformed
         // TODO add your handling code here:
+        Reciente.setSelected(false);
         rdAlto.setSelected(true);
-        rdBajo.setSelected(false);
+        rdBajo.setSelected(false); 
+        Antiguo.setSelected(false);
+       
     }//GEN-LAST:event_rdAltoActionPerformed
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
@@ -939,7 +966,7 @@ public class PInventario extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (jTFStockMin1.getText().isEmpty() || (rdAlto.isSelected()==false && rdBajo.isSelected()==false)) {
+        if (jTFStockMin1.getText().isEmpty() ) {
             JOptionPane.showMessageDialog(this,"Error campos vacios");
         }else{
             jTFProductoEspecifico.setEnabled(true);
@@ -956,39 +983,41 @@ public class PInventario extends javax.swing.JPanel {
                 }         
             jTable2.setModel(setFilasReportes(modeloTablaReportes,0,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin1.getText()),0));
             }
+                     
+            
+            else if (Reciente.isSelected()) {
+                int filas = modeloTablaReportes.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaReportes.removeRow(0);
+                }         
+            jTable2.setModel(setFilasReportes(modeloTablaReportes,10,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin1.getText()),0));
+            }
+            else if (Antiguo.isSelected()) {
+                int filas = modeloTablaReportes.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaReportes.removeRow(0);
+                }         
+            jTable2.setModel(setFilasReportes(modeloTablaReportes,11,verificar.getFecha(Fmin),verificar.getFecha(Fmax),Integer.valueOf(jTFStockMin1.getText()),0));
+            }
             
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rdBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBajoActionPerformed
         // TODO add your handling code here:
+        Reciente.setSelected(false);
         rdAlto.setSelected(false);
+         
+        Antiguo.setSelected(false);
         rdBajo.setSelected(true);
     }//GEN-LAST:event_rdBajoActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        String path ="";
+       
         try {
             Conexion con = new Conexion();
-//            //establecemos la ruta donde esta el reportes
-//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
-//            //se decodifica por algun caracter especial
-//            path = URLDecoder.decode(path,"UTF-8");
-//            System.out.println("path: "+path);
-//            //Se crea la conexion
-//            
-//            //Se crean los parametros
-//            Map parametros = new HashMap();
-//            parametros.put("Nombre","Steven Diaz");
-//            //Se crea el objeto reporte
-//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
-//            //se crea el objeto de impresion del reporte 
-//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
-//            //ahora se crea el visor, donde se muestra el reporte
-//            JasperViewer visor = new JasperViewer(imprimir, false);
-//            visor.setTitle("Reporte de proyectos e integrantes");
-//            visor.setVisible(true);
+
             
             
             String archivo= getClass().getResource("/reportes/InventarioExpo.jrxml").getPath();
@@ -1002,6 +1031,10 @@ public class PInventario extends javax.swing.JPanel {
             if (jTFProductoEspecifico.getText().isEmpty()) {
                 if (rdAlto.isSelected()) {
                     orden = 1;
+                }else if(Reciente.isSelected()){
+                    orden=10;
+                }else if(Antiguo.isSelected()){
+                    orden=11;
                 }
                 
                 parametros.put("orden", orden);
@@ -1010,6 +1043,10 @@ public class PInventario extends javax.swing.JPanel {
                     orden = 2;
                 }else if (rdBajo.isSelected()){
                     orden = 3;
+                }else if(Reciente.isSelected()){
+                    orden=8;
+                }else if(Antiguo.isSelected()){
+                    orden=9;
                 }
                 parametros.put("orden", orden);
                 parametros.put("codigoP",Integer.valueOf(jTFProductoEspecifico.getText()));
@@ -1017,13 +1054,13 @@ public class PInventario extends javax.swing.JPanel {
             System.out.println("Orden :"+orden);
             
             try {
-                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                String sql ="SELECT numRegistro, nombreEmpresa , domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
                 PreparedStatement cmd = con.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
                    parametros.put("#registro",ver.getInt(1));
-                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("nombreEmpresa", ver.getString(2));
                    parametros.put("domicilio",ver.getString(3));
                    parametros.put("fechaConstitucion",ver.getString(4));
                    parametros.put("imagen",ver.getString(5));
@@ -1061,7 +1098,7 @@ public class PInventario extends javax.swing.JPanel {
     private void jTFProductoEspecificoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFProductoEspecificoKeyReleased
         // TODO add your handling code here:
         try {
-            if (jTFProductoEspecifico.getText().isEmpty() || jTFProductoEspecifico.getText().equals(" ") ) {
+            if (jTFProductoEspecifico.getText().isEmpty() || jTFProductoEspecifico.getText().equals(" ")) {
                 if (rdAlto.isSelected()) {
                     int filas = modeloTablaReportes.getRowCount();
                     for (int i = 0; filas > i; i++) {
@@ -1074,6 +1111,18 @@ public class PInventario extends javax.swing.JPanel {
                         modeloTablaReportes.removeRow(0);
                     }
                     jTable2.setModel(setFilasReportes(modeloTablaReportes, 0, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), 0));
+                } else if (Reciente.isSelected()) {
+                    int filas = modeloTablaReportes.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaReportes.removeRow(0);
+                    }
+                    jTable2.setModel(setFilasReportes(modeloTablaReportes, 10, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), 0));
+                } else if (Antiguo.isSelected()) {
+                    int filas = modeloTablaReportes.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaReportes.removeRow(0);
+                    }
+                    jTable2.setModel(setFilasReportes(modeloTablaReportes, 11, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), 0));
                 }
             } else {
                 if (rdAlto.isSelected()) {
@@ -1088,6 +1137,18 @@ public class PInventario extends javax.swing.JPanel {
                         modeloTablaReportes.removeRow(0);
                     }
                     jTable2.setModel(setFilasReportes(modeloTablaReportes, 3, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), Integer.valueOf(jTFProductoEspecifico.getText())));
+                } else if (Reciente.isSelected()) {
+                    int filas = modeloTablaReportes.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaReportes.removeRow(0);
+                    }
+                    jTable2.setModel(setFilasReportes(modeloTablaReportes, 8, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), Integer.valueOf(jTFProductoEspecifico.getText())));
+                } else if (Antiguo.isSelected()) {
+                    int filas = modeloTablaReportes.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaReportes.removeRow(0);
+                    }
+                    jTable2.setModel(setFilasReportes(modeloTablaReportes, 9, verificar.getFecha(Fmin), verificar.getFecha(Fmax), Integer.valueOf(jTFStockMin1.getText()), Integer.valueOf(jTFProductoEspecifico.getText())));
                 }
             }
             
@@ -1095,6 +1156,22 @@ public class PInventario extends javax.swing.JPanel {
             System.out.println(e.toString());
         }
     }//GEN-LAST:event_jTFProductoEspecificoKeyReleased
+
+    private void AntiguoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AntiguoActionPerformed
+        // TODO add your handling code here:
+        Reciente.setSelected(false);
+        rdAlto.setSelected(false);
+        rdBajo.setSelected(false); 
+        Antiguo.setSelected(true);
+    }//GEN-LAST:event_AntiguoActionPerformed
+
+    private void RecienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecienteActionPerformed
+        // TODO add your handling code here:
+        Reciente.setSelected(true);
+        rdAlto.setSelected(false);
+        rdBajo.setSelected(false); 
+        Antiguo.setSelected(false);
+    }//GEN-LAST:event_RecienteActionPerformed
     public DefaultTableModel setFilasReportes(DefaultTableModel  model, int tipo, String fecha1, String fecha2, int stock, int codigoP)
     {
         Conexion cn = new Conexion();
@@ -1116,6 +1193,27 @@ public class PInventario extends javax.swing.JPanel {
                 sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
                     " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND idProductos='"+codigoP+"'  ORDER BY precioCompra DESC";
                 break;
+            
+            case 8:
+                //Por inventario alto
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND idProductos='"+codigoP+"'  ORDER BY idInventario DESC";
+                break;
+            case 9:
+                //Por Inventario bajo
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT AND idProductos='"+codigoP+"'  ORDER BY idInventario ASC";
+                break;
+            case 10:
+                //Por inventario alto sin nombre
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT  ORDER BY idInventario DESC";
+                break;
+            case 11:
+                //Por Inventario bajo sin nombre
+                sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
+                    " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT  ORDER BY idInventario ASC";
+                break; 
             default:
                 sql="SELECT idInventario, producto.nombreProducto , tipoTransaccion.nombre, fechaTransaccion, precioCompra, porcentajeGanacia, " +
                     " stock, cantidad, impuestos, estado FROM inventario , tipoTransaccion, producto WHERE fechaTransaccion BETWEEN '"+fecha1+"' and '"+fecha2+"' AND stock>="+stock+" AND producto.idProducto=inventario.idProductos AND tipoTransaccion.idTipoT=inventario.idTipoT ORDER BY precioCompra DESC";
@@ -1150,8 +1248,10 @@ public class PInventario extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Antiguo;
     private com.toedter.calendar.JDateChooser Fmax;
     private com.toedter.calendar.JDateChooser Fmin;
+    private javax.swing.JRadioButton Reciente;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
