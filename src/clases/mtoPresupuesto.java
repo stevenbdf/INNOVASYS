@@ -137,6 +137,7 @@ public class mtoPresupuesto {
                 retorno=true;
             }
         } catch (Exception e) {
+            System.out.println("AQUI1: mtoGuardar"+e);
             try{
                 System.out.println(e.toString());
                 String sql = "INSERT INTO pedido(idPedido, fecha, fecha_vencimiento, idEstadoP, idCliente, montoTotal) "
@@ -152,6 +153,7 @@ public class mtoPresupuesto {
                     retorno = true;
                 }
             }catch (Exception ex){  
+                System.out.println("AQUI2: mtoGuardar"+ex);
             }
             
         }

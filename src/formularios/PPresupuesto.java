@@ -68,7 +68,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         
         jTFCodigoP.setEditable(false);
         jTFPrecio.setEditable(false);
-        
+        jTFStock.setEditable(false);
         Calendar hoy = Calendar.getInstance();
         int año = hoy.get(Calendar.YEAR);
         hoy.add(Calendar.MONTH,1);
@@ -202,13 +202,13 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
+        jTextField15 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
         cmbProducto = new javax.swing.JComboBox<>();
@@ -219,6 +219,8 @@ public class PPresupuesto extends javax.swing.JPanel {
         lblVence = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         cmbCategoria = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        jTFStock = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -290,7 +292,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 jTFCantidadKeyTyped(evt);
             }
         });
-        add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 97, 30));
+        add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 97, 30));
 
         jTFPrecio.setBackground(new java.awt.Color(204, 204, 204));
         jTFPrecio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -304,7 +306,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 jTFPrecioKeyTyped(evt);
             }
         });
-        add(jTFPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 110, 30));
+        add(jTFPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 90, 30));
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -371,12 +373,12 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Precio ($):");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Cantidad (Unds):");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 100, -1));
+        jLabel19.setText("Stock:");
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 40, -1));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
@@ -396,10 +398,6 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Procesador:");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jTextField11.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 52, -1));
 
         jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -427,6 +425,10 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Discos Duros:");
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        jTextField15.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jPanel1.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 52, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 160, 150));
 
@@ -506,6 +508,15 @@ public class PPresupuesto extends javax.swing.JPanel {
             }
         });
         add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 150, 30));
+
+        jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Cantidad (Unds):");
+        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, -1));
+
+        jTFStock.setBackground(new java.awt.Color(204, 204, 204));
+        jTFStock.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        add(jTFStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
@@ -768,6 +779,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         String[] datos = obj.consultarProducto(jTFCodigoP.getText());
         stockGeneral= Integer.valueOf(datos[3]);
         System.out.println("stock g: "+stockGeneral);
+        jTFStock.setText(""+stockGeneral);
         double precio = (Double.parseDouble(datos[1])) + (Double.parseDouble(datos[2]));
         double precio2= (Double.parseDouble(datos[0])) * (precio/100) ;
         double precio3= precio2 +(Double.parseDouble(datos[0]));
@@ -898,19 +910,21 @@ public class PPresupuesto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCantidad;
     private javax.swing.JTextField jTFCodigoP;
     private javax.swing.JTextField jTFPrecio;
+    private javax.swing.JTextField jTFStock;
     private javax.swing.JTextField jTFSubTotal;
     private javax.swing.JTextField jTFTotal;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
     private javax.swing.JLabel lblVence;
     private javax.swing.JLabel lblhelp;
     // End of variables declaration//GEN-END:variables

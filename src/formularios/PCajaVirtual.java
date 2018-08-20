@@ -64,6 +64,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jTFCodigo.setEditable(false);
         jTFCodigoP.setEditable(false);
         jTFPrecio.setEditable(false);
+        jTFStock.setEditable(false);
         try {
             
         } catch (Exception e) {
@@ -132,6 +133,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
         Pedido = new javax.swing.JRadioButton();
         jLabel17 = new javax.swing.JLabel();
         cmbCategoria = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jTFStock = new javax.swing.JTextField();
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -288,7 +291,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cantidad:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
 
         jTFCantidad.setBackground(new java.awt.Color(204, 204, 204));
         jTFCantidad.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -297,7 +300,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 jTFCantidadKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 97, 30));
+        jPanel1.add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 97, 30));
 
         btnAgregar.setBackground(new java.awt.Color(51, 51, 51));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -446,6 +449,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         NuevaVenta.setBackground(new java.awt.Color(102, 102, 102));
         NuevaVenta.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         NuevaVenta.setForeground(new java.awt.Color(204, 204, 204));
+        NuevaVenta.setSelected(true);
         NuevaVenta.setText("Nueva Venta");
         NuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,6 +481,15 @@ public class PCajaVirtual extends javax.swing.JPanel {
             }
         });
         jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 160, 30));
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Stock:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, -1));
+
+        jTFStock.setBackground(new java.awt.Color(204, 204, 204));
+        jTFStock.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jPanel1.add(jTFStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 70, 30));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
@@ -821,6 +834,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
             if (ver.next()) {
                 jTFCodigoP.setText(String.valueOf(ver.getInt(1)));
                 categoria=ver.getString(2);
+                
             }
         } catch (Exception e) {
             System.out.println("Aqui");
@@ -831,6 +845,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         String[] datos = obj.consultarProducto(jTFCodigoP.getText());
         stockGeneral= Integer.valueOf(datos[3]);
         System.out.println("stock g: "+stockGeneral);
+        jTFStock.setText(""+stockGeneral);
         double precio = (Double.parseDouble(datos[1])) + (Double.parseDouble(datos[2]));
         double precio2= (Double.parseDouble(datos[0])) * (precio/100) ;
         double precio3= precio2 +(Double.parseDouble(datos[0]));
@@ -987,6 +1002,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1000,6 +1016,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFCodigoP;
     private javax.swing.JTextField jTFPrecio;
+    private javax.swing.JTextField jTFStock;
     private javax.swing.JTextField jTFSubTotal;
     private javax.swing.JTextField jTFTotal;
     private javax.swing.JTable jTable1;

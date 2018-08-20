@@ -119,6 +119,8 @@ public class PProductos extends javax.swing.JPanel {
         btnModificar = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTFPuntaje = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         lblCodigoC = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
@@ -221,6 +223,7 @@ public class PProductos extends javax.swing.JPanel {
         });
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, 30));
 
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -269,8 +272,8 @@ public class PProductos extends javax.swing.JPanel {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Proveedor:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
+        jLabel8.setText("BenchMark:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 70, 30));
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 155, 30));
@@ -410,6 +413,15 @@ public class PProductos extends javax.swing.JPanel {
             }
         });
         jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("Proveedor:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
+
+        jTFPuntaje.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.add(jTFPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 100, 30));
 
         jTabbedPane1.addTab("Gestion de Productos", jPanel1);
 
@@ -582,6 +594,11 @@ public class PProductos extends javax.swing.JPanel {
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton10MouseClicked(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 90, -1));
@@ -941,32 +958,41 @@ public class PProductos extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        if (codigoC.equals("")) {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        if (Integer.valueOf(codigoC)>=1 && Integer.valueOf(codigoC)<=9) {
+            JOptionPane.showMessageDialog(this,"Categorias de sistema, se utilizan para la construccion de sistema");
         }else{
-            mtoProductos obj = new mtoProductos();
-            obj.setCodigoC(Integer.valueOf(codigoC));
-            if (obj.eliminarCategoria()) {
-                JOptionPane.showMessageDialog(this,"Categoria Eliminada Correctamente");
-                int filas = modeloTablaCategoria.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaCategoria.removeRow(0);
-                }         
-                obj.setFilasCategorias(modeloTablaCategoria, 0, "");
-                lblCodigoC.setText("Codigo:");
-                jTFNombreC.setText(null);
-                jTADescripcion.setText(null);
-                rdSi.setSelected(false);
-                rdNo.setSelected(false);
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al eliminar categoria");
+            if (codigoC.equals("")) {
+                JOptionPane.showMessageDialog(this, "Error campos vacios");
+            } else {
+                mtoProductos obj = new mtoProductos();
+                obj.setCodigoC(Integer.valueOf(codigoC));
+                if (obj.eliminarCategoria()) {
+                    JOptionPane.showMessageDialog(this, "Categoria Eliminada Correctamente");
+                    int filas = modeloTablaCategoria.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaCategoria.removeRow(0);
+                    }
+                    obj.setFilasCategorias(modeloTablaCategoria, 0, "");
+                    lblCodigoC.setText("Codigo:");
+                    jTFNombreC.setText(null);
+                    jTADescripcion.setText(null);
+                    rdSi.setSelected(false);
+                    rdNo.setSelected(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar categoria");
+                }
             }
-        }
+       }
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         // TODO add your handling code here:
+        if (Integer.valueOf(codigoC)>=1 && Integer.valueOf(codigoC)<=9) {
+            JOptionPane.showMessageDialog(this,"Categorias de sistema, se utilizan para la construccion de sistema");
+        }else{
+            
+        
         if (jTFNombreC.getText().isEmpty() || (rdSi.isSelected()== false && rdNo.isSelected()==false)) {
             JOptionPane.showMessageDialog(this,"Error campos vacios");
         }else{
@@ -974,10 +1000,10 @@ public class PProductos extends javax.swing.JPanel {
             obj.setCodigoC(Integer.valueOf(codigoC));
             obj.setNombreC(jTFNombreC.getText());
             obj.setDescripC(jTADescripcion.getText());
-            if (rdSi.isSelected()==true) {
+            if (rdSi.isSelected()) {
                 obj.setV3D(1);
             }else{
-                obj.setV3D(2);
+                obj.setV3D(0);
             }
             if (obj.modificarCategoria()) {
                 JOptionPane.showMessageDialog(this,"Categoria Modificada Correctamente");
@@ -989,6 +1015,7 @@ public class PProductos extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(this,"Error al modificar categoria");
             }
+        }
         }
     }//GEN-LAST:event_jButton10MouseClicked
 
@@ -1040,6 +1067,7 @@ public class PProductos extends javax.swing.JPanel {
             obj.setNombreP(jTFNombreP.getText());
             obj.setImagen(String.valueOf(fichero));
             obj.setDescripP(jTADescripcionP.getText());
+            obj.setPuntajeBenck(Integer.valueOf(jTFPuntaje.getText()));
             try {
                 String sql = "SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='" + cmbCategoria.getSelectedItem() + "'";
                 PreparedStatement cmd = cn.conectar().prepareStatement(sql);
@@ -1087,6 +1115,7 @@ public class PProductos extends javax.swing.JPanel {
             obj.setNombreP(jTFNombreP.getText());
             obj.setImagen(String.valueOf(fichero));
             obj.setDescripP(jTADescripcionP.getText());
+            obj.setPuntajeBenck(Integer.valueOf(jTFPuntaje.getText()));
             try {
                 String sql = "SELECT idCategoria FROM categoriaProducto WHERE nombreCategoria='" + cmbCategoria.getSelectedItem() + "'";
                 PreparedStatement cmd = cn.conectar().prepareStatement(sql);
@@ -1202,6 +1231,7 @@ public class PProductos extends javax.swing.JPanel {
         jTADescripcionP.setText(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (2))));
         cmbCategoria.setSelectedItem(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (4))));
         cmbProveedor.setSelectedItem(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (3))));
+        jTFPuntaje.setText(String.valueOf(modeloTablaProducto.getValueAt(jTable1.getSelectedRow(), (5))));
         try {
             Conexion cn = new Conexion();
             String sql ="SELECT imagen FROM producto WHERE idProducto = '"+codigoP+"'";
@@ -1210,6 +1240,9 @@ public class PProductos extends javax.swing.JPanel {
             if (ver.next()) {
                ImageIcon icon = new ImageIcon(ver.getString(1));
                 ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+                
+                File fich = new File(ver.getString(1));
+                fichero = fich;
                 lblFoto.setIcon(icono);
             }
         } catch (Exception e) {
@@ -1253,6 +1286,10 @@ public class PProductos extends javax.swing.JPanel {
         jRadioButton7.setSelected(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -1266,6 +1303,7 @@ public class PProductos extends javax.swing.JPanel {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1292,6 +1330,7 @@ public class PProductos extends javax.swing.JPanel {
     private javax.swing.JTextField jTFBuscarC;
     private javax.swing.JTextField jTFNombreC;
     private javax.swing.JTextField jTFNombreP;
+    private javax.swing.JTextField jTFPuntaje;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;

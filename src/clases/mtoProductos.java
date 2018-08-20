@@ -21,6 +21,20 @@ import javax.swing.table.DefaultTableModel;
 public class mtoProductos {
 
     /**
+     * @return the puntajeBenck
+     */
+    public Integer getPuntajeBenck() {
+        return puntajeBenck;
+    }
+
+    /**
+     * @param puntajeBenck the puntajeBenck to set
+     */
+    public void setPuntajeBenck(Integer puntajeBenck) {
+        this.puntajeBenck = puntajeBenck;
+    }
+
+    /**
      * @return the codigoP
      */
     public Integer getCodigoP() {
@@ -153,6 +167,7 @@ public class mtoProductos {
     private String imagen;
     private Integer codigoProveedor;
     private Integer codigoCategoria;
+    private Integer puntajeBenck;
     
     
     File dest;
@@ -308,19 +323,19 @@ public class mtoProductos {
                 String sql = "";
                 switch (tipo) {
                     case 1:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE idProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark FROM producto , proveedor, categoriaProducto WHERE idProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     case 2:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark FROM producto , proveedor, categoriaProducto WHERE nombreProducto like '" + valores + "%' AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     case 3:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '" + valores + "%'  AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark FROM producto , proveedor, categoriaProducto WHERE categoriaProducto.nombreCategoria like '" + valores + "%'  AND producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                     default:
-                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
+                        sql = "SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor";
                         break;
                 }
-                Object dato[] = new Object[5];
+                Object dato[] = new Object[6];
                 Conexion con = new Conexion();
                 PreparedStatement us = cn.prepareStatement(sql);
                 ResultSet res = us.executeQuery();
@@ -348,7 +363,7 @@ public class mtoProductos {
     
     public String[] getColumnasProducto()
     {
-        String columna[] = {"CODIGO","NOMBRE","DESCRIPCION", "PROVEEDOR","CATEGORIA"};
+        String columna[] = {"CODIGO","NOMBRE","DESCRIPCION", "PROVEEDOR","CATEGORIA","PUNTAJE"};
         return columna;
     }
     
@@ -363,14 +378,15 @@ public class mtoProductos {
     public boolean guardarProducto(){
         boolean retorno=false;
         try {
-            String sql="INSERT INTO producto(idProducto, nombreProducto, descripcion, imagen, idProveedor, idCategoria) "
-                    + " VALUES ((SELECT MAX(idProducto) FROM producto)+1, ?, ?, ?, ? ,?)";
+            String sql="INSERT INTO producto(idProducto, nombreProducto, descripcion, imagen, idProveedor, idCategoria,puntajeBenchMark) "
+                    + " VALUES ((SELECT MAX(idProducto) FROM producto)+1, ?, ?, ?, ? ,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreP);
             cmd.setString(2,descripP);
             cmd.setString(3,imagen);
             cmd.setInt(4,codigoProveedor);
             cmd.setInt(5,codigoCategoria);
+            cmd.setInt(6,puntajeBenck);
             if (!cmd.execute()) {
                 retorno=true;
    
@@ -386,14 +402,15 @@ public class mtoProductos {
     public boolean modificarProducto(){
         boolean retorno=false;
         try {
-            String sql="UPDATE producto SET nombreProducto=?, descripcion=?, imagen=?, idProveedor=?, idCategoria=? WHERE idProducto=?";
+            String sql="UPDATE producto SET nombreProducto=?, descripcion=?, imagen=?, idProveedor=?, idCategoria=?,puntajeBenchMark=? WHERE idProducto=?";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1,nombreP);
             cmd.setString(2,descripP);
             cmd.setString(3,imagen);
             cmd.setInt(4,codigoProveedor);
             cmd.setInt(5,codigoCategoria);
-            cmd.setInt(6,codigoP);
+            cmd.setInt(6,puntajeBenck);
+            cmd.setInt(7,codigoP);
             if (!cmd.execute()) {
                 retorno=true;
             }

@@ -59,7 +59,8 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             String logito=obj.getLogo();
             System.out.println(logito);
             try{
-                System.out.println("Logito: "+logito);
+                
+                datos=logito;
             ImageIcon icon = new ImageIcon(logito);
                 ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(130, 110, Image.SCALE_DEFAULT));
                 logo.setIcon(icono);

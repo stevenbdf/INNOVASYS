@@ -64,10 +64,9 @@ public class mtoVentas {
         } 
         return model;
     }
-    public DefaultTableModel buscar(DefaultTableModel  model, String palabra,int num,int n)
+    public DefaultTableModel buscar(DefaultTableModel  model, String palabra,int num)
     {   
-        if(n==0)
-        {
+        
             switch(num)
             {
                 case 0:
@@ -80,20 +79,8 @@ public class mtoVentas {
                     sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal from factura, cliente,usuarioEmpleado where factura.idCliente = cliente.idCliente AND factura.idEmpleado = usuarioEmpleado.idEmpleado and montoTotal >= "+palabra;
                 break;
             }
-        }
-        else if(n==1)
-        {
-            switch(num)
-            {
-                case 0:
-                    sql="select noCreditoFiscal, creditoFiscal.fecha, usuarioEmpleado.nombres,cliente.nombre,monto_total from creditoFiscal, cliente,usuarioEmpleado where creditoFiscal.idCliente = cliente.idCliente AND creditoFiscal.idEmpleado = usuarioEmpleado.idEmpleado and noCreditoFiscal Like '"+palabra+"%'";
-                break;
-                case 1:
-                    sql="select noCreditoFiscal, creditoFiscal.fecha, usuarioEmpleado.nombres,cliente.nombre,monto_total from creditoFiscal, cliente,usuarioEmpleado where creditoFiscal.idCliente = cliente.idCliente AND creditoFiscal.idEmpleado = usuarioEmpleado.idEmpleado and usuarioEmpleado.nombres Like '"+palabra+"%'";
-                break;
-                
-            }
-        }
+        
+        
         Object dato[] = new Object[5];
         try{
             PreparedStatement us = cn.conectar().prepareStatement(sql);
@@ -119,20 +106,29 @@ public class mtoVentas {
         } 
         return model;
     }
-    public DefaultTableModel buscarFecha(DefaultTableModel  model, String fecha1,String fecha2,int num)
+    public DefaultTableModel buscarFecha(DefaultTableModel  model, String fecha1,String fecha2,String empleado,int tipo)
     {
-        switch(num)
-        {
-            case 0:
+        
+          
                 System.out.println("fecha1: "+fecha1);
                 System.out.println("fecha2: "+fecha2);
-                sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal from factura, cliente,usuarioEmpleado where factura.idCliente = cliente.idCliente AND factura.idEmpleado = usuarioEmpleado.idEmpleado AND factura.fecha BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
-            break;
-            case 1:
-                sql="select noCreditoFiscal, creditoFiscal.fecha, usuarioEmpleado.nombres,cliente.nombre,monto_total from creditoFiscal, cliente,usuarioEmpleado where creditoFiscal.idCliente = cliente.idCliente AND creditoFiscal.idEmpleado = usuarioEmpleado.idEmpleado AND creditoFiscal.fecha <= '"+fecha2+"'";
-            break;
-        }
-        Object dato[] = new Object[5];
+                switch (tipo){
+                    case 0:
+                        sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal "
+                            + " from factura, cliente,usuarioEmpleado "
+                            + " where factura.idCliente = cliente.idCliente AND "
+                                + " factura.idEmpleado = usuarioEmpleado.idEmpleado AND factura.fecha BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
+                        break;
+                    case 1:
+                        sql="select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente.nombre,montoTotal "
+                            + " from factura, cliente,usuarioEmpleado "
+                            + " where factura.idCliente = cliente.idCliente AND "
+                                + " factura.idEmpleado = usuarioEmpleado.idEmpleado AND factura.fecha BETWEEN '"+fecha1+"' AND '"+fecha2+"' AND usuarioEmpleado.nombres Like '"+empleado+"%'";
+                        break;
+                }
+                
+           
+            Object dato[] = new Object[5];
         try{
             PreparedStatement us = cn.conectar().prepareStatement(sql);
             ResultSet res = us.executeQuery();

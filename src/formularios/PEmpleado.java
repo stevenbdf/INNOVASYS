@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package formularios;
+
 import clases.*;
 import java.awt.Image;
 import java.io.File;
@@ -48,30 +49,31 @@ public class PEmpleado extends javax.swing.JPanel {
      * Creacion de modelo de lista
      */
     DefaultListModel modeloLista = new DefaultListModel();
-    String correo="";
-    private void llenarList(int tipo,String valores) {
+    String correo = "";
+
+    private void llenarList(int tipo, String valores) {
         try {
-            String sql3="";
-                switch(tipo){
-                    case 1:
-                        sql3 = "SELECT correoElectronico FROM usuarioEmpleado WHERE correoElectronico like '"+valores+"%'";
+            String sql3 = "";
+            switch (tipo) {
+                case 1:
+                    sql3 = "SELECT correoElectronico FROM usuarioEmpleado WHERE correoElectronico like '" + valores + "%'";
                     break;
-                    default:
-                        sql3 = "SELECT correoElectronico FROM usuarioEmpleado";
+                default:
+                    sql3 = "SELECT correoElectronico FROM usuarioEmpleado";
                     break;
-                }
-                
-                PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
-                ResultSet ver3 = cmd3.executeQuery();
-                while(ver3.next()){        
-                       modeloLista.addElement(ver3.getObject(1));
-                }                  
+            }
+
+            PreparedStatement cmd3 = cn.conectar().prepareStatement(sql3);
+            ResultSet ver3 = cmd3.executeQuery();
+            while (ver3.next()) {
+                modeloLista.addElement(ver3.getObject(1));
+            }
         } catch (SQLException e) {
             System.out.println("Primera");
             System.out.println(e.toString());
         }
     }
-    
+
     /**
      * Creacion de modelos de tablas
      */
@@ -96,12 +98,12 @@ public class PEmpleado extends javax.swing.JPanel {
     String cleartext = "";
     String NombreE = "", CodigoEstado = "", NombreD = "", CodigoDocumento = "", DescripcionE = "";
     String CodigoEmpleado = "";
-    String nombreEmpleadoDE = "",CodigoDocumentoDD;
+    String nombreEmpleadoDE = "", CodigoDocumentoDD;
     File fichero;
-    String datos=String.valueOf(fichero);
-    
+    String datos = String.valueOf(fichero);
+
     public PEmpleado(String correoE) {
-        
+
         modeloTablaEstados = new DefaultTableModel(null, getColumnasEstado());
         setFilasEstado(0, "");
         modeloTablaDocumentos = new DefaultTableModel(null, getColumnasDocumentos());
@@ -119,13 +121,13 @@ public class PEmpleado extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
-        correo=correoE;
-        ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
-       ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
+        correo = correoE;
+        ImageIcon foto0 = new ImageIcon(getClass().getResource("/images/help.png"));
+        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
 //       lblhelp.setIcon(icono0);
 //       lblhelp1.setIcon(icono0);
 //       lblhelp2.setIcon(icono0);
-       
+
         llenarList(0, "");
         llenaComboBoxTipoUsuario();
         llenaComboBoxEstado();
@@ -134,6 +136,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFBuscarDocumento.setEnabled(false);
         jTFBuscarEmpleado.setEnabled(false);
     }
+
     private void llenaComboBoxTipoUsuario() {
         modeloComboTipoUsuario.removeAllElements();
         try {
@@ -152,6 +155,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
+
     private void llenaComboBoxDocumentos() {
         modeloComboDocumentos.removeAllElements();
         try {
@@ -170,6 +174,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
+
     private void llenaComboBoxEstado() {
         modeloComboEstado.removeAllElements();
         try {
@@ -188,35 +193,36 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
+
     private String[] getColumnasEstado() {
         String columnas[] = new String[]{"CODIGO", "NOMBRE", "DESCRIPCION"};
         return columnas;
     }
-    
+
     private String[] getColumnasEmpleado() {
         String columnas[] = new String[]{"CODIGO", "TIPO", "NOMBRES", "APELLIDOS", "TELEFONO", "CORREO", "DIRECCION", "ESTADO"};
         return columnas;
     }
-    
+
     private String[] getColumnasDocumentos() {
         String columnas[] = new String[]{"CODIGO", "NOMBRE", "ESTADO"};
         return columnas;
     }
-    
+
     private String[] getColumnasDocumentosEmpleados() {
-        String columnas[] = new String[]{"CODIGO", "NOMBRE", "EMPLEADO","DESCRIPCION"};
+        String columnas[] = new String[]{"CODIGO", "NOMBRE", "EMPLEADO", "DESCRIPCION"};
         return columnas;
     }
-    
-    private void setFilasEstado(int tipo,String valores) {
+
+    private void setFilasEstado(int tipo, String valores) {
         try {
-            String sql="";
+            String sql = "";
             switch (tipo) {
                 case 1:
-                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE idEstado like '"+valores+"%'";
+                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE idEstado like '" + valores + "%'";
                     break;
                 case 2:
-                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE nombreEstado like '"+valores+"%'";
+                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE nombreEstado like '" + valores + "%'";
                     break;
                 default:
                     sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado";
@@ -237,19 +243,19 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
-    
-    private void setFilasDocumentos(int tipo,String valores) {
+
+    private void setFilasDocumentos(int tipo, String valores) {
         try {
-            String sql="";
+            String sql = "";
             switch (tipo) {
                 case 1:
-                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE idDocumento like '"+valores+"%'";
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE idDocumento like '" + valores + "%'";
                     break;
                 case 2:
-                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE nombre like '"+valores+"%'";
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE nombre like '" + valores + "%'";
                     break;
                 case 3:
-                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE estado like '"+valores+"%'";
+                    sql = "SELECT idDocumento, nombre, estado FROM documento WHERE estado like '" + valores + "%'";
                     break;
                 default:
                     sql = "SELECT idDocumento, nombre, estado FROM documento";
@@ -270,21 +276,21 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
-    
-    private void setFilasEmpleado(int tipo,String valores) {
+
+    private void setFilasEmpleado(int tipo, String valores) {
         try {
-            String sql="";
+            String sql = "";
             switch (tipo) {
                 //Codigo Empleado
                 case 1:
                     sql = "SELECT idEmpleado, tipoUsuario.nombreTipo"
                             + ", nombres, apellidos, telefono, correoElectronico,direccion, estadoEmpleado.nombreEstado "
-                            + "FROM usuarioEmpleado , tipoUsuario, estadoEmpleado  WHERE idEmpleado like '"+valores+"%' AND estadoEmpleado.idEstado=usuarioEmpleado.idEstado AND tipoUsuario.idTipo= usuarioEmpleado.idTipo";
+                            + "FROM usuarioEmpleado , tipoUsuario, estadoEmpleado  WHERE idEmpleado like '" + valores + "%' AND estadoEmpleado.idEstado=usuarioEmpleado.idEstado AND tipoUsuario.idTipo= usuarioEmpleado.idTipo";
                     break;
                 //Nombre
                 case 2:
                     sql = "SELECT idEmpleado, tipoUsuario.nombreTipo, nombres, apellidos, telefono, correoElectronico,direccion, estadoEmpleado.nombreEstado  "
-                            + "FROM usuarioEmpleado , tipoUsuario, estadoEmpleado  WHERE nombres like '"+valores+"%' AND estadoEmpleado.idEstado=usuarioEmpleado.idEstado AND tipoUsuario.idTipo= usuarioEmpleado.idTipo";
+                            + "FROM usuarioEmpleado , tipoUsuario, estadoEmpleado  WHERE nombres like '" + valores + "%' AND estadoEmpleado.idEstado=usuarioEmpleado.idEstado AND tipoUsuario.idTipo= usuarioEmpleado.idTipo";
                     break;
                 default:
                     sql = "SELECT idEmpleado, tipoUsuario.nombreTipo, nombres, apellidos, telefono, correoElectronico,direccion, estadoEmpleado.nombreEstado "
@@ -307,7 +313,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
-    
+
     private void setFilasDocumentosEmpleados(int tipo, String valores) {
         try {
             String sql = "";
@@ -337,6 +343,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -846,6 +853,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFBuscarCorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFBuscarCorreo.setToolTipText("");
         jTFBuscarCorreo.setPreferredSize(new java.awt.Dimension(78, 30));
+        jTFBuscarCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFBuscarCorreoActionPerformed(evt);
+            }
+        });
         jTFBuscarCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFBuscarCorreoKeyReleased(evt);
@@ -998,7 +1010,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1241,7 +1253,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 670, 210));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1494,7 +1506,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
         // TODO add your handling code here:
         int resultado;
@@ -1511,7 +1523,7 @@ public class PEmpleado extends javax.swing.JPanel {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
             }
-        }       
+        }
     }//GEN-LAST:event_btnExaminarActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -1524,140 +1536,140 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnAgregarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoMouseEntered
         // TODO add your handling code here:
-         btnAgregarEmpleado.setContentAreaFilled(true);
+        btnAgregarEmpleado.setContentAreaFilled(true);
     }//GEN-LAST:event_btnAgregarEmpleadoMouseEntered
 
     private void btnAgregarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoMouseExited
 
-        btnAgregarEmpleado.setContentAreaFilled(false);      
+        btnAgregarEmpleado.setContentAreaFilled(false);
     }//GEN-LAST:event_btnAgregarEmpleadoMouseExited
 
     private void btnModificarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoMouseEntered
         // TODO add your handling code here:
-         btnModificarEmpleado.setContentAreaFilled(true);
+        btnModificarEmpleado.setContentAreaFilled(true);
     }//GEN-LAST:event_btnModificarEmpleadoMouseEntered
 
     private void btnModificarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoMouseExited
         // TODO add your handling code here:
-         btnModificarEmpleado.setContentAreaFilled(false);
+        btnModificarEmpleado.setContentAreaFilled(false);
     }//GEN-LAST:event_btnModificarEmpleadoMouseExited
 
     private void btnLimpiarCamposMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarCamposMouseEntered
         // TODO add your handling code here:
-         btnLimpiarCampos.setContentAreaFilled(true);
+        btnLimpiarCampos.setContentAreaFilled(true);
     }//GEN-LAST:event_btnLimpiarCamposMouseEntered
 
     private void btnLimpiarCamposMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarCamposMouseExited
         // TODO add your handling code here:
-         btnLimpiarCampos.setContentAreaFilled(false);
+        btnLimpiarCampos.setContentAreaFilled(false);
     }//GEN-LAST:event_btnLimpiarCamposMouseExited
 
     private void btnExaminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExaminarMouseEntered
         // TODO add your handling code here:
-         btnExaminar.setContentAreaFilled(true);
+        btnExaminar.setContentAreaFilled(true);
     }//GEN-LAST:event_btnExaminarMouseEntered
 
     private void btnExaminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExaminarMouseExited
         // TODO add your handling code here:
-         btnExaminar.setContentAreaFilled(false);
+        btnExaminar.setContentAreaFilled(false);
     }//GEN-LAST:event_btnExaminarMouseExited
 
     private void btnGenerarReporteEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleadoMouseEntered
         // TODO add your handling code here:
-         btnGenerarReporteEmpleado.setContentAreaFilled(true);
+        btnGenerarReporteEmpleado.setContentAreaFilled(true);
     }//GEN-LAST:event_btnGenerarReporteEmpleadoMouseEntered
 
     private void btnGenerarReporteEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleadoMouseExited
         // TODO add your handling code here:
-         btnGenerarReporteEmpleado.setContentAreaFilled(false);
+        btnGenerarReporteEmpleado.setContentAreaFilled(false);
     }//GEN-LAST:event_btnGenerarReporteEmpleadoMouseExited
 
     private void btnAgregarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseEntered
         // TODO add your handling code here:
-         btnAgregarD.setContentAreaFilled(true);
+        btnAgregarD.setContentAreaFilled(true);
     }//GEN-LAST:event_btnAgregarDMouseEntered
 
     private void btnAgregarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseExited
         // TODO add your handling code here:
-         btnAgregarD.setContentAreaFilled(false);
+        btnAgregarD.setContentAreaFilled(false);
     }//GEN-LAST:event_btnAgregarDMouseExited
 
     private void btnModificarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseEntered
         // TODO add your handling code here:
-         btnModificarD.setContentAreaFilled(true);
+        btnModificarD.setContentAreaFilled(true);
     }//GEN-LAST:event_btnModificarDMouseEntered
 
     private void btnModificarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseExited
         // TODO add your handling code here:
-         btnModificarD.setContentAreaFilled(false);
+        btnModificarD.setContentAreaFilled(false);
     }//GEN-LAST:event_btnModificarDMouseExited
 
     private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
         // TODO add your handling code here:
-         jButton10.setContentAreaFilled(true);
+        jButton10.setContentAreaFilled(true);
     }//GEN-LAST:event_jButton10MouseEntered
 
     private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
         // TODO add your handling code here:
-         jButton10.setContentAreaFilled(false);
+        jButton10.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton10MouseExited
 
     private void btnAgregarEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEMouseEntered
         // TODO add your handling code here:
-         btnAgregarE.setContentAreaFilled(true);
+        btnAgregarE.setContentAreaFilled(true);
     }//GEN-LAST:event_btnAgregarEMouseEntered
 
     private void btnAgregarEMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEMouseExited
         // TODO add your handling code here:
-         btnAgregarE.setContentAreaFilled(false);
+        btnAgregarE.setContentAreaFilled(false);
     }//GEN-LAST:event_btnAgregarEMouseExited
 
     private void btnModificarEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEMouseEntered
         // TODO add your handling code here:
-         btnModificarE.setContentAreaFilled(true);
+        btnModificarE.setContentAreaFilled(true);
     }//GEN-LAST:event_btnModificarEMouseEntered
 
     private void btnModificarEMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEMouseExited
         // TODO add your handling code here:
-         btnModificarE.setContentAreaFilled(false);
+        btnModificarE.setContentAreaFilled(false);
     }//GEN-LAST:event_btnModificarEMouseExited
 
     private void jButton11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseEntered
         // TODO add your handling code here:
-         jButton11.setContentAreaFilled(true);
+        jButton11.setContentAreaFilled(true);
     }//GEN-LAST:event_jButton11MouseEntered
 
     private void jButton11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseExited
         // TODO add your handling code here:
-         jButton11.setContentAreaFilled(false);
+        jButton11.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton11MouseExited
 
     private void btnAgregarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarEMouseClicked
         // TODO add your handling code here:
         if (jTFNombreE.getText().isEmpty() || jTFDescripcionE.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");
+            JOptionPane.showMessageDialog(this, "Error campos vacios");
         } else {
-            mtoUsuarios objeto= new mtoUsuarios();
+            mtoUsuarios objeto = new mtoUsuarios();
             objeto.setNombreE(jTFNombreE.getText());
             objeto.setDescripcionE(jTFDescripcionE.getText());
             if (objeto.guardarEstadoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Datos guardados correctamente");
+                JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
                 jTFNombreE.setText(null);
                 jTFDescripcionE.setText(null);
                 int filas = modeloTablaEstados.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaEstados.removeRow(0);
                 }
-                setFilasEstado(0,"");
-            }          
+                setFilasEstado(0, "");
+            }
         }
     }//GEN-LAST:event_btnAgregarEMouseClicked
-    
+
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         // TODO add your handling code here:
-        CodigoEstado=String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 0));
-        lblCodigoEstado.setText("CODIGO ESTADO: "+CodigoEstado);
-        NombreE=String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 1));
+        CodigoEstado = String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 0));
+        lblCodigoEstado.setText("CODIGO ESTADO: " + CodigoEstado);
+        NombreE = String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 1));
         jTFNombreE.setText(NombreE);
         jTFDescripcionE.setText(String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 2)));
     }//GEN-LAST:event_jTable3MouseClicked
@@ -1665,14 +1677,14 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnModificarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEMouseClicked
         // TODO add your handling code here:
         if (jTFNombreE.getText().isEmpty() || jTFDescripcionE.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");
+            JOptionPane.showMessageDialog(this, "Error campos vacios");
         } else {
-            mtoUsuarios objeto= new mtoUsuarios();
+            mtoUsuarios objeto = new mtoUsuarios();
             objeto.setCodigoE(Integer.valueOf(CodigoEstado));
             objeto.setNombreE(jTFNombreE.getText());
             objeto.setDescripcionE(jTFDescripcionE.getText());
             if (objeto.modificarEstadoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
+                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 lblCodigoEstado.setText("CODIGO ESTADO");
                 jTFNombreE.setText(null);
                 jTFDescripcionE.setText(null);
@@ -1680,36 +1692,36 @@ public class PEmpleado extends javax.swing.JPanel {
                 for (int i = 0; filas > i; i++) {
                     modeloTablaEstados.removeRow(0);
                 }
-                setFilasEstado(0,"");
-            }          
+                setFilasEstado(0, "");
+            }
         }
     }//GEN-LAST:event_btnModificarEMouseClicked
 
     private void jTFBuscarEstadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEstadoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTFBuscarEstado.getText().length() <11 )) {
+                && (jTFBuscarEstado.getText().length() < 11)) {
 
         } else {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jTFBuscarEstadoKeyTyped
-    int tipo_estado=0;
+    int tipo_estado = 0;
     private void rdNombreEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreEstadoActionPerformed
         // TODO add your handling code here:
         rdCodigoEstado.setSelected(false);
         jTFBuscarEstado.setEnabled(true);
-        tipo_estado=2;
+        tipo_estado = 2;
     }//GEN-LAST:event_rdNombreEstadoActionPerformed
 
     private void rdCodigoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoEstadoActionPerformed
         // TODO add your handling code here:
         rdNombreEstado.setSelected(false);
         jTFBuscarEstado.setEnabled(true);
-        tipo_estado=1;
+        tipo_estado = 1;
     }//GEN-LAST:event_rdCodigoEstadoActionPerformed
 
     private void jTFBuscarEstadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEstadoKeyReleased
@@ -1731,15 +1743,15 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void jTFNombreEKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEKeyReleased
         // TODO add your handling code here:
-        mtoUsuarios objeto=new mtoUsuarios();
+        mtoUsuarios objeto = new mtoUsuarios();
         objeto.setNombreE(jTFNombreE.getText());
-        String datos[]=objeto.consultarEstado();
+        String datos[] = objeto.consultarEstado();
         if (jTFNombreE.getText().equals(datos[0])) {
-            CodigoEstado=datos[2];
-            lblCodigoEstado.setText("CODIGO ESTADO: "+datos[2]);
-            DescripcionE=datos[1];
+            CodigoEstado = datos[2];
+            lblCodigoEstado.setText("CODIGO ESTADO: " + datos[2]);
+            DescripcionE = datos[1];
             jTFDescripcionE.setText(datos[1]);
-        }else{
+        } else {
             lblCodigoEstado.setText("CODIGO ESTADO");
         }
     }//GEN-LAST:event_jTFNombreEKeyReleased
@@ -1747,11 +1759,11 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnEliminarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEMouseClicked
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este estado?", "Confirmacion",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
-            JOptionPane.showMessageDialog(this,"Estado no eliminado");
-        }else{
-            if (lblCodigoEstado.getText().equals("CODIGO ESTADO") ||lblCodigoEstado.getText().equals("CODIGO ESTADO: ")) {
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response == JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this, "Estado no eliminado");
+        } else {
+            if (lblCodigoEstado.getText().equals("CODIGO ESTADO") || lblCodigoEstado.getText().equals("CODIGO ESTADO: ")) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
             } else {
                 mtoUsuarios objeto = new mtoUsuarios();
@@ -1770,7 +1782,7 @@ public class PEmpleado extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Error existen empleados relacionados a este estado. \n Elimina o modifica antes a los empleados relacionados para poder eliminar este estado.");
                 }
             }
-        } 
+        }
     }//GEN-LAST:event_btnEliminarEMouseClicked
 
     private void btnEliminarEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEMouseEntered
@@ -1785,11 +1797,11 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Instanciar siempre las variable tipo String
         int response = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este documento?", "Confirmacion",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.NO_OPTION || response==JOptionPane.CLOSED_OPTION) {
-            JOptionPane.showMessageDialog(this,"Documento no eliminado");
-        }else{
-            if (lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO") || lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO: ") ) {
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.NO_OPTION || response == JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(this, "Documento no eliminado");
+        } else {
+            if (lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO") || lblCodigoDocumento.getText().equals("CODIGO DOCUMENTO: ")) {
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningun estado para eliminar");
             } else {
                 mtoUsuarios objeto = new mtoUsuarios();
@@ -1807,7 +1819,7 @@ public class PEmpleado extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Error existen empleados relacionados a este documento. \n Elimina o modifica antes a los empleados relacionados para poder eliminar este documento.");
                 }
             }
-        } 
+        }
     }//GEN-LAST:event_btnEliminarDMouseClicked
 
     private void btnEliminarDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseEntered
@@ -1817,13 +1829,13 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnEliminarDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarDMouseExited
-    int tipo=0;
+    int tipo = 0;
     private void rdNombreDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNombreDocumentoActionPerformed
         // TODO add your handling code here:
         rdCodigoDocumento.setSelected(false);
         rdEstadoDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
-        tipo=1;
+        tipo = 1;
     }//GEN-LAST:event_rdNombreDocumentoActionPerformed
 
     private void rdCodigoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoDocumentoActionPerformed
@@ -1831,7 +1843,7 @@ public class PEmpleado extends javax.swing.JPanel {
         rdNombreDocumento.setSelected(false);
         rdEstadoDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
-        tipo=3;
+        tipo = 3;
     }//GEN-LAST:event_rdCodigoDocumentoActionPerformed
 
     private void rdEstadoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdEstadoDocumentoActionPerformed
@@ -1839,9 +1851,9 @@ public class PEmpleado extends javax.swing.JPanel {
         rdCodigoDocumento.setSelected(false);
         rdNombreDocumento.setSelected(false);
         jTFBuscarDocumento.setEnabled(true);
-        tipo=2;
+        tipo = 2;
     }//GEN-LAST:event_rdEstadoDocumentoActionPerformed
-    
+
     private void jTFBuscarDocumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarDocumentoKeyReleased
         // TODO add your handling code here:
         if (rdCodigoDocumento.isSelected()) {
@@ -1850,13 +1862,13 @@ public class PEmpleado extends javax.swing.JPanel {
                 modeloTablaDocumentos.removeRow(0);
             }
             setFilasDocumentos(1, jTFBuscarDocumento.getText());
-        }else if (rdNombreDocumento.isSelected()) {
+        } else if (rdNombreDocumento.isSelected()) {
             int filas = modeloTablaDocumentos.getRowCount();
             for (int i = 0; filas > i; i++) {
                 modeloTablaDocumentos.removeRow(0);
             }
             setFilasDocumentos(2, jTFBuscarDocumento.getText());
-        }else if (rdEstadoDocumento.isSelected()) {
+        } else if (rdEstadoDocumento.isSelected()) {
             int filas = modeloTablaDocumentos.getRowCount();
             for (int i = 0; filas > i; i++) {
                 modeloTablaDocumentos.removeRow(0);
@@ -1868,20 +1880,20 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnAgregarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDMouseClicked
         // TODO add your handling code here:
         if (jTFNombreD.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");
-        }else{
+            JOptionPane.showMessageDialog(this, "Error campos vacios");
+        } else {
             mtoUsuarios objeto = new mtoUsuarios();
             objeto.setNombreD(jTFNombreD.getText());
             objeto.setEstadoD(String.valueOf(cmbEstadoD.getSelectedItem()));
             if (objeto.guardarDocumento()) {
-                JOptionPane.showMessageDialog(this,"Datos guardados correctamente");
+                JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
                 jTFNombreD.setText(null);
                 cmbEstadoD.setSelectedIndex(0);
                 int filas = modeloTablaDocumentos.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaDocumentos.removeRow(0);
                 }
-                setFilasDocumentos(0,"");
+                setFilasDocumentos(0, "");
             }
         }
     }//GEN-LAST:event_btnAgregarDMouseClicked
@@ -1889,14 +1901,14 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnModificarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDMouseClicked
         // TODO add your handling code here:
         if (jTFNombreD.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");
+            JOptionPane.showMessageDialog(this, "Error campos vacios");
         } else {
             mtoUsuarios objeto = new mtoUsuarios();
             objeto.setCodigoD(Integer.valueOf(CodigoDocumento));
             objeto.setNombreD(jTFNombreD.getText());
             objeto.setEstadoD(String.valueOf(cmbEstadoD.getSelectedItem()));
             if (objeto.modificarDocumento()) {
-                JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
+                JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 jTFNombreD.setText(null);
                 int filas = modeloTablaDocumentos.getRowCount();
                 for (int i = 0; filas > i; i++) {
@@ -1909,30 +1921,30 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        CodigoDocumento=String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 0));
-        lblCodigoDocumento.setText("CODIGO DOCUMENTO: "+CodigoDocumento);
-        NombreD=String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 1));
+        CodigoDocumento = String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 0));
+        lblCodigoDocumento.setText("CODIGO DOCUMENTO: " + CodigoDocumento);
+        NombreD = String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 1));
         jTFNombreD.setText(NombreD);
         cmbEstadoD.setSelectedItem(String.valueOf(modeloTablaDocumentos.getValueAt(jTable2.getSelectedRow(), 2)));
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jTFNombreDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyReleased
         // TODO add your handling code here:
-        mtoUsuarios objeto=new mtoUsuarios();
+        mtoUsuarios objeto = new mtoUsuarios();
         objeto.setNombreD(jTFNombreD.getText());
-        String datos[]=objeto.consultarDocumento();
+        String datos[] = objeto.consultarDocumento();
         if (jTFNombreD.getText().equals(datos[0])) {
-            CodigoDocumento=datos[2];
-            lblCodigoDocumento.setText("CODIGO DOCUMENTO: "+datos[2]);
+            CodigoDocumento = datos[2];
+            lblCodigoDocumento.setText("CODIGO DOCUMENTO: " + datos[2]);
             cmbEstadoD.setSelectedItem(datos[1]);
-        }else if(jTFNombreD.getText().equals("")){
+        } else if (jTFNombreD.getText().equals("")) {
             lblCodigoDocumento.setText("CODIGO DOCUMENTO");
         }
     }//GEN-LAST:event_jTFNombreDKeyReleased
 
     private void jTFNombreDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTFNombreDKeyPressed
 
     private void btnAgregarEmpleadoAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoAncestorRemoved
@@ -1942,63 +1954,63 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         // TODO add your handling code here:
         verificaciones obj = new verificaciones();
-        
+
         mtoUsuarios objeto = new mtoUsuarios();
-        if(obj.vcorreo(jTFCorreo.getText())){
-        objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
-        objeto.setApellidoEmpleado(jTFApellido.getText());
-        objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
-        objeto.setCorreoEmpleado(jTFCorreo.getText());
-        cleartext=jTFContraseña.getText();
+        if (obj.vcorreo(jTFCorreo.getText())) {
+            objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
+            objeto.setApellidoEmpleado(jTFApellido.getText());
+            objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
+            objeto.setCorreoEmpleado(jTFCorreo.getText());
+            cleartext = jTFContraseña.getText();
 //        objeto.setContraseñaEmpleado(cleartext);
-        try {
-            objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
-        } catch (Exception ex) {
-            Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
-        objeto.setDireccion(jTFDireccion.getText());
-        objeto.setImagen(String.valueOf(fichero));
-        objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
-        objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
-        objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
-        objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
-        try {
-            //0 TipoUsuario, 1 Estado
-            String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
-            
-            String[]consultas ={"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='"+valores[0]+"'","SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='"+valores[1]+"'"};
-            PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
-            PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
-            ResultSet ver1 = cmd1.executeQuery();
-            ResultSet ver2 = cmd2.executeQuery();
-            if (ver1.next()) {
-                objeto.setCodigoTipo(ver1.getInt(1));
+            try {
+                objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
+            } catch (Exception ex) {
+                Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (ver2.next()) {
-                objeto.setCodigoEstado(ver2.getInt(1));
-            }
-            cmd1.close();
-            cmd2.close();
-            con.conectar().close();
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-        
-        if (objeto.guardarEmpleado()) {
-            JOptionPane.showMessageDialog(this,"Usuario Empleado guardado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(this,"Error Usuario Empleado no guardado");
-        }
-        int filas = modeloTablaEmpleados.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaEmpleados.removeRow(0);
+
+            objeto.setDireccion(jTFDireccion.getText());
+            objeto.setImagen(String.valueOf(fichero));
+            objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
+            objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
+            objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
+            objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
+            try {
+                //0 TipoUsuario, 1 Estado
+                String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
+
+                String[] consultas = {"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='" + valores[0] + "'", "SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='" + valores[1] + "'"};
+                PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
+                PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
+                ResultSet ver1 = cmd1.executeQuery();
+                ResultSet ver2 = cmd2.executeQuery();
+                if (ver1.next()) {
+                    objeto.setCodigoTipo(ver1.getInt(1));
                 }
-                setFilasEmpleado(0,"");
-            
-        }else{
-             JOptionPane.showMessageDialog(this,"Ingrese un correo con formato valido");
-        }    
+                if (ver2.next()) {
+                    objeto.setCodigoEstado(ver2.getInt(1));
+                }
+                cmd1.close();
+                cmd2.close();
+                con.conectar().close();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString());
+            }
+
+            if (objeto.guardarEmpleado()) {
+                JOptionPane.showMessageDialog(this, "Usuario Empleado guardado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Usuario Empleado no guardado");
+            }
+            int filas = modeloTablaEmpleados.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaEmpleados.removeRow(0);
+            }
+            setFilasEmpleado(0, "");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un correo con formato valido");
+        }
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -2013,7 +2025,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFDireccion.setText(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (6))));
         cmbEstado.setSelectedItem(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (7))));
         try {
-            verificaciones obj = new verificaciones(); 
+            verificaciones obj = new verificaciones();
             String sql = "SELECT imagen, contraseña, pregunta1, respuesta1, pregunta2, respuesta2 "
                     + "FROM usuarioEmpleado WHERE idEmpleado='" + modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0)) + "'";
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
@@ -2036,60 +2048,60 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoActionPerformed
         // TODO add your handling code here:
-       mtoUsuarios objeto = new mtoUsuarios();
+        mtoUsuarios objeto = new mtoUsuarios();
         verificaciones obj = new verificaciones();
-        if(obj.vcorreo(jTFCorreo.getText())){
-        objeto.setCodigoEmpleado(Integer.valueOf(CodigoEmpleado));
-        objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
-        objeto.setApellidoEmpleado(jTFApellido.getText());
-        objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
-        objeto.setCorreoEmpleado(jTFCorreo.getText());
-        cleartext=jTFContraseña.getText();
-        try {
-            objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
-        } catch (Exception ex) {
-            Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
-        objeto.setDireccion(jTFDireccion.getText());
-        objeto.setImagen(String.valueOf(fichero));
-        objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
-        objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
-        objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
-        objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
-        try {
-            //0 TipoUsuario, 1 Estado
-            String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
-            for(String e: valores){
-                System.out.println("Valores "+e);
+        if (obj.vcorreo(jTFCorreo.getText())) {
+            objeto.setCodigoEmpleado(Integer.valueOf(CodigoEmpleado));
+            objeto.setNombreEmpleado(jTFNombreEmpleado.getText());
+            objeto.setApellidoEmpleado(jTFApellido.getText());
+            objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
+            objeto.setCorreoEmpleado(jTFCorreo.getText());
+            cleartext = jTFContraseña.getText();
+            try {
+                objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
+            } catch (Exception ex) {
+                Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String[]consultas ={"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='"+valores[0]+"'","SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='"+valores[1]+"'"};
-            PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
-            PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
-            ResultSet ver1 = cmd1.executeQuery();
-            ResultSet ver2 = cmd2.executeQuery();
-            if (ver1.next()) {
-                objeto.setCodigoTipo(ver1.getInt(1));
-            }
-            if (ver2.next()) {
-                objeto.setCodigoEstado(ver2.getInt(1));
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-        
-        if (objeto.modificarEmpleado()) {
-            JOptionPane.showMessageDialog(this,"Usuario Empleado modificado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(this,"Error Usuario Empleado no modificado");
-        }
-        int filas = modeloTablaEmpleados.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaEmpleados.removeRow(0);
+
+            objeto.setDireccion(jTFDireccion.getText());
+            objeto.setImagen(String.valueOf(fichero));
+            objeto.setPregunta1(String.valueOf(cmdPregunta1.getSelectedItem()));
+            objeto.setRespuesta1(String.valueOf(jTFRespuesta1.getText()));
+            objeto.setPregunta2(String.valueOf(cmdPregunta2.getSelectedItem()));
+            objeto.setRespuesta2(String.valueOf(jTFRespuesta2.getText()));
+            try {
+                //0 TipoUsuario, 1 Estado
+                String[] valores = {String.valueOf(cmbTipoUsuario.getSelectedItem()), String.valueOf(cmbEstado.getSelectedItem())};
+                for (String e : valores) {
+                    System.out.println("Valores " + e);
                 }
-                setFilasEmpleado(0,"");
-        }else{
-             JOptionPane.showMessageDialog(this,"Ingrese un correo con formato valido");
+                String[] consultas = {"SELECT idTipo FROM tipoUsuario WHERE nombreTipo='" + valores[0] + "'", "SELECT idEstado FROM estadoEmpleado WHERE nombreEstado='" + valores[1] + "'"};
+                PreparedStatement cmd1 = con.conectar().prepareStatement(consultas[0]);
+                PreparedStatement cmd2 = con.conectar().prepareStatement(consultas[1]);
+                ResultSet ver1 = cmd1.executeQuery();
+                ResultSet ver2 = cmd2.executeQuery();
+                if (ver1.next()) {
+                    objeto.setCodigoTipo(ver1.getInt(1));
+                }
+                if (ver2.next()) {
+                    objeto.setCodigoEstado(ver2.getInt(1));
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.toString());
+            }
+
+            if (objeto.modificarEmpleado()) {
+                JOptionPane.showMessageDialog(this, "Usuario Empleado modificado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Usuario Empleado no modificado");
+            }
+            int filas = modeloTablaEmpleados.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modeloTablaEmpleados.removeRow(0);
+            }
+            setFilasEmpleado(0, "");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un correo con formato valido");
         }
     }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
 
@@ -2119,11 +2131,11 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
         // TODO add your handling code here:
-        Integer codE= Integer.valueOf(CodigoEmpleado);
-        if (codE!=null || codE!=0) {
+        Integer codE = Integer.valueOf(CodigoEmpleado);
+        if (codE != null || codE != 0) {
             try {
                 Conexion cn = new Conexion();
-                String sql="DELETE FROM usuarioEmpleado WHERE idEmpleado="+codE;
+                String sql = "DELETE FROM usuarioEmpleado WHERE idEmpleado=" + codE;
                 PreparedStatement cmd = cn.conectar().prepareStatement(sql);
                 if (!cmd.execute()) {
                     JOptionPane.showMessageDialog(this, "Empleado eliminado");
@@ -2133,11 +2145,11 @@ public class PEmpleado extends javax.swing.JPanel {
                     }
                     setFilasEmpleado(0, "");
                 }
-                
+
             } catch (Exception e) {
-                System.out.println("eliminar e: "+e);
+                System.out.println("eliminar e: " + e);
             }
-            
+
         }
     }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
 
@@ -2145,14 +2157,14 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
         rdCodigoEmpleado.setSelected(false);
         jTFBuscarEmpleado.setEnabled(true);
-        tipo2=2;
+        tipo2 = 2;
     }//GEN-LAST:event_rdNombreEmpleadoActionPerformed
 
     private void rdCodigoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCodigoEmpleadoActionPerformed
         // TODO add your handling code here:
         rdNombreEmpleado.setSelected(false);
         jTFBuscarEmpleado.setEnabled(true);
-        tipo2=1;
+        tipo2 = 1;
     }//GEN-LAST:event_rdCodigoEmpleadoActionPerformed
 
     private void jTFBuscarEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEmpleadoKeyReleased
@@ -2187,8 +2199,8 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnAgregarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1ActionPerformed
         // TODO add your handling code here:
         if (jTFDescripcionDE.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this," Error campos vacios");
-        }else{
+            JOptionPane.showMessageDialog(this, " Error campos vacios");
+        } else {
             mtoUsuarios obj = new mtoUsuarios();
             Conexion cn = new Conexion();
             try {
@@ -2198,30 +2210,29 @@ public class PEmpleado extends javax.swing.JPanel {
                 if (ver.next()) {
                     obj.setCodigoDD(ver.getInt(1));
                 }
-                
-                System.out.println("Correo: "+nombreEmpleadoDE);
+
+                System.out.println("Correo: " + nombreEmpleadoDE);
                 String sql2 = "SELECT idEmpleado FROM usuarioEmpleado WHERE correoElectronico='" + nombreEmpleadoDE + "'";
                 PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
                 ResultSet ver2 = cmd2.executeQuery();
                 if (ver2.next()) {
                     obj.setCodigoDE(ver2.getInt(1));
                 }
-                
-                
+
             } catch (Exception e) {
                 System.out.println("Boton");
                 System.out.println(e.toString());
             }
             obj.setDescrip(jTFDescripcionDE.getText());
             if (obj.guardarDocumentoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Documento agregado correctamente al empleado: "+nombreEmpleadoDE);
+                JOptionPane.showMessageDialog(this, "Documento agregado correctamente al empleado: " + nombreEmpleadoDE);
                 int filas = modeloTablaDocumentosEmpleados.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaDocumentosEmpleados.removeRow(0);
                 }
-                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al guardar documentos");
+                setFilasDocumentosEmpleados(1, nombreEmpleadoDE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al guardar documentos");
             }
         }
     }//GEN-LAST:event_btnAgregarEmpleado1ActionPerformed
@@ -2235,7 +2246,7 @@ public class PEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnReportMouseExited
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-       String path ="";
+        String path = "";
         try {
             Conexion con = new Conexion();
 //            //establecemos la ruta donde esta el reportes
@@ -2256,47 +2267,44 @@ public class PEmpleado extends javax.swing.JPanel {
 //            JasperViewer visor = new JasperViewer(imprimir, false);
 //            visor.setTitle("Reporte de proyectos e integrantes");
 //            visor.setVisible(true);
-            
-            
-            String archivo= getClass().getResource("/reportes/ReporteDocumentos.jrxml").getPath();
-            archivo = URLDecoder.decode(archivo,"UTF-8");
+
+            String archivo = getClass().getResource("/reportes/ReporteDocumentos.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-            parametros.put("imagen","F:\\2018\\Ejercicio2.png");            
-            parametros.put("nombre",String.valueOf(jList1.getSelectedValue())); 
+            parametros.put("imagen", "F:\\2018\\Ejercicio2.png");
+            parametros.put("nombre", String.valueOf(jList1.getSelectedValue()));
             try {
-                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
                 PreparedStatement cmd = con.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
-                   parametros.put("#registro",ver.getInt(1));
-                   parametros.put("nombreEmpresa",ver.getString(2));
-                   parametros.put("domicilio",ver.getString(3));
-                   parametros.put("fechaConstitucion",ver.getString(4));
-                   parametros.put("imagen",ver.getString(5));
-                   parametros.put("telefono",ver.getString(6));
-                   parametros.put("correo",ver.getString(7));
-                   parametros.put("propietario",ver.getString(8));
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
-            parametros.put("autor", correo); 
+
+            parametros.put("autor", correo);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
- 
+
             JasperViewer visor = new JasperViewer(print, false);
             visor.setTitle("Reporte de Documento de Empleados");
             visor.setVisible(true);
- 
-            
+
         } catch (JRException e) {
             System.out.println("AQUI1");
             System.out.println(e.getMessage());
-            
-        } 
-        catch (UnsupportedEncodingException ex) {
+
+        } catch (UnsupportedEncodingException ex) {
             System.out.println("AQUI2");
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2313,21 +2321,21 @@ public class PEmpleado extends javax.swing.JPanel {
     private void btnEliminarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleado1ActionPerformed
         // TODO add your handling code here:
         if (CodigoDocumentoDD.equals("")) {
-            JOptionPane.showMessageDialog(this,"Error selecciona un documento para eliminar");
-        }else{
+            JOptionPane.showMessageDialog(this, "Error selecciona un documento para eliminar");
+        } else {
             mtoUsuarios obj = new mtoUsuarios();
             obj.setCodigoDEE(Integer.valueOf(CodigoDocumentoDD));
             if (obj.eliminarDocumentoEmpleado()) {
-                JOptionPane.showMessageDialog(this,"Documento elminado");
+                JOptionPane.showMessageDialog(this, "Documento elminado");
                 int filas = modeloTablaDocumentosEmpleados.getRowCount();
                 for (int i = 0; filas > i; i++) {
                     modeloTablaDocumentosEmpleados.removeRow(0);
                 }
-                setFilasDocumentosEmpleados(1,nombreEmpleadoDE);
+                setFilasDocumentosEmpleados(1, nombreEmpleadoDE);
                 cmbDocumento.setSelectedIndex(0);
                 jTFDescripcionDE.setText(null);
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al eliminar documento");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al eliminar documento");
             }
         }
     }//GEN-LAST:event_btnEliminarEmpleado1ActionPerformed
@@ -2335,19 +2343,19 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFBuscarCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarCorreoKeyReleased
         // TODO add your handling code here:
         modeloLista.removeAllElements();
-        llenarList(1,jTFBuscarCorreo.getText());
+        llenarList(1, jTFBuscarCorreo.getText());
     }//GEN-LAST:event_jTFBuscarCorreoKeyReleased
-    
+
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
         cmbDocumento.setEnabled(true);
         int filas = modeloTablaDocumentosEmpleados.getRowCount();
-            for (int i = 0; filas > i; i++) {
-                modeloTablaDocumentosEmpleados.removeRow(0);
-            }
-        setFilasDocumentosEmpleados(1,String.valueOf(jList1.getSelectedValue()));
-        nombreEmpleadoDE=String.valueOf(jList1.getSelectedValue());
-        lblEmpleadoDE.setText("Empleado: "+nombreEmpleadoDE);
+        for (int i = 0; filas > i; i++) {
+            modeloTablaDocumentosEmpleados.removeRow(0);
+        }
+        setFilasDocumentosEmpleados(1, String.valueOf(jList1.getSelectedValue()));
+        nombreEmpleadoDE = String.valueOf(jList1.getSelectedValue());
+        lblEmpleadoDE.setText("Empleado: " + nombreEmpleadoDE);
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -2361,7 +2369,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEmpleadoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
                 && (jTFNombreEmpleado.getText().length() < 30)) {
 
@@ -2373,7 +2381,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
                 && (jTFApellido.getText().length() < 30)) {
 
@@ -2385,20 +2393,20 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTelefonoKeyTyped
         // TODO add your handling code here:char vchar = evt.getKeyChar();
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vnumeros(vchar) == true
                 && (jTFTelefono.getText().length() < 8)) {
 
         } else {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jTFTelefonoKeyTyped
 
     private void jTFCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCorreoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vcorreoevent(vchar) == true
                 && (jTFCorreo.getText().length() < 30)) {
 
@@ -2410,7 +2418,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
                 && (jTFContraseña.getText().length() < 20)) {
 
@@ -2422,7 +2430,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
                 && (jTFDireccion.getText().length() < 40)) {
 
@@ -2434,9 +2442,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFBuscarEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarEmpleadoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTFBuscarEmpleado.getText().length() <20 )) {
+                && (jTFBuscarEmpleado.getText().length() < 20)) {
 
         } else {
             evt.consume();
@@ -2446,9 +2454,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFRespuesta1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta1KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
-                && (jTFRespuesta1.getText().length() <30 )) {
+                && (jTFRespuesta1.getText().length() < 30)) {
 
         } else {
             evt.consume();
@@ -2458,9 +2466,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFRespuesta2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFRespuesta2KeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
-                && (jTFRespuesta2.getText().length() <20 )) {
+                && (jTFRespuesta2.getText().length() < 20)) {
 
         } else {
             evt.consume();
@@ -2470,9 +2478,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFDescripcionDEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionDEKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vnumeros(vchar) == true
-                && (jTFDescripcionDE.getText().length() <14 )) {
+                && (jTFDescripcionDE.getText().length() < 14)) {
 
         } else {
             evt.consume();
@@ -2482,9 +2490,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFBuscarDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarDocumentoKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTFBuscarDocumento.getText().length() <14 )) {
+                && (jTFBuscarDocumento.getText().length() < 14)) {
 
         } else {
             evt.consume();
@@ -2494,9 +2502,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFNombreDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
-                && (jTFNombreD.getText().length() <20 )) {
+                && (jTFNombreD.getText().length() < 20)) {
 
         } else {
             evt.consume();
@@ -2506,9 +2514,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFNombreEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreEKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletras(vchar) == true
-                && (jTFNombreE.getText().length() <20 )) {
+                && (jTFNombreE.getText().length() < 20)) {
 
         } else {
             evt.consume();
@@ -2518,9 +2526,9 @@ public class PEmpleado extends javax.swing.JPanel {
     private void jTFDescripcionEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionEKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
-        
+
         if (verificar.vletrasynumeros(vchar) == true
-                && (jTFDescripcionE.getText().length() <40 )) {
+                && (jTFDescripcionE.getText().length() < 40)) {
 
         } else {
             evt.consume();
@@ -2535,8 +2543,10 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
         //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
         /**
-        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
-        */
+         * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo
+         * de las imagenes , me avisas cuando temrines de escribir las
+         * instrucciones
+         */
         help form = new help(9);
         form.show();
     }//GEN-LAST:event_lblhelp2MouseClicked
@@ -2549,8 +2559,10 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
         //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
         /**
-        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
-        */
+         * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo
+         * de las imagenes , me avisas cuando temrines de escribir las
+         * instrucciones
+         */
         help form = new help(9);
         form.show();
     }//GEN-LAST:event_lblhelp1MouseClicked
@@ -2563,8 +2575,10 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
         //y cuando llames el formulario ayuda en vez del 0 le vas a poner el form que le corresponda 1 2 o 3 y asi sucesivamente, si vos elegis el orden
         /**
-        * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo de las imagenes , me avisas cuando temrines de escribir las instrucciones
-        */
+         * ahorita, llena los textos de ayuda de todos los forms, luego vemos lo
+         * de las imagenes , me avisas cuando temrines de escribir las
+         * instrucciones
+         */
         help form = new help(9);
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
@@ -2582,7 +2596,7 @@ public class PEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarEmpleado2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-    String path ="";
+        String path = "";
         try {
             Conexion con = new Conexion();
 //            //establecemos la ruta donde esta el reportes
@@ -2603,54 +2617,51 @@ public class PEmpleado extends javax.swing.JPanel {
 //            JasperViewer visor = new JasperViewer(imprimir, false);
 //            visor.setTitle("Reporte de proyectos e integrantes");
 //            visor.setVisible(true);
-            
-            
-            String archivo= getClass().getResource("/reportes/ReporteDocumento.jrxml").getPath();
-            archivo = URLDecoder.decode(archivo,"UTF-8");
+
+            String archivo = getClass().getResource("/reportes/ReporteDocumento.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
             try {
-                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
                 PreparedStatement cmd = con.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
-                   parametros.put("#registro",ver.getInt(1));
-                   parametros.put("nombreEmpresa",ver.getString(2));
-                   parametros.put("domicilio",ver.getString(3));
-                   parametros.put("fechaConstitucion",ver.getString(4));
-                   parametros.put("imagen",ver.getString(5));
-                   parametros.put("telefono",ver.getString(6));
-                   parametros.put("correo",ver.getString(7));
-                   parametros.put("propietario",ver.getString(8));
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
-            parametros.put("autor", correo);          
-            parametros.put("nombreD",jTFBuscarDocumento.getText()); 
-            parametros.put("tipo",tipo); 
+
+            parametros.put("autor", correo);
+            parametros.put("nombreD", jTFBuscarDocumento.getText());
+            parametros.put("tipo", tipo);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
- 
+
             JasperViewer visor = new JasperViewer(print, false);
             visor.setTitle("Reporte de Documentos");
             visor.setVisible(true);
- 
-            
+
         } catch (JRException e) {
             System.out.println("AQUI1");
             System.out.println(e.getMessage());
-            
-        } 
-        catch (UnsupportedEncodingException ex) {
+
+        } catch (UnsupportedEncodingException ex) {
             System.out.println("AQUI2");
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-    String path ="";
+        String path = "";
         try {
             Conexion con = new Conexion();
 //            //establecemos la ruta donde esta el reportes
@@ -2671,101 +2682,100 @@ public class PEmpleado extends javax.swing.JPanel {
 //            JasperViewer visor = new JasperViewer(imprimir, false);
 //            visor.setTitle("Reporte de proyectos e integrantes");
 //            visor.setVisible(true);
-            
-            
-            String archivo= getClass().getResource("/reportes/ReporteEstadosE.jrxml").getPath();
-            archivo = URLDecoder.decode(archivo,"UTF-8");
+
+            String archivo = getClass().getResource("/reportes/ReporteEstadosE.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
             try {
-                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
                 PreparedStatement cmd = con.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
-                   parametros.put("#registro",ver.getInt(1));
-                   parametros.put("nombreEmpresa",ver.getString(2));
-                   parametros.put("domicilio",ver.getString(3));
-                   parametros.put("fechaConstitucion",ver.getString(4));
-                   parametros.put("imagen",ver.getString(5));
-                   parametros.put("telefono",ver.getString(6));
-                   parametros.put("correo",ver.getString(7));
-                   parametros.put("propietario",ver.getString(8));
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
-            parametros.put("autor", correo);           
-            parametros.put("nombreEs",jTFBuscarEstado.getText()); 
-            parametros.put("tipo",tipo_estado); 
+
+            parametros.put("autor", correo);
+            parametros.put("nombreEs", jTFBuscarEstado.getText());
+            parametros.put("tipo", tipo_estado);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
- 
+
             JasperViewer visor = new JasperViewer(print, false);
             visor.setTitle("Reporte de Estado Empleados");
             visor.setVisible(true);
- 
-            
+
         } catch (JRException e) {
             System.out.println("AQUI1");
             System.out.println(e.getMessage());
-            
-        } 
-        catch (UnsupportedEncodingException ex) {
+
+        } catch (UnsupportedEncodingException ex) {
             System.out.println("AQUI2");
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
-    int tipo2=0;
+    int tipo2 = 0;
     private void btnGenerarReporteEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleadoActionPerformed
         // TODO add your handling code here:
         try {
             Conexion con = new Conexion();
 
-            String archivo= getClass().getResource("/reportes/ReporteEmpleados.jrxml").getPath();
-            archivo = URLDecoder.decode(archivo,"UTF-8");
+            String archivo = getClass().getResource("/reportes/ReporteEmpleados.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-                      
-           parametros.put("tipo",tipo2);
-           parametros.put("valores",jTFBuscarEmpleado.getText());
+
+            parametros.put("tipo", tipo2);
+            parametros.put("valores", jTFBuscarEmpleado.getText());
             try {
-                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
                 PreparedStatement cmd = con.conectar().prepareStatement(sql);
                 ResultSet ver = cmd.executeQuery();
                 if (ver.next()) {
-                   parametros.put("#registro",ver.getInt(1));
-                   parametros.put("nombreEmpresa",ver.getString(2));
-                   parametros.put("domicilio",ver.getString(3));
-                   parametros.put("fechaConstitucion",ver.getString(4));
-                   parametros.put("imagen",ver.getString(5));
-                   parametros.put("telefono",ver.getString(6));
-                   parametros.put("correo",ver.getString(7));
-                   parametros.put("propietario",ver.getString(8));
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
-            parametros.put("autor", correo); 
+
+            parametros.put("autor", correo);
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
- 
+
             JasperViewer visor = new JasperViewer(print, false);
             visor.setTitle("Reporte de Documento de Empleados");
             visor.setVisible(true);
- 
-            
+
         } catch (JRException e) {
             System.out.println("AQUI1");
             System.out.println(e.getMessage());
-            
-        } 
-        catch (UnsupportedEncodingException ex) {
+
+        } catch (UnsupportedEncodingException ex) {
             System.out.println("AQUI2");
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGenerarReporteEmpleadoActionPerformed
+
+    private void jTFBuscarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBuscarCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBuscarCorreoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

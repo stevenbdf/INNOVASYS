@@ -55,7 +55,6 @@ public class PVentas extends javax.swing.JPanel {
          modificar.setVisible(false);
         estado.setVisible(false);
         lbl_estado.setVisible(false);
-        fact.setSelected(true);
         model = new DefaultTableModel(null, getcolumnas());
         TablaB.setModel(mto.Tabla(model,0));
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
@@ -90,7 +89,6 @@ public class PVentas extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -99,8 +97,6 @@ public class PVentas extends javax.swing.JPanel {
         fecha_max = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        fact = new javax.swing.JRadioButton();
-        cred = new javax.swing.JRadioButton();
         emple = new javax.swing.JRadioButton();
         codi = new javax.swing.JRadioButton();
         jTextField10 = new javax.swing.JTextField();
@@ -262,11 +258,6 @@ public class PVentas extends javax.swing.JPanel {
         jLabel13.setText("Fecha Max:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Tipo Venta:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, 30));
-
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
@@ -274,7 +265,7 @@ public class PVentas extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Monto Min:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(153, 0, 153));
@@ -341,26 +332,6 @@ public class PVentas extends javax.swing.JPanel {
         });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
-        fact.setBackground(new java.awt.Color(102, 102, 102));
-        fact.setForeground(new java.awt.Color(255, 255, 255));
-        fact.setText("Factura");
-        fact.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                factActionPerformed(evt);
-            }
-        });
-        add(fact, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 30));
-
-        cred.setBackground(new java.awt.Color(102, 102, 102));
-        cred.setForeground(new java.awt.Color(255, 255, 255));
-        cred.setText("Credito Fiscal");
-        cred.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                credActionPerformed(evt);
-            }
-        });
-        add(cred, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, 30));
-
         emple.setBackground(new java.awt.Color(102, 102, 102));
         emple.setForeground(new java.awt.Color(255, 255, 255));
         emple.setText("Empleado");
@@ -403,7 +374,7 @@ public class PVentas extends javax.swing.JPanel {
                 jTextField9KeyTyped(evt);
             }
         });
-        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 100, 30));
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 100, 30));
 
         TablaB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -459,7 +430,7 @@ public class PVentas extends javax.swing.JPanel {
         // TODO add your handling code here:
         jButton3.setContentAreaFilled(false);
     }//GEN-LAST:event_jButton3MouseExited
-
+    Integer entrado=0;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String fechami = verificar.getFecha(fecha_min);
         String fechamx = verificar.getFecha(fecha_max);
@@ -469,8 +440,9 @@ public class PVentas extends javax.swing.JPanel {
                 model.removeRow(i);
                 i-=1;
             }
-            mto.buscarFecha(model,fechami,fechamx,t);
+            mto.buscarFecha(model,fechami,fechamx,"",0);
         }
+        entrado=1;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
@@ -492,29 +464,9 @@ public class PVentas extends javax.swing.JPanel {
                 model.removeRow(i);
                 i-=1;
             }
-            mto.buscarFecha(model,fechami,fechamx,t);
+            mto.buscarFecha(model,fechami,fechamx,"",0);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void factActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factActionPerformed
-        cred.setSelected(false);
-        t=0;
-        for (int i = 0; i < TablaB.getRowCount(); i++) {
-            model.removeRow(i);
-            i-=1;
-        }
-        mto.Tabla(model,t);
-    }//GEN-LAST:event_factActionPerformed
-
-    private void credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credActionPerformed
-        fact.setSelected(false);
-        t=1;
-        for (int i = 0; i < TablaB.getRowCount(); i++) {
-            model.removeRow(i);
-            i-=1;
-        }
-        mto.Tabla(model,t);
-    }//GEN-LAST:event_credActionPerformed
 
     private void empleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleActionPerformed
         codi.setSelected(false);
@@ -531,7 +483,14 @@ public class PVentas extends javax.swing.JPanel {
             model.removeRow(i);
             i-=1;
         }
-        mto.buscar(model,jTextField10.getText(),p,t);
+        String fechami = verificar.getFecha(fecha_min);
+        String fechamx = verificar.getFecha(fecha_max);
+        if (entrado!=0) {
+             mto.buscarFecha(model,fechami,fechamx,jTextField10.getText(),1);
+        }else{
+            mto.buscar(model,jTextField10.getText(),p); 
+        }
+       
     }//GEN-LAST:event_jTextField10KeyReleased
 
     private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
@@ -611,18 +570,15 @@ public class PVentas extends javax.swing.JPanel {
     private javax.swing.JTable TablaB;
     private javax.swing.JRadioButton codi;
     private javax.swing.JLabel codigo;
-    private javax.swing.JRadioButton cred;
     private javax.swing.JRadioButton emple;
     private javax.swing.JLabel empleado;
     private javax.swing.JComboBox<String> estado;
-    private javax.swing.JRadioButton fact;
     private javax.swing.JLabel fecha;
     private com.toedter.calendar.JDateChooser fecha_max;
     private com.toedter.calendar.JDateChooser fecha_min;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
