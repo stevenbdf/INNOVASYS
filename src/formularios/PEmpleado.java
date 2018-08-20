@@ -394,6 +394,7 @@ public class PEmpleado extends javax.swing.JPanel {
         cmdPregunta2 = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
         btnEliminarEmpleado = new javax.swing.JButton();
+        btnGenerarReporteEmpleado1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         cmbDocumento = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
@@ -411,6 +412,7 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         btnModificarEmpleado2 = new javax.swing.JButton();
+        btnReport1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -670,7 +672,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnGenerarReporteEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, 30));
+        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -817,6 +819,26 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
+        btnGenerarReporteEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnGenerarReporteEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarReporteEmpleado1.setText("Empleados por Tipo");
+        btnGenerarReporteEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnGenerarReporteEmpleado1.setContentAreaFilled(false);
+        btnGenerarReporteEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGenerarReporteEmpleado1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGenerarReporteEmpleado1MouseExited(evt);
+            }
+        });
+        btnGenerarReporteEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReporteEmpleado1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGenerarReporteEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 310, 160, 30));
 
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
@@ -993,6 +1015,27 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
         jPanel2.add(btnModificarEmpleado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
+
+        btnReport1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnReport1.setForeground(new java.awt.Color(255, 255, 255));
+        btnReport1.setText("Documentos por Empleado");
+        btnReport1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnReport1.setContentAreaFilled(false);
+        btnReport1.setPreferredSize(new java.awt.Dimension(75, 30));
+        btnReport1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReport1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReport1MouseExited(evt);
+            }
+        });
+        btnReport1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReport1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 170, -1));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
@@ -2792,6 +2835,132 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFBuscarCorreoActionPerformed
 
+    private void btnReport1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReport1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReport1MouseEntered
+
+    private void btnReport1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReport1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReport1MouseExited
+
+    private void btnReport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReport1ActionPerformed
+        // TODO add your handling code here:
+        String path = "";
+        try {
+            Conexion con = new Conexion();
+//            //establecemos la ruta donde esta el reportes
+//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
+//            //se decodifica por algun caracter especial
+//            path = URLDecoder.decode(path,"UTF-8");
+//            System.out.println("path: "+path);
+//            //Se crea la conexion
+//            
+//            //Se crean los parametros
+//            Map parametros = new HashMap();
+//            parametros.put("Nombre","Steven Diaz");
+//            //Se crea el objeto reporte
+//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
+//            //se crea el objeto de impresion del reporte 
+//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
+//            //ahora se crea el visor, donde se muestra el reporte
+//            JasperViewer visor = new JasperViewer(imprimir, false);
+//            visor.setTitle("Reporte de proyectos e integrantes");
+//            visor.setVisible(true);
+
+            String archivo = getClass().getResource("/reportes/ReporteDocumentosEmpleados.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap(); 
+            try {
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+            parametros.put("autor", correo);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Documento de Empleados");
+            visor.setVisible(true);
+
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReport1ActionPerformed
+
+    private void btnGenerarReporteEmpleado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleado1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarReporteEmpleado1MouseEntered
+
+    private void btnGenerarReporteEmpleado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleado1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarReporteEmpleado1MouseExited
+
+    private void btnGenerarReporteEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteEmpleado1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+
+            String archivo = getClass().getResource("/reportes/ReporteEmpleadosTipos.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo, "UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+
+            try {
+                String sql = "SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                    parametros.put("#registro", ver.getInt(1));
+                    parametros.put("nombreEmpresa", ver.getString(2));
+                    parametros.put("domicilio", ver.getString(3));
+                    parametros.put("fechaConstitucion", ver.getString(4));
+                    parametros.put("imagen", ver.getString(5));
+                    parametros.put("telefono", ver.getString(6));
+                    parametros.put("correo", ver.getString(7));
+                    parametros.put("propietario", ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+            parametros.put("autor", correo);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Documento de Empleados y Tipos");
+            visor.setVisible(true);
+
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGenerarReporteEmpleado1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
@@ -2804,12 +2973,14 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnEliminarEmpleado1;
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnGenerarReporteEmpleado;
+    private javax.swing.JButton btnGenerarReporteEmpleado1;
     private javax.swing.JButton btnLimpiarCampos;
     private javax.swing.JButton btnModificarD;
     private javax.swing.JButton btnModificarE;
     private javax.swing.JButton btnModificarEmpleado;
     private javax.swing.JButton btnModificarEmpleado2;
     private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnReport1;
     private javax.swing.JComboBox<String> cmbDocumento;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbEstadoD;

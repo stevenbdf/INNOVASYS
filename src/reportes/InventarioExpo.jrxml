@@ -158,7 +158,7 @@ $P{orden}==11 ?
 				<textFieldExpression><![CDATA[$P{propietario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="4" y="0" width="417" height="62" forecolor="#CC00CC" uuid="7adfc008-e93b-4b5b-b969-366a3c08566c"/>
+				<reportElement x="4" y="0" width="417" height="62" forecolor="#FF00FF" uuid="7adfc008-e93b-4b5b-b969-366a3c08566c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic" size="22" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
@@ -183,14 +183,14 @@ $P{orden}==11 ?
 	<pageHeader>
 		<band height="40" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="126" y="0" width="145" height="33" uuid="66518800-770f-43c8-9397-34391a13a796"/>
+				<reportElement x="126" y="1" width="145" height="33" uuid="66518800-770f-43c8-9397-34391a13a796"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="0" width="126" height="33" uuid="ea56aed1-8578-476c-b243-6143422c4cd7"/>
+				<reportElement x="1" y="1" width="126" height="33" uuid="ea56aed1-8578-476c-b243-6143422c4cd7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>

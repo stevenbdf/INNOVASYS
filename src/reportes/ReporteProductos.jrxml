@@ -213,7 +213,7 @@ $P{tipo}==3 ?
 				<textFieldExpression><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="20" width="540" height="1" uuid="e395c156-6f03-4d2c-9a2c-9a5a65cb0c94"/>
+				<reportElement x="2" y="20" width="513" height="1" uuid="e395c156-6f03-4d2c-9a2c-9a5a65cb0c94"/>
 				<graphicElement>
 					<pen lineStyle="Dashed" lineColor="#FF00FF"/>
 				</graphicElement>

@@ -150,6 +150,7 @@ public class PInventario extends javax.swing.JPanel {
         jTFStockMin1 = new javax.swing.JTextField();
         Antiguo = new javax.swing.JRadioButton();
         Reciente = new javax.swing.JRadioButton();
+        jButton6 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -506,7 +507,7 @@ public class PInventario extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 420, 140, 40));
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 140, 40));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -573,6 +574,18 @@ public class PInventario extends javax.swing.JPanel {
             }
         });
         jPanel4.add(Reciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Generar reporte");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton6.setContentAreaFilled(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 140, 40));
 
         jTabbedPane2.addTab("Gestionar Reportes", jPanel4);
 
@@ -1172,6 +1185,57 @@ public class PInventario extends javax.swing.JPanel {
         rdBajo.setSelected(false); 
         Antiguo.setSelected(false);
     }//GEN-LAST:event_RecienteActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion con = new Conexion();
+
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteInventarioTransacciones.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            
+            
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa , domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa", ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Inventario");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
     public DefaultTableModel setFilasReportes(DefaultTableModel  model, int tipo, String fecha1, String fecha2, int stock, int codigoP)
     {
         Conexion cn = new Conexion();
@@ -1260,6 +1324,7 @@ public class PInventario extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
