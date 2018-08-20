@@ -117,7 +117,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     ImageIcon icono13s = new ImageIcon(foto13s.getImage().getScaledInstance(70,70, Image.SCALE_DEFAULT));
     
     Integer dia,diames, mes, año, tipoU, codigoEmpleado;
-    String correoE;
+    public String correoE;
     int posiciones[] = new int[14];
     public VentanaPrincipal2(String correo) {
 //        try {
@@ -2668,7 +2668,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 6:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PVentas ventass = new PVentas();
+                PVentas ventass = new PVentas(correoE);
                 ventass.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(ventass, BorderLayout.CENTER);
@@ -2705,7 +2705,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 9:
                 PanelPrincipal.setVisible(true);
                 jLabel2.setVisible(false);
-                PTipoUsuario tiposs = new PTipoUsuario();
+                PTipoUsuario tiposs = new PTipoUsuario(correoE);
                 tiposs.setSize(680, 500);
                 PanelPrincipal.removeAll();
                 PanelPrincipal.add(tiposs, BorderLayout.CENTER);

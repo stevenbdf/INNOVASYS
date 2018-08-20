@@ -10,13 +10,25 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import clases.*;
 import java.awt.Image;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author steven
@@ -32,8 +44,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
     int confirmacion=0;
     DefaultComboBoxModel modeloCombo;
     DefaultTableModel modeloTablaTipos;
-    
-    public PTipoUsuario() {
+    String correo;
+    public PTipoUsuario(String correoE) {
         modeloTablaPrivilegios= new DefaultTableModel(null, getColumnasPrivilegios());setFilasPrivilegios(0);
         modeloTablaTipos = new DefaultTableModel(null, getColumnasTipos());setFilasTipos(0,"");
 //        try {
@@ -43,6 +55,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
 //		}
         modeloCombo = new DefaultComboBoxModel(new String[]{});
         initComponents();
+        correo=correoE;
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
@@ -195,7 +208,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jTFBuscarT1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         btnModificarP = new javax.swing.JButton();
         lblCodigoPrivilegio = new javax.swing.JLabel();
         btnEliminarP = new javax.swing.JButton();
@@ -246,6 +258,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarTMouseExited(evt);
+            }
+        });
+        btnAgregarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTActionPerformed(evt);
             }
         });
         jPanel2.add(btnAgregarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
@@ -319,6 +336,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
                 jButton6MouseExited(evt);
             }
         });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
@@ -369,6 +391,11 @@ public class PTipoUsuario extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarTMouseExited(evt);
+            }
+        });
+        btnModificarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarTActionPerformed(evt);
             }
         });
         btnModificarT.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -566,21 +593,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jLabel13.setText("Buscar:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
-        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Generar Reporte");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton7.setContentAreaFilled(false);
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton7MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton7MouseExited(evt);
-            }
-        });
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 30));
-
         btnModificarP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarP.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarP.setText("Modificar");
@@ -721,14 +733,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private void btnModificarTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarTMouseExited
-
-    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseEntered
-
-    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseExited
 
     private void btnModificarPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPMouseEntered
         // TODO add your handling code here:
@@ -918,6 +922,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
                     modeloTablaTipos.removeRow(0);
                 }
                 setFilasTipos(0,"");
+            }else{
+                JOptionPane.showMessageDialog(this,"Error ya existe un tipo de usuario con ese nombre");
             }
         }
     }//GEN-LAST:event_btnAgregarTMouseClicked
@@ -951,6 +957,8 @@ public class PTipoUsuario extends javax.swing.JPanel {
                     modeloTablaTipos.removeRow(0);
                 }
                 setFilasTipos(0,"");
+            }else{
+                JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");
             }
         }
     }//GEN-LAST:event_btnModificarTMouseClicked
@@ -1118,6 +1126,77 @@ public class PTipoUsuario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_cbInventarioActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+// TODO add your handling code here:
+     
+        try {
+            Conexion con = new Conexion();
+
+            
+            
+            String archivo= getClass().getResource("/reportes/ReporteTipoUsuarios.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            parametros.put("valor",jTFBuscarT.getText());
+            if (jTFBuscarT.getText().isEmpty()) {
+                parametros.put("tipo",0);
+            }else if (!jTFBuscarT.getText().isEmpty() && rdNombre.isSelected()){
+               parametros.put("tipo",1); 
+            }else if (!jTFBuscarT.getText().isEmpty() && rdCodigo.isSelected()){
+               parametros.put("tipo",2); 
+            }
+           
+           
+            
+            
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Tipos de Usuario");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnAgregarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarTActionPerformed
+
+    private void btnModificarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarTActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarP;
@@ -1145,7 +1224,6 @@ public class PTipoUsuario extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbVentas;
     private javax.swing.JComboBox<String> cmbPrivilegios;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

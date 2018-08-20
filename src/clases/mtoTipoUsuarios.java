@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Steven
  */
-public class mtoTipoUsuarios extends PTipoUsuario{
+public class mtoTipoUsuarios {
 
     /**
      * @return the NombreT
@@ -187,7 +187,7 @@ public class mtoTipoUsuarios extends PTipoUsuario{
         boolean resp = false;
         String[] resp2=consultarTipo();
         if (resp2[0].equals(getNombreT())) {
-            JOptionPane.showMessageDialog(this,"Error ya existe un tipo de usuario con ese nombre");
+            
         } else {
             try {
                 String sql = "INSERT INTO tipoUsuario(idTipo, nombreTipo, idPrivilegio) VALUES ((SELECT MAX(idTipo)+1 FROM tipoUsuario), ?,?)";
@@ -210,7 +210,7 @@ public class mtoTipoUsuarios extends PTipoUsuario{
         boolean resp = false;
         String[] resp2=consultarTipo();
         if (resp2[0].equals(getNombreT()) && Integer.valueOf(resp2[1])==getCodigoP() ) {
-            JOptionPane.showMessageDialog(this, "Modifique algun dato para realizar esta accion");
+            
         } else {
             try {
 

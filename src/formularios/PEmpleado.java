@@ -2593,6 +2593,21 @@ public class PEmpleado extends javax.swing.JPanel {
 
     private void btnModificarEmpleado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleado2ActionPerformed
         // TODO add your handling code here:
+        if (!jTFDescripcionDE.getText().isEmpty()) {
+            mtoUsuarios obj = new mtoUsuarios();
+            obj.setDescrip(jTFDescripcionDE.getText());
+            obj.setCodigoDEE(Integer.valueOf(CodigoDocumentoDD) );
+            if (obj.modificarDocumentoEmpleado()) {
+                JOptionPane.showMessageDialog(this,"Documento empleado modificado");
+                int filas = modeloTablaDocumentosEmpleados.getRowCount();
+                for (int i = 0; filas > i; i++) {
+                    modeloTablaDocumentosEmpleados.removeRow(0);
+                }
+                setFilasDocumentosEmpleados(1, nombreEmpleadoDE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"error campos vacios");
+        }
     }//GEN-LAST:event_btnModificarEmpleado2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

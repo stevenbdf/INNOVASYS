@@ -970,16 +970,13 @@ public class mtoUsuarios {
     public boolean modificarDocumentoEmpleado(){
         boolean resp=false;
         try { 
-            String sql="UPDATE documentoEmpleado SET idDocumento=?,idEmpleado=?,descripcion=? WHERE idDocumentoE=?";
+            String sql="UPDATE documentoEmpleado SET descripcion=? WHERE idDocumentoE=?";
             PreparedStatement cmd = getCn().prepareStatement(sql);
-            System.out.println("1: " + getCodigoDD());
-            System.out.println("2: " + getCodigoDE());
-            System.out.println("3: " + getDescrip());
-            System.out.println("4: " + getCodigoDEE());
-            cmd.setInt(1, getCodigoDD());
-            cmd.setInt(2, getCodigoDE());
-            cmd.setString(3, getDescrip());
-            cmd.setInt(4, getCodigoDEE());
+            
+            cmd.setString(1, getDescrip());
+            cmd.setInt(2, getCodigoDEE());
+           
+            
             if (!cmd.execute()) {
                 resp=true;
             }
