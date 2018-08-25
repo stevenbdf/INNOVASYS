@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteFacturasMes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c5efb3d0-7a71-413e-9d91-03125c140bae">
+	<property name="ireport.zoom" value="1.0263162364614138"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="26"/>
+	<subDataset name="New Dataset 1" uuid="73924377-d8be-4c37-a3f5-bcb37806e22b">
+		<queryString language="SQL">
+			<![CDATA[select * from factura order by month(fecha)]]>
+		</queryString>
+		<field name="noFactura" class="java.lang.Integer"/>
+		<field name="numRegistro" class="java.lang.Integer"/>
+		<field name="fecha" class="java.sql.Date"/>
+		<field name="idEmpleado" class="java.lang.Integer"/>
+		<field name="idCliente" class="java.lang.Integer"/>
+		<field name="montoTotal" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\user\\Desktop\\Prueba Reporte\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="autor" class="java.lang.String"/>
+	<parameter name="#registro" class="java.lang.String"/>
+	<parameter name="nombreEmpresa" class="java.lang.String"/>
+	<parameter name="domicilio" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="correo" class="java.lang.String"/>
+	<parameter name="propietario" class="java.lang.String"/>
+	<parameter name="fechaConstitucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[2018-01-01]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagen" class="java.lang.String">
+		<defaultValueExpression><![CDATA["SELECT logo FROM datosEmpresa"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select noFactura, fecha , u.nombres, c.nombre, montoTotal, MONTH(fecha) as mes  from factura, usuarioEmpleado u , cliente c
+where u.idEmpleado= factura.idEmpleado AND c.idCliente=factura.idCliente order by fecha ASC]]>
+	</queryString>
+	<field name="noFactura" class="java.lang.Integer"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="montoTotal" class="java.lang.Double"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<variable name="montoTotal_1" class="java.lang.Double" resetType="Group" resetGroup="sad" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTotal}]]></variableExpression>
+	</variable>
+	<variable name="montoTotal_2" class="java.lang.Double" resetType="Group" resetGroup="sad" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTotal}]]></variableExpression>
+	</variable>
+	<variable name="montoTotal_3" class="java.lang.Double" resetType="Group" resetGroup="sad" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTotal}]]></variableExpression>
+	</variable>
+	<group name="sad">
+		<groupExpression><![CDATA[$F{mes}]]></groupExpression>
+		<groupHeader>
+			<band height="60">
+				<textField pattern="MMMMM - yyyy">
+					<reportElement x="140" y="0" width="154" height="30" uuid="7914af0a-cca3-46ef-a547-6772a9ae8a9d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mes} == 1 ? "Enero"
+:
+$F{mes} == 2 ? "Febrero"
+:
+$F{mes} == 3 ? "Marzo"
+:
+$F{mes} == 4 ? "Abril"
+:
+$F{mes} == 5 ? "Mayo"
+:
+$F{mes} == 6 ? "Junio"
+:
+$F{mes} == 7 ? "Julio"
+:
+$F{mes} == 8 ? "Agosto"
+:
+$F{mes} == 9 ? "Septiempre"
+:
+$F{mes} == 10 ? "Octubre"
+:
+$F{mes} == 11 ? "Noviembre"
+:
+$F{mes} == 12 ? "Diciembre"
+:
+$F{mes}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="216" y="30" width="93" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="762e6139-474d-4599-b3df-2b469ef08d0e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="8"/>
+					</textElement>
+					<text><![CDATA[Empleado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="106" y="30" width="110" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="e8f9a28b-534f-4c48-90d2-9c22ef1232fe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="8"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="397" y="30" width="72" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="49fccdc1-aae4-45e1-9a03-d0a927c605f7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="8"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="309" y="30" width="88" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="9468fb01-051d-4af5-9fdd-a296e58d326e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="8"/>
+					</textElement>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="63" y="30" width="43" height="30" forecolor="#FF00FF" backcolor="#000000" uuid="20fa134e-ae0c-42a9-820e-fbe38fb03a78"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="8"/>
+					</textElement>
+					<text><![CDATA[#]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="64" y="0" width="76" height="30" uuid="2793bb7c-f784-4a82-83c4-3becd2496f02"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="12"/>
+					</textElement>
+					<text><![CDATA[MES:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<staticText>
+					<reportElement x="321" y="0" width="76" height="30" uuid="96d7a58f-df5f-4281-b4bb-35f68ab30dba"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Century Gothic"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField pattern="###0.00">
+					<reportElement x="397" y="0" width="72" height="30" uuid="d91f88a6-a5cd-4104-a246-500897453d1f"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{montoTotal_3}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="151" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="419" y="0" width="135" height="118" uuid="4526c0b2-f062-44d0-87ac-f81d3b05ade8"/>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="0" width="420" height="117" backcolor="#000000" uuid="414d18ef-9037-4b71-80aa-13ddad88aa3c"/>
+			</rectangle>
+			<textField>
+				<reportElement x="53" y="62" width="100" height="17" forecolor="#FF00FF" uuid="9d41b707-1d7c-4f7d-8949-454226ab7815"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreEmpresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="62" width="19" height="17" forecolor="#FF00FF" uuid="6dc77809-c9d8-4315-b81f-43a896d180bb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="94" width="113" height="13" forecolor="#FF00FF" uuid="05cf2fba-1cbc-4d9d-b637-6014444c7997"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="94" width="51" height="13" forecolor="#FF00FF" uuid="d97f7a4e-4531-44ff-93bc-800456cb7d8c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="62" width="100" height="17" forecolor="#FF00FF" uuid="ef87f56d-8f88-482c-b8e3-8c8b9045d94d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaConstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="94" width="80" height="13" forecolor="#FF00FF" backcolor="#000000" uuid="d781b123-7839-4c15-ba63-3723cf4e54b0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{propietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="0" width="417" height="62" forecolor="#CC00CC" uuid="a53d474e-c3b3-49f9-8aaa-200e9a202ed9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="22" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ventas por Mes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="21" y="62" width="32" height="17" forecolor="#FF00FF" uuid="141f9435-039c-41ea-965b-08a3486e4686"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{#registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="79" width="267" height="15" forecolor="#FF00FF" uuid="b88bd213-ca61-4a58-9726-4cd5fdbf5b1a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{domicilio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="124" y="118" width="145" height="33" uuid="138d8d39-5bbb-470d-add9-029076fe413a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="118" width="48" height="33" uuid="2ab50fd4-979f-43d5-9b7e-cbeab1645896"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Autor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="118" width="126" height="33" uuid="bd0dfac6-e7aa-4e5d-ad07-51ddb43a5c66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Fecha de Generacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="118" width="146" height="33" uuid="92f9b0cb-cd58-4fa1-8252-80c81597e0f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{autor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="7" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="64" y="0" width="42" height="20" uuid="4670c7f0-1ac2-4aca-8a68-a4213470de16"/>
+				<textFieldExpression><![CDATA[$F{noFactura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="107" y="0" width="111" height="20" uuid="18555086-9dfd-4e35-973c-96f42d62166d"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="397" y="0" width="72" height="20" uuid="d3768af7-4dd4-493a-a91a-1eb642e43435"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{montoTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="91" height="20" uuid="3b9c5452-50ec-4ab0-9840-7cf363557661"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="0" width="88" height="20" uuid="98b4688c-283b-475a-90ea-8450a3fb4ee0"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="65" y="20" width="404" height="1" uuid="2f67746d-c282-4700-9180-69ccf4d08844"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#FF00FF"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="402" y="13" width="80" height="20" uuid="e6aa22e4-04e8-43bf-b964-116b709f9d13"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="482" y="13" width="40" height="20" uuid="ccf423f0-75c5-44b9-969f-fa79eb70a9ca"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="156" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="21" y="14" width="501" height="125" uuid="b424a201-e745-437f-966a-ade9ce80ebaa"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Ventas en USD por mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes} == 1 ? "Enero"
+:
+$F{mes} == 2 ? "Febrero"
+:
+$F{mes} == 3 ? "Marzo"
+:
+$F{mes} == 4 ? "Abril"
+:
+$F{mes} == 5 ? "Mayo"
+:
+$F{mes} == 6 ? "Junio"
+:
+$F{mes} == 7 ? "Julio"
+:
+$F{mes} == 8 ? "Agosto"
+:
+$F{mes} == 9 ? "Septiempre"
+:
+$F{mes} == 10 ? "Octubre"
+:
+$F{mes} == 11 ? "Noviembre"
+:
+$F{mes} == 12 ? "Diciembre"
+:
+$F{mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{montoTotal_3}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CCFF00"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</summary>
+</jasperReport>

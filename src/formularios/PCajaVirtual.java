@@ -804,12 +804,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
                         PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
                         ResultSet ver2 = cmd2.executeQuery();
                         if (ver2.next()) {
-                            DecimalFormat df = new DecimalFormat("#.00");
-                            datos[i] = df.format(ver2.getDouble(1));
+                            
+                            datos[i] = ver2.getDouble(1);
                             datos[i + 1] = ver.getObject(4);
                             double data = Double.valueOf(String.valueOf((datos[i + 1]))) * Double.valueOf(String.valueOf((datos[i])));
                             Total = Total + data;
-                            jTFTotal.setText(String.valueOf(df.format(Total)));
+                            jTFTotal.setText(String.valueOf(Total));
                             datos[i + 2] = data;
                         }
                     }

@@ -120,6 +120,7 @@ public class PVentas extends javax.swing.JPanel {
         jTextField9 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaB = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -273,7 +274,7 @@ public class PVentas extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -417,6 +418,26 @@ public class PVentas extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TablaB);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 250));
+
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Generar reporte 2");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton6.setContentAreaFilled(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
@@ -653,6 +674,63 @@ public class PVentas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            Conexion con = new Conexion();
+            String archivo= getClass().getResource("/reportes/ReporteFacturasMes.jrxml").getPath();
+            archivo = URLDecoder.decode(archivo,"UTF-8");
+            JasperReport report = JasperCompileManager.compileReport(archivo);
+            Map parametros = new HashMap();
+            
+            
+            try {
+                String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
+                        + "FROM datosEmpresa";
+                PreparedStatement cmd = con.conectar().prepareStatement(sql);
+                ResultSet ver = cmd.executeQuery();
+                if (ver.next()) {
+                   parametros.put("#registro",ver.getInt(1));
+                   parametros.put("nombreEmpresa",ver.getString(2));
+                   parametros.put("domicilio",ver.getString(3));
+                   parametros.put("fechaConstitucion",ver.getString(4));
+                   parametros.put("imagen",ver.getString(5));
+                   parametros.put("telefono",ver.getString(6));
+                   parametros.put("correo",ver.getString(7));
+                   parametros.put("propietario",ver.getString(8));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
+            parametros.put("autor", correo);
+            JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
+ 
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setTitle("Reporte de Ventas por Mes");
+            visor.setVisible(true);
+ 
+            
+        } catch (JRException e) {
+            System.out.println("AQUI1");
+            System.out.println(e.getMessage());
+            
+        } 
+        catch (UnsupportedEncodingException ex) {
+            System.out.println("AQUI2");
+            Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaB;
@@ -667,6 +745,7 @@ public class PVentas extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteVentas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c8c9db6-481f-4c31-91cc-3091635da81c">
 	<property name="ireport.zoom" value="1.210000000000003"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="103"/>
+	<property name="ireport.x" value="61"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="autor" class="java.lang.String"/>
 	<parameter name="#registro" class="java.lang.String"/>
 	<parameter name="nombreEmpresa" class="java.lang.String"/>
@@ -280,32 +280,6 @@ $P{tipo}== 4 ? "select noFactura, factura.fecha, usuarioEmpleado.nombres,cliente
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="172" splitType="Stretch">
-			<stackedBar3DChart>
-				<chart>
-					<reportElement x="43" y="15" width="472" height="135" uuid="c804bfd5-36dd-4d98-8d2a-49f8139852b5"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{nombres}]]></categoryExpression>
-						<valueExpression><![CDATA[SUM($F{montoTotal})]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</stackedBar3DChart>
-		</band>
+		<band height="172" splitType="Stretch"/>
 	</summary>
 </jasperReport>
