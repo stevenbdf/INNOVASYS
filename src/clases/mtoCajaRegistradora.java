@@ -102,10 +102,10 @@ public class mtoCajaRegistradora {
                         String sql2="INSERT INTO inventario(idInventario, idProductos, idTipoT, fechaTransaccion, "
                                 + " precioCompra, porcentajeGanacia, stock, cantidad, impuestos, estado) "
                                 + " VALUES ( (SELECT MAX (idInventario) FROM inventario )+1, "+detalle2[0][i]+", 2, '"+fechaP+"' , "
-                                + " (SELECT TOP 1 precioCompra FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY precioCompra DESC ), "
-                                + " (SELECT TOP 1 porcentajeGanacia FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY porcentajeGanacia DESC ) , "
-                                + " (SELECT TOP 1 stock FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY stock DESC )-"+detalle2[1][i] +","+detalle2[1][i]+", "
-                                + " (SELECT TOP 1 impuestos FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY impuestos DESC ), 'Entregado')";
+                                + " (SELECT TOP 1 precioCompra FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY idInventario DESC ), "
+                                + " (SELECT TOP 1 porcentajeGanacia FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY idInventario DESC) , "
+                                + " (SELECT TOP 1 stock FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY idInventario DESC )-"+detalle2[1][i] +","+detalle2[1][i]+", "
+                                + " (SELECT TOP 1 impuestos FROM inventario WHERE idProductos="+detalle2[0][i]+" ORDER BY idInventario DESC ), 'Entregado')";
                         PreparedStatement cmd2 = cn.prepareStatement(sql2);
                         if (!cmd2.execute()) {
                             retorno=true;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProductoProveedor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1c5ba11b-53e5-403b-8e66-0e6da286a839">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000055"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="420"/>
 	<parameter name="autor" class="java.lang.String"/>
 	<parameter name="#registro" class="java.lang.String"/>
 	<parameter name="nombreEmpresa" class="java.lang.String"/>
@@ -17,7 +17,7 @@
 		<defaultValueExpression><![CDATA["SELECT logo FROM datosEmpresa"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor order by proveedor.idProveedor]]>
+		<![CDATA[SELECT idProducto, nombreProducto, producto.descripcion, proveedor.nombreProveedor, categoriaProducto.nombreCategoria,puntajeBenchMark, (SELECT COUNT(idProducto) FROM producto ) as sumaTotal FROM producto , proveedor, categoriaProducto WHERE producto.idCategoria=categoriaProducto.idCategoria AND proveedor.idProveedor=producto.idProveedor order by proveedor.idProveedor]]>
 	</queryString>
 	<field name="idProducto" class="java.lang.Integer"/>
 	<field name="nombreProducto" class="java.lang.String"/>
@@ -25,6 +25,19 @@
 	<field name="nombreProveedor" class="java.lang.String"/>
 	<field name="nombreCategoria" class="java.lang.String"/>
 	<field name="puntajeBenchMark" class="java.math.BigDecimal"/>
+	<field name="sumaTotal" class="java.lang.Integer"/>
+	<variable name="idProducto_1" class="java.lang.Integer" resetType="Group" resetGroup="prove" calculation="Count">
+		<variableExpression><![CDATA[$F{idProducto}]]></variableExpression>
+	</variable>
+	<variable name="nombreProveedor_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{nombreProveedor}]]></variableExpression>
+	</variable>
+	<variable name="idProducto_2" class="java.lang.Integer" resetType="Group" resetGroup="prove" calculation="Count">
+		<variableExpression><![CDATA[$F{idProducto}]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.Float">
+		<variableExpression><![CDATA[($V{idProducto_2}/$F{sumaTotal})*100]]></variableExpression>
+	</variable>
 	<group name="prove">
 		<groupExpression><![CDATA[$F{nombreProveedor}]]></groupExpression>
 		<groupHeader>
@@ -78,17 +91,31 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombreProveedor}]]></textFieldExpression>
 				</textField>
+				<textField evaluationTime="Group" evaluationGroup="prove">
+					<reportElement x="397" y="2" width="100" height="33" uuid="5960f250-7216-478e-a115-61d6cb872d53"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{idProducto_2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="271" y="2" width="126" height="33" uuid="004a9fdf-5eea-4094-9234-d80f8b603d5b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic"/>
+					</textElement>
+					<text><![CDATA[Total Productos:]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="2"/>
 		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="119" splitType="Stretch">
+		<band height="158" splitType="Stretch">
 			<image scaleImage="FillFrame">
 				<reportElement x="421" y="0" width="135" height="118" uuid="c8c61912-8eb2-473c-b256-e986eb847b48"/>
 				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
@@ -159,45 +186,44 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{domicilio}]]></textFieldExpression>
 			</textField>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="405" y="2" width="149" height="33" uuid="d0ed5c34-492f-442e-92db-d9bdbfe79f4d"/>
+				<reportElement x="405" y="117" width="149" height="33" uuid="d0ed5c34-492f-442e-92db-d9bdbfe79f4d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{autor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="-1" y="2" width="126" height="33" uuid="e884c969-0415-43e4-a5a0-8f96ed1a5bcc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic"/>
-				</textElement>
-				<text><![CDATA[Fecha de Generacion:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="357" y="2" width="48" height="33" uuid="da15a846-7f8d-4d70-b8b4-7c0ac8d9bb23"/>
+				<reportElement x="357" y="117" width="48" height="33" uuid="da15a846-7f8d-4d70-b8b4-7c0ac8d9bb23"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<text><![CDATA[Autor:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="124" y="2" width="145" height="33" uuid="3f320517-86a2-49c7-ac54-06281ce9fa83"/>
+				<reportElement x="124" y="117" width="145" height="33" uuid="3f320517-86a2-49c7-ac54-06281ce9fa83"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Century Gothic"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="2" y="117" width="122" height="33" uuid="e884c969-0415-43e4-a5a0-8f96ed1a5bcc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Fecha de Generacion:]]></text>
+			</staticText>
 		</band>
+	</title>
+	<pageHeader>
+		<band height="4" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="13" splitType="Stretch"/>
+		<band height="6" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="53" height="20" uuid="5a8727f7-34f4-4d55-a338-8ad3539c73c3"/>
 				<textFieldExpression><![CDATA[$F{idProducto}]]></textFieldExpression>
@@ -227,10 +253,10 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="2" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<textField evaluationTime="Report">
 				<reportElement x="514" y="12" width="40" height="20" uuid="d5c9f78e-c35f-4051-96ed-b89901f07b64"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
@@ -243,6 +269,24 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="310" splitType="Prevent">
+			<pieChart>
+				<chart>
+					<reportElement x="23" y="18" width="518" height="276" uuid="dfb61cf4-4aab-4dc6-99fb-537ea8a86ea1"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nombreProveedor}]]></keyExpression>
+					<valueExpression><![CDATA[$V{idProducto_1}]]></valueExpression>
+					<labelExpression><![CDATA[new java.text.DecimalFormat("0.00").format($V{variable1})+"%"]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot backgroundAlpha="0.0" foregroundAlpha="1.0"/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
 	</summary>
 </jasperReport>

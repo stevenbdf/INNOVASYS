@@ -9,7 +9,6 @@ import clases.Conexion;
 import clases.mtoVentas;
 import clases.verificaciones;
 import java.awt.Image;
-import java.awt.Point;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.PreparedStatement;
@@ -21,8 +20,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.UIManager;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -56,6 +54,8 @@ public class PVentas extends javax.swing.JPanel {
         Calendar c2 = new GregorianCalendar();
         fecha_min.setCalendar(c2);
         fecha_max.setCalendar(c2);
+        fechaRMin.setCalendar(c2);
+        fechaRMax.setCalendar(c2);
         Calendar hoy = Calendar.getInstance();
         int año = hoy.get(Calendar.YEAR);
         int año2 = hoy.get(Calendar.YEAR) - 10;
@@ -69,9 +69,14 @@ public class PVentas extends javax.swing.JPanel {
         fecha_min.setMinSelectableDate(verificar.StringADate(fechaP2));
         fecha_max.setMaxSelectableDate(verificar.StringADate(fechaP));
         fecha_max.setMinSelectableDate(verificar.StringADate(fechaP2));
-         modificar.setVisible(false);
-        estado.setVisible(false);
-        lbl_estado.setVisible(false);
+        
+        fechaRMin.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fechaRMin.setMinSelectableDate(verificar.StringADate(fechaP2));
+        fechaRMax.setMaxSelectableDate(verificar.StringADate(fechaP));
+        fechaRMax.setMinSelectableDate(verificar.StringADate(fechaP2));
+        
+        fechaRMin.setEnabled(false);
+        fechaRMax.setEnabled(false);
         model = new DefaultTableModel(null, getcolumnas());
         TablaB.setModel(mto.Tabla(model,0));
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
@@ -94,15 +99,14 @@ public class PVentas extends javax.swing.JPanel {
 
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        modificar = new javax.swing.JButton();
-        monto = new javax.swing.JTextField();
-        estado = new javax.swing.JComboBox<>();
-        tipo = new javax.swing.JLabel();
-        fecha = new javax.swing.JLabel();
-        empleado = new javax.swing.JLabel();
-        codigo = new javax.swing.JLabel();
-        lbl_estado = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        rdRVentasMes = new javax.swing.JRadioButton();
+        rdVentasEmpleado = new javax.swing.JRadioButton();
+        fechaRMin = new com.toedter.calendar.JDateChooser();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        fechaRMax = new com.toedter.calendar.JDateChooser();
+        cbFiltroFechas = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -113,14 +117,12 @@ public class PVentas extends javax.swing.JPanel {
         fecha_min = new com.toedter.calendar.JDateChooser();
         fecha_max = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         emple = new javax.swing.JRadioButton();
         codi = new javax.swing.JRadioButton();
         jTextField10 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaB = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
@@ -129,132 +131,119 @@ public class PVentas extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Buscar:");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, 30));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Total:");
-
-        modificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        modificar.setForeground(new java.awt.Color(255, 255, 255));
-        modificar.setText("Modificar");
-        modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        modificar.setContentAreaFilled(false);
-        modificar.setPreferredSize(new java.awt.Dimension(63, 30));
-        modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Generar Reporte Filtrado");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton6.setContentAreaFilled(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                modificarMouseEntered(evt);
+                jButton6MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                modificarMouseExited(evt);
+                jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
-        monto.setBackground(new java.awt.Color(204, 204, 204));
-        monto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        monto.setEnabled(false);
-        monto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                montoKeyTyped(evt);
+        rdRVentasMes.setBackground(new java.awt.Color(102, 102, 102));
+        rdRVentasMes.setForeground(new java.awt.Color(255, 255, 255));
+        rdRVentasMes.setText("Reporte Ventas por Mes");
+        rdRVentasMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdRVentasMesActionPerformed(evt);
             }
         });
 
-        estado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        rdVentasEmpleado.setBackground(new java.awt.Color(102, 102, 102));
+        rdVentasEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        rdVentasEmpleado.setText("Reporte Ventas por Empleado");
+        rdVentasEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdVentasEmpleadoActionPerformed(evt);
+            }
+        });
 
-        tipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tipo.setForeground(new java.awt.Color(255, 255, 255));
-        tipo.setText("Tipo Venta");
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Min:");
 
-        fecha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        fecha.setForeground(new java.awt.Color(255, 255, 255));
-        fecha.setText("Fecha de Creación");
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Max:");
 
-        empleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        empleado.setForeground(new java.awt.Color(255, 255, 255));
-        empleado.setText("Empleado Autor");
-
-        codigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        codigo.setForeground(new java.awt.Color(255, 255, 255));
-        codigo.setText("Codigo Venta");
-
-        lbl_estado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lbl_estado.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_estado.setText("Estado:");
+        cbFiltroFechas.setBackground(new java.awt.Color(102, 102, 102));
+        cbFiltroFechas.setForeground(new java.awt.Color(255, 255, 255));
+        cbFiltroFechas.setText("Filtrar por Fechas");
+        cbFiltroFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFiltroFechasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_estado)
-                    .addComponent(jLabel22))
-                .addContainerGap(154, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tipo)
-                            .addGap(29, 29, 29))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(codigo))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(empleado))
-                        .addComponent(fecha)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(16, 16, 16)
-                                    .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(43, 43, 43)))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rdRVentasMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rdVentasEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cbFiltroFechas)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechaRMin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(lbl_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rdRVentasMes)
+                .addGap(18, 18, 18)
+                .addComponent(rdVentasEmpleado)
+                .addGap(18, 18, 18)
+                .addComponent(cbFiltroFechas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fechaRMin, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(codigo)
-                    .addGap(14, 14, 14)
-                    .addComponent(empleado)
-                    .addGap(14, 14, 14)
-                    .addComponent(fecha)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(tipo)
-                    .addGap(18, 18, 18)
-                    .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                    .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 220, 290));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 270, 270));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha Min:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, 20));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,12 +263,12 @@ public class PVentas extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha Max:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -288,7 +277,7 @@ public class PVentas extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Monto Min:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, 30));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(153, 0, 153));
@@ -310,8 +299,8 @@ public class PVentas extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
-        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 130, 30));
-        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 130, 30));
+        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 130, 30));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 130, 30));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,28 +321,7 @@ public class PVentas extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
-
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Buscar");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton4.setContentAreaFilled(false);
-        jButton4.setPreferredSize(new java.awt.Dimension(63, 30));
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton4MouseExited(evt);
-            }
-        });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         emple.setBackground(new java.awt.Color(102, 102, 102));
         emple.setForeground(new java.awt.Color(255, 255, 255));
@@ -363,7 +331,7 @@ public class PVentas extends javax.swing.JPanel {
                 empleActionPerformed(evt);
             }
         });
-        add(emple, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, 30));
+        add(emple, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, 30));
 
         codi.setBackground(new java.awt.Color(102, 102, 102));
         codi.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,7 +341,7 @@ public class PVentas extends javax.swing.JPanel {
                 codiActionPerformed(evt);
             }
         });
-        add(codi, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
+        add(codi, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, 30));
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -385,7 +353,7 @@ public class PVentas extends javax.swing.JPanel {
                 jTextField10KeyTyped(evt);
             }
         });
-        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 100, 30));
+        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 100, 30));
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -397,7 +365,7 @@ public class PVentas extends javax.swing.JPanel {
                 jTextField9KeyTyped(evt);
             }
         });
-        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 100, 30));
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 30));
 
         TablaB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -417,27 +385,7 @@ public class PVentas extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TablaB);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 250));
-
-        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Generar reporte 2");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jButton6.setContentAreaFilled(false);
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton6MouseExited(evt);
-            }
-        });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 370, 250));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
@@ -487,30 +435,7 @@ public class PVentas extends javax.swing.JPanel {
         }
         entrado=1;
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-        // TODO add your handling code here:
-        jButton3.setContentAreaFilled(true);
-    }//GEN-LAST:event_jButton4MouseEntered
-
-    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        // TODO add your handling code here:
-        jButton3.setContentAreaFilled(false);
-    }//GEN-LAST:event_jButton4MouseExited
     int t=0,p=0;
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String fechami = verificar.getFecha(fecha_min);
-        String fechamx = verificar.getFecha(fecha_max);
-        if(!fechami.isEmpty()&&!fechamx.isEmpty())
-        {
-            for (int i = 0; i < TablaB.getRowCount(); i++) {
-                model.removeRow(i);
-                i-=1;
-            }
-            mto.buscarFecha(model,fechami,fechamx,"",0);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void empleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleActionPerformed
         codi.setSelected(false);
         p=1;
@@ -568,44 +493,8 @@ public class PVentas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField9KeyTyped
 
-    private void modificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseEntered
-        // TODO add your handling code here:
-        modificar.setContentAreaFilled(true);
-    }//GEN-LAST:event_modificarMouseEntered
-
-    private void modificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseExited
-        // TODO add your handling code here:
-        modificar.setContentAreaFilled(false);
-    }//GEN-LAST:event_modificarMouseExited
-
-    private void montoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_montoKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-
-        if (verificar.vprecio(vchar) == true
-            && (monto.getText().length() < 5)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_montoKeyTyped
-
     private void TablaBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaBMousePressed
-        JTable table = (JTable) evt.getSource();
-        Point point = evt.getPoint();
-        int row = table.rowAtPoint(point);
-        if(evt.getClickCount() == 1)
-        {
-            codigo.setText(TablaB.getValueAt(TablaB.getSelectedRow(),0).toString());
-            fecha.setText(TablaB.getValueAt(TablaB.getSelectedRow(),1).toString());
-            empleado.setText(TablaB.getValueAt(TablaB.getSelectedRow(),2).toString());
-            monto.setText(TablaB.getValueAt(TablaB.getSelectedRow(),4).toString());
-            if(t==0)
-            {
-                tipo.setText("Factura");
-            }
-            else tipo.setText("Credito Fiscal");
-        }
+        
     }//GEN-LAST:event_TablaBMousePressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -677,22 +566,21 @@ public class PVentas extends javax.swing.JPanel {
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6MouseEntered
-
-    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6MouseExited
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+    void generarReportes(Integer tipo, String reports, String params1, String params2){
         
         try {
             Conexion con = new Conexion();
-            String archivo= getClass().getResource("/reportes/ReporteFacturasMes.jrxml").getPath();
+            String archivo= getClass().getResource("/reportes/"+reports+".jrxml").getPath();
+            
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
             Map parametros = new HashMap();
-            
-            
+            if(tipo!=0){
+               parametros.put("tipo",tipo); 
+               parametros.put("fecha1",params1);
+               parametros.put("fecha2",params2);
+            }
+   
             try {
                 String sql ="SELECT numRegistro, nombreEmpresa, domicilioLegal, fechaConstitucion, logo, telefono, correoElectronico, propietario "
                         + "FROM datosEmpresa";
@@ -716,9 +604,9 @@ public class PVentas extends javax.swing.JPanel {
             JasperPrint print = JasperFillManager.fillReport(report, parametros, con.conectar());
  
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setTitle("Reporte de Ventas por Mes");
+            visor.setTitle("Reporte de Ventas");
             visor.setVisible(true);
- 
+            reports="";
             
         } catch (JRException e) {
             System.out.println("AQUI1");
@@ -729,38 +617,80 @@ public class PVentas extends javax.swing.JPanel {
             System.out.println("AQUI2");
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if(rdRVentasMes.isSelected()){
+            generarReportes(0,"ReporteFacturasMes","","");
+        }else if(rdVentasEmpleado.isSelected()){
+            String fechami = verificar.getFecha(fechaRMin);
+            String fechamx = verificar.getFecha(fechaRMax);
+            if(cbFiltroFechas.isSelected()){
+                generarReportes(1,"ReporteFacturasEmpleados",fechami,fechamx);
+            }else{
+                generarReportes(2,"ReporteFacturasEmpleados","","");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Error selecciona una opcion para generar reporte");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void rdRVentasMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdRVentasMesActionPerformed
+        // TODO add your handling code here:
+        rdRVentasMes.setSelected(true);
+        rdVentasEmpleado.setSelected(false);
+        cbFiltroFechas.setEnabled(false);
+    }//GEN-LAST:event_rdRVentasMesActionPerformed
+
+    private void rdVentasEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdVentasEmpleadoActionPerformed
+        // TODO add your handling code here:
+        rdRVentasMes.setSelected(false);
+        rdVentasEmpleado.setSelected(true);
+        cbFiltroFechas.setEnabled(true);
+    }//GEN-LAST:event_rdVentasEmpleadoActionPerformed
+
+    private void cbFiltroFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroFechasActionPerformed
+        // TODO add your handling code here:
+        if(cbFiltroFechas.isSelected() ){
+            fechaRMin.setEnabled(true);
+            fechaRMax.setEnabled(true);
+        }else{
+            fechaRMin.setEnabled(false);
+            fechaRMax.setEnabled(false);
+        }
+    }//GEN-LAST:event_cbFiltroFechasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaB;
+    private javax.swing.JCheckBox cbFiltroFechas;
     private javax.swing.JRadioButton codi;
-    private javax.swing.JLabel codigo;
     private javax.swing.JRadioButton emple;
-    private javax.swing.JLabel empleado;
-    private javax.swing.JComboBox<String> estado;
-    private javax.swing.JLabel fecha;
+    private com.toedter.calendar.JDateChooser fechaRMax;
+    private com.toedter.calendar.JDateChooser fechaRMin;
     private com.toedter.calendar.JDateChooser fecha_max;
     private com.toedter.calendar.JDateChooser fecha_min;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JLabel lbl_estado;
     private javax.swing.JLabel lblhelp;
-    private javax.swing.JButton modificar;
-    private javax.swing.JTextField monto;
-    private javax.swing.JLabel tipo;
+    private javax.swing.JRadioButton rdRVentasMes;
+    private javax.swing.JRadioButton rdVentasEmpleado;
     // End of variables declaration//GEN-END:variables
 }
