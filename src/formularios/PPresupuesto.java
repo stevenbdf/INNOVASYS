@@ -118,16 +118,18 @@ public class PPresupuesto extends javax.swing.JPanel {
         try {
             Conexion con = new Conexion();
             /* Realizamos la consulta a la base de datos*/
-            String sql = "select idProductos from inventario group by idProductos ";
+            String sql = "select idProductos from inventario  group by idProductos ";
             PreparedStatement verDatos = con.conectar().prepareStatement(sql);
             ResultSet ver = verDatos.executeQuery();
             while (ver.next()) {
-                String sql2 = "select nombreProducto FROM producto "
-                        + "  WHERE idProducto=" + ver.getObject("idProductos") + " AND idCategoria="+idCat;
+                String sql2 = "select nombreProducto ,(SELECT top 1 stock from inventario where idProductos="+ver.getObject("idProductos")+" order by idInventario DESC) as stock FROM producto " 
+                               +" WHERE idProducto= "+ver.getObject("idProductos")+"  AND idCategoria="+idCat;
                 PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
                 ResultSet ver2 = verDatos2.executeQuery();
                 if (ver2.next()) {
-                    modeloComboPro.addElement(ver2.getString(1));
+                    if(ver2.getInt("stock")!=0){
+                        modeloComboPro.addElement(ver2.getString(1));
+                    }
                 }
             }
 

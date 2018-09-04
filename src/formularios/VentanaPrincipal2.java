@@ -10,9 +10,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import AppPackage.AnimationClass;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.UIManager;
-import java.util.Scanner;
 import clases.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +17,6 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -2532,10 +2527,11 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
                     ChatCenter.setIcon(definirIconoExit(chat));
                 }
     }//GEN-LAST:event_ChatCenterMouseExited
-
+    
     private void ChatCenterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatCenterMouseClicked
         // TODO add your handling code here:
         definirClick(chat);
+        
     }//GEN-LAST:event_ChatCenterMouseClicked
 
     private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved
@@ -2575,7 +2571,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     private void EmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseClicked
         // TODO add your handling code here:
         definirClick(empleado);
-       
+      
     }//GEN-LAST:event_EmpleadosMouseClicked
 
     private void EmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpleadosMouseEntered
@@ -2600,10 +2596,13 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     private void EmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpresaMouseClicked
         // TODO add your handling code here:
         definirClick(empresa);
+        
+        
     }//GEN-LAST:event_EmpresaMouseClicked
 
     public void definirClick(int label) {
-        System.out.println("Label : "+label);
+       condicion=0;
+        
         switch (label) {
             case 0:
                 PanelPrincipal.setVisible(true);

@@ -8,8 +8,6 @@ package formularios;
 import clases.Conexion;
 import clases.mtoPresupuesto;
 import clases.verificaciones;
-import static formularios.VentanaPrincipal2.PanelPrincipal;
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -26,7 +24,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.UIManager;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -63,6 +60,13 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+       
+       jTA1.setEditable(false);
+        jTFCodigo.setEditable(false);
+        jTFNombre.setEditable(false);
+        jTFPrecio1.setEditable(false);
+        jTFPuntaje.setEditable(false);
+        jTFTotal.setEditable(false);
     }
 
     /**
@@ -416,6 +420,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         form.show();
     }//GEN-LAST:event_lblhelpMouseClicked
     int cant=0;
+    int[] uso = null;
     private void llenaComboBoxCategorias() {
         modeloComboCategorias.removeAllElements();
         try {
@@ -435,6 +440,9 @@ public class PConstruirEquipo extends javax.swing.JPanel {
             System.out.println("Error: " + ex);
 
         }
+        System.out.println("Cantidad: "+cant);
+        uso = new int[cant];
+        uso[0]=0;
     }
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
         // TODO add your handling code here:
@@ -469,6 +477,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         DecimalFormat df = new DecimalFormat("#.00"); 
         jTFTotal.setText(""+df.format(total));
         contador--;
+        uso[jComboBox1.getSelectedIndex()]=0;
         //System.out.println("Stockes: "+stockes[0][jComboBox1.getSelectedIndex()]+" valor: "+stockes[1][jComboBox1.getSelectedIndex()]);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -500,9 +509,12 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     Object[][] stockes = new Object[4][50];
     double total=0;
     double[] bench = new double[5];
+    
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Index: "+jComboBox1.getSelectedIndex());
+        if(!jTFPrecio1.getText().equals("")){
+            
+        if(uso[jComboBox1.getSelectedIndex()]!=1){
         if (jComboBox1.getSelectedIndex()>=1 &&  jComboBox1.getSelectedIndex()<=4 ) {
             bench[jComboBox1.getSelectedIndex()]= Double.valueOf(jTFPuntaje.getText());
         }
@@ -525,8 +537,17 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         DecimalFormat df = new DecimalFormat("#.00"); 
         System.out.println("Stockes: "+stockes[0][jComboBox1.getSelectedIndex()]+" valor: "+stockes[1][jComboBox1.getSelectedIndex()]);
         jTFTotal.setText(df.format(total));
+        uso[jComboBox1.getSelectedIndex()]=1;
         contador++;
         
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Ya hay un producto agregado de esta categorias");
+        }
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Error campos vacios");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTFCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCodigoActionPerformed
@@ -600,7 +621,12 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     );
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+        jTA1.setText(null);
+        jTFCodigo.setText(null);
+        jTFNombre.setText(null);
+        jTFPrecio1.setText(null);
+        jTFPuntaje.setText(null);
+        jTFTotal.setText(null);
         llenarList(1,""+jComboBox1.getSelectedItem());
         if (jComboBox1.getSelectedItem().equals("Almacenamiento") || jComboBox1.getSelectedItem().equals("Pasta Termica")|| jComboBox1.getSelectedItem().equals("RAM") ) {
             spin.setModel(model2);

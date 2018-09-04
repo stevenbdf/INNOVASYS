@@ -6,6 +6,8 @@
 package formularios;
 
 import Animacion.Fade;
+import clases.Conexion;
+import clases.verificaciones;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -15,6 +17,10 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 /**
  *
  * @author steven
@@ -28,12 +34,8 @@ public class Login1 extends javax.swing.JFrame {
     
     public Login1() {
         
-        
-        
-        //Test github version 2.1
-        //JASJAS k chido
         initComponents();
-        
+        verificarPedidos();
         
         
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
@@ -50,7 +52,34 @@ public class Login1 extends javax.swing.JFrame {
        
        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
     }
-    
+    private void verificarPedidos(){
+        Conexion con = new Conexion();
+        verificaciones veri = new verificaciones();
+        try {
+            String sql = " declare @fecha date "
+                    + " set @fecha =(select GETDATE()) "
+                    + " select idPedido,fecha_vencimiento,@fecha from pedido ";
+            PreparedStatement cmd = con.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            while(ver.next()){
+                java.util.Date fechaO = veri.sumarFechasDias(ver.getDate(2),2);
+                java.util.Date fechaA = veri.sumarFechasDias(ver.getDate(3),2); 
+                if(fechaA.after(fechaO)){
+                    try {
+                        String sql2 = "UPDATE pedido SET idEstadoP = 5 WHERE idPedido="+ver.getInt(1);
+                        PreparedStatement cmd2 = con.conectar().prepareStatement(sql2);
+                        if(!cmd2.execute()){
+                            
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Revisar al modificar estado pedido");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Revisar validacion de pedido");
+        }
+    }
     public class PresionarTecla extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent ke) {
@@ -84,8 +113,6 @@ public class Login1 extends javax.swing.JFrame {
         contraseña = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -200,7 +227,7 @@ public class Login1 extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
         jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -267,30 +294,6 @@ public class Login1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Ingresar como Invitado");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("o");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -464,14 +467,6 @@ public class Login1 extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jLabel9MouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseClicked
-
     private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
@@ -580,8 +575,6 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JLabel contraseña;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

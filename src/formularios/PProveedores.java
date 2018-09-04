@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -1061,26 +1060,7 @@ int tipo2=0;
         String path ="";
         try {
             Conexion con = new Conexion();
-//            //establecemos la ruta donde esta el reportes
-//            path = getClass().getResource("/reportes/Secciones.jasper").getPath();
-//            //se decodifica por algun caracter especial
-//            path = URLDecoder.decode(path,"UTF-8");
-//            System.out.println("path: "+path);
-//            //Se crea la conexion
-//            
-//            //Se crean los parametros
-//            Map parametros = new HashMap();
-//            parametros.put("Nombre","Steven Diaz");
-//            //Se crea el objeto reporte
-//            JasperReport reporte = (JasperReport)JRLoader.loadObject(path);
-//            //se crea el objeto de impresion del reporte 
-//            JasperPrint imprimir = JasperFillManager.fillReport(reporte,parametros,con.conectar());
-//            //ahora se crea el visor, donde se muestra el reporte
-//            JasperViewer visor = new JasperViewer(imprimir, false);
-//            visor.setTitle("Reporte de proyectos e integrantes");
-//            visor.setVisible(true);
-            
-            
+                     
             String archivo= getClass().getResource("/reportes/ReporteProveedores.jrxml").getPath();
             archivo = URLDecoder.decode(archivo,"UTF-8");
             JasperReport report = JasperCompileManager.compileReport(archivo);
