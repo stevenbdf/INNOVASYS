@@ -118,15 +118,15 @@ public class Login1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(340, 340));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Innovasys");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +286,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("¿Olvidaste tu constraseña?");
+        jLabel9.setText("¿Olvidaste tu contraseña?");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

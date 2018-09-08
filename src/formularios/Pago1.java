@@ -98,8 +98,8 @@ public class Pago1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTexto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -122,7 +122,7 @@ public class Pago1 extends javax.swing.JFrame {
         jPanel1.add(jTFCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 68, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Agregar Pago");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -108,8 +108,8 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 1), new java.awt.Dimension(0, 1), new java.awt.Dimension(32767, 1));
         jButton6 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 51, 51));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        setBackground(new java.awt.Color(30, 57, 42));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
@@ -121,7 +121,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 390, 140));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel10.setForeground(new java.awt.Color(60, 196, 124));
         jLabel10.setText("Detalle de Pedido");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
 
@@ -139,7 +139,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, 20));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel11.setForeground(new java.awt.Color(60, 196, 124));
         jLabel11.setText("Gestion de Pedidos");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
@@ -148,7 +148,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         lblFechaVencimiento.setText("Viernes 02 Julio 2018");
         add(lblFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, 20));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

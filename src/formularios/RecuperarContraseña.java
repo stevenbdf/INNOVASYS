@@ -65,15 +65,15 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setPreferredSize(new java.awt.Dimension(340, 340));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(60, 196, 124));
         jLabel2.setText("Recuperar constraseña");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
         lblTexto.setBackground(new java.awt.Color(255, 255, 255));
         lblTexto.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N

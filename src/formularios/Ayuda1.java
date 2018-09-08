@@ -58,20 +58,20 @@ public class Ayuda1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Solicitar ayuda");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(231, 223, 221));
         jLabel2.setText("Selecciona un contacto:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N

@@ -451,12 +451,12 @@ public class PEmpleado extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(51, 51, 51));
 
-        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(680, 500));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel1.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -842,8 +842,8 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1039,7 +1039,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel3.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1052,7 +1052,7 @@ public class PEmpleado extends javax.swing.JPanel {
         });
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
-        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setBackground(new java.awt.Color(30, 57, 42));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -1295,7 +1295,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 670, 210));
 
-        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel8.setBackground(new java.awt.Color(30, 57, 42));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
 

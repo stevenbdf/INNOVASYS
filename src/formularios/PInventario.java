@@ -152,16 +152,16 @@ public class PInventario extends javax.swing.JPanel {
         Reciente = new javax.swing.JRadioButton();
         jButton6 = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane2.setBackground(new java.awt.Color(51, 51, 51));
-        jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jTabbedPane2.setBackground(new java.awt.Color(30, 57, 42));
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jTabbedPane2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(680, 500));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(670, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -422,7 +422,7 @@ public class PInventario extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Gestionar Inventario", jPanel3);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBackground(new java.awt.Color(30, 57, 42));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

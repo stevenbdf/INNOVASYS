@@ -71,8 +71,8 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -134,8 +134,8 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 372, 382, 62));
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel4.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,8 +171,8 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 372, -1, 62));
 
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel5.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -193,11 +193,11 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 480, 270));
 
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel6.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel10.setForeground(new java.awt.Color(60, 196, 124));
         jLabel10.setText("Chat Center");
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
@@ -251,8 +251,8 @@ public class PChatCenter extends javax.swing.JPanel {
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 0, 483, -1));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));

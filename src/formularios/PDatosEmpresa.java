@@ -134,13 +134,13 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         fecha = new com.toedter.calendar.JDateChooser();
         logo = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setMaximumSize(new java.awt.Dimension(680, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Gestion de los Datos de la Empresa");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 31));
 

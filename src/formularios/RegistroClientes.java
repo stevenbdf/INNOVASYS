@@ -96,8 +96,8 @@ public class RegistroClientes extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -105,11 +105,11 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Registro de Nuevo Cliente");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 31));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preguntas de Seguridad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -173,6 +173,7 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 290, 210));
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("FINALIZAR");
         jButton6.setContentAreaFilled(false);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +191,7 @@ public class RegistroClientes extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 150, 60));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preguntas de Seguridad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jTFDui.setBackground(new java.awt.Color(204, 204, 204));
@@ -465,12 +466,12 @@ public class RegistroClientes extends javax.swing.JFrame {
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {

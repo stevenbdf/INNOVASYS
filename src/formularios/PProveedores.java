@@ -220,11 +220,11 @@ public class PProveedores extends javax.swing.JPanel {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 51, 51));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        setBackground(new java.awt.Color(30, 57, 42));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -480,7 +480,7 @@ public class PProveedores extends javax.swing.JPanel {
         jPanel1.add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 255));
+        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
         jLabel1.setText("Gestion de los Proveedores");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
@@ -523,7 +523,7 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Proveedores", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -546,7 +546,7 @@ public class PProveedores extends javax.swing.JPanel {
         jPanel2.add(jTFCodigoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 30));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 0, 255));
+        jLabel12.setForeground(new java.awt.Color(60, 196, 124));
         jLabel12.setText("Gestion de Rubros");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 

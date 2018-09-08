@@ -148,12 +148,12 @@ public class PProductos extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jTabbedPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel1.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -450,7 +450,7 @@ public class PProductos extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Gestion de Productos", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

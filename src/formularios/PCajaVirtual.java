@@ -140,8 +140,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setMaximumSize(new java.awt.Dimension(680, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -228,7 +228,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 150, 30));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel13.setForeground(new java.awt.Color(60, 196, 124));
         jLabel13.setText("CAJA REGISTRADORA");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
@@ -394,7 +394,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 80, 30));
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel22.setForeground(new java.awt.Color(60, 196, 124));
         jLabel22.setText("Detalle de venta");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 

@@ -217,11 +217,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(60, 196, 124));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
@@ -436,7 +437,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBackground(new java.awt.Color(30, 57, 42));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -445,7 +446,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         });
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel5.setBackground(new java.awt.Color(30, 57, 42));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -124,8 +124,8 @@ public class PVentas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaB = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(51, 51, 51));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        setBackground(new java.awt.Color(30, 57, 42));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -133,7 +133,7 @@ public class PVentas extends javax.swing.JPanel {
         jLabel14.setText("Buscar:");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, 30));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -280,7 +280,7 @@ public class PVentas extends javax.swing.JPanel {
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, 30));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel20.setForeground(new java.awt.Color(60, 196, 124));
         jLabel20.setText("Gestion de Ventas");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 

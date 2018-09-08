@@ -221,8 +221,8 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 3, true));
+        jPanel2.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 196, 124), 3, true));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -550,11 +550,11 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 610));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 3, true));
+        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 196, 124), 3, true));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 60)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(60, 196, 124));
         jLabel3.setText("INNOVASYS");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -611,17 +611,19 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        PanelPrincipal.setBackground(new java.awt.Color(30, 57, 42));
+        PanelPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         PanelPrincipal.setPreferredSize(new java.awt.Dimension(680, 500));
 
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 678, Short.MAX_VALUE)
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
 
         jPanel3.add(PanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));

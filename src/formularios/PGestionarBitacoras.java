@@ -106,12 +106,12 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         fecha_max = new com.toedter.calendar.JDateChooser();
         fecha_min = new com.toedter.calendar.JDateChooser();
 
-        setBackground(new java.awt.Color(51, 51, 51));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153), 3));
+        setBackground(new java.awt.Color(30, 57, 42));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel10.setForeground(new java.awt.Color(60, 196, 124));
         jLabel10.setText("Gestionar Bitacoras");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
