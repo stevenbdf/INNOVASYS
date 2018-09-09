@@ -394,7 +394,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 80, 30));
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(60, 196, 124));
+        jLabel22.setForeground(new java.awt.Color(217, 179, 16));
         jLabel22.setText("Detalle de venta");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 

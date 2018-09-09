@@ -21,6 +21,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import javax.swing.UIManager;
+
+
 /**
  *
  * @author steven
@@ -31,11 +34,16 @@ public class Login1 extends javax.swing.JFrame {
     /**
      * Creates new form Login1
      */
-    
+    public static final Color green2 = new Color(30,57,42);
+    public static final Color blanco = new Color(255,255,255);
     public Login1() {
-        
+                
         initComponents();
         verificarPedidos();
+        UIManager UI = new UIManager();
+        UI.put("OptionPane.background", green2);
+        UI.put("OptionPane.messageForeground", blanco);
+        UI.put("Panel.background", green2);
         
         
         setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
@@ -114,6 +122,8 @@ public class Login1 extends javax.swing.JFrame {
         usuario = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -122,6 +132,19 @@ public class Login1 extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
         jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(340, 340));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel1MouseReleased(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -159,11 +182,16 @@ public class Login1 extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("E-Mail:");
         jLabel5.setToolTipText("");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 36));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 36));
 
-        jTFCorreo.setBackground(new java.awt.Color(204, 204, 204));
-        jTFCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jTFCorreo.setBackground(new java.awt.Color(30, 57, 42));
+        jTFCorreo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jTFCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        jTFCorreo.setBorder(null);
         jTFCorreo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jTFCorreoMouseDragged(evt);
+            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jTFCorreoMouseMoved(evt);
             }
@@ -189,7 +217,7 @@ public class Login1 extends javax.swing.JFrame {
                 jTFCorreoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 150, 30));
+        jPanel1.add(jTFCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 150, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
@@ -229,9 +257,10 @@ public class Login1 extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
-        jTFContraseña.setBackground(new java.awt.Color(204, 204, 204));
+        jTFContraseña.setBackground(new java.awt.Color(30, 57, 42));
         jTFContraseña.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTFContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jTFContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        jTFContraseña.setBorder(null);
         jTFContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTFContraseñaMouseClicked(evt);
@@ -281,7 +310,7 @@ public class Login1 extends javax.swing.JFrame {
         jPanel1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 32, 32));
 
         usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario1OFF.png"))); // NOI18N
-        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 32, 32));
+        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 32, 32));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -311,6 +340,16 @@ public class Login1 extends javax.swing.JFrame {
         });
         jPanel1.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 25, 25));
 
+        jSeparator1.setBackground(new java.awt.Color(102, 255, 51));
+        jSeparator1.setForeground(new java.awt.Color(102, 255, 102));
+        jSeparator1.setOpaque(true);
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 150, 1));
+
+        jSeparator2.setBackground(new java.awt.Color(102, 255, 51));
+        jSeparator2.setForeground(new java.awt.Color(102, 255, 102));
+        jSeparator2.setOpaque(true);
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 221, 150, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -337,7 +376,7 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jTFCorreoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFCorreoMouseMoved
         // TODO add your handling code here:
-        jTFCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
+        
         ImageIcon foto = new ImageIcon (getClass().getResource("/images/usuario1ON.png"));
         ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(usuario.getWidth(),usuario.getHeight(),Image.SCALE_DEFAULT));
         usuario.setIcon(icono);
@@ -350,7 +389,7 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jTFCorreoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFCorreoMouseEntered
         // TODO add your handling code here:
-        jTFCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
+        
         ImageIcon foto = new ImageIcon (getClass().getResource("/images/usuario1ON.png"));
         ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(usuario.getWidth(),usuario.getHeight(),Image.SCALE_DEFAULT));
         usuario.setIcon(icono);
@@ -358,7 +397,7 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jTFCorreoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFCorreoMouseExited
         // TODO add your handling code here:
-        jTFCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(Color.GRAY));
+        
         ImageIcon foto = new ImageIcon (getClass().getResource("/images/usuario1OFF.png"));
         ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(usuario.getWidth(),usuario.getHeight(),Image.SCALE_DEFAULT));
         usuario.setIcon(icono);
@@ -376,6 +415,7 @@ public class Login1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         verificaciones obj = new verificaciones();
         if (obj.vcorreo(jTFCorreo.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Ingrese un formato de correo valido");
@@ -423,35 +463,6 @@ public class Login1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void jTFContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseClicked
-        // TODO add your handling code here:
-        jTFContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordON.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
-        contraseña.setIcon(icono);
-    }//GEN-LAST:event_jTFContraseñaMouseClicked
-
-    private void jTFContraseñaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseEntered
-        // TODO add your handling code here:
-        jTFContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordON.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
-        contraseña.setIcon(icono);
-    }//GEN-LAST:event_jTFContraseñaMouseEntered
-
-    private void jTFContraseñaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseExited
-        // TODO add your handling code here:
-        jTFContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(Color.GRAY));
-
-        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordOFF.png"));
-        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
-        contraseña.setIcon(icono);
-    }//GEN-LAST:event_jTFContraseñaMouseExited
-
-    private void jTFContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFContraseñaActionPerformed
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         this.setState(VentanaPrincipal2.ICONIFIED);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -466,26 +477,6 @@ public class Login1 extends javax.swing.JFrame {
         form.show();
         this.hide();
     }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        verificaciones obj = new verificaciones();
-        if (obj.vletrasynumeros(vchar) == true
-                && (jTFContraseña.getText().length() < 80)) {
-
-        } else {
-            evt.consume();
-        }
-        
-        //Se asegura de capturar la tecla enter y descartar todas las demas
-        char cTeclaPresionada = evt.getKeyChar();
-
-//Da click al boton elegido
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            jButton1.doClick();
-        }
-    }//GEN-LAST:event_jTFContraseñaKeyTyped
 
     private void jTFCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCorreoActionPerformed
         // TODO add your handling code here:
@@ -533,6 +524,78 @@ public class Login1 extends javax.swing.JFrame {
             jButton1.doClick();
         }
     }//GEN-LAST:event_jTFCorreoKeyTyped
+    int xx, xy;
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        // TODO add your handling code here:
+        setOpacity((float)0.8);
+        xx=evt.getX();
+        xy=evt.getY();
+        
+    }//GEN-LAST:event_jPanel1MousePressed
+    
+    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+        // TODO add your handling code here:
+        setOpacity((float)1.0);
+    }//GEN-LAST:event_jPanel1MouseReleased
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x-xx, y-xy);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jTFCorreoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFCorreoMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCorreoMouseDragged
+
+    private void jTFContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFContraseñaKeyTyped
+        // TODO add your handling code here:
+        char vchar = evt.getKeyChar();
+        verificaciones obj = new verificaciones();
+        if (obj.vletrasynumeros(vchar) == true
+            && (jTFContraseña.getText().length() < 80)) {
+
+        } else {
+            evt.consume();
+        }
+
+        //Se asegura de capturar la tecla enter y descartar todas las demas
+        char cTeclaPresionada = evt.getKeyChar();
+
+        //Da click al boton elegido
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            jButton1.doClick();
+        }
+    }//GEN-LAST:event_jTFContraseñaKeyTyped
+
+    private void jTFContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFContraseñaActionPerformed
+
+    private void jTFContraseñaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseExited
+        // TODO add your handling code here:
+
+        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordOFF.png"));
+        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
+        contraseña.setIcon(icono);
+    }//GEN-LAST:event_jTFContraseñaMouseExited
+
+    private void jTFContraseñaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseEntered
+        // TODO add your handling code here:
+
+        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordON.png"));
+        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
+        contraseña.setIcon(icono);
+    }//GEN-LAST:event_jTFContraseñaMouseEntered
+
+    private void jTFContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFContraseñaMouseClicked
+        // TODO add your handling code here:
+
+        ImageIcon foto = new ImageIcon (getClass().getResource("/images/passwordON.png"));
+        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(contraseña.getWidth(),contraseña.getHeight(),Image.SCALE_DEFAULT));
+        contraseña.setIcon(icono);
+    }//GEN-LAST:event_jTFContraseñaMouseClicked
    
     
     /**
@@ -546,7 +609,7 @@ public class Login1 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -583,6 +646,8 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPasswordField jTFContraseña;
     private javax.swing.JTextField jTFCorreo;
     private javax.swing.JLabel lblhelp;

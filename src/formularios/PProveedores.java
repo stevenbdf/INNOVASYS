@@ -480,7 +480,7 @@ public class PProveedores extends javax.swing.JPanel {
         jPanel1.add(rdNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(60, 196, 124));
+        jLabel1.setForeground(new java.awt.Color(217, 179, 16));
         jLabel1.setText("Gestion de los Proveedores");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 

@@ -11,15 +11,24 @@ import javax.swing.ImageIcon;
 import AppPackage.AnimationClass;
 import java.awt.BorderLayout;
 import clases.*;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
+
 /**
  *
  * @author steve
@@ -114,6 +123,16 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     Integer dia,diames, mes, año, tipoU, codigoEmpleado;
     public String correoE;
     int posiciones[] = new int[14];
+    
+    public static void changeFont(Component component, Font font) {
+        component.setFont(font);
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                changeFont(child, font);
+            }
+        }
+    }
+    
     public VentanaPrincipal2(String correo) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -124,7 +143,25 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         timer.start();
         obtenerFecha();
         correoE=correo;
-           
+        Font fuente = null;
+        Font fuente2 = null;
+        InputStream myStream = null;
+        try {
+            myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Raleway.ttf"));
+            fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
+            fuente = fuente.deriveFont(Font.BOLD, 60);
+            fuente2 = fuente.deriveFont(Font.BOLD, 44);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(fuente);
+        
+        
+        jLabel3.setFont(fuente);
+        changeFont(jPanel2, fuente2);
+        
+
             
         
         try {
@@ -223,9 +260,20 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(30, 57, 42));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 196, 124), 3, true));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel2MouseReleased(evt);
             }
         });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -552,9 +600,23 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 57, 42));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 196, 124), 3, true));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel1MouseReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 60)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(60, 196, 124));
+        jLabel3.setForeground(new java.awt.Color(217, 179, 16));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("INNOVASYS");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -587,10 +649,10 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(40, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(124, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,15 +662,12 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(0, 70, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 680, 110));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(30, 57, 42));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelPrincipal.setBackground(new java.awt.Color(30, 57, 42));
@@ -628,7 +687,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
 
         jPanel3.add(PanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
-        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
+        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 196, 124), 5, true));
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 500));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 680, 500));
@@ -669,40 +728,40 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         
         switch (mes){
             case 1:
-                fecha1.setText(diames+"Enero");
+                fecha1.setText(diames+"  Ene");
                 break;
             case 2:
-                fecha2.setText(diames+"Febrero");
+                fecha2.setText(diames+"  Feb");
                 break;
             case 3:
-                fecha2.setText(diames+"Marzo");
+                fecha2.setText(diames+"  Marz");
                 break;
             case 4:
-                fecha2.setText(diames+"Abril");
+                fecha2.setText(diames+"  Abril");
                 break;
             case 5:
-                fecha2.setText(diames+"Mayo");
+                fecha2.setText(diames+"  Mayo");
                 break;
             case 6:
-                fecha2.setText(diames+"Junio");
+                fecha2.setText(diames+"  Junio");
                 break;
             case 7:
-                fecha2.setText(diames+"Julio");
+                fecha2.setText(diames+"  Julio");
                 break;
             case 8:
-                fecha2.setText(diames+"Agosto");
+                fecha2.setText(diames+"  Agost");
                 break;
             case 9:
-                fecha2.setText(diames+"Septiembre");
+                fecha2.setText(diames+"  Sept");
                 break;
             case 10:
-                fecha2.setText(diames+"Octubre");
+                fecha2.setText(diames+"  Oct");
                 break;
             case 11:
-                fecha2.setText(diames+"Noviembre");
+                fecha2.setText(diames+"  Nov");
                 break;
             case 12:
-                fecha2.setText(diames+"Diciembre");
+                fecha2.setText(diames+"  Dic");
                 break;  
         }      
         fecha3.setText(""+año);
@@ -3029,7 +3088,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     private void ClientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_ClientesMouseMoved
-
+    int xx, xy;
     private void ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseClicked
         // TODO add your handling code here:
         definirClick(client);
@@ -3147,6 +3206,40 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        // TODO add your handling code here:
+        setOpacity((float)0.8);
+        xx=evt.getX();
+        xy=evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseReleased
+        // TODO add your handling code here:
+        setOpacity((float)1.0);
+    }//GEN-LAST:event_jPanel2MouseReleased
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x-xx, y-xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jPanel1MouseReleased
+    
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jPanel1MouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -3158,7 +3251,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

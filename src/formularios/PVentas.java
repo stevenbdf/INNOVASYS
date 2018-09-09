@@ -498,11 +498,10 @@ public class PVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_TablaBMousePressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        String path ="";
+
         try {
             Conexion con = new Conexion();
-            
+
             String fechami = verificar.getFecha(fecha_min);
             String fechamx = verificar.getFecha(fecha_max);
             String archivo= getClass().getResource("/reportes/ReporteVentas.jrxml").getPath();

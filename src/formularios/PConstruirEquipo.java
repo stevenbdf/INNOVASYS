@@ -46,11 +46,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     DefaultListModel modeloLista = new DefaultListModel();
     DefaultListModel modeloLista2 = new DefaultListModel();
     public PConstruirEquipo() {
-//        try {
-//                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-//		}
-//		catch (Exception e) {
-//		}
+
         modeloComboCategorias = new DefaultComboBoxModel(new String[]{});
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         

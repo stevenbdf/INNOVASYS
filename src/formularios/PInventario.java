@@ -8,6 +8,7 @@ import clases.Conexion;
 import clases.mtoInventario;
 import static clases.mtoVentas.sumarFechasDias;
 import clases.verificaciones;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -22,14 +23,24 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author steve
@@ -44,6 +55,17 @@ public class PInventario extends javax.swing.JPanel {
     DefaultComboBoxModel modeloComboCategoria;
     DefaultTableModel modeloTablaReportes;
     String correo;
+    public static final Color greenD = new Color(217,179,16);
+    
+    public static void changeFont(Component component, Font font) {
+        component.setFont(font);
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                changeFont(child, font);
+            }
+        }
+    }
+    
     public PInventario(String correoE) {
         mtoInventario obj = new mtoInventario();
 //                try {
@@ -52,6 +74,23 @@ public class PInventario extends javax.swing.JPanel {
 //		catch (Exception e) {
 //		}
         initComponents();
+        
+        Font fuente = null;
+        InputStream myStream = null;
+        try {
+            myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Poppins-Medium.ttf"));
+            fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
+            fuente = fuente.deriveFont(Font.PLAIN, 11);
+            
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(fuente);
+        
+        changeFont(jPanel1, fuente);
+        
+        
         correo=correoE;
         Calendar c2 = new GregorianCalendar();
         fecha.setCalendar(c2);
@@ -65,7 +104,22 @@ public class PInventario extends javax.swing.JPanel {
         int dia = hoy.get(Calendar.DAY_OF_MONTH);
         String fechaP = año + "-" + mes + "-" + dia;
         String fechaP2 = año2 + "-" + mes + "-" + dia;
-            
+        mtoInventario objeto = new mtoInventario();
+        jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+  
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        
+        for (int i = 0; i <jTable1.getColumnCount() ; i++) {
+            columnModel.getColumn(i).setPreferredWidth(500);
+            System.out.println("entra");
+        }
+
+        
+        
         fecha.setMaxSelectableDate(verificar.StringADate(fechaP));
         fecha.setMinSelectableDate(verificar.StringADate(fechaP2));
         Fmin.setMaxSelectableDate(verificar.StringADate(fechaP));
@@ -76,7 +130,7 @@ public class PInventario extends javax.swing.JPanel {
         jTFCodigo.setEnabled(false);
         jTFProductoEspecifico.setEnabled(false);
         
-        mtoInventario objeto = new mtoInventario();
+        
         modeloComboCategoria = new DefaultComboBoxModel(new String[]{});
         cmbProducto.setModel(obj.llenarComboCategoria(modeloComboCategoria));
         modeloTablaReportes = new DefaultTableModel(null, objeto.getColumnasCategoria());
@@ -244,9 +298,11 @@ public class PInventario extends javax.swing.JPanel {
 
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseEntered(evt);
@@ -260,10 +316,11 @@ public class PInventario extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 80, 30));
+        jPanel3.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 120, 40));
 
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminar.setContentAreaFilled(false);
@@ -280,7 +337,7 @@ public class PInventario extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 80, 30));
+        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 100, 40));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,6 +376,9 @@ public class PInventario extends javax.swing.JPanel {
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setDragEnabled(true);
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -376,6 +436,7 @@ public class PInventario extends javax.swing.JPanel {
 
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificar.setContentAreaFilled(false);
@@ -392,7 +453,7 @@ public class PInventario extends javax.swing.JPanel {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 80, 30));
+        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 130, 40));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -423,7 +484,7 @@ public class PInventario extends javax.swing.JPanel {
         jTabbedPane2.addTab("Gestionar Inventario", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel4.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
