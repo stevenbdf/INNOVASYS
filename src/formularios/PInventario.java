@@ -110,14 +110,7 @@ public class PInventario extends javax.swing.JPanel {
         
         header.setBackground(greenD);
         header.setForeground(Color.WHITE);
-  
-        TableColumnModel columnModel = jTable1.getColumnModel();
         
-        for (int i = 0; i <jTable1.getColumnCount() ; i++) {
-            columnModel.getColumn(i).setPreferredWidth(500);
-            System.out.println("entra");
-        }
-
         
         
         fecha.setMaxSelectableDate(verificar.StringADate(fechaP));
@@ -142,6 +135,15 @@ public class PInventario extends javax.swing.JPanel {
         ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         lblhelp.setIcon(icono0);
         lblhelp1.setIcon(icono0);
+        
+        String[] valoresC = objeto.getColumnasCategoria();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
+        
     }
 
     /**

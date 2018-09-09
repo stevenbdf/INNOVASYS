@@ -261,7 +261,7 @@ public class mtoInventario {
     
     public String[] getColumnasCategoria()
     {
-        String columna[] = {"CODIGO","CODIGO PRODUCTO","TIPO TRANSACCION", "FECHA TRANSACCION","PRECIO COMPRA", "% GANANCIA", "STOCK", "CANTIDAD", "IMPUESTOS", "ESTADO"};
+        String columna[] = {"CODIGO","NOMBRE PRODUCTO"," TRANSACCION", "FECHA TRANSACCION","PRECIO COMPRA", "% GANANCIA", "STOCK", "CANTIDAD", "% IMPUESTOS", "ESTADO   "};
         return columna;
     }
     
