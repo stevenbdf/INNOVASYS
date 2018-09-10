@@ -135,6 +135,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
 
         lblFoto.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblFoto.setForeground(new java.awt.Color(255, 255, 255));
+        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 4));
         add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 260, 240));
 
         jComboBox1.setModel(modeloComboCategorias);

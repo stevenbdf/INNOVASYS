@@ -9,6 +9,7 @@ import clases.Conexion;
 import clases.mtoCajaRegistradora;
 import clases.verificaciones;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,6 +95,7 @@ public class Pago1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTFIngreso = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnFinalizar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -105,7 +107,7 @@ public class Pago1 extends javax.swing.JFrame {
         lblTexto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         lblTexto.setForeground(new java.awt.Color(255, 255, 255));
         lblTexto.setText("Cambio($):");
-        jPanel1.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        jPanel1.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jTFCambio.setBackground(new java.awt.Color(204, 204, 204));
         jTFCambio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -119,7 +121,7 @@ public class Pago1 extends javax.swing.JFrame {
                 jTFCambioKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 68, 30));
+        jPanel1.add(jTFCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 68, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(60, 196, 124));
@@ -137,11 +139,11 @@ public class Pago1 extends javax.swing.JFrame {
         btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnFinalizar.setContentAreaFilled(false);
         btnFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnFinalizarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnFinalizarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseEntered(evt);
             }
         });
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -149,12 +151,12 @@ public class Pago1 extends javax.swing.JFrame {
                 btnFinalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 240, 130, 30));
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Total ($):");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
         jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -168,24 +170,24 @@ public class Pago1 extends javax.swing.JFrame {
                 jTFTotalKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 92, 68, 30));
+        jPanel1.add(jTFTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 68, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingreso ($):");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jTFIngreso.setBackground(new java.awt.Color(204, 204, 204));
         jTFIngreso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTFIngreso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFIngresoKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFIngresoKeyTyped(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFIngresoKeyReleased(evt);
+            }
         });
-        jPanel1.add(jTFIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 140, 68, 30));
+        jPanel1.add(jTFIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 68, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jLabel5.setToolTipText("");
@@ -195,6 +197,26 @@ public class Pago1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
+
+        btnFinalizar1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnFinalizar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar1.setText("Pagar con Paypal");
+        btnFinalizar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnFinalizar1.setContentAreaFilled(false);
+        btnFinalizar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFinalizar1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinalizar1MouseEntered(evt);
+            }
+        });
+        btnFinalizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -381,6 +403,37 @@ public class Pago1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnFinalizar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizar1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFinalizar1MouseExited
+
+    private void btnFinalizar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizar1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFinalizar1MouseEntered
+
+    private void btnFinalizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizar1ActionPerformed
+        
+        //String variable = request.getParameter("variable");
+        
+       try {
+           Conexion cn = new Conexion();
+            String sql ="SELECT MAX(noFactura) FROM factura";
+            PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if(ver.next()){
+                Runtime aplicacion = Runtime.getRuntime();
+                try {
+                    aplicacion.exec("C:/Windows/System32/cmd.exe /K start https://innovasys.000webhostapp.com/index.php?id_compra="+(ver.getInt(1)+1)+"^&producto='Pedido%20con%20número%20de:%20"+(ver.getInt(1)+1)+"'^&precio="+Double.valueOf(jTFTotal.getText()));
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+            }
+            
+        } catch (Exception e) {
+            System.out.println("mtoCajaRegistradora: "+e);
+        }
+    }//GEN-LAST:event_btnFinalizar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -419,6 +472,7 @@ public class Pago1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnFinalizar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
