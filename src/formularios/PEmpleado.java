@@ -30,6 +30,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -37,6 +40,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class PEmpleado extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form PEmpleado
      */
@@ -50,6 +54,10 @@ public class PEmpleado extends javax.swing.JPanel {
      */
     DefaultListModel modeloLista = new DefaultListModel();
     String correo = "";
+    public static final Color greenD = new Color(217,179,16);
+    public static final Color greenDD = new Color(217,179,16);
+    public static final Color greenDDD = new Color(217,179,16);
+    public static final Color greenDDDD = new Color(217,179,16);
 
     private void llenarList(int tipo, String valores) {
         try {
@@ -135,6 +143,61 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFBuscarEstado.setEnabled(false);
         jTFBuscarDocumento.setEnabled(false);
         jTFBuscarEmpleado.setEnabled(false);
+        
+        
+        jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+
+        String[] valoresC = getColumnasEmpleado();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
+        
+        
+        jTable4.getTableHeader().setOpaque(false);
+        JTableHeader header1 = jTable4.getTableHeader();
+        header1.setBackground(greenDD);
+        header1.setForeground(Color.WHITE);
+
+        String[] valoresCC = getColumnasDocumentosEmpleados();
+        TableColumnModel columnModel2 = jTable4.getColumnModel();
+        System.out.println("tamaño: "+valoresCC.length);
+        for (int i = 0; i <valoresCC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresCC[i].length()*9);
+            System.out.println("entra");
+        }
+        
+        
+        jTable2.getTableHeader().setOpaque(false);
+        JTableHeader header2 = jTable2.getTableHeader();
+        header2.setBackground(greenDDDD);
+        header2.setForeground(Color.WHITE);
+        
+        String[] valoresCCC = getColumnasDocumentos();
+        TableColumnModel columnModel3 = jTable2.getColumnModel();
+        System.out.println("tamaño: "+valoresCCC.length);
+        for (int i = 0; i <valoresCCC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresCCC[i].length()*9);
+            System.out.println("entra");
+        }
+        
+        jTable3.getTableHeader().setOpaque(false);
+        JTableHeader header3 = jTable3.getTableHeader();
+        header3.setBackground(greenDDD);
+        header3.setForeground(Color.WHITE);
+        
+        String[] valoresCCCC = getColumnasEstado();
+        TableColumnModel columnModel4 = jTable3.getColumnModel();
+        System.out.println("tamaño: "+valoresCCCC.length);
+        for (int i = 0; i <valoresCCCC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresCCCC[i].length()*9);
+            System.out.println("entra");
+        }
     }
 
     private void llenaComboBoxTipoUsuario() {
@@ -740,6 +803,8 @@ public class PEmpleado extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(modeloTablaEmpleados);
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

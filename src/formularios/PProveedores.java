@@ -28,6 +28,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -45,6 +48,9 @@ public class PProveedores extends javax.swing.JPanel {
      */
     verificaciones verificar = new verificaciones();
     String correo;
+    public static final Color greenD = new Color(217,179,16);
+    public static final Color greenDD = new Color(217,179,16);
+    
     public PProveedores(String correoE) {
          modeloTablaProveedores= new DefaultTableModel(null, getColumnasProveedores());
          modeloTablaRubros= new DefaultTableModel(null, getColumnasRubros());
@@ -59,12 +65,42 @@ public class PProveedores extends javax.swing.JPanel {
                 
 //		}
         initComponents();
+        setFilasP(0,"");
+         setFilasRubros(0,"");
         llenarRubros();
         correo=correoE;
         jTextField1.setEnabled(false);
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+       
+       jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        String[] valoresC = getColumnasProveedores();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
+        
+        
+        jTable2.getTableHeader().setOpaque(false);
+        JTableHeader header2 = jTable2.getTableHeader();
+        header2.setBackground(greenDD);
+        header2.setForeground(Color.WHITE);
+        
+        String[] valoresCC = getColumnasProveedores();
+        TableColumnModel columnModel2 = jTable2.getColumnModel();
+        System.out.println("tamaño: "+valoresCC.length);
+        for (int i = 0; i <valoresCC.length; i++) {
+            columnModel2.getColumn(i).setPreferredWidth(valoresCC[i].length()*9);
+            System.out.println("entra");
+        }
+        
     }
     private String[] getColumnasProveedores() {
         String columnas[] = new String[]{"ID PROVEEDOR", "NOMBRE", "DIRECCION", "TELEFONO", "FAX", "CORREO","RUBRO" ,"ESTADO"};
@@ -431,6 +467,8 @@ public class PProveedores extends javax.swing.JPanel {
 
         jTable1.setModel(modeloTablaProveedores);
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -581,6 +619,9 @@ public class PProveedores extends javax.swing.JPanel {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 190, 160));
 
         jTable2.setModel(modeloTablaRubros);
+        jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable2.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable2.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);

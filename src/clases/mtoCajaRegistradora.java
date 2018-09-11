@@ -63,19 +63,21 @@ public class mtoCajaRegistradora {
     private double montoTotal;
     
     
-    public boolean guardarFactura(Object[][] detalle,int tamaño){
+    public boolean guardarFactura(Object[][] detalle,int tamaño,String metodo, String comprobante){
         boolean retorno=false;
         try {
             
             
             System.out.println("Fecha: "+fechaP);
-            String sql ="INSERT INTO factura(noFactura,numRegistro, fecha, idEmpleado, idCliente, montoTotal)"
-                    + " VALUES ( (SELECT MAX(noFactura) FROM factura)+1, 1,'"+fechaP+"', ?,?,?)";
+            String sql ="INSERT INTO factura(noFactura,numRegistro, fecha, idEmpleado, idCliente, montoTotal,metodoPago,comprobantePaypal)"
+                    + " VALUES ( (SELECT MAX(noFactura) FROM factura)+1, 1,'"+fechaP+"', ?,?,?,?,?)";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setInt(1, codigoEmpleado);
             cmd.setInt(2,codigoCliente);
             System.out.println("Monto Total: "+montoTotal);
             cmd.setDouble(3,montoTotal);
+            cmd.setString(4,metodo);
+            cmd.setString(5,comprobante);
             if (!cmd.execute()) {
                 if (guardarDetalleFactura(detalle,tamaño)) {
                     retorno=true;

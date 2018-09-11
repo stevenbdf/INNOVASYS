@@ -31,6 +31,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -54,6 +57,8 @@ public class PProductos extends javax.swing.JPanel {
     String codigoC="",nombreC="",codigoP="",correo="";
     File fichero;
     String datos=String.valueOf(fichero);
+    public static final Color greenD = new Color(217,179,16);
+    public static final Color greenDD = new Color(217,179,16);
     
     public PProductos(String correoE) {
 //                try {
@@ -79,6 +84,33 @@ public class PProductos extends javax.swing.JPanel {
 
         modeloTablaProducto = new DefaultTableModel(null, productos.getColumnasProducto());
         jTable1.setModel(productos.setFilasProductos(modeloTablaProducto, 0, ""));
+        
+        jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        String[] valoresC = productos.getColumnasProducto();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
+        
+        
+        jTable2.getTableHeader().setOpaque(false);
+        JTableHeader header1 = jTable2.getTableHeader();
+        header1.setBackground(greenDD);
+        header1.setForeground(Color.WHITE);
+        
+        String[] valoresCC = productos.getColumnasCategoria();
+        TableColumnModel columnModel2 = jTable2.getColumnModel();
+        System.out.println("tamaño: "+valoresCC.length);
+        for (int i = 0; i <valoresCC.length; i++) {
+            columnModel2.getColumn(i).setPreferredWidth(valoresCC[i].length()*9);
+            System.out.println("entra");
+        }
     }
 
     /**
@@ -225,6 +257,8 @@ public class PProductos extends javax.swing.JPanel {
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, 30));
 
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -518,6 +552,9 @@ public class PProductos extends javax.swing.JPanel {
         });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, -1));
 
+        jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable2.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable2.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);

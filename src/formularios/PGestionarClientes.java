@@ -29,6 +29,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 /**
  *
  * @author steven
@@ -52,6 +55,8 @@ public class PGestionarClientes extends javax.swing.JPanel {
     mtoClientes cli = new mtoClientes();
     verificaciones objeto = new verificaciones();
     String correo;
+    public static final Color greenD = new Color(217,179,16);
+
     public PGestionarClientes(String correoE) {
 //        try {
 //			
@@ -86,6 +91,20 @@ public class PGestionarClientes extends javax.swing.JPanel {
         
         tbl_client = new DefaultTableModel(null,getColumnas());
         tbl_clientes.setModel(cli.setfilas(tbl_client));
+        
+        tbl_clientes.getTableHeader().setOpaque(false);
+        JTableHeader header = tbl_clientes.getTableHeader();
+        
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        String[] valoresC = getColumnas();
+        TableColumnModel columnModel = tbl_clientes.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
     }
 
     
@@ -139,9 +158,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
             }
         ));
         tbl_clientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbl_clientes.setGridColor(new java.awt.Color(0, 153, 51));
+        tbl_clientes.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jScrollPane1.setViewportView(tbl_clientes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 530, 250));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 530, 250));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));

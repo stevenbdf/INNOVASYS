@@ -31,6 +31,10 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -50,6 +54,7 @@ public class PPresupuesto extends javax.swing.JPanel {
     
     Integer[][] stockes = new Integer[2][50];
     String fechaP="";
+    public static final Color greenD = new Color(217,179,16);
     public PPresupuesto() {
         mtoInventario obj = new mtoInventario();
 //        try {
@@ -89,6 +94,19 @@ public class PPresupuesto extends javax.swing.JPanel {
        jPanel1.setVisible(false);
        jLabel20.setVisible(false);
        jTFSubTotal.setVisible(false);
+       
+       jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        String[] valoresC = getColumnasProductos();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
     }
     private String[] getColumnasProductos() {
         String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL" };
@@ -796,6 +814,7 @@ public class PPresupuesto extends javax.swing.JPanel {
     Integer contador=0;
     double total=0;
     Object[] datos = new Object[7];
+    DecimalFormat df = new DecimalFormat("#.##");
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         if (Integer.valueOf(jTFCantidad.getText())>stockGeneral) {
@@ -834,7 +853,7 @@ public class PPresupuesto extends javax.swing.JPanel {
 
                 contador++;
                 total = total + subtotal;
-                jTFTotal.setText("" + total);
+                jTFTotal.setText("" + df.format(total));
                 System.out.println("Contador: " + contador);
             }
         }

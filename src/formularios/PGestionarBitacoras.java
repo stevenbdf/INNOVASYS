@@ -28,6 +28,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -43,6 +46,8 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
     DefaultTableModel model;
     mtoBitacora mto = new mtoBitacora();
     String correo;
+    public static final Color greenD = new Color(217,179,16);
+
     public PGestionarBitacoras(String correoE) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -76,6 +81,20 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+       
+       TablaB.getTableHeader().setOpaque(false);
+        JTableHeader header = TablaB.getTableHeader();
+        
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        String[] valoresC = getcolumnas();
+        TableColumnModel columnModel = TablaB.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
     }
     public String[] getcolumnas()
         {
@@ -91,6 +110,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fecha_max = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaB = new javax.swing.JTable();
@@ -103,7 +123,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         porE = new javax.swing.JRadioButton();
         jButton5 = new javax.swing.JButton();
         lblhelp = new javax.swing.JLabel();
-        fecha_max = new com.toedter.calendar.JDateChooser();
         fecha_min = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(30, 57, 42));
@@ -126,6 +145,9 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaB.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        TablaB.setGridColor(new java.awt.Color(0, 153, 51));
+        TablaB.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jScrollPane1.setViewportView(TablaB);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 530, 230));
@@ -223,7 +245,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
-        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 160, 30));
         add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 

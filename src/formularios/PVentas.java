@@ -28,6 +28,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -42,6 +45,8 @@ public class PVentas extends javax.swing.JPanel {
     DefaultTableModel model;
     String correo;
     mtoVentas mto = new mtoVentas();
+    public static final Color greenD = new Color(217,179,16);
+    
     public PVentas(String correoE) {
 //        try {
 //			
@@ -82,6 +87,21 @@ public class PVentas extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
+       
+//       TablaB.getTableHeader().setOpaque(false);
+//        JTableHeader header = TablaB.getTableHeader();
+//        header.setBackground(greenD);
+//        header.setForeground(Color.WHITE);
+//        
+//        String[] valoresC = objeto.getColumnasCategoria();
+//        TableColumnModel columnModel = TablaB.getColumnModel();
+//        System.out.println("tamaño: "+valoresC.length);
+//        for (int i = 0; i <valoresC.length; i++) {
+//            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+//            System.out.println("entra");
+//        }
+
+        
     }
      public String[] getcolumnas()
     {
@@ -378,6 +398,9 @@ public class PVentas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaB.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        TablaB.setGridColor(new java.awt.Color(0, 153, 51));
+        TablaB.setSelectionBackground(new java.awt.Color(0, 204, 51));
         TablaB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaBMousePressed(evt);

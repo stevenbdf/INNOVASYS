@@ -45,12 +45,42 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     DefaultComboBoxModel modeloComboCliente;
     DefaultListModel modeloLista = new DefaultListModel();
     DefaultListModel modeloLista2 = new DefaultListModel();
+    
+//    public static final Color greenD = new Color(217,179,16);
+//    
+//    public static void changeFont(Component component, Font font) {
+//        component.setFont(font);
+//        if (component instanceof Container) {
+//            for (Component child : ((Container) component).getComponents()) {
+//                changeFont(child, font);
+//            }
+//        }
+//    }
+    
+    
     public PConstruirEquipo() {
 
         modeloComboCategorias = new DefaultComboBoxModel(new String[]{});
         modeloComboCliente = new DefaultComboBoxModel(new String[]{});
         
         initComponents();
+        
+//        Font fuente = null;
+//        InputStream myStream = null;
+//        try {
+//            myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Poppins-Medium.ttf"));
+//            fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
+//            fuente = fuente.deriveFont(Font.PLAIN, 11);
+//            
+//        } catch (FontFormatException | IOException ex) {
+//            Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//        ge.registerFont(fuente);
+//        
+//        changeFont(PConstruirEquipo, fuente);
+        
+        
         llenaComboBoxClientes();
         llenaComboBoxCategorias();
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
@@ -136,7 +166,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         lblFoto.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblFoto.setForeground(new java.awt.Color(255, 255, 255));
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 4));
-        add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 260, 240));
+        add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 260, 240));
 
         jComboBox1.setModel(modeloComboCategorias);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +183,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         jButton2.setText("Remover");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -170,7 +201,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 80, 30));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 110, 40));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,10 +222,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 60, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 60, 30));
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         jButton4.setText("Agregar");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton4.setContentAreaFilled(false);
@@ -212,7 +244,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 90, 30));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 110, 40));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,7 +254,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Descripcion:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 90, 30));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 90, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,18 +273,18 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jTFCodigoKeyTyped(evt);
             }
         });
-        add(jTFCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, 70, 30));
+        add(jTFCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 70, 30));
 
         jTA1.setColumns(20);
         jTA1.setRows(5);
         jScrollPane2.setViewportView(jTA1);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 180, 110));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 180, 110));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Nombre:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 60, 30));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 60, 30));
 
         jTFNombre.setBackground(new java.awt.Color(204, 204, 204));
         jTFNombre.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -266,7 +298,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jTFNombreKeyTyped(evt);
             }
         });
-        add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 320, 180, 30));
+        add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 180, 30));
 
         jTFPuntaje.setBackground(new java.awt.Color(204, 204, 204));
         jTFPuntaje.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -280,12 +312,12 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jTFPuntajeKeyTyped(evt);
             }
         });
-        add(jTFPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 70, 30));
+        add(jTFPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 70, 30));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("BenchMark:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 90, 30));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 90, 30));
 
         jList2.setModel(modeloLista);
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,7 +332,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Precio:");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 50, 30));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 50, 30));
 
         jTFPrecio1.setBackground(new java.awt.Color(204, 204, 204));
         jTFPrecio1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -314,7 +346,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jTFPrecio1KeyTyped(evt);
             }
         });
-        add(jTFPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 70, 30));
+        add(jTFPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 70, 30));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -340,7 +372,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Codigo:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 60, 30));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 60, 30));
 
         jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
         jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N

@@ -8,7 +8,6 @@ import clases.Conexion;
 import clases.mtoInventario;
 import static clases.mtoVentas.sumarFechasDias;
 import clases.verificaciones;
-import java.awt.Color;
 import java.awt.Image;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -28,7 +27,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -40,7 +38,10 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 /**
  *
  * @author steve
@@ -105,6 +106,8 @@ public class PInventario extends javax.swing.JPanel {
         String fechaP = año + "-" + mes + "-" + dia;
         String fechaP2 = año2 + "-" + mes + "-" + dia;
         mtoInventario objeto = new mtoInventario();
+        
+        
         jTable1.getTableHeader().setOpaque(false);
         JTableHeader header = jTable1.getTableHeader();
         
@@ -135,6 +138,8 @@ public class PInventario extends javax.swing.JPanel {
         ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         lblhelp.setIcon(icono0);
         lblhelp1.setIcon(icono0);
+        
+     
         
         String[] valoresC = objeto.getColumnasCategoria();
         TableColumnModel columnModel = jTable1.getColumnModel();
@@ -388,7 +393,7 @@ public class PInventario extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 238, 616, 210));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 616, 210));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {

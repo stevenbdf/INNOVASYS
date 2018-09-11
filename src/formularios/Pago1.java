@@ -89,12 +89,12 @@ public class Pago1 extends javax.swing.JFrame {
         lblTexto = new javax.swing.JLabel();
         jTFCambio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnFinalizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTFTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTFIngreso = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnFinalizar = new javax.swing.JButton();
         btnFinalizar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,26 +132,6 @@ public class Pago1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 29, -1, -1));
-
-        btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnFinalizar.setText("Finalizar Venta");
-        btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        btnFinalizar.setContentAreaFilled(false);
-        btnFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnFinalizarMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnFinalizarMouseEntered(evt);
-            }
-        });
-        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,6 +177,26 @@ public class Pago1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
+
+        btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setText("Finalizar Venta");
+        btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        btnFinalizar.setContentAreaFilled(false);
+        btnFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseEntered(evt);
+            }
+        });
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 30));
 
         btnFinalizar1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnFinalizar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -378,17 +378,26 @@ public class Pago1 extends javax.swing.JFrame {
         }
     }
     
-    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        // TODO add your handling code here:
+    void finalizarFactura(String tipoVenta,String comprobante){
         mtoCajaRegistradora obj = new mtoCajaRegistradora();
         obj.setCodigoEmpleado(codEmpleado);
         obj.setCodigoCliente(codCliente);
         obj.setMontoTotal(Double.valueOf(jTFTotal.getText()));
-        System.out.println("length tabla: "+tabla.length);
-        if (obj.guardarFactura(tabla,largo)) {
+        if (obj.guardarFactura(tabla,largo,tipoVenta,comprobante)) {
             JOptionPane.showMessageDialog(this,"Factura realizada correctamente");
             crearReporte();
+        }
     }
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        // TODO add your handling code here:
+        double total = Double.valueOf(jTFTotal.getText());
+        double pago = Double.valueOf(jTFIngreso.getText());
+        if(pago>=total ){
+            finalizarFactura("Efectivo","");
+        }else{
+           JOptionPane.showMessageDialog(this,"Ingresa un pago mayor o igual al total de la venta"); 
+        }
+        
         
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
@@ -424,6 +433,23 @@ public class Pago1 extends javax.swing.JFrame {
                 Runtime aplicacion = Runtime.getRuntime();
                 try {
                     aplicacion.exec("C:/Windows/System32/cmd.exe /K start https://innovasys.000webhostapp.com/index.php?id_compra="+(ver.getInt(1)+1)+"^&producto='Pedido%20con%20número%20de:%20"+(ver.getInt(1)+1)+"'^&precio="+Double.valueOf(jTFTotal.getText()));
+                    String comprobante = JOptionPane.showInputDialog("Ingresa el codigo de confirmacion de paypal: ");
+                    if(comprobante!=null && comprobante.matches("PAY.*") && comprobante.length()==28){
+                        try{
+                            String sql2 = "SELECT * FROM factura WHERE comprobantePaypal='"+comprobante+"'";
+                            PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                            ResultSet ver2 = cmd2.executeQuery();
+                            if(ver2.next()){
+                                JOptionPane.showMessageDialog(this,"Error, ya existe una venta relacionada a este codigo paypal");
+                            }else{
+                                finalizarFactura("Paypal",comprobante);
+                            }
+                        }catch(Exception ex){
+                            System.out.println("comprobando: "+ex);
+                        }               
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Error al verificar el codigo paypal");
+                    }
                 } catch (Exception e) {
                     System.out.println(e.toString());
                 }

@@ -9,6 +9,7 @@ import clases.Conexion;
 import clases.mtoCajaRegistradora;
 import clases.mtoPresupuesto;
 import clases.verificaciones;
+import java.awt.Color;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,9 @@ import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.JTableHeader;
 
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +43,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     
     Integer codigoEmpleado=1;
     String correo;
+    public static final Color greenD = new Color(217,179,16);
     public PCajaVirtual(int codigoE, String nombre) {
 //        try {
 //			
@@ -80,6 +85,14 @@ public class PCajaVirtual extends javax.swing.JPanel {
        lblhelp.setIcon(icono0);
        jTFSubTotal.setVisible(false);
        lblSub.setVisible(false);
+       
+       jTable1.getTableHeader().setOpaque(false);
+        JTableHeader header = jTable1.getTableHeader();
+        
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
+        
+        
     }
 
     /**
@@ -209,7 +222,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         rdCredito.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rdCredito.setForeground(new java.awt.Color(204, 204, 204));
         rdCredito.setText("Credito Fiscal");
-        jPanel1.add(rdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+        jPanel1.add(rdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,7 +272,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTable1.setModel(modeloTablaProductos);
-        jTable1.setGridColor(new java.awt.Color(153, 153, 153));
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -856,6 +870,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     Integer contador=0;
     double total=0;
     Integer[][] stockes = new Integer[2][50];
+     DecimalFormat df = new DecimalFormat("#.##");
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         if(jTFCantidad.getText().isEmpty()){
@@ -886,7 +901,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 datos[4] = jTFPrecio.getText();
                 datos[5] = jTFCantidad.getText();
                 double subtotal = (Double.parseDouble(jTFPrecio.getText())) * Integer.valueOf(jTFCantidad.getText());
-                datos[6] = subtotal;
+                datos[6] = df.format(subtotal);
                 modeloTablaProductos.addRow(datos);
                 //0 Codigo Pro
                 stockes[0][contador] = Integer.valueOf(jTFCodigoP.getText());
@@ -897,7 +912,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
 
                 contador++;
                 total = total + subtotal;
-                jTFTotal.setText("" + total);
+                jTFTotal.setText("" + df.format(total));
                 System.out.println("Contador: " + contador);
             }
         }
@@ -953,7 +968,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
             if (jTable1.getRowCount()==0) {
                 contador=0;
                 total=0;
-                jTFTotal.setText(""+total);
+                jTFTotal.setText(""+df.format(total));
                 System.out.println("Contador: "+contador);
             }
         x=-1; 

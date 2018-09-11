@@ -25,6 +25,9 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import java.awt.Color;
 
 /**
  *
@@ -44,6 +47,8 @@ public class VerOrdenesCola extends javax.swing.JPanel {
     Conexion con = new Conexion();
     verificaciones verificar = new verificaciones();
     String correo;
+    public static final Color greenD = new Color(217,179,16);
+    
     public VerOrdenesCola(String correoE) {
 //        try {
 //                     UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -66,6 +71,15 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
         ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
         lblhelp.setIcon(icono0);
+        
+        String[] valoresC = getColumnasProductos();
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        System.out.println("tamaño: "+valoresC.length);
+        for (int i = 0; i <valoresC.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
+            System.out.println("entra");
+        }
+        
     }
 
     /**
@@ -115,7 +129,10 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTable1.setModel(modeloTablaProductos);
-        jTable1.setGridColor(new java.awt.Color(153, 153, 153));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setFocusable(false);
+        jTable1.setGridColor(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 390, 140));
