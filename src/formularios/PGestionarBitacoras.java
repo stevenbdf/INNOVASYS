@@ -88,13 +88,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         header.setBackground(greenD);
         header.setForeground(Color.WHITE);
         
-        String[] valoresC = getcolumnas();
-        TableColumnModel columnModel = TablaB.getColumnModel();
-        System.out.println("tamaño: "+valoresC.length);
-        for (int i = 0; i <valoresC.length; i++) {
-            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
-            System.out.println("entra");
-        }
+    
     }
     public String[] getcolumnas()
         {
@@ -110,7 +104,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fecha_max = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaB = new javax.swing.JTable();
@@ -124,6 +117,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         lblhelp = new javax.swing.JLabel();
         fecha_min = new com.toedter.calendar.JDateChooser();
+        fecha_max = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(30, 57, 42));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
@@ -145,7 +139,6 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaB.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         TablaB.setGridColor(new java.awt.Color(0, 153, 51));
         TablaB.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jScrollPane1.setViewportView(TablaB);
@@ -164,6 +157,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(java.awt.Color.white);
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/search.png"))); // NOI18N
         jButton2.setText("Buscar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -181,7 +175,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 90, 40));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(java.awt.Color.white);
@@ -212,6 +206,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(java.awt.Color.white);
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton5.setText("Generar reporte");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
@@ -228,7 +223,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 150, 40));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -246,6 +241,7 @@ public class PGestionarBitacoras extends javax.swing.JPanel {
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 25, 25));
         add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 160, 30));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered

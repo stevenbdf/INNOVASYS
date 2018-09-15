@@ -166,7 +166,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         lblFoto.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblFoto.setForeground(new java.awt.Color(255, 255, 255));
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 4));
-        add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 260, 240));
+        add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 260, 240));
 
         jComboBox1.setModel(modeloComboCategorias);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -189,11 +189,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jButton2.setContentAreaFilled(false);
         jButton2.setPreferredSize(new java.awt.Dimension(73, 30));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton2MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
             }
         });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -201,10 +201,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 110, 40));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 110, 40));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/cube.png"))); // NOI18N
         jButton3.setText("Ver 3D");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
@@ -222,7 +223,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 60, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 90, 40));
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,11 +233,11 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jButton4.setContentAreaFilled(false);
         jButton4.setPreferredSize(new java.awt.Dimension(73, 30));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton4MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton4MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
             }
         });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +245,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 110, 40));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 110, 40));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -367,7 +368,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
         jList1.setModel(modeloLista2);
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 160, 130));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 180, 130));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -390,6 +391,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/continue.png"))); // NOI18N
         jButton5.setText("TERMINAR");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
@@ -407,7 +409,7 @@ public class PConstruirEquipo extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 140, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 140, 40));
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -517,12 +519,39 @@ public class PConstruirEquipo extends javax.swing.JPanel {
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
-
+    private void modelo(String direccion){
+         Runtime aplicacion = Runtime.getRuntime();
+                try {
+                    aplicacion.exec("C:/Windows/System32/cmd.exe /K start "+direccion);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }      
+     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < 9; i++) {
-            System.out.println("0  "+stockes[0][i]);
-            System.out.println("1  "+stockes[1][i]);
+        int pos = jComboBox1.getSelectedIndex();
+        switch (pos) {
+            case 0:
+                modelo("C:\\Users\\User\\Desktop\\model\\RAR\\MOobj.obj");
+                break;
+            case 1:
+                modelo("C:\\Users\\User\\Desktop\\model\\cpu2\\i7\\i7.obj");
+                break;
+            case 2:
+                modelo("C:\\Users\\User\\Desktop\\convert\\model.obj");
+                break;
+            case 3:
+                modelo("C:\\Users\\User\\Desktop\\model\\ram\\untitled.obj");
+                break;
+            case 4:
+                modelo("C:\\Users\\User\\Desktop\\model\\evga2\\untitled.obj");
+                break;
+            case 5:
+                 modelo("C:\\Users\\User\\Desktop\\model\\fan\\untitled.obj");
+                break;
+            case 6:
+                 modelo("C:\\Users\\User\\Desktop\\model\\powersup\\power.obj");
+                break;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

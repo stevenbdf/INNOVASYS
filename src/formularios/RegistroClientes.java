@@ -174,6 +174,7 @@ public class RegistroClientes extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/continue.png"))); // NOI18N
         jButton6.setText("FINALIZAR");
         jButton6.setContentAreaFilled(false);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {

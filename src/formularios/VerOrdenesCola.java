@@ -232,6 +232,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         jButton7.setBackground(new java.awt.Color(51, 51, 51));
         jButton7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         jButton7.setText("Modificar Estado");
         jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton7.setContentAreaFilled(false);
@@ -260,15 +261,17 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         jButton5.setBackground(new java.awt.Color(51, 51, 51));
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Iniciar");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/arrowgreenup.png"))); // NOI18N
+        jButton5.setText("Iniciar Pedido");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton5MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
             }
         });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +279,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 140, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 130, 40));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -338,15 +341,17 @@ public class VerOrdenesCola extends javax.swing.JPanel {
         jButton6.setBackground(new java.awt.Color(51, 51, 51));
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/downarrowred.png"))); // NOI18N
         jButton6.setText("Finalizar Pedido");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton6MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
             }
         });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +359,7 @@ public class VerOrdenesCola extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 140, 30));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
     
     private String[] getColumnasProductos() {

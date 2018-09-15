@@ -177,7 +177,9 @@ public class PProductos extends javax.swing.JPanel {
         jButton10 = new javax.swing.JButton();
         lblhelp1 = new javax.swing.JLabel();
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(new java.awt.Color(30, 57, 42));
+
+        jPanel4.setBackground(new java.awt.Color(30, 57, 42));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
@@ -271,6 +273,7 @@ public class PProductos extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton1.setText("Generar Reporte");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton1.setContentAreaFilled(false);
@@ -290,13 +293,13 @@ public class PProductos extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 130, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 160, 40));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Imagen:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -319,17 +322,18 @@ public class PProductos extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/imagen.png"))); // NOI18N
         jButton2.setText("Examinar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
         jButton2.setDoubleBuffered(true);
         jButton2.setPreferredSize(new java.awt.Dimension(77, 30));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton2MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
             }
         });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -337,21 +341,22 @@ public class PProductos extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 90, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 100, 40));
 
         btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(204, 204, 204));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseEntered(evt);
             }
         });
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -359,21 +364,22 @@ public class PProductos extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 90, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 90, 40));
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setPreferredSize(new java.awt.Dimension(75, 30));
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
             }
         });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +387,7 @@ public class PProductos extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 90, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 100, 40));
 
         jRadioButton7.setBackground(new java.awt.Color(102, 102, 102));
         jRadioButton7.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -413,16 +419,17 @@ public class PProductos extends javax.swing.JPanel {
         btnModificar.setBackground(new java.awt.Color(255, 255, 255));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(204, 204, 204));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificar.setContentAreaFilled(false);
         btnModificar.setPreferredSize(new java.awt.Dimension(75, 30));
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarMouseEntered(evt);
             }
         });
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -430,8 +437,8 @@ public class PProductos extends javax.swing.JPanel {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, -1));
-        jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 130, 130));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 100, 40));
+        jPanel1.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 130, 130));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -461,18 +468,19 @@ public class PProductos extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 204, 204));
-        jButton3.setText("Productos por proveedor");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/products.png"))); // NOI18N
+        jButton3.setText("Productos Proveedor");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
         jButton3.setMaximumSize(new java.awt.Dimension(113, 30));
         jButton3.setMinimumSize(new java.awt.Dimension(113, 30));
         jButton3.setPreferredSize(new java.awt.Dimension(113, 30));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton3MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
             }
         });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -480,12 +488,12 @@ public class PProductos extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 160, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 180, 40));
 
         jTabbedPane1.addTab("Gestion de Productos", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCodigoC.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -541,6 +549,7 @@ public class PProductos extends javax.swing.JPanel {
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         jButton6.setText("Eliminar");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
@@ -550,7 +559,7 @@ public class PProductos extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, -1));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 100, 40));
 
         jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable2.setGridColor(new java.awt.Color(0, 153, 51));
@@ -605,6 +614,7 @@ public class PProductos extends javax.swing.JPanel {
 
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(204, 204, 204));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton8.setText("Generar Reporte");
         jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton8.setContentAreaFilled(false);
@@ -616,7 +626,7 @@ public class PProductos extends javax.swing.JPanel {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 140, -1));
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 140, 40));
 
         jTADescripcion.setBackground(new java.awt.Color(204, 204, 204));
         jTADescripcion.setColumns(20);
@@ -636,6 +646,7 @@ public class PProductos extends javax.swing.JPanel {
 
         jButton9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton9.setForeground(new java.awt.Color(204, 204, 204));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         jButton9.setText("Agregar");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton9.setContentAreaFilled(false);
@@ -645,10 +656,11 @@ public class PProductos extends javax.swing.JPanel {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 90, -1));
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 100, 40));
 
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(204, 204, 204));
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         jButton10.setText("Modificar");
         jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton10.setContentAreaFilled(false);
@@ -663,7 +675,7 @@ public class PProductos extends javax.swing.JPanel {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 90, -1));
+        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 100, 40));
 
         lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {

@@ -85,26 +85,12 @@ public class PTipoUsuario extends javax.swing.JPanel {
         header.setBackground(greenD);
         header.setForeground(Color.WHITE);
         
-        String[] valoresC = getColumnasTipos();
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        System.out.println("tamaño: "+valoresC.length);
-        for (int i = 0; i <valoresC.length; i++) {
-            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
-            System.out.println("entra");
-        }
-        
         jTable2.getTableHeader().setOpaque(false);
         JTableHeader header2 = jTable2.getTableHeader();
         header2.setBackground(greenDD);
         header2.setForeground(Color.WHITE);
         
-        String[] valoresCC = getColumnasPrivilegios();
-        TableColumnModel columnModel2 = jTable2.getColumnModel();
-        System.out.println("tamaño: "+valoresCC.length);
-        for (int i = 0; i <valoresCC.length; i++) {
-            columnModel2.getColumn(i).setPreferredWidth(valoresCC[i].length()*9);
-            System.out.println("entra");
-        }
+        
         
     }
     private void llenaComboBox() {
@@ -247,7 +233,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
         lblhelp = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(new java.awt.Color(30, 57, 42));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
@@ -256,7 +242,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(30, 57, 42));
 
         jPanel2.setBackground(new java.awt.Color(60, 196, 124));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -474,7 +460,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jTabbedPane1.addTab("Gestionar Tipos de Usuario", jPanel1);
 
         jPanel4.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel4MouseClicked(evt);
@@ -483,7 +469,7 @@ public class PTipoUsuario extends javax.swing.JPanel {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seleccione los privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbInventario.setBackground(new java.awt.Color(102, 102, 102));

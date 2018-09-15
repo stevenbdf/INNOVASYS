@@ -222,7 +222,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         rdCredito.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rdCredito.setForeground(new java.awt.Color(204, 204, 204));
         rdCredito.setText("Credito Fiscal");
-        jPanel1.add(rdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
+        jPanel1.add(rdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -269,7 +269,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jLabel16.setText("Categoria:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 255));
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTable1.setModel(modeloTablaProductos);
         jTable1.setGridColor(new java.awt.Color(0, 153, 51));
@@ -319,15 +319,16 @@ public class PCajaVirtual extends javax.swing.JPanel {
         btnAgregar.setBackground(new java.awt.Color(51, 51, 51));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseEntered(evt);
             }
         });
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -335,20 +336,21 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 70, 30));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 100, 40));
 
         btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
             }
         });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +358,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 30));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 100, 40));
 
         lblSub.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         lblSub.setForeground(new java.awt.Color(255, 255, 255));
@@ -389,6 +391,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/continue.png"))); // NOI18N
         jButton3.setText("Continuar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
@@ -405,7 +408,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 80, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 100, 40));
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(217, 179, 16));

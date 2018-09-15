@@ -512,7 +512,7 @@ public class PEmpleado extends javax.swing.JPanel {
         rdCodigoEstado = new javax.swing.JRadioButton();
         btnEliminarE = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(new java.awt.Color(30, 57, 42));
 
         jTabbedPane1.setBackground(new java.awt.Color(30, 57, 42));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124), 3));
@@ -620,16 +620,17 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnModificarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificarEmpleado.setText("Modificar");
         btnModificarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarEmpleado.setContentAreaFilled(false);
         btnModificarEmpleado.setPreferredSize(new java.awt.Dimension(75, 30));
         btnModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarEmpleadoMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleadoMouseEntered(evt);
             }
         });
         btnModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -637,20 +638,21 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        jPanel1.add(btnModificarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 100, 40));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnLimpiarCampos.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiarCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/eraser.png"))); // NOI18N
         btnLimpiarCampos.setText("Limpiar Campos");
         btnLimpiarCampos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnLimpiarCampos.setContentAreaFilled(false);
         btnLimpiarCampos.setPreferredSize(new java.awt.Dimension(107, 30));
         btnLimpiarCampos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLimpiarCamposMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnLimpiarCamposMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarCamposMouseEntered(evt);
             }
         });
         btnLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -658,10 +660,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 140, 40));
 
         btnExaminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnExaminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExaminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/imagen.png"))); // NOI18N
         btnExaminar.setText("Examinar");
         btnExaminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnExaminar.setContentAreaFilled(false);
@@ -678,7 +681,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnExaminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 100, 30));
+        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 246, 100, -1));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -705,7 +708,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 rdNombreEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        jPanel1.add(rdNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
         rdCodigoEmpleado.setBackground(new java.awt.Color(102, 102, 102));
         rdCodigoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
@@ -715,10 +718,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 rdCodigoEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
+        jPanel1.add(rdCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
 
         btnGenerarReporteEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnGenerarReporteEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarReporteEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         btnGenerarReporteEmpleado.setText("Generar Reporte");
         btnGenerarReporteEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnGenerarReporteEmpleado.setContentAreaFilled(false);
@@ -735,7 +739,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnGenerarReporteEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, 30));
+        jPanel1.add(btnGenerarReporteEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 140, 40));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -762,6 +766,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnAgregarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregarEmpleado.setText("Agregar");
         btnAgregarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarEmpleado.setContentAreaFilled(false);
@@ -776,11 +781,11 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarEmpleadoMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarEmpleadoMouseEntered(evt);
             }
         });
         btnAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -788,7 +793,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnAgregarEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+        jPanel1.add(btnAgregarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, 40));
 
         cmbEstado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cmbEstado.setModel(modeloComboEstado);
@@ -866,16 +871,17 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnEliminarEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminarEmpleado.setText("Eliminar");
         btnEliminarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarEmpleado.setContentAreaFilled(false);
         btnEliminarEmpleado.setPreferredSize(new java.awt.Dimension(75, 30));
         btnEliminarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarEmpleadoMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleadoMouseEntered(evt);
             }
         });
         btnEliminarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -883,19 +889,20 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnEliminarEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        jPanel1.add(btnEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 90, 40));
 
         btnGenerarReporteEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnGenerarReporteEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarReporteEmpleado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/employee.png"))); // NOI18N
         btnGenerarReporteEmpleado1.setText("Empleados por Tipo");
         btnGenerarReporteEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnGenerarReporteEmpleado1.setContentAreaFilled(false);
         btnGenerarReporteEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGenerarReporteEmpleado1MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnGenerarReporteEmpleado1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGenerarReporteEmpleado1MouseEntered(evt);
             }
         });
         btnGenerarReporteEmpleado1.addActionListener(new java.awt.event.ActionListener() {
@@ -903,7 +910,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnGenerarReporteEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarReporteEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 310, 160, 30));
+        jPanel1.add(btnGenerarReporteEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 170, 30));
 
         jTabbedPane1.addTab("Gestion de Empleados", jPanel1);
 
@@ -913,7 +920,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         cmbDocumento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cmbDocumento.setModel(modeloComboDocumentos);
-        jPanel2.add(cmbDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 120, 30));
+        jPanel2.add(cmbDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 120, 30));
 
         jLabel31.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
@@ -954,6 +961,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnAgregarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarEmpleado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregarEmpleado1.setText("Agregar");
         btnAgregarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarEmpleado1.setContentAreaFilled(false);
@@ -968,11 +976,11 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
         btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarEmpleado1MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarEmpleado1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarEmpleado1MouseEntered(evt);
             }
         });
         btnAgregarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
@@ -980,10 +988,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnAgregarEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        jPanel2.add(btnAgregarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 90, 40));
 
         btnReport.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         btnReport.setText("Generar Reporte");
         btnReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnReport.setContentAreaFilled(false);
@@ -1001,20 +1010,21 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnReportActionPerformed(evt);
             }
         });
-        jPanel2.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 110, -1));
+        jPanel2.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 140, 40));
 
         btnEliminarEmpleado1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarEmpleado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminarEmpleado1.setText("Eliminar");
         btnEliminarEmpleado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarEmpleado1.setContentAreaFilled(false);
         btnEliminarEmpleado1.setPreferredSize(new java.awt.Dimension(75, 30));
         btnEliminarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarEmpleado1MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarEmpleado1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarEmpleado1MouseEntered(evt);
             }
         });
         btnEliminarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
@@ -1022,7 +1032,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnEliminarEmpleado1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, -1, -1));
+        jPanel2.add(btnEliminarEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 100, 40));
 
         jList1.setModel(modeloLista);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1037,7 +1047,7 @@ public class PEmpleado extends javax.swing.JPanel {
         lblEmpleadoDE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         lblEmpleadoDE.setForeground(new java.awt.Color(255, 255, 255));
         lblEmpleadoDE.setText("Empleado:");
-        jPanel2.add(lblEmpleadoDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, 30));
+        jPanel2.add(lblEmpleadoDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, 30));
 
         jTFDescripcionDE.setBackground(new java.awt.Color(204, 204, 204));
         jTFDescripcionDE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -1048,30 +1058,31 @@ public class PEmpleado extends javax.swing.JPanel {
                 jTFDescripcionDEKeyTyped(evt);
             }
         });
-        jPanel2.add(jTFDescripcionDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 120, -1));
+        jPanel2.add(jTFDescripcionDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 120, -1));
 
         jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Descripcion:");
-        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 30));
+        jLabel34.setText("Valor:");
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, 30));
 
         jLabel35.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Documento:");
-        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 30));
+        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 30));
 
         btnModificarEmpleado2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarEmpleado2.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarEmpleado2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificarEmpleado2.setText("Modificar");
         btnModificarEmpleado2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarEmpleado2.setContentAreaFilled(false);
         btnModificarEmpleado2.setPreferredSize(new java.awt.Dimension(75, 30));
         btnModificarEmpleado2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarEmpleado2MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarEmpleado2MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarEmpleado2MouseEntered(evt);
             }
         });
         btnModificarEmpleado2.addActionListener(new java.awt.event.ActionListener() {
@@ -1079,10 +1090,11 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnModificarEmpleado2ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModificarEmpleado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
+        jPanel2.add(btnModificarEmpleado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 100, 40));
 
         btnReport1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnReport1.setForeground(new java.awt.Color(255, 255, 255));
+        btnReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/documentos.png"))); // NOI18N
         btnReport1.setText("Documentos por Empleado");
         btnReport1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnReport1.setContentAreaFilled(false);
@@ -1100,12 +1112,12 @@ public class PEmpleado extends javax.swing.JPanel {
                 btnReport1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 170, -1));
+        jPanel2.add(btnReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 200, 40));
 
         jTabbedPane1.addTab("Documentos de  Empleados", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 153)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(60, 196, 124)));
         jPanel3.setPreferredSize(new java.awt.Dimension(680, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1118,11 +1130,12 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton10.setText("Generar Reporte");
         jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton10.setContentAreaFilled(false);
@@ -1214,6 +1227,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnAgregarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarD.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregarD.setText("Agregar");
         btnAgregarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarD.setContentAreaFilled(false);
@@ -1222,16 +1236,17 @@ public class PEmpleado extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarDMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarDMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarDMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarDMouseEntered(evt);
             }
         });
 
         btnModificarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarD.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificarD.setText("Modificar");
         btnModificarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarD.setContentAreaFilled(false);
@@ -1240,16 +1255,17 @@ public class PEmpleado extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarDMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarDMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarDMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarDMouseEntered(evt);
             }
         });
 
         btnEliminarD.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarD.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminarD.setText("Eliminar");
         btnEliminarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarD.setContentAreaFilled(false);
@@ -1258,11 +1274,11 @@ public class PEmpleado extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarDMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarDMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarDMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarDMouseEntered(evt);
             }
         });
 
@@ -1280,27 +1296,24 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCodigoDocumento)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCodigoDocumento)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(9, 9, 9)
-                                .addComponent(jTFNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(17, 17, 17)
-                                .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel6)
+                        .addGap(9, 9, 9)
+                        .addComponent(jTFNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addGap(17, 17, 17)
+                        .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel22)
@@ -1312,10 +1325,10 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addComponent(rdCodigoDocumento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdEstadoDocumento))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jButton10))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1350,22 +1363,22 @@ public class PEmpleado extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 670, 210));
 
         jPanel8.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestionar Estado de los Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton11.setText("Generar Reporte");
         jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton11.setContentAreaFilled(false);
@@ -1439,6 +1452,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnAgregarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregarE.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregarE.setText("Agregar");
         btnAgregarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregarE.setContentAreaFilled(false);
@@ -1457,6 +1471,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnModificarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarE.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         btnModificarE.setText("Modificar");
         btnModificarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnModificarE.setContentAreaFilled(false);
@@ -1465,11 +1480,16 @@ public class PEmpleado extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarEMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarEMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnModificarEMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarEMouseExited(evt);
+        });
+        btnModificarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarEActionPerformed(evt);
             }
         });
 
@@ -1498,6 +1518,7 @@ public class PEmpleado extends javax.swing.JPanel {
 
         btnEliminarE.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEliminarE.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminarE.setText("Eliminar");
         btnEliminarE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminarE.setContentAreaFilled(false);
@@ -1519,31 +1540,28 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel17))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(lblCodigoEstado))))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblCodigoEstado))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
@@ -1553,13 +1571,13 @@ public class PEmpleado extends javax.swing.JPanel {
                                 .addComponent(rdNombreEstado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rdCodigoEstado)
-                                .addGap(0, 83, Short.MAX_VALUE))
+                                .addGap(0, 63, Short.MAX_VALUE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton11)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(83, 83, 83))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1575,15 +1593,10 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addComponent(rdCodigoEstado)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1591,7 +1604,12 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25)
-                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregarE, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                            .addComponent(btnModificarE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -3025,6 +3043,10 @@ public class PEmpleado extends javax.swing.JPanel {
             Logger.getLogger(PInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGenerarReporteEmpleado1ActionPerformed
+
+    private void btnModificarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

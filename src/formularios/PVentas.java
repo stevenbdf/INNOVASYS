@@ -151,22 +151,23 @@ public class PVentas extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Buscar:");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, 30));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, 30));
 
         jPanel3.setBackground(new java.awt.Color(30, 57, 42));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/documentos.png"))); // NOI18N
         jButton6.setText("Generar Reporte Filtrado");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton6MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton6MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
             }
         });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +220,6 @@ public class PVentas extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rdRVentasMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rdVentasEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -228,45 +228,50 @@ public class PVentas extends javax.swing.JPanel {
                         .addGap(19, 19, 19))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel21))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaRMin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaRMin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(rdRVentasMes)
                 .addGap(18, 18, 18)
                 .addComponent(rdVentasEmpleado)
                 .addGap(18, 18, 18)
                 .addComponent(cbFiltroFechas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(fechaRMin, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fechaRMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(jButton6)
+                .addContainerGap())
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 270, 270));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 270, 320));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha Min:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, 20));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton5.setText("Generar reporte");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
@@ -283,12 +288,12 @@ public class PVentas extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 140, 40));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha Max:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -297,7 +302,7 @@ public class PVentas extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Monto Min:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, 30));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, 30));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(60, 196, 124));
@@ -319,11 +324,12 @@ public class PVentas extends javax.swing.JPanel {
             }
         });
         add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 25, 25));
-        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 130, 30));
-        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 130, 30));
+        add(fecha_min, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 130, 30));
+        add(fecha_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, 30));
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/search.png"))); // NOI18N
         jButton3.setText("Buscar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton3.setContentAreaFilled(false);
@@ -341,7 +347,7 @@ public class PVentas extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 100, 40));
 
         emple.setBackground(new java.awt.Color(102, 102, 102));
         emple.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,7 +357,7 @@ public class PVentas extends javax.swing.JPanel {
                 empleActionPerformed(evt);
             }
         });
-        add(emple, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, 30));
+        add(emple, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, 30));
 
         codi.setBackground(new java.awt.Color(102, 102, 102));
         codi.setForeground(new java.awt.Color(255, 255, 255));
@@ -361,31 +367,31 @@ public class PVentas extends javax.swing.JPanel {
                 codiActionPerformed(evt);
             }
         });
-        add(codi, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, 30));
+        add(codi, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, 30));
 
         jTextField10.setBackground(new java.awt.Color(204, 204, 204));
         jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField10KeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField10KeyTyped(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField10KeyReleased(evt);
+            }
         });
-        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 100, 30));
+        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 100, 30));
 
         jTextField9.setBackground(new java.awt.Color(204, 204, 204));
         jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField9KeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField9KeyTyped(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField9KeyReleased(evt);
+            }
         });
-        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 30));
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 100, 30));
 
         TablaB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -398,7 +404,6 @@ public class PVentas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaB.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         TablaB.setGridColor(new java.awt.Color(0, 153, 51));
         TablaB.setSelectionBackground(new java.awt.Color(0, 204, 51));
         TablaB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -408,7 +413,7 @@ public class PVentas extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TablaB);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 370, 250));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 370, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered

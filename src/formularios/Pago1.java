@@ -180,6 +180,7 @@ public class Pago1 extends javax.swing.JFrame {
 
         btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/dollar.png"))); // NOI18N
         btnFinalizar.setText("Finalizar Venta");
         btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnFinalizar.setContentAreaFilled(false);
@@ -196,10 +197,11 @@ public class Pago1 extends javax.swing.JFrame {
                 btnFinalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 30));
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 150, 30));
 
         btnFinalizar1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnFinalizar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/paypal.png"))); // NOI18N
         btnFinalizar1.setText("Pagar con Paypal");
         btnFinalizar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnFinalizar1.setContentAreaFilled(false);
@@ -216,7 +218,7 @@ public class Pago1 extends javax.swing.JFrame {
                 btnFinalizar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 30));
+        jPanel1.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

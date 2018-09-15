@@ -91,7 +91,6 @@ public class PPresupuesto extends javax.swing.JPanel {
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
        
-       jPanel1.setVisible(false);
        jLabel20.setVisible(false);
        jTFSubTotal.setVisible(false);
        
@@ -220,15 +219,6 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
         cmbProducto = new javax.swing.JComboBox<>();
@@ -266,15 +256,16 @@ public class PPresupuesto extends javax.swing.JPanel {
         btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
             }
         });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -282,20 +273,21 @@ public class PPresupuesto extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 70, 30));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 90, 40));
 
         btnAgregar.setBackground(new java.awt.Color(51, 51, 51));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/plus.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseEntered(evt);
             }
         });
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +295,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 70, 30));
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 90, 40));
 
         jTFCantidad.setBackground(new java.awt.Color(204, 204, 204));
         jTFCantidad.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -312,7 +304,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 jTFCantidadKeyTyped(evt);
             }
         });
-        add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 97, 30));
+        add(jTFCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 97, 30));
 
         jTFPrecio.setBackground(new java.awt.Color(204, 204, 204));
         jTFPrecio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -326,7 +318,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 jTFPrecioKeyTyped(evt);
             }
         });
-        add(jTFPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 90, 30));
+        add(jTFPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 80, 30));
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -339,7 +331,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 464, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 470, 240));
 
         jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
         jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -362,6 +354,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         btnGuardar.setBackground(new java.awt.Color(51, 51, 51));
         btnGuardar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/save.png"))); // NOI18N
         btnGuardar.setText("Guardar Presupuesto");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         btnGuardar.setContentAreaFilled(false);
@@ -378,7 +371,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 140, 30));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 170, 40));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -398,7 +391,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Stock:");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 40, -1));
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 40, -1));
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
@@ -409,48 +402,6 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Sub-Total:");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, 30));
-
-        jPanel1.setBackground(new java.awt.Color(30, 57, 42));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Benchmark", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Procesador:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Memoria RAM:");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-
-        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 52, -1));
-
-        jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setText("Graficos:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-
-        jTextField13.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 52, -1));
-
-        jTextField14.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jPanel1.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 52, -1));
-
-        jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Discos Duros:");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-
-        jTextField15.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jPanel1.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 52, -1));
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 160, 160));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -511,7 +462,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         jComboBox2.setModel(modeloComboEstado);
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 140, 30));
 
-        lblVence.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblVence.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         lblVence.setForeground(new java.awt.Color(255, 255, 255));
         lblVence.setText("Vence: ");
         add(lblVence, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 140, 30));
@@ -532,11 +483,11 @@ public class PPresupuesto extends javax.swing.JPanel {
         jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Cantidad (Unds):");
-        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, -1));
+        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 100, -1));
 
         jTFStock.setBackground(new java.awt.Color(204, 204, 204));
         jTFStock.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        add(jTFStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 30));
+        add(jTFStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
@@ -926,14 +877,9 @@ public class PPresupuesto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCantidad;
     private javax.swing.JTextField jTFCodigoP;
@@ -942,10 +888,6 @@ public class PPresupuesto extends javax.swing.JPanel {
     private javax.swing.JTextField jTFSubTotal;
     private javax.swing.JTextField jTFTotal;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JLabel lblVence;
     private javax.swing.JLabel lblhelp;
     // End of variables declaration//GEN-END:variables

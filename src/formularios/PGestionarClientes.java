@@ -157,12 +157,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tbl_clientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbl_clientes.setGridColor(new java.awt.Color(0, 153, 51));
         tbl_clientes.setSelectionBackground(new java.awt.Color(0, 204, 51));
         jScrollPane1.setViewportView(tbl_clientes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 530, 250));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 610, 230));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -213,6 +212,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/search.png"))); // NOI18N
         jButton2.setText("Buscar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -230,10 +230,11 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 90, 40));
 
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/report.png"))); // NOI18N
         jButton5.setText("Generar reporte");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton5.setContentAreaFilled(false);
@@ -253,7 +254,7 @@ public class PGestionarClientes extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 150, 40));
 
         fechaMax.setDateFormatString("yyyy-MM-dd");
         add(fechaMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 30));

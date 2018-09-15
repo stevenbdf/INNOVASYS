@@ -220,6 +220,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/imagen.png"))); // NOI18N
         jButton1.setText("Examinar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton1.setContentAreaFilled(false);
@@ -237,7 +238,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 81, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 100, 40));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -398,6 +399,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
         jButton2.setText("Modificar Datos");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton2.setContentAreaFilled(false);
@@ -415,7 +417,7 @@ public class PDatosEmpresa extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 140, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 180, 40));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar.png"))); // NOI18N
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -869,7 +869,7 @@ public class mtoUsuarios {
         try {
             if (datos[5].equals(getCorreoEmpleado())) {
             JOptionPane.showMessageDialog(nuevo,"Error ya existe un empleado con ese correo electronico");
-        }
+            }
         } catch (Exception e) {
             try {
                 String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
@@ -958,8 +958,25 @@ public class mtoUsuarios {
                         resp = true;
                     }
                     cmd.close();
-                    getCn().close();
+
                 }
+            }else{   
+                    String sql = "INSERT INTO documentoEmpleado(idDocumentoE , idDocumento, idEmpleado, descripcion) "
+                            + "VALUES((SELECT MAX(idDocumentoE) FROM documentoEmpleado )+1,?,?,?)";
+                    PreparedStatement cmd = getCn().prepareStatement(sql);
+                    System.out.println("1: " + getCodigoDD());
+                    System.out.println("2: " + getCodigoDE());
+                    System.out.println("3: " + getDescrip());
+                    cmd.setInt(1, getCodigoDD());
+                    cmd.setInt(2, getCodigoDE());
+                    cmd.setString(3, getDescrip());
+
+                    if (!cmd.execute()) {
+                        resp = true;
+                    }
+                    cmd.close();
+
+                
             }     
         } catch (Exception e) {
             System.out.println("Metodo");
