@@ -466,7 +466,6 @@ public class PCajaVirtual extends javax.swing.JPanel {
         NuevaVenta.setBackground(new java.awt.Color(102, 102, 102));
         NuevaVenta.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         NuevaVenta.setForeground(new java.awt.Color(204, 204, 204));
-        NuevaVenta.setSelected(true);
         NuevaVenta.setText("Nueva Venta");
         NuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -792,6 +791,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
         // TODO add your handling code here:
         Total = 0;
         jTFTotal.setText(String.valueOf((Total)));
+        double data=0.0;
         Object datos[] = new Object[7];
         int filas = modeloTablaProductos.getRowCount();
         for (int i = 0; filas > i; i++) {
@@ -826,14 +826,21 @@ public class PCajaVirtual extends javax.swing.JPanel {
                             
                             datos[i] = ver2.getDouble(1);
                             datos[i + 1] = ver.getObject(4);
-                            double data = Double.valueOf(String.valueOf((datos[i + 1]))) * Double.valueOf(String.valueOf((datos[i])));
+                            data = Double.valueOf(String.valueOf((datos[i + 1]))) * Double.valueOf(String.valueOf((datos[i])));
                             Total = Total + data;
-                            jTFTotal.setText(String.valueOf(Total));
-                            datos[i + 2] = data;
+                            jTFTotal.setText(String.valueOf(df.format(Total)));
+                            datos[i + 2] = df.format(data);
                         }
                     }
                 }
-                modeloTablaProductos.addRow(datos);
+                if(validarStock(Integer.valueOf(String.valueOf(datos[1])))){
+                    modeloTablaProductos.addRow(datos);
+                }else{
+                    JOptionPane.showMessageDialog(this,"Error no hay stock disponible del siguiente producto: "+datos[2]);
+                    Total = Total - data;
+                    jTFTotal.setText(String.valueOf(Total));
+                }
+                
             }      
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -841,6 +848,27 @@ public class PCajaVirtual extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbPedidoActionPerformed
     Integer stockGeneral=0;
     String categoria;
+    
+    private boolean validarStock(int codigo){
+        Conexion con = new Conexion();
+        boolean valor = true;
+        try {
+            String sql = "select top 1 stock from inventario where idProductos=" + codigo + " order by idInventario desc";
+            PreparedStatement cmd = con.conectar().prepareStatement(sql);
+            ResultSet ver = cmd.executeQuery();
+            if (ver.next()) {
+                if (ver.getInt(1) <= 0) {
+                    valor = false;
+                }
+            } else {
+                System.out.println("error en validar stock");
+            }
+        } catch (Exception e) {
+            System.out.println("exc: " + e);
+        }
+        
+        return valor;
+    }
     private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
         // TODO add your handling code here:
         try {
@@ -950,6 +978,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         btnAgregar.setEnabled(true);
         btnEliminar.setEnabled(true);
         cmbPedido.setEnabled(false);
+        int filas = modeloTablaProductos.getRowCount();
+          for (int i = 0; filas > i; i++) {
+            modeloTablaProductos.removeRow(0);
+        }
+        Total=0.0;
+        jTFTotal.setText(String.valueOf(Total));
     }//GEN-LAST:event_NuevaVentaActionPerformed
     int x=-1;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
