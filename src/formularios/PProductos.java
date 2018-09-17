@@ -935,7 +935,7 @@ public class PProductos extends javax.swing.JPanel {
         // TODO add your handling code here:
         char vchar = evt.getKeyChar();
        
-        if (verificar.vletras(vchar) == true
+        if (verificar.vletrasynumeros(vchar) == true
                 && (jTFNombreP.getText().length() < 30)) {
 
         } else {
@@ -1133,7 +1133,7 @@ public class PProductos extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        if (jTFNombreP.getText().isEmpty()) {
+        if (jTFNombreP.getText().isEmpty() || jTFPuntaje.getText().isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Error campos vacios");
         } else {
             mtoProductos obj = new mtoProductos();

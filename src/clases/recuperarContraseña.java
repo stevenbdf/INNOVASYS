@@ -133,9 +133,10 @@ public class recuperarContraseña {
     public boolean obtenerContraseña(){
         boolean retorno=false;
         try {
-            String sql ="SELECT contraseña FROM usuarioEmpleado WHERE correoElectronico=?";
+            String sql ="select CONVERT(varchar(max),Decryptbypassphrase('FCBarcelona321',(select contraseña from usuarioEmpleado where correoElectronico=?))) as contra  from usuarioEmpleado where correoElectronico =?";
             PreparedStatement cmd = cn.prepareStatement(sql);
             cmd.setString(1, getCorreo());
+            cmd.setString(2, getCorreo());
             ResultSet ver = cmd.executeQuery();
             
             if (ver.next()) {

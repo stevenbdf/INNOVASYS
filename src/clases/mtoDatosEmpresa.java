@@ -197,21 +197,10 @@ public class mtoDatosEmpresa {
         this.noFactura = noFactura;
     }
 
-    /**
-     * @return the noFiscal
-     */
-    public Integer getNoFiscal() {
-        return noFiscal;
-    }
-
-    /**
-     * @param noFiscal the noFiscal to set
-     */
-    public void setNoFiscal(Integer noFiscal) {
-        this.noFiscal = noFiscal;
-    }
+    
     
     private Connection cn;
+    
     public mtoDatosEmpresa(){
         Conexion con = new Conexion();
         cn= con.conectar();
@@ -229,7 +218,6 @@ public class mtoDatosEmpresa {
     private String correo2;
     private String propietario;
     private Integer noFactura;
-    private Integer noFiscal;
     
     public boolean consultarDatos(){
         boolean retorno=false;
@@ -252,7 +240,6 @@ public class mtoDatosEmpresa {
                 correo2=ver.getString(12);
                 propietario=ver.getString(13);
                 noFactura=ver.getInt(14);
-                noFiscal=ver.getInt(15);
                 retorno=true;
             }
         } catch (Exception e) {
@@ -264,7 +251,7 @@ public class mtoDatosEmpresa {
     public boolean modificarDatos(){
         boolean resp=false;
         try {
-                String sql = "update datosEmpresa set nombreEmpresa= ?,domicilioLegal =?, fechaConstitucion=?,descripcion=?,logo=?,telefono=?,telefono2=?,fax=?,fax2=?,correoElectronico=?,correoElectronico2=?,propietario=?,noSerieFactura=?,noSerieFiscal=?";
+                String sql = "update datosEmpresa set nombreEmpresa= ?,domicilioLegal =?, fechaConstitucion=?,descripcion=?,logo=?,telefono=?,telefono2=?,fax=?,fax2=?,correoElectronico=?,correoElectronico2=?,propietario=?,noSerieFactura=?";
                 PreparedStatement cmd = cn.prepareStatement(sql);
                 cmd.setString(1,getNombre());
                 cmd.setString(2,getDomicilio());
@@ -279,7 +266,6 @@ public class mtoDatosEmpresa {
                 cmd.setString(11,getCorreo2());
                 cmd.setString(12,getPropietario());
                 cmd.setInt(13,getNoFactura());
-                cmd.setInt(14,getNoFiscal());
                 
                 if (!cmd.execute()) {
                     resp=true;

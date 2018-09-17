@@ -19,6 +19,20 @@ import javax.swing.JOptionPane;
 public class mtoUsuarios {
 
     /**
+     * @return the ingreso
+     */
+    public Integer getIngreso() {
+        return ingreso;
+    }
+
+    /**
+     * @param ingreso the ingreso to set
+     */
+    public void setIngreso(Integer ingreso) {
+        this.ingreso = ingreso;
+    }
+
+    /**
      * @return the codigoRubro
      */
     public Integer getCodigoRubro() {
@@ -525,6 +539,7 @@ public class mtoUsuarios {
     private Integer codigoE;
     private String nombreE;
     private String descripcionE;
+    private Integer ingreso;
     
     //atributos para documento empleado
     private Integer codigoD;
@@ -580,23 +595,49 @@ public class mtoUsuarios {
         cn= con.conectar();
     }
     
+    public boolean validarIngreso(){
+        boolean resp= false;
+        try {
+            //ha modifique la tabla, esta funcion valida si tenes permiso de entrar al sistema
+            //apues donde validas la contra y el usuario?
+            String sql = "select es.ingreso "
+                    + " from usuarioEmpleado us, estadoEmpleado es "
+                    + " where us.idEstado=es.idEstado AND us.correoElectronico=?";
+            PreparedStatement cmd = getCn().prepareStatement(sql);
+            cmd.setString(1, getCorreo());
+            ResultSet rs= cmd.executeQuery();
+            if (rs.next()) {
+                if(rs.getInt(1)==1){
+                    resp=true;
+                }
+            }
+            cmd.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return resp;
+    }
     public boolean consultarContraseña(){
         verificaciones obj= new verificaciones();
         boolean resp= false;
         try {
-             String sql = "SELECT contraseña FROM usuarioEmpleado WHERE correoElectronico=?";
+             String sql = "select CONVERT(varchar(max),Decryptbypassphrase('FCBarcelona321',(select contraseña from usuarioEmpleado where correoElectronico=?))) as contra  from usuarioEmpleado where correoElectronico =?";
           
             //Se pasan por referencia por seguridad
+            //que es eso que devuelve ?, ese 8
+            //eso devuelve el id del usuario al que pertenese esa contraseña y correo si algo no coincide devuleve 0
             //importar clase PreparedStatement
             PreparedStatement cmd = getCn().prepareStatement(sql);
             //Llenar los parametros de la clase, se coloca en el ordne de la tabla
             cmd.setString(1, getCorreo());
+            cmd.setString(2, getCorreo());
             //Importar clase resultset
             ResultSet rs= cmd.executeQuery();
             //Recorrer la lista de registro
             if (rs.next()) {
                 resp = true;
-                 setContraseña(obj.decrypt(getKey(), getIv(), rs.getString(1)));
+                System.out.println("Entra en el consult");
+                 setContraseña(rs.getString(1));
             }
             cmd.close();
         } catch (Exception e) {
@@ -606,12 +647,13 @@ public class mtoUsuarios {
     }
     
     public String[] consultarEstado() {
-        String[] resp2=new  String[3];
+        String[] resp2=new  String[4];
         resp2[0]="";
         resp2[1]="";
         resp2[2]="";
+        resp2[3]="";
         try {
-            String sql = "SELECT idEstado, nombreEstado, descripcion FROM estadoEmpleado WHERE nombreEstado=?";
+            String sql = "SELECT idEstado, nombreEstado, descripcion, ingreso FROM estadoEmpleado WHERE nombreEstado=?";
             PreparedStatement cmd = getCn().prepareStatement(sql);
             cmd.setString(1, getNombreE());
             ResultSet rs = cmd.executeQuery();
@@ -622,6 +664,8 @@ public class mtoUsuarios {
                 resp2[1] = rs.getString(3);
                 //idEstado
                 resp2[2] = rs.getString(1);
+                
+                resp2[3] = rs.getString(4);
             }
             cmd.close();
         } catch (Exception e) {
@@ -638,10 +682,11 @@ public class mtoUsuarios {
         } else {
             try {
 
-                String sql2 = "INSERT INTO estadoEmpleado(idEstado,nombreEstado,descripcion) VALUES ((SELECT MAX(idEstado)+1 FROM estadoEmpleado),?,?)";
+                String sql2 = "INSERT INTO estadoEmpleado(idEstado,nombreEstado,descripcion,ingreso) VALUES ((SELECT MAX(idEstado)+1 FROM estadoEmpleado),?,?,?)";
                 PreparedStatement cmd2 = getCn().prepareStatement(sql2);
                 cmd2.setString(1, getNombreE());
                 cmd2.setString(2, getDescripcionE());
+                cmd2.setInt(3,getIngreso());
                 if (!cmd2.execute()) {
                     resp = true;
                 } 
@@ -657,31 +702,13 @@ public class mtoUsuarios {
     
     public boolean modificarEstadoEmpleado(){
         boolean resp= false;
-        String[] resp2=consultarEstado();
-        if (resp2[0].equals(getNombreE()) && resp2[1].equals(getDescripcionE())) {
-                JOptionPane.showMessageDialog(nuevo, "Modifique algun dato para realizar esta accion");                   
-        }else if (resp2[0].equals(getNombreE()) && !resp2[1].equals(getDescripcionE())) {
             try {
-                String sql = "UPDATE estadoEmpleado SET descripcion=? WHERE idEstado=?";
-                PreparedStatement cmd = getCn().prepareStatement(sql);        
-                cmd.setString(1, getDescripcionE());
-                cmd.setInt(2, getCodigoE());
-
-                if (!cmd.execute()) {
-                    resp = true;
-                }
-                cmd.close();
-                getCn().close();
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-        }else{
-            try {
-                String sql = "UPDATE estadoEmpleado SET nombreEstado=?,descripcion=? WHERE idEstado=?";
+                String sql = "UPDATE estadoEmpleado SET nombreEstado=?,descripcion=?,ingreso=? WHERE idEstado=?";
                 PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setString(1,getNombreE());
                 cmd.setString(2, getDescripcionE());
-                cmd.setInt(3, getCodigoE());
+                cmd.setInt(3,getIngreso());
+                cmd.setInt(4, getCodigoE());
 
                 if (!cmd.execute()) {
                     resp = true;
@@ -690,8 +717,7 @@ public class mtoUsuarios {
                 getCn().close();
             } catch (Exception e) {
                 System.out.println(e.toString());
-            }
-        }
+            }    
         return resp;
     }
     
@@ -839,9 +865,10 @@ public class mtoUsuarios {
         }
         return resp;
     }
-    int i=1;
-    public String[] consultarEmpleado() {
-        ArrayList <String> datos = new ArrayList();
+    
+    public boolean consultarEmpleado() {
+
+       boolean razon=false;
         try {
             String sql = "SELECT * "
                     + " FROM usuarioEmpleado WHERE correoElectronico=?";
@@ -849,46 +876,46 @@ public class mtoUsuarios {
             cmd.setString(1,getCorreoEmpleado());
             ResultSet rs = cmd.executeQuery();
             
-            while (rs.next()) {
+            if(rs.next()) {
                 
-                  datos.add(rs.getString(i));
-                  i++;
+                  razon=true;
             }
             
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
-        String valores[]= new String[datos.size()];
-        valores=datos.toArray(valores);
-        return valores;
+       
+        
+        return razon;
     }
     
     public boolean guardarEmpleado(){
         boolean resp=false;
-        String[] datos = consultarEmpleado();
+        
         try {
-            if (datos[5].equals(getCorreoEmpleado())) {
+            if (consultarEmpleado()) {
             JOptionPane.showMessageDialog(nuevo,"Error ya existe un empleado con ese correo electronico");
             }
         } catch (Exception e) {
+            System.out.println("e: "+e);
             try {
                 String sql = "INSERT INTO usuarioEmpleado(idEmpleado, idTipo,"
                         + " nombres, apellidos, telefono, correoElectronico, contraseña, direccion, idEstado, imagen, pregunta1,respuesta1, pregunta2, respuesta2)"
-                        + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "VALUES ((SELECT MAX(idEmpleado)+1 FROM usuarioEmpleado),?,?,?,?,?, Encryptbypassphrase('FCBarcelona321','"+getContraseñaEmpleado()+"') ,?,?,?,?,?,?,?)";
                 PreparedStatement cmd = getCn().prepareStatement(sql);
                 cmd.setInt(1,getCodigoTipo());
                 cmd.setString(2,getNombreEmpleado());
                 cmd.setString(3,getApellidoEmpleado());
                 cmd.setInt(4,getTelefono());
                 cmd.setString(5,getCorreoEmpleado());
-                cmd.setString(6,getContraseñaEmpleado());
-                cmd.setString(7,getDireccion());
-                cmd.setInt(8,getCodigoEstado());
-                cmd.setString(9,getImagen());
-                cmd.setString(10,getPregunta1());
-                cmd.setString(11,getRespuesta1());
-                cmd.setString(12,getPregunta2());
-                cmd.setString(13, getRespuesta2());               
+                //cmd.setString(6,getContraseñaEmpleado());
+                cmd.setString(6,getDireccion());
+                cmd.setInt(7,getCodigoEstado());
+                cmd.setString(8,getImagen());
+                cmd.setString(9,getPregunta1());
+                cmd.setString(10,getRespuesta1());
+                cmd.setString(11,getPregunta2());
+                cmd.setString(12, getRespuesta2());               
                 if (!cmd.execute()) {
                     resp=true;
                 } 
@@ -905,7 +932,7 @@ public class mtoUsuarios {
         //valores.false = no son iguales, true= 1 o mas son iguales
         boolean resp=false;       
             try {
-                String sql ="UPDATE usuarioEmpleado SET idTipo=?, nombres=?, apellidos=?, telefono=?, correoElectronico=?, contraseña=?, direccion=?, idEstado=?, imagen=?, pregunta1=?, respuesta1=?, pregunta2=?, respuesta2=? WHERE idEmpleado=?";
+                String sql ="UPDATE usuarioEmpleado SET idTipo=?, nombres=?, apellidos=?, telefono=?, correoElectronico=?, contraseña=Encryptbypassphrase('FCBarcelona321','"+getContraseñaEmpleado()+"'), direccion=?, idEstado=?, imagen=?, pregunta1=?, respuesta1=?, pregunta2=?, respuesta2=? WHERE idEmpleado=?";
                 PreparedStatement cmd = getCn().prepareStatement(sql);
  
                 cmd.setInt(1, getCodigoTipo());
@@ -913,15 +940,16 @@ public class mtoUsuarios {
                 cmd.setString(3, getApellidoEmpleado());
                 cmd.setInt(4, getTelefono());
                 cmd.setString(5, getCorreoEmpleado());
-                cmd.setString(6, getContraseñaEmpleado());
-                cmd.setString(7, getDireccion());
-                cmd.setInt(8, getCodigoEstado());
-                cmd.setString(9, getImagen());
-                cmd.setString(10, getPregunta1());
-                cmd.setString(11, getRespuesta1());
-                cmd.setString(12, getPregunta2());
-                cmd.setString(13, getRespuesta2());
-                cmd.setInt(14, getCodigoEmpleado());
+                System.out.println("contra: "+getContraseñaEmpleado());
+                //cmd.setString(6, getContraseñaEmpleado());
+                cmd.setString(6, getDireccion());
+                cmd.setInt(7, getCodigoEstado());
+                cmd.setString(8, getImagen());
+                cmd.setString(9, getPregunta1());
+                cmd.setString(10, getRespuesta1());
+                cmd.setString(11, getPregunta2());
+                cmd.setString(12, getRespuesta2());
+                cmd.setInt(13, getCodigoEmpleado());
       
                 if (!cmd.execute()) {
                 resp=true;    

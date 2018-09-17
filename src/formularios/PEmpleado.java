@@ -258,7 +258,7 @@ public class PEmpleado extends javax.swing.JPanel {
     }
 
     private String[] getColumnasEstado() {
-        String columnas[] = new String[]{"CODIGO", "NOMBRE", "DESCRIPCION"};
+        String columnas[] = new String[]{"CODIGO", "NOMBRE", "DESCRIPCION","INGRESO"};
         return columnas;
     }
 
@@ -282,19 +282,19 @@ public class PEmpleado extends javax.swing.JPanel {
             String sql = "";
             switch (tipo) {
                 case 1:
-                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE idEstado like '" + valores + "%'";
+                    sql = "SELECT idEstado, nombreEstado,descripcion,ingreso FROM estadoEmpleado WHERE idEstado like '" + valores + "%'";
                     break;
                 case 2:
-                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado WHERE nombreEstado like '" + valores + "%'";
+                    sql = "SELECT idEstado, nombreEstado,descripcion,ingreso FROM estadoEmpleado WHERE nombreEstado like '" + valores + "%'";
                     break;
                 default:
-                    sql = "SELECT idEstado, nombreEstado,descripcion FROM estadoEmpleado";
+                    sql = "SELECT idEstado, nombreEstado,descripcion,ingreso FROM estadoEmpleado";
                     break;
             }
             PreparedStatement us = cn.conectar().prepareStatement(sql);
             ResultSet resultado = us.executeQuery();
 
-            Object datos[] = new Object[3];
+            Object datos[] = new Object[4];
 
             while (resultado.next()) {
                 for (int i = 0; i < datos.length; i++) {
@@ -511,6 +511,8 @@ public class PEmpleado extends javax.swing.JPanel {
         jLabel25 = new javax.swing.JLabel();
         rdCodigoEstado = new javax.swing.JRadioButton();
         btnEliminarE = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        ingreso = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(30, 57, 42));
 
@@ -772,12 +774,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado.setContentAreaFilled(false);
         btnAgregarEmpleado.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleadoAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -967,12 +969,12 @@ public class PEmpleado extends javax.swing.JPanel {
         btnAgregarEmpleado1.setContentAreaFilled(false);
         btnAgregarEmpleado1.setPreferredSize(new java.awt.Dimension(71, 30));
         btnAgregarEmpleado1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 btnAgregarEmpleado1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnAgregarEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1363,10 +1365,11 @@ public class PEmpleado extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(cmbEstadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnModificarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1434,11 +1437,11 @@ public class PEmpleado extends javax.swing.JPanel {
         jTFNombreE.setToolTipText("");
         jTFNombreE.setPreferredSize(new java.awt.Dimension(78, 30));
         jTFNombreE.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFNombreEKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFNombreEKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreEKeyReleased(evt);
             }
         });
 
@@ -1461,11 +1464,16 @@ public class PEmpleado extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarEMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarEMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgregarEMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarEMouseExited(evt);
+        });
+        btnAgregarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEActionPerformed(evt);
             }
         });
 
@@ -1535,30 +1543,41 @@ public class PEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Ingreso:");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblCodigoEstado))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblCodigoEstado))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnAgregarE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificarE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ingreso)))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -1582,22 +1601,23 @@ public class PEmpleado extends javax.swing.JPanel {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel24)
-                        .addComponent(lblCodigoEstado)
-                        .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdNombreEstado)
-                        .addComponent(rdCodigoEstado)))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel24)
+                                .addComponent(jTFBuscarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rdNombreEstado)
+                                .addComponent(rdCodigoEstado)))
+                        .addGap(10, 10, 10)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(lblCodigoEstado)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTFNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17))
@@ -1605,7 +1625,11 @@ public class PEmpleado extends javax.swing.JPanel {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25)
                             .addComponent(jTFDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ingreso)
+                            .addComponent(jLabel26))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAgregarE, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                             .addComponent(btnModificarE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1778,6 +1802,11 @@ public class PEmpleado extends javax.swing.JPanel {
             mtoUsuarios objeto = new mtoUsuarios();
             objeto.setNombreE(jTFNombreE.getText());
             objeto.setDescripcionE(jTFDescripcionE.getText());
+            if(ingreso.isSelected()){
+                objeto.setIngreso(1);
+            }else{
+                objeto.setIngreso(0);
+            }
             if (objeto.guardarEstadoEmpleado()) {
                 JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
                 jTFNombreE.setText(null);
@@ -1798,6 +1827,11 @@ public class PEmpleado extends javax.swing.JPanel {
         NombreE = String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 1));
         jTFNombreE.setText(NombreE);
         jTFDescripcionE.setText(String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 2)));
+        if(String.valueOf(modeloTablaEstados.getValueAt(jTable3.getSelectedRow(), 3)).equals("1")){
+            ingreso.setSelected(true);
+        }else{
+            ingreso.setSelected(false);
+        }
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void btnModificarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEMouseClicked
@@ -1809,6 +1843,12 @@ public class PEmpleado extends javax.swing.JPanel {
             objeto.setCodigoE(Integer.valueOf(CodigoEstado));
             objeto.setNombreE(jTFNombreE.getText());
             objeto.setDescripcionE(jTFDescripcionE.getText());
+            if(ingreso.isSelected()){
+                objeto.setIngreso(1);
+            }else{
+                objeto.setIngreso(0);
+            }
+            System.out.println("ingreso: "+objeto.getIngreso());
             if (objeto.modificarEstadoEmpleado()) {
                 JOptionPane.showMessageDialog(this, "Datos modificados correctamente");
                 lblCodigoEstado.setText("CODIGO ESTADO");
@@ -2090,7 +2130,7 @@ public class PEmpleado extends javax.swing.JPanel {
             cleartext = jTFContraseña.getText();
 //        objeto.setContraseñaEmpleado(cleartext);
             try {
-                objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
+                objeto.setContraseñaEmpleado(cleartext);
             } catch (Exception ex) {
                 Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2152,7 +2192,8 @@ public class PEmpleado extends javax.swing.JPanel {
         cmbEstado.setSelectedItem(String.valueOf(modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (7))));
         try {
             verificaciones obj = new verificaciones();
-            String sql = "SELECT imagen, contraseña, pregunta1, respuesta1, pregunta2, respuesta2 "
+            //esto es
+            String sql = "SELECT imagen, CONVERT(varchar(max),Decryptbypassphrase('FCBarcelona321',(select contraseña from usuarioEmpleado where idEmpleado=" + modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0)) + "))) as contraseña, pregunta1, respuesta1, pregunta2, respuesta2 "
                     + "FROM usuarioEmpleado WHERE idEmpleado='" + modeloTablaEmpleados.getValueAt(jTable1.getSelectedRow(), (0)) + "'";
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
             ResultSet ver = cmd.executeQuery();
@@ -2161,7 +2202,7 @@ public class PEmpleado extends javax.swing.JPanel {
                 ImageIcon icon = new ImageIcon(ver.getString(1));
                 ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                 lblFoto.setIcon(icono);
-                jTFContraseña.setText(obj.decrypt(key, iv, ver.getString(2)));
+                jTFContraseña.setText(ver.getString(2));
                 cmdPregunta1.setSelectedItem(ver.getString(3));
                 jTFRespuesta1.setText(ver.getString(4));
                 cmdPregunta2.setSelectedItem(ver.getString(5));
@@ -2182,12 +2223,8 @@ public class PEmpleado extends javax.swing.JPanel {
             objeto.setApellidoEmpleado(jTFApellido.getText());
             objeto.setTelefono(Integer.valueOf(jTFTelefono.getText()));
             objeto.setCorreoEmpleado(jTFCorreo.getText());
-            cleartext = jTFContraseña.getText();
-            try {
-                objeto.setContraseñaEmpleado(obj.encrypt(key, iv, cleartext));
-            } catch (Exception ex) {
-                Logger.getLogger(PEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            objeto.setContraseñaEmpleado(jTFContraseña.getText());
+           
 
             objeto.setDireccion(jTFDireccion.getText());
             objeto.setImagen(String.valueOf(fichero));
@@ -3048,6 +3085,10 @@ public class PEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarEActionPerformed
 
+    private void btnAgregarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarD;
@@ -3074,6 +3115,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JComboBox<String> cmdPregunta1;
     private javax.swing.JComboBox<String> cmdPregunta2;
+    private javax.swing.JCheckBox ingreso;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JLabel jLabel11;
@@ -3088,6 +3130,7 @@ public class PEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;

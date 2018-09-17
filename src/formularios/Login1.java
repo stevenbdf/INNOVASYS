@@ -428,15 +428,21 @@ public class Login1 extends javax.swing.JFrame {
             } else {
                 if (objeto.consultarContraseña()) {
                     if (objeto.getContraseña().equals(jTFContraseña.getText())) {
+                        if (objeto.validarIngreso()) {
+                            objeto.setCorreo(jTFCorreo.getText());
+                            objeto.bitacora();
+
+                            JOptionPane.showMessageDialog(this, "Bienvenido");
+                            VentanaPrincipal2 ventana = new VentanaPrincipal2(jTFCorreo.getText());
+                            ventana.show();
+                            Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
+                            this.hide();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No puedes acceder al sistema \n"
+                                    + "El tipo de usuario relacionado \na esta cuenta "
+                                    + "ha sido desactivado, comunicate con el administrador.");
+                        }
                         
-                        objeto.setCorreo(jTFCorreo.getText());
-                        objeto.bitacora();
-                        
-                        JOptionPane.showMessageDialog(this, "Bienvenido");
-                        VentanaPrincipal2 ventana = new VentanaPrincipal2(jTFCorreo.getText());
-                        ventana.show();
-                        Fade.JFrameFadeIn(01f, 0f, 0.1f, 50, this);
-                        this.hide();
                     } else {
                         JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                     }

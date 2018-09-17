@@ -31,7 +31,7 @@ Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll (
 Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.Linq.dll into Unity Child Domain
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll (this message is harmless)
 Loading F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Data.SqlClient.dll into Unity Child Domain
-- Completed reload, in  0.620 seconds
+- Completed reload, in  0.066 seconds
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\INNOVASYS\INNOVASYS\gg_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
@@ -39,7 +39,7 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.256022 ms
+UnloadTime: 1.253905 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1e38 -> priority: 1 
-  Thread -> id: 1610 -> priority: 1 
+  Thread -> id: 18e0 -> priority: 1 
+  Thread -> id: 1c24 -> priority: 1 

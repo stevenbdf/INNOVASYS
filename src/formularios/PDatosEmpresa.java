@@ -80,7 +80,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             correo2.setText(String.valueOf(obj.getCorreo2()));
             propietario.setText(obj.getPropietario());
             noFactura.setText(String.valueOf(obj.getNoFactura()));
-            noCredito.setText(String.valueOf(obj.getNoFiscal()));
         }
     
         ImageIcon foto0 = new ImageIcon (getClass().getResource("/images/help.png"));
@@ -125,8 +124,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         noFactura = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        noCredito = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         lblhelp = new javax.swing.JLabel();
@@ -378,25 +375,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jLabel14.setText("No.Correlativo de Factura:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 353, -1, -1));
 
-        noCredito.setBackground(new java.awt.Color(204, 204, 204));
-        noCredito.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        noCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noCreditoActionPerformed(evt);
-            }
-        });
-        noCredito.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                noCreditoKeyTyped(evt);
-            }
-        });
-        jPanel1.add(noCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 388, 126, 30));
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("No.Correlativo de Credito Fiscal:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 394, -1, -1));
-
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images expo/edit.png"))); // NOI18N
@@ -405,11 +383,11 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jButton2.setContentAreaFilled(false);
         jButton2.setPreferredSize(new java.awt.Dimension(73, 30));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton2MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
             }
         });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -428,12 +406,12 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -511,10 +489,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_noFacturaActionPerformed
 
-    private void noCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noCreditoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noCreditoActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         verificaciones obj = new verificaciones();
@@ -539,7 +513,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
             objeto.setCorreo2(correo2.getText());
             objeto.setPropietario(propietario.getText());
             objeto.setNoFactura(Integer.valueOf(noFactura.getText()));
-            objeto.setNoFiscal(Integer.valueOf(noCredito.getText()));
             if (objeto.modificarDatos()) {
             JOptionPane.showMessageDialog(this,"Datos modificados correctamente");
             }else{
@@ -694,18 +667,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_noFacturaKeyTyped
 
-    private void noCreditoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noCreditoKeyTyped
-        // TODO add your handling code here:
-        char vchar = evt.getKeyChar();
-        
-        if (verificar.vnumeros(vchar) == true
-                && (noCredito.getText().length() < 5)) {
-
-        } else {
-            evt.consume();
-        }
-    }//GEN-LAST:event_noCreditoKeyTyped
-
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lblhelpAncestorAdded
@@ -766,7 +727,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -781,7 +741,6 @@ public class PDatosEmpresa extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JLabel logo;
-    private javax.swing.JTextField noCredito;
     private javax.swing.JTextField noFactura;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField propietario;

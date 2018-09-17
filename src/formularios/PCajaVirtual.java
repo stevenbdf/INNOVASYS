@@ -285,8 +285,8 @@ public class PCajaVirtual extends javax.swing.JPanel {
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Precio:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+        jLabel18.setText("Precio ($):");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 250, 50, -1));
 
         jTFPrecio.setBackground(new java.awt.Color(204, 204, 204));
         jTFPrecio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -376,9 +376,10 @@ public class PCajaVirtual extends javax.swing.JPanel {
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Total:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, -1, -1));
+        jLabel21.setText("Total ($):");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 460, 50, -1));
 
+        jTFTotal.setEditable(false);
         jTFTotal.setBackground(new java.awt.Color(204, 204, 204));
         jTFTotal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jTFTotal.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -426,12 +427,12 @@ public class PCajaVirtual extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 30, 30));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -529,7 +530,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
     
     
     private String[] getColumnasProductos() {
-        String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","$ UNIT.","CANTIDAD","SUBTOTAL"};
+        String columnas[] = new String[]{"#","CODIGO", "NOMBRE", "CATEGORIA","UNIT.$","CANTIDAD","SUBTOTAL$"};
         return columnas;
     }
     Integer codCliente=1;
@@ -702,7 +703,7 @@ public class PCajaVirtual extends javax.swing.JPanel {
                 PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
                 ResultSet ver2 = verDatos2.executeQuery();
                 if (ver2.next()) {
-                    if(ver2.getInt("stock")!=0){
+                    if(!(ver2.getInt("stock")<=0)){
                         modeloComboPro.addElement(ver2.getString(1));
                     }
                 }

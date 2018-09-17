@@ -144,7 +144,7 @@ public class PPresupuesto extends javax.swing.JPanel {
                 PreparedStatement verDatos2 = con.conectar().prepareStatement(sql2);
                 ResultSet ver2 = verDatos2.executeQuery();
                 if (ver2.next()) {
-                    if(ver2.getInt("stock")!=0){
+                    if(!(ver2.getInt("stock")<=0)){
                         modeloComboPro.addElement(ver2.getString(1));
                     }
                 }
@@ -395,8 +395,8 @@ public class PPresupuesto extends javax.swing.JPanel {
 
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Total:");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, 30));
+        jLabel21.setText("Total ($):");
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 50, 30));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,12 +413,12 @@ public class PPresupuesto extends javax.swing.JPanel {
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -670,7 +670,7 @@ public class PPresupuesto extends javax.swing.JPanel {
         char vchar = evt.getKeyChar();
        
         if (verificar.vnumeros(vchar) == true
-                && (jTFCantidad.getText().length() < 2)) {
+                && (jTFCantidad.getText().length() < 2) && vchar!='0') {
 
         } else {
             evt.consume();

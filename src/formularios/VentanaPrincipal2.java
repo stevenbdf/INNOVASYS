@@ -145,12 +145,14 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         correoE=correo;
         Font fuente = null;
         Font fuente2 = null;
+        Font fuente3 = null;
         InputStream myStream = null;
         try {
             myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Raleway.ttf"));
             fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
             fuente = fuente.deriveFont(Font.BOLD, 60);
-            fuente2 = fuente.deriveFont(Font.BOLD, 44);
+            fuente2 = fuente.deriveFont(Font.BOLD, 30);
+            fuente3 = fuente.deriveFont(Font.BOLD, 26);
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(VentanaPrincipal2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,15 +160,17 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         ge.registerFont(fuente);
         
         
+        
         jLabel3.setFont(fuente);
         changeFont(jPanel2, fuente2);
+        tipoUsuario.setFont(fuente3);
         
 
             
         
         try {
             Conexion cn = new Conexion();
-            String sql ="SELECT nombres, apellidos, idTipo, idEmpleado FROM usuarioEmpleado WHERE correoElectronico='"+correo+"'";
+            String sql ="SELECT nombres, apellidos, usuarioEmpleado.idTipo, idEmpleado, tip.nombreTipo FROM usuarioEmpleado, tipoUsuario tip WHERE correoElectronico='"+correo+"' AND tip.idTipo=usuarioEmpleado.idTipo";
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
             ResultSet look = cmd.executeQuery();
             if (look.next()) {
@@ -174,6 +178,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
                 apellido2.setText(look.getString(2));
                 tipoU=look.getInt(3);
                 codigoEmpleado=look.getInt(4);
+                tipoUsuario.setText(look.getString(5));
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -244,6 +249,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         Presupuesto = new javax.swing.JLabel();
         Ventas = new javax.swing.JLabel();
         Ordenes = new javax.swing.JLabel();
+        tipoUsuario = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -596,6 +602,12 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         });
         jPanel2.add(Ordenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 535, 70, 70));
 
+        tipoUsuario.setFont(new java.awt.Font("Century Gothic", 0, 32)); // NOI18N
+        tipoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        tipoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tipoUsuario.setText("adm");
+        jPanel2.add(tipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 610));
 
         jPanel1.setBackground(new java.awt.Color(30, 57, 42));
@@ -697,12 +709,15 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     int prove, chat, empleado, empresa, caja, invent, producto, tipo, construir, bitacor, client, presup, vent, orde; 
     private void obtenerFecha(){
         Calendar calendario = Calendar.getInstance();
-        dia=(calendario.get(Calendar.DAY_OF_WEEK));
+        dia=(calendario.get(Calendar.DAY_OF_WEEK ));
         diames=(calendario.get(Calendar.DAY_OF_MONTH));
         mes=(calendario.get(Calendar.MONTH)+1);
         año=(calendario.get(Calendar.YEAR));
         
         switch (dia-1){
+            case 0:
+                fecha1.setText("Domingo");
+                break;
             case 1:
                 fecha1.setText("Lunes");
                 break;
@@ -721,47 +736,45 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             case 6:
                 fecha1.setText("Sabado");
                 break;
-            case 7:
-                fecha1.setText("Domingo");
-                break;
+            
         }
         
         switch (mes){
             case 1:
-                fecha1.setText(diames+"  Ene");
+                fecha1.setText(diames+" Ene");
                 break;
             case 2:
-                fecha2.setText(diames+"  Feb");
+                fecha2.setText(diames+" Feb");
                 break;
             case 3:
-                fecha2.setText(diames+"  Marz");
+                fecha2.setText(diames+" Marz");
                 break;
             case 4:
-                fecha2.setText(diames+"  Abril");
+                fecha2.setText(diames+" Abril");
                 break;
             case 5:
-                fecha2.setText(diames+"  Mayo");
+                fecha2.setText(diames+" Mayo");
                 break;
             case 6:
-                fecha2.setText(diames+"  Junio");
+                fecha2.setText(diames+" Junio");
                 break;
             case 7:
-                fecha2.setText(diames+"  Julio");
+                fecha2.setText(diames+" Julio");
                 break;
             case 8:
-                fecha2.setText(diames+"  Agost");
+                fecha2.setText(diames+" Agost");
                 break;
             case 9:
-                fecha2.setText(diames+"  Sept");
+                fecha2.setText(diames+" Septiem");
                 break;
             case 10:
-                fecha2.setText(diames+"  Oct");
+                fecha2.setText(diames+" Oct");
                 break;
             case 11:
-                fecha2.setText(diames+"  Nov");
+                fecha2.setText(diames+" Nov");
                 break;
             case 12:
-                fecha2.setText(diames+"  Dic");
+                fecha2.setText(diames+" Dic");
                 break;  
         }      
         fecha3.setText(""+año);
@@ -2395,17 +2408,22 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         //1
         AnimationClass nombre = new AnimationClass();
-        nombre.jLabelXLeft(20, -120,15, 5, jblnombre);
+        nombre.jLabelXLeft(20, -150,15, 5, jblnombre);
+        
         
         
         AnimationClass nombre2 = new AnimationClass();
-        nombre2.jLabelXRight(-120, 20,15, 5, jblnombre);
+        nombre2.jLabelXRight(-150, 20,15, 5, jblnombre);
+        
+        nombre.jLabelXLeft(20, -200,15, 5, tipoUsuario);
+        
+        nombre2.jLabelXRight(-200, 20,15, 5, tipoUsuario);
         
         AnimationClass apellido = new AnimationClass();
-        apellido.jLabelXLeft(20, -120,10, 5, apellido2);
+        apellido.jLabelXLeft(20, -150,10, 5, apellido2);
         
         AnimationClass apellidoo = new AnimationClass();
-        apellidoo.jLabelXRight(-120, 20,10, 5, apellido2);
+        apellidoo.jLabelXRight(-150, 20,10, 5, apellido2);
         
         AnimationClass hora1 = new AnimationClass();
         hora1.jLabelXLeft(30, -150,10, 5, hora);
@@ -3306,5 +3324,6 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jblnombre;
+    private javax.swing.JLabel tipoUsuario;
     // End of variables declaration//GEN-END:variables
 }

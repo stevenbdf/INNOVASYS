@@ -25,7 +25,7 @@ public class verificaciones {
     
     public boolean vnumeros (char key){
         boolean verificado =false;
-         if ( Character.isDigit(key)){
+         if ( Character.isDigit(key) && key!='0'){
              verificado=true; 
          };
          return verificado;

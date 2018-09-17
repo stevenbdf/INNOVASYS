@@ -180,8 +180,6 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     Integer pasos=0;
     String[] preguntas = new String[2];
     String[] respuestas = new String[2];
-    String key = "92AE31A79FEEB2A3"; //llave
-    String iv = "0123456789ABCDEF"; // vector de inicialización 
     String correo="";
     String contraseña="";
     String text="";
@@ -219,12 +217,10 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                 if (obj.obtenerContraseña()) {
                         verificaciones objeto = new verificaciones();
                         
-                        try {
-                              contraseña = objeto.decrypt(key,iv,obj.getContraseña());
+                        
+                              contraseña = obj.getContraseña();
                               System.out.println("Contraseña: "+contraseña);
-                        } catch (Exception ex) {
-                            Logger.getLogger(RecuperarContraseña.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        
                     
                 for (int i = 0; i < 2; i++) {
                         

@@ -253,8 +253,8 @@ public class PInventario extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Precio compra:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, 30));
+        jLabel5.setText("Precio compra $:");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, 30));
 
         jTFGanancia.setBackground(new java.awt.Color(204, 204, 204));
         jTFGanancia.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -268,7 +268,7 @@ public class PInventario extends javax.swing.JPanel {
         lblStock.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         lblStock.setForeground(new java.awt.Color(255, 255, 255));
         lblStock.setText("Stock:");
-        jPanel3.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 30));
+        jPanel3.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 80, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -404,12 +404,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelpAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -420,12 +420,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel3.add(lblhelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 25, 25));
 
         lblhelp2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelp2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -586,12 +586,12 @@ public class PInventario extends javax.swing.JPanel {
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         lblhelp1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblhelp1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         lblhelp1.addMouseListener(new java.awt.event.MouseAdapter() {
