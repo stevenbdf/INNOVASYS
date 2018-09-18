@@ -74,32 +74,7 @@ public class PProveedores extends javax.swing.JPanel {
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
        
-       jTable1.getTableHeader().setOpaque(false);
-        JTableHeader header = jTable1.getTableHeader();
-        header.setBackground(greenD);
-        header.setForeground(Color.WHITE);
-        
-        String[] valoresC = getColumnasProveedores();
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        System.out.println("tamaño: "+valoresC.length);
-        for (int i = 0; i <valoresC.length; i++) {
-            columnModel.getColumn(i).setPreferredWidth(valoresC[i].length()*9);
-            System.out.println("entra");
-        }
-        
-        
-        jTable2.getTableHeader().setOpaque(false);
-        JTableHeader header2 = jTable2.getTableHeader();
-        header2.setBackground(greenDD);
-        header2.setForeground(Color.WHITE);
-        
-        String[] valoresCC = getColumnasProveedores();
-        TableColumnModel columnModel2 = jTable2.getColumnModel();
-        System.out.println("tamaño: "+valoresCC.length);
-        for (int i = 0; i <valoresCC.length; i++) {
-            columnModel2.getColumn(i).setPreferredWidth(valoresCC[i].length()*9);
-            System.out.println("entra");
-        }
+       
         
     }
     private String[] getColumnasProveedores() {

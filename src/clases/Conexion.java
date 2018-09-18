@@ -25,7 +25,7 @@ public class Conexion {
             //Lap Steven
             //cn= DriverManager.getConnection("jdbc:sqlserver://DESKTOP-CAVE2O6\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
             //Pc Steven
-            cn= DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=dbInnovasys;user=sa;password=123;");
+            cn= DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=dbInnovasys;user=sa;password=123;");
             //Lap Sebas
             //cn = DriverManager.getConnection("jdbc:sqlserver://192.168.1.2;databaseName=dbInnovasys2;user=sa;password=123;");
             //Base en internet

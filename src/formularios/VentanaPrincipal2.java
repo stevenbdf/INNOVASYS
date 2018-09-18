@@ -1,4 +1,4 @@
-/*
+  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -184,7 +184,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
         
-        setIconImage(new ImageIcon(getClass().getResource("/images/logo2.png")).getImage( ));
+        setIconImage(new ImageIcon(getClass().getResource("/images/logofondo2.png")).getImage( ));
         PanelPrincipal.setVisible(false);
         Inventario.setVisible(false);
         ConstruirEquipo.setVisible(false);
@@ -208,7 +208,7 @@ public class VentanaPrincipal2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
        Fade.JFrameFadeIn(0f, 1f, 0.1f,100,this );
-       ImageIcon foto = new ImageIcon (getClass().getResource("/images/logo2.png"));
+       ImageIcon foto = new ImageIcon (getClass().getResource("/images/logofondo2.png"));
        ImageIcon icono = new ImageIcon(foto.getImage().getScaledInstance(jLabel2.getWidth(),jLabel2.getHeight(),Image.SCALE_DEFAULT));
        jLabel2.setIcon(icono);
        

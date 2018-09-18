@@ -945,72 +945,73 @@ public class PInventario extends javax.swing.JPanel {
         System.out.println("Fecha: " + fechass);
         verificaciones obj = new verificaciones();
         System.out.println("Fecha: " + fechass);
-        if(obj.vfecham(fechass, 2000)){
-        if (jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass=="") {
-            JOptionPane.showMessageDialog(this,"Error campos vacios");       
-        }else{
-            mtoInventario objeto = new mtoInventario();
-            Conexion cn = new Conexion();
-            
-            try {
-                String sql ="SELECT idProducto FROM producto WHERE nombreProducto='"+cmbProducto.getSelectedItem()+"'";
-                PreparedStatement cmd = cn.conectar().prepareStatement(sql);
-                ResultSet ver = cmd.executeQuery();
-                if (ver.next()) {
-                    objeto.setCodigoP(ver.getInt(1));
-                }else{
-                    System.out.println("Error");
-                }
-                
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-            if (rdEntrada.isSelected()) {
-                objeto.setCodigoT(1);
-            }else if (rdSalida.isSelected()) {
-                objeto.setCodigoT(2);
-            }
-            objeto.setFecha(fechass);
-            objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
-            objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
-            try {
-                String sql2 ="SELECT stock FROM inventario WHERE idProductos="+objeto.getCodigoP()+" ORDER BY idInventario DESC";
-                PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
-                ResultSet ver2 = cmd2.executeQuery();
-                Integer cantidad2=Integer.valueOf(jTFCantidad.getText());
-                if (ver2.next()) {
-                    if (objeto.getCodigoT()==1) {
-                        objeto.setStock((ver2.getInt(1)+cantidad2));
-                    }else if (objeto.getCodigoT()==2 && ver2.getInt(1)>=cantidad2) {
-                        objeto.setStock((ver2.getInt(1)-cantidad2));
-                    }else{
-                        JOptionPane.showMessageDialog(this,"Error no hay suficiente stock para restar");
+        if (obj.vfecham(fechass, 2000)) {
+            if (jTFPrecio.getText().isEmpty() || jTFGanancia.getText().isEmpty() || jTFCantidad.getText().isEmpty() || jTFImpuestos.getText().isEmpty() || fechass == "") {
+                JOptionPane.showMessageDialog(this, "Error campos vacios");
+            }else if(Double.valueOf(jTFPrecio.getText())==0.0 || Integer.valueOf(jTFPrecio.getText())==0 || Integer.valueOf(jTFCantidad.getText())==0){
+                JOptionPane.showMessageDialog(this, "No puedes ingresar un precio y/o cantidad igual a 0");
+            }else {
+                mtoInventario objeto = new mtoInventario();
+                Conexion cn = new Conexion();
+
+                try {
+                    String sql = "SELECT idProducto FROM producto WHERE nombreProducto='" + cmbProducto.getSelectedItem() + "'";
+                    PreparedStatement cmd = cn.conectar().prepareStatement(sql);
+                    ResultSet ver = cmd.executeQuery();
+                    if (ver.next()) {
+                        objeto.setCodigoP(ver.getInt(1));
+                    } else {
+                        System.out.println("Error");
                     }
-                }else{
-                    objeto.setStock(cantidad2);
+
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
-            } catch (Exception e) {
-                System.out.println(e.toString());
+                if (rdEntrada.isSelected()) {
+                    objeto.setCodigoT(1);
+                } else if (rdSalida.isSelected()) {
+                    objeto.setCodigoT(2);
+                }
+                objeto.setFecha(fechass);
+                objeto.setPrecioCompra(Double.valueOf(jTFPrecio.getText()));
+                objeto.setPorcentajeGanancia(Double.valueOf(jTFGanancia.getText()));
+                try {
+                    String sql2 = "SELECT stock FROM inventario WHERE idProductos=" + objeto.getCodigoP() + " ORDER BY idInventario DESC";
+                    PreparedStatement cmd2 = cn.conectar().prepareStatement(sql2);
+                    ResultSet ver2 = cmd2.executeQuery();
+                    Integer cantidad2 = Integer.valueOf(jTFCantidad.getText());
+                    if (ver2.next()) {
+                        if (objeto.getCodigoT() == 1) {
+                            objeto.setStock((ver2.getInt(1) + cantidad2));
+                        } else if (objeto.getCodigoT() == 2 && ver2.getInt(1) >= cantidad2) {
+                            objeto.setStock((ver2.getInt(1) - cantidad2));
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Error no hay suficiente stock para restar");
+                        }
+                    } else {
+                        objeto.setStock(cantidad2);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+                objeto.setCantidad(Integer.valueOf(jTFCantidad.getText()));
+                objeto.setImpuestos(Double.valueOf(jTFImpuestos.getText()));
+                objeto.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+
+                if (objeto.guardarInventario()) {
+                    JOptionPane.showMessageDialog(this, "Registro guardado");
+                    int filas = modeloTablaInventario.getRowCount();
+                    for (int i = 0; filas > i; i++) {
+                        modeloTablaInventario.removeRow(0);
+                    }
+                    objeto.setFilasInventario(modeloTablaInventario);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al guardar");
+                }
             }
-            objeto.setCantidad(Integer.valueOf(jTFCantidad.getText()));
-            objeto.setImpuestos(Double.valueOf(jTFImpuestos.getText()));
-            objeto.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
-            
-            
-            if (objeto.guardarInventario()) {
-                JOptionPane.showMessageDialog(this,"Registro guardado");
-                int filas = modeloTablaInventario.getRowCount();
-                for (int i = 0; filas > i; i++) {
-                    modeloTablaInventario.removeRow(0);
-                }         
-                objeto.setFilasInventario(modeloTablaInventario );
-            }else{
-                JOptionPane.showMessageDialog(this,"Error al guardar");
-            }
-        }
-            
-    }else{
-            JOptionPane.showMessageDialog(this,"Ingrese una fecha valida");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
     String codigoI="";

@@ -8,6 +8,7 @@ package formularios;
 import clases.Conexion;
 import clases.mtoVentas;
 import clases.verificaciones;
+import static formularios.PInventario.greenD;
 import java.awt.Image;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -88,10 +89,12 @@ public class PVentas extends javax.swing.JPanel {
        ImageIcon icono0 = new ImageIcon(foto0.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));
        lblhelp.setIcon(icono0);
        
-//       TablaB.getTableHeader().setOpaque(false);
-//        JTableHeader header = TablaB.getTableHeader();
-//        header.setBackground(greenD);
-//        header.setForeground(Color.WHITE);
+   
+       
+       TablaB.getTableHeader().setOpaque(false);
+        JTableHeader header = TablaB.getTableHeader();
+        header.setBackground(greenD);
+        header.setForeground(Color.WHITE);
 //        
 //        String[] valoresC = objeto.getColumnasCategoria();
 //        TableColumnModel columnModel = TablaB.getColumnModel();
@@ -127,6 +130,7 @@ public class PVentas extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         fechaRMax = new com.toedter.calendar.JDateChooser();
         cbFiltroFechas = new javax.swing.JCheckBox();
+        rdTOP = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -163,11 +167,11 @@ public class PVentas extends javax.swing.JPanel {
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jButton6.setContentAreaFilled(false);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton6MouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
             }
         });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +215,14 @@ public class PVentas extends javax.swing.JPanel {
             }
         });
 
+        rdTOP.setBackground(new java.awt.Color(102, 102, 102));
+        rdTOP.setText("TOP 10 Productos más vendidos");
+        rdTOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdTOPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -238,12 +250,17 @@ public class PVentas extends javax.swing.JPanel {
                                     .addComponent(fechaRMax, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fechaRMin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38)))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(rdTOP)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(rdTOP)
+                .addGap(18, 18, 18)
                 .addComponent(rdRVentasMes)
                 .addGap(18, 18, 18)
                 .addComponent(rdVentasEmpleado)
@@ -661,7 +678,10 @@ public class PVentas extends javax.swing.JPanel {
             }else{
                 generarReportes(2,"ReporteFacturasEmpleados","","");
             }
-        }else{
+        }else if(rdTOP.isSelected()){
+            generarReportes(0,"Reporte5ProductosVendidos","","");
+        }
+        else{
             JOptionPane.showMessageDialog(this,"Error selecciona una opcion para generar reporte");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -671,6 +691,10 @@ public class PVentas extends javax.swing.JPanel {
         rdRVentasMes.setSelected(true);
         rdVentasEmpleado.setSelected(false);
         cbFiltroFechas.setEnabled(false);
+        cbFiltroFechas.setSelected(false);
+        fechaRMin.setEnabled(false);
+        fechaRMax.setEnabled(false);
+        rdTOP.setSelected(false);
     }//GEN-LAST:event_rdRVentasMesActionPerformed
 
     private void rdVentasEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdVentasEmpleadoActionPerformed
@@ -678,6 +702,7 @@ public class PVentas extends javax.swing.JPanel {
         rdRVentasMes.setSelected(false);
         rdVentasEmpleado.setSelected(true);
         cbFiltroFechas.setEnabled(true);
+        rdTOP.setSelected(false);
     }//GEN-LAST:event_rdVentasEmpleadoActionPerformed
 
     private void cbFiltroFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroFechasActionPerformed
@@ -690,6 +715,14 @@ public class PVentas extends javax.swing.JPanel {
             fechaRMax.setEnabled(false);
         }
     }//GEN-LAST:event_cbFiltroFechasActionPerformed
+
+    private void rdTOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdTOPActionPerformed
+        // TODO add your handling code here:
+        rdRVentasMes.setSelected(false);
+        rdVentasEmpleado.setSelected(false);
+        cbFiltroFechas.setEnabled(true);
+        rdTOP.setSelected(true);
+    }//GEN-LAST:event_rdTOPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -718,6 +751,7 @@ public class PVentas extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblhelp;
     private javax.swing.JRadioButton rdRVentasMes;
+    private javax.swing.JRadioButton rdTOP;
     private javax.swing.JRadioButton rdVentasEmpleado;
     // End of variables declaration//GEN-END:variables
 }

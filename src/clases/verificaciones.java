@@ -24,12 +24,13 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64;
 public class verificaciones {
     
     public boolean vnumeros (char key){
-        boolean verificado =false;
-         if ( Character.isDigit(key) && key!='0'){
+        boolean verificado =false; 
+         if ( Character.isDigit(key)){
              verificado=true; 
          };
          return verificado;
     }
+    
     
     public boolean vprecio (char key){
         boolean verificado =false;
