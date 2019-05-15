@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteSalidas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f33371c5-7b22-4718-87ba-ad009c6fc481">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select idInventario,idProductos,p.nombreProducto, t.nombre, fechaTransaccion,(precioCompra+(precioCompra*(porcentajeGanacia+impuestos)/100)) as Pventa , stock, cantidad, estado
+from inventario i, producto p, tipoTransaccion t
+where i.idTipoT=2 AND i.idProductos=p.idProducto
+AND t.idTipoT=i.idTipoT AND estado='Entregado'
+order by idProductos]]>
+	</queryString>
+	<field name="idInventario" class="java.lang.Integer"/>
+	<field name="idProductos" class="java.lang.Integer"/>
+	<field name="nombreProducto" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="fechaTransaccion" class="java.sql.Date"/>
+	<field name="Pventa" class="java.lang.Double"/>
+	<field name="stock" class="java.lang.Integer"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="estado" class="java.lang.String"/>
+	<variable name="Pventa_1" class="java.lang.Double" resetType="Group" resetGroup="productos" calculation="Sum">
+		<variableExpression><![CDATA[$F{Pventa}]]></variableExpression>
+	</variable>
+	<group name="productos">
+		<groupExpression><![CDATA[$F{nombreProducto}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<staticText>
+					<reportElement mode="Opaque" x="-1" y="30" width="36" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="205d8332-4fdd-4dab-9f1a-af0d2cf13f14"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[idInventario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="35" y="30" width="102" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="2a055c43-2ce6-4136-8006-da29438f9c84"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[nombreProducto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="137" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="f73351b1-11ff-43f7-9365-69ee524b2177"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[nombre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="206" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="77ed58eb-19e0-482d-9e62-6279bf2febdd"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[fechaTransaccion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="275" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="b22790ed-1d7a-483f-b20d-116737a5f7ce"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pventa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="344" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="22695f0c-bde9-4695-af14-a343ca613238"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[stock]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="413" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="9d436c65-1ffa-48cf-bbd6-58216418e4bc"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="482" y="30" width="69" height="20" forecolor="#FF00FF" backcolor="#000000" uuid="6c51a95e-342c-4cf3-bd5a-8d590a4722f7"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[estado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="-1" y="0" width="76" height="30" uuid="6e6bc9ad-d54c-4a6e-a012-1a0fa22ead58"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="12"/>
+					</textElement>
+					<text><![CDATA[Producto:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="75" y="0" width="100" height="30" uuid="50edbf95-c43f-4585-9760-a7f3140480df"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="175" y="0" width="76" height="30" uuid="a69b1230-5b2b-4b34-b118-8e821bf6a030"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="12"/>
+					</textElement>
+					<text><![CDATA[CODIGO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="251" y="0" width="100" height="30" uuid="0b5c5a80-c0b0-4954-88c6-a8a9ceb09a82"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{idProductos}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="32">
+				<staticText>
+					<reportElement x="298" y="0" width="154" height="30" uuid="a8133b3f-1174-4aea-9711-7584b13ebb68"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="12"/>
+					</textElement>
+					<text><![CDATA[Total Obtenido $(USD):]]></text>
+				</staticText>
+				<textField pattern="###0.00">
+					<reportElement x="452" y="0" width="100" height="30" uuid="935380d3-45ee-4932-938a-9c4ca2252c9e"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{Pventa_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="5" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="bbfff83a-c532-4689-8880-940b782b5e8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idInventario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="102" height="20" uuid="5161d3e7-e882-4dac-9d09-b9d8d2b83b59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="69" height="20" uuid="eba63773-d39f-48d5-9d37-deb08b8d2775"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="69" height="20" uuid="fde9bae5-f303-4186-84ee-082b69784c9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaTransaccion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="276" y="0" width="69" height="20" uuid="4308852a-40f2-49fc-b543-c0da4ebe4acb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Pventa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="69" height="20" uuid="1ea026f8-c25d-4b46-b3e4-f758cc4358f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="69" height="20" uuid="ca735848-2c94-4812-afe9-4cf148f21de2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="69" height="20" uuid="452241e3-e6b4-465d-a3c7-8c5bc69b3633"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="284" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="7" y="17" width="544" height="256" uuid="e66e72fa-3ae2-4e87-97df-e0cbcca25c6b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["USD en salidas de inventario"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{idProductos}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{Pventa_1}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,15 @@
+1- verInventario
+1- construirEquipo
+2- verproductos
+3- solicitarAyuda
+4- ordenes cola
+5 caja virtual
+6 ventas 
+7 chat center
+8 datosempresa
+9 gestionarventas
+10 gestionarbitacoras
+11 gestionarClientes
+12 gestionarProveedores
+13 gestionarEmpleados
+14 gestionarInventario

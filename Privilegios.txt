@@ -1,0 +1,15 @@
+0.verinventario
+1.construirEquipo
+2.verProductos
+3.ayuda--presupuesto
+4.verOrdenesCola
+5.verCajaVirtual
+6.verVentasUsuario
+7.chatCenter
+8.cambiarDatosEmpresa
+9.gestionarVentas -- TipoUsuario
+10.gestionarBitacoras
+11.gestionarClientes
+12.gestionarProveedores
+13.gestionarEmpleados
+
