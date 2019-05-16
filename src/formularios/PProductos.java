@@ -59,11 +59,7 @@ public class PProductos extends javax.swing.JPanel {
      * Variables generales
      */
     String codigoC="",nombreC="",codigoP="",correo="";
-<<<<<<< HEAD
     String fichero;
-=======
-    File fichero;
->>>>>>> fab2bd6acc5185ae6ef7fa50df58bd85622370ec
     String datos=String.valueOf(fichero);
     public static final Color greenD = new Color(217,179,16);
     public static final Color greenDD = new Color(217,179,16);
