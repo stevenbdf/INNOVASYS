@@ -34,13 +34,10 @@ import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import java.awt.Color;
-<<<<<<< HEAD
 import java.awt.Image;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-=======
->>>>>>> fab2bd6acc5185ae6ef7fa50df58bd85622370ec
 
 /**
  *
@@ -1263,25 +1260,7 @@ public class PProductos extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
          
-=======
-        int resultado;
-        fileChooser ventana = new fileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("PNG","png");
-        ventana.jfchCargarFoto.setFileFilter(filtro);
-        resultado = ventana.jfchCargarFoto.showOpenDialog(null);
-        if (JFileChooser.APPROVE_OPTION == resultado) {
-            fichero = ventana.jfchCargarFoto.getSelectedFile();
-            try {
-                ImageIcon icon = new ImageIcon(fichero.toString());
-                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
-                lblFoto.setIcon(icono);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
-            }
-        }    
->>>>>>> fab2bd6acc5185ae6ef7fa50df58bd85622370ec
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void lblhelpAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblhelpAncestorAdded
@@ -1327,7 +1306,6 @@ public class PProductos extends javax.swing.JPanel {
             PreparedStatement cmd = cn.conectar().prepareStatement(sql);
             ResultSet ver = cmd.executeQuery();
             if (ver.next()) {
-<<<<<<< HEAD
                //ImageIcon icon = new ImageIcon(ver.getString(1));
                 Image image = null;
                 URL url = new URL(ver.getString(1));
@@ -1335,13 +1313,6 @@ public class PProductos extends javax.swing.JPanel {
                 ImageIcon icono = new ImageIcon(image.getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
                
                 fichero = ver.getString(1);
-=======
-               ImageIcon icon = new ImageIcon(ver.getString(1));
-                ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
-                
-                File fich = new File(ver.getString(1));
-                fichero = fich;
->>>>>>> fab2bd6acc5185ae6ef7fa50df58bd85622370ec
                 lblFoto.setIcon(icono);
             }
         } catch (Exception e) {
